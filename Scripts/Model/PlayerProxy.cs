@@ -19,6 +19,10 @@ public class PlayerProxy : Proxy {
         SendNotification(EventsEnum.playerHPChange,player);
         SendNotification(EventsEnum.playerDie);
     }
+    private void OnDie()
+    {
+        
+    }
     //public void OnPickUpItem(int value)
     //{
     //    SendNotification(EventsEnum.playerPickUpItem);   

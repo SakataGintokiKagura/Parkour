@@ -11,7 +11,7 @@ public class TerrainProxy : Proxy {
     public TerrainProxy() : base(NAME)
     {
     }
-    public void OnCreateTerrain(TerrainEnum terrain)
+    public void OnCreateTerrain(TerrainEnum terrain,Dictionary<float,GoldEnum> coin)
     {
         ITerrain newTerrain = new OneTerrain();
         SendNotification(EventsEnum.terrainCreateSuccess,newTerrain);
