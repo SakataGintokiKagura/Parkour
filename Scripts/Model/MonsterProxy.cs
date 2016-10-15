@@ -12,9 +12,12 @@ public class MonsterProxy : Proxy {
     public void OnCreatMonster(MonsterEnum monster,float time)
     {
         IBlology monsterTemp = new TortoiseInformation(time);
-        SendNotification(EventsEnum.monsterCreatMonsterSuccess,monsterTemp);
+        SendNotification(EventsEnum.monsterCreateMonsterSuccess,monsterTemp);
     }
+    public void OnGetMonster(GameObject monster)
+    {
 
+    }
     public void OnInjured(GameObject monster,int hurt)
     {
         IBlology monsterTemp = this.monster[monster];
