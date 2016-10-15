@@ -15,8 +15,7 @@ public class ApplicationFacade :Facade {
 
         RegisterCommand(EventsEnum.playerUseSkill, typeof(PlayerUseSkill));
         RegisterCommand(EventsEnum.playerInjured, typeof(playerInjured));
-        RegisterCommand(EventsEnum.monsterCreateMonster, typeof(MonsterCreate));
-        RegisterCommand(EventsEnum.monsterCreateGameObject, typeof(MonsterCreateGameObject));
+        RegisterCommand(EventsEnum.monsterCreatMonster, typeof(MonsterCreate));
         RegisterCommand(EventsEnum.monsterDestroy, typeof(MonsterDestroy));
         RegisterCommand(EventsEnum.monsterInjured, typeof(MonsterInjured));
         RegisterCommand(EventsEnum.terrainCreate, typeof(TerrainCreate));

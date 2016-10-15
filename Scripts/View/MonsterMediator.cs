@@ -28,14 +28,7 @@ public class MonsterMediator : Mediator,IMonsterMediator {
 
     public void OnCreateMonster()
     {
-        SendNotification(EventsEnum.monsterCreateMonster);
-    }
-    /// <summary>
-    /// view层创造的怪物传给后台
-    /// </summary>
-    private void OnGetMonster()
-    {
-        SendNotification(EventsEnum.monsterCreateGameObject);
+        SendNotification(EventsEnum.monsterCreatMonster);
     }
     public void OnDestroyMonster(GameObject monster)
     {
@@ -49,7 +42,7 @@ public class MonsterMediator : Mediator,IMonsterMediator {
     public override IList<string> ListNotificationInterests()
     {
         IList<string> list = new List<string>();
-        list.Add(EventsEnum.monsterCreateMonsterSuccess);
+        list.Add(EventsEnum.monsterCreatMonsterSuccess);
         list.Add(EventsEnum.monsterHPChange);
         list.Add(EventsEnum.monsterDie);
         return list;

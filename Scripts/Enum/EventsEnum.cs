@@ -9,9 +9,8 @@ public class EventsEnum {
     public const string playerDie = "PlayerDie";
     //public const string playerPickUpItem = "PlayerPickUpItem";
 
-    public const string monsterCreateMonster = "MonsterCreateMonster";
-    public const string monsterCreateMonsterSuccess = "MonsterCreateMonsterSuccess";
-    public const string monsterCreateGameObject = "MonsterCreateMonster";
+    public const string monsterCreatMonster = "MonsterCreatMonster";
+    public const string monsterCreatMonsterSuccess = "MonsterCreatMonsterSuccess";
     public const string monsterInjured = "MonsterInjured";
     public const string monsterHPChange = "MonsterHPChange";
     public const string monsterDie = "MonsterDie";
