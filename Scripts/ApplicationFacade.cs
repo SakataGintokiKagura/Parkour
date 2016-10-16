@@ -5,9 +5,9 @@ public class ApplicationFacade :Facade {
 
 	public ApplicationFacade(Player player,UI ui,Terrain terrain,Monster monster)
     {
-        RegisterMediator(new PlayerMediator(player, ui));
-        RegisterMediator(new TerrainMediator(terrain));
-        RegisterMediator(new MonsterMediator(monster,ui));
+        RegisterMediator(PlayerMediator.OnGetPlayerMediator(player, ui));
+        RegisterMediator(TerrainMediator.OnGetTerrainMediator(terrain));
+        RegisterMediator(MonsterMediator.OnGetMonsterMediator(monster,ui));
 
         RegisterProxy(new PlayerProxy());
         RegisterProxy(new TerrainProxy());

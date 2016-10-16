@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class NormalAttackSkill : ISkill
+public class SkillNormalAttack : ISkill
 {
     public float damage
     {

@@ -19,13 +19,36 @@ public class MonsterMediator : Mediator,IMonsterMediator {
     Dictionary<IBlology, GameObject> monster = new Dictionary<IBlology, GameObject>();
     private Monster monsterControl;
     public UI ui;
-    public MonsterMediator(Monster monsterControl,UI ui) : base(NAME)
+    private static MonsterMediator monsterMediator;
+    private MonsterMediator(Monster monsterControl,UI ui) : base(NAME)
     {
         this.monsterControl = monsterControl;
         this.ui = ui;
         monsterControl.OnSetMonsterMediator(this);
     }
-
+    public static MonsterMediator OnGetMonsterMediator(Monster monsterControl, UI ui)
+    {
+        if (monsterMediator == null)
+        {
+            monsterMediator = new MonsterMediator(monsterControl, ui);
+            return monsterMediator;
+        }
+        else {
+            return monsterMediator;
+        }
+    }
+    public static MonsterMediator OnGetMonsterMediator()
+    {
+        if (monsterMediator == null)
+        {
+            Debug.Log("MonsterMediator为空");
+            return monsterMediator;
+        }
+        else
+        {
+            return monsterMediator;
+        }
+    }
     public void OnCreateMonster()
     {
         SendNotification(EventsEnum.monsterCreateMonster);

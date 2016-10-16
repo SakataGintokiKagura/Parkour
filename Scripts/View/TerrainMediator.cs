@@ -8,10 +8,35 @@ public class TerrainMediator : Mediator,ITerrainMediator {
 
     public new const string NAME = "TerrainMediator";
     private Terrain terrain;
-    public TerrainMediator(Terrain terrain) : base(NAME)
+    private static TerrainMediator terrainMediator;
+    private TerrainMediator(Terrain terrain) : base(NAME)
     {
         this.terrain = terrain;
         terrain.OnSetTerrain(this);
+    }
+    public static TerrainMediator OnGetTerrainMediator(Terrain terrain)
+    {
+        if (terrainMediator == null)
+        {
+            terrainMediator = new TerrainMediator(terrain);
+            return terrainMediator;
+        }
+        else
+        {
+            return terrainMediator;
+        }
+    }
+    public static TerrainMediator OnGetTerrainMediator()
+    {
+        if (terrainMediator == null)
+        {
+            Debug.Log("terrainMediator为空");
+            return terrainMediator;
+        }
+        else
+        {
+            return terrainMediator;
+        }
     }
     public void OnCreateTerrain()
     {

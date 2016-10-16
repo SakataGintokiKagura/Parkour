@@ -20,9 +20,9 @@ public class Player : MonoBehaviour {
         state = PlayerState.Instance;
         anim = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
-        initialVelocity = MotionParameber.initialVelocity * Time.deltaTime;
+        initialVelocity = MotionParameber.initialVelocity *MotionParameber.FixedMotion;
         velocity = new Vector3(initialVelocity, 0, 0);
-        StartCoroutine(OnAccelerate());
+        //StartCoroutine(OnAccelerate());
         anim.SetFloat(AnimationParameter.xSpeed, velocity.x);
         anim.SetFloat(AnimationParameter.ySpeed, velocity.y);
         anim.SetInteger(AnimationParameter.jump, AnimationParameter.jumpGround);
@@ -45,14 +45,14 @@ public class Player : MonoBehaviour {
     }
     Vector3 ApplyGravity(Vector3 velocity)
     {
-        velocity.y -= MotionParameber.Gravity * Time.deltaTime;
+        velocity.y -= MotionParameber.Gravity * MotionParameber.FixedMotion;
         return velocity;
     }
     Vector3 OnCheckVelocity(Vector3 velovity)
     {
-        if (velocity.y > MotionParameber.jumpDir.y * Time.deltaTime)
+        if (velocity.y > MotionParameber.jumpDir.y * MotionParameber.FixedMotion)
         {
-            velocity.y = MotionParameber.jumpDir.y * Time.deltaTime;
+            velocity.y = MotionParameber.jumpDir.y * MotionParameber.FixedMotion;
         }
         return velocity;
     }
@@ -61,14 +61,14 @@ public class Player : MonoBehaviour {
         if (state.jumpState is Run)
         {
             velocity.y = 0;
-            velocity += MotionParameber.jumpDir * Time.deltaTime;
+            velocity += MotionParameber.jumpDir * MotionParameber.FixedMotion;
             state.OnJump(true);
             anim.SetInteger(AnimationParameter.jump, AnimationParameter.jumpfirst);
         }
         else if (state.jumpState is FirstJump)
         {
             velocity.y = 0;
-            velocity += MotionParameber.jumpDir * Time.deltaTime;
+            velocity += MotionParameber.jumpDir*2/3 * MotionParameber.FixedMotion;
             state.OnJump(true);
             anim.SetInteger(AnimationParameter.jump, AnimationParameter.jumpsecond);
         }
@@ -79,7 +79,7 @@ public class Player : MonoBehaviour {
         while (true)
         {
             yield return new WaitForSeconds(MotionParameber.accelerationCD);
-            velocity.x += MotionParameber.acceleration * Time.deltaTime;
+            velocity.x += MotionParameber.acceleration * MotionParameber.FixedMotion;
         }
 
     }
