@@ -15,6 +15,10 @@ public class UI : MonoBehaviour {
             //playerMediator.OnUseSkill(new Jump());
             //playerMediator.OnInjured();
         }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            playerMediator.OnUseSkill(new SkillNormalAttack());
+        }
 
 	}
     public void OnSetPlayerMediator(IPlayerMediator playerMediator)
