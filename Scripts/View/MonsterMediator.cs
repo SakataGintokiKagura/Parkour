@@ -3,6 +3,8 @@ using System.Collections;
 using PureMVC.Patterns;
 using System.Collections.Generic;
 using PureMVC.Interfaces;
+using System;
+
 public class MonsterInjuredInfor
 {
     public GameObject monster;
@@ -20,6 +22,15 @@ public class MonsterMediator : Mediator,IMonsterMediator {
     private Monster monsterControl;
     public UI ui;
     private static MonsterMediator monsterMediator;
+
+    Dictionary<IBlology, GameObject> IMonsterMediator.monster
+    {
+        get
+        {
+            return monster;
+        }
+    }
+
     private MonsterMediator(Monster monsterControl,UI ui) : base(NAME)
     {
         this.monsterControl = monsterControl;
