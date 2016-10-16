@@ -11,12 +11,12 @@ public class PlayerState  {
             return instance;
         }
     }
-    public StateInterfance first;
-    public StateInterfance second;
-    public StateInterfance run;
+    public IState first;
+    public IState second;
+    public IState run;
 
-    public StateInterfance jumpState;
-    public StateInterfance skillState;
+    public IState jumpState;
+    public IState skillState;
     private PlayerState() {
         first = new FirstJump(this);
         second = new SecondJump(this);

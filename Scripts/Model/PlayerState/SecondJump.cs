@@ -2,22 +2,23 @@
 using System.Collections;
 using System;
 
-public class SecondJump : StateInterfance {
+public class SecondJump : IState
+{
     public SecondJump(PlayerState player) : base(player)
     {
     }
 
-    public override StateInterfance OnAttack(bool isAttack)
+    public override IState OnAttack(bool isAttack)
     {
         throw new NotImplementedException();
     }
 
-    public override StateInterfance OnGrounded()
+    public override IState OnGrounded()
     {
         return player.run;
     }
 
-    public override StateInterfance OnJump(bool isJump)
+    public override IState OnJump(bool isJump)
     {
         return player.second;
     }

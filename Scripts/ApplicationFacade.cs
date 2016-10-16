@@ -12,7 +12,6 @@ public class ApplicationFacade :Facade {
         RegisterProxy(new PlayerProxy());
         RegisterProxy(new TerrainProxy());
         RegisterProxy(new MonsterProxy());
-
         RegisterCommand(EventsEnum.playerUseSkill, typeof(PlayerUseSkill));
         RegisterCommand(EventsEnum.playerInjured, typeof(playerInjured));
         RegisterCommand(EventsEnum.monsterCreateMonster, typeof(MonsterCreate));
