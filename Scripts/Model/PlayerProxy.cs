@@ -17,13 +17,13 @@ public class PlayerProxy : Proxy {
 			SendNotification(EventsEnum.playerUseSkillSuccess,skill);
 		}
     }
-
     public void OnInjured(GameObject game)
     { 
 		//判断哪个怪
 		IBlology monster = MonsterProxy.AllMonster.TryGetValue(game);
 		player.HP -= monster.damage;
         SendNotification(EventsEnum.playerHPChange,player);
+
 		if(player.HP<=0){
 			OnDie ();
 		}
@@ -31,6 +31,11 @@ public class PlayerProxy : Proxy {
     private void OnDie()
     {
 		SendNotification(EventsEnum.playerDie);
+
+    }
+    public void OnGetScoure(int scoure)
+    {
+        SendNotification(EventsEnum.playerGetScoureSuccess,player);
     }
     //public void OnPickUpItem(int value)
     //{

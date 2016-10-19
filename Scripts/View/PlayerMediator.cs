@@ -43,8 +43,22 @@ public class PlayerMediator : Mediator,IPlayerMediator {
     }
     public void OnUseSkill(ISkill skill)
     {
-        player.OnSetSkill(skill);
-        SendNotification(EventsEnum.playerUseSkill,skill);
+        if(PlayerState.Instance.skillState is Run)
+        {
+            if(PlayerState.Instance.jumpState is Run)
+            {
+                player.OnStartSkill(skill);
+                //SendNotification(EventsEnum.playerUseSkill, skill);
+            }
+            else
+            {
+                if(skill is IEnbaleAirSkill)
+                {
+                    player.OnStartSkill(skill);
+                    //SendNotification(EventsEnum.playerUseSkill, skill);
+                }
+            }
+        }  
     }
     public void OnInjured(GameObject monster)
     {
@@ -56,16 +70,30 @@ public class PlayerMediator : Mediator,IPlayerMediator {
         list.Add(EventsEnum.playerUseSkillSuccess);
         list.Add(EventsEnum.playerHPChange);
         list.Add(EventsEnum.playerDie);
+        list.Add(EventsEnum.playerGetScoureSuccess);
+        list.Add(EventsEnum.playerDropOutNoDie);
         return list;
     }
     public override void HandleNotification(INotification notification)
     {
-        base.HandleNotification(notification);
-        
+        switch (notification.Name)
+        {
+            case EventsEnum.playerDropOutNoDie:
+                player.OnDropOut();
+                break;
+        }
     }
 
     public void OnJump()
     {
         player.OnJump();
+    }
+    public void OnGetScoure(int scoure)
+    {
+        SendNotification(EventsEnum.playerGetScoure, scoure);
+    }
+    public void OnDropOutPit()
+    {
+        SendNotification(EventsEnum.playerDropOutPit);
     }
 }

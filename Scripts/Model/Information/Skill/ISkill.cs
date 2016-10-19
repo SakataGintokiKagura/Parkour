@@ -5,5 +5,8 @@ public interface ISkill {
 	float damage { get; }
     int MP { get; }
     float time { get; }
-    bool OnSkillAnimation(ref Vector3 velocity, Animator anim,PlayerState state);
+    void OnStartSkillAnimation(Transform transform, Animator anim,PlayerState state);
+    void OnMiddleSkillAnimation(Transform transform, Animator anim, PlayerState state);
+    int OnMiddleSkillAnimation();
+    void OnEndSkillAnimation(Transform transform, Animator anim, PlayerState state);
 }

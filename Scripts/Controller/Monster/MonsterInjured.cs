@@ -10,6 +10,8 @@ public class MonsterInjured : SimpleCommand
 
     public override void Execute(INotification notification)
     {
-        base.Execute(notification);
+        MonsterProxy monster = (MonsterProxy)Facade.RetrieveProxy(MonsterProxy.NAME);
+        MonsterInjuredInfor temp = (MonsterInjuredInfor)notification.Body;
+        monster.OnInjured(temp.monster, temp.skill.damage);
     }
 }

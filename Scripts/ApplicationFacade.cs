@@ -19,5 +19,7 @@ public class ApplicationFacade :Facade {
         RegisterCommand(EventsEnum.monsterDestroy, typeof(MonsterDestroy));
         RegisterCommand(EventsEnum.monsterInjured, typeof(MonsterInjured));
         RegisterCommand(EventsEnum.terrainCreate, typeof(TerrainCreate));
+        RegisterCommand(EventsEnum.playerGetScoure, typeof(PlayerGetSource));
+        RegisterCommand(EventsEnum.playerDropOutPit, typeof(PlayerDropOutPit));
     }
 }

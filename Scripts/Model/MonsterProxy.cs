@@ -42,7 +42,7 @@ public class MonsterProxy : Proxy {
 		AllMonster.Add (monster,MonsterQueue.Dequeue());
 		//Debug.Log (111122);
     }
-    public void OnInjured(GameObject monster,int hurt)
+    public void OnInjured(GameObject monster,float hurt)
     {
 		if (this.AllMonster [monster].HP - hurt > 0) {
 			SendNotification (EventsEnum.monsterHPChange, hurt);
