@@ -43,6 +43,19 @@ public class Player : MonoBehaviour {
     /// </summary>
     void FixedUpdate()
     {
+        //Ray ray = new Ray(transform.position, Vector3.down);
+        //RaycastHit hit;
+        //Physics.Raycast(ray, out hit);
+        //Debug.Log(hit.collider.tag);
+        //if (hit.collider.tag == TagParameber.monster)
+        //{
+        //    Debug.Log(3333);
+        //    //MonsterMediator.OnGetMonsterMediator().OnInjured(monster, treadAttack);
+        //    velocity.y = 0;
+        //    velocity.y += MotionParameber.elasticTread;
+        //    //OnHurt(monster);
+        //    //return;
+        //}
         velocity = ApplyGravity(velocity);
         Vector3 lastPosition = transform.position;
         CollisionFlags flags = controller.Move(velocity);
@@ -193,7 +206,7 @@ public class Player : MonoBehaviour {
             Destroy(col.gameObject);
         }else if(col.tag == TagParameber.monster)
         {
-            Debug.Log(1111);
+           // Debug.Log(1111);
             OnHurtCheck(col.gameObject);
         }
         
@@ -204,11 +217,15 @@ public class Player : MonoBehaviour {
     /// <param name="monster"></param>
     void OnHurtCheck(GameObject monster)
     {
-        Ray ray = new Ray(transform.position+new Vector3(0,1.27f,0), Vector3.down);
-        RaycastHit hit;
-        Physics.Raycast(ray, out hit);
-        Debug.Log(hit.collider.tag);
-        if (hit.collider.tag == TagParameber.monster)
+        Ray rayA = new Ray(transform.position+new Vector3(0.16f,1.27f,0), Vector3.down);
+        Ray rayB = new Ray(transform.position + new Vector3(-0.16f, 1.27f, 0), Vector3.down);
+        RaycastHit hitA;
+        RaycastHit hitB;
+        Physics.Raycast(rayA, out hitA);
+        Physics.Raycast(rayB, out hitB);
+        Debug.Log(hitA.collider.tag);
+        Debug.Log(hitB.collider.tag);
+        if (hitA.collider.tag == TagParameber.monster|| hitB.collider.tag == TagParameber.monster)
         {
             Debug.Log(3333);
             MonsterMediator.OnGetMonsterMediator().OnInjured(monster, treadAttack);
@@ -231,7 +248,7 @@ public class Player : MonoBehaviour {
     /// </summary>
     public void OnDropOut()
     {
-        Debug.Log(velocity);
+        //Debug.Log(velocity);
         Vector3 position = transform.position;
         position += MotionParameber.rebornDelta;
         position.y = 0;
