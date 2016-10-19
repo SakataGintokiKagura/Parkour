@@ -22,7 +22,7 @@ public class UI : MonoBehaviour {
         {
             playerMediator.OnUseSkill(new SkillBigRollAttack());
         }else if (Input.GetKeyDown(KeyCode.D)){
-            playerMediator.OnUseSkill(new SkillBigRemoteAttack());
+            playerMediator.OnUseSkill(new SkillNormalRemoteAttack());
         }else if (Input.GetKeyDown(KeyCode.W))
         {
             playerMediator.OnUseSkill(new SkillRangeAttack());

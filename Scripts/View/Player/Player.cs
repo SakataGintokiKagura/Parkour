@@ -193,6 +193,7 @@ public class Player : MonoBehaviour {
             Destroy(col.gameObject);
         }else if(col.tag == TagParameber.monster)
         {
+            Debug.Log(1111);
             OnHurtCheck(col.gameObject);
         }
         
@@ -203,12 +204,16 @@ public class Player : MonoBehaviour {
     /// <param name="monster"></param>
     void OnHurtCheck(GameObject monster)
     {
-        Ray ray = new Ray(transform.position, Vector3.down);
+        Ray ray = new Ray(transform.position+new Vector3(0,1.27f,0), Vector3.down);
         RaycastHit hit;
         Physics.Raycast(ray, out hit);
+        Debug.Log(hit.collider.tag);
         if (hit.collider.tag == TagParameber.monster)
         {
+            Debug.Log(3333);
             MonsterMediator.OnGetMonsterMediator().OnInjured(monster, treadAttack);
+            velocity.y = 0;
+            velocity.y += MotionParameber.elasticTread;
             OnHurt(monster);
             return;
         }
