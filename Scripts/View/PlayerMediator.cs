@@ -48,14 +48,14 @@ public class PlayerMediator : Mediator,IPlayerMediator {
             if(PlayerState.Instance.jumpState is Run)
             {
                 player.OnStartSkill(skill);
-                SendNotification(EventsEnum.playerUseSkill, skill);
+                //SendNotification(EventsEnum.playerUseSkill, skill);
             }
             else
             {
                 if(skill is IEnbaleAirSkill)
                 {
                     player.OnStartSkill(skill);
-                    SendNotification(EventsEnum.playerUseSkill, skill);
+                    //SendNotification(EventsEnum.playerUseSkill, skill);
                 }
             }
         }  
