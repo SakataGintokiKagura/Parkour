@@ -11,4 +11,5 @@ public class MotionParameber{
     public static Vector3 rebornDelta = new Vector3(2f, 0, 0);
     public const float secondJump = 0.8f;
     public const float yLimit = -7f;
+    public const float elasticTread = 10f*fixedMotion; 
 }

@@ -5,12 +5,11 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 public class UI : MonoBehaviour {
     private IPlayerMediator playerMediator;
-    // Use this for initialization
     private bool jump=false;
     private bool startJump= false;
     private bool skillA = false;
     private bool skillB = false;
-    private bool starttime = false;
+    private bool startReadTime = false;
     private float usedtime = 0;
     private float curTime=0;
     private int jumpCount = 0;
@@ -47,28 +46,26 @@ public class UI : MonoBehaviour {
         //按键技能触发
         if (skillA)
         {
-            starttime = true;
+            startReadTime = true;
             skillA = false;
             listSkill.Add("A");
        
         }      
         if (skillB)
         {
-           // curTime = 0;
-            starttime = true;
+            startReadTime = true;
             skillB = false;
             listSkill.Add("B");
 
-         
         }
-        if (starttime == true)
+        if (startReadTime== true)
         {
             curTime = curTime + Time.deltaTime;
             if (curTime > SkillParameber.SkillReadCD)
             {
                 SkillCheck(listSkill);
                 listSkill.Clear();
-                starttime = false;
+                startReadTime = false;
                 curTime = 0;
             }
         }
