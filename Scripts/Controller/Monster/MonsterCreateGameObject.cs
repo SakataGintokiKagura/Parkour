@@ -10,6 +10,7 @@ class MonsterCreateGameObject : SimpleCommand
     public override void Execute(INotification notification)
     {
         MonsterProxy monster = (MonsterProxy)Facade.RetrieveProxy(MonsterProxy.NAME);
+		//Debug.Log (notification.Body);
         monster.OnGetMonster((GameObject)notification.Body);
     }
 }

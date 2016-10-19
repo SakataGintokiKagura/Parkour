@@ -1,15 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MonsterParameber : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
+public class MonsterParameber  {
 	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+	public const int lowHP = 1;
+	public const int lowdamage = 20;
+	public const int midHP = 2;
+	public const int middamage = 25;
+	public const int highHP = 3;
+	public const int highdamage = 30;
 }

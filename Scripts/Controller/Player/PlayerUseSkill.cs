@@ -8,7 +8,7 @@ public class PlayerUseSkill : SimpleCommand {
 
     public override void Execute(INotification notification)
     {
-        Debug.Log(1111);
+        //Debug.Log(1111);
         base.Execute(notification);
     }
 }

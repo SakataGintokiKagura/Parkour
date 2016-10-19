@@ -1,10 +1,15 @@
 ﻿public enum MonsterEnum
 {
-    Tortoise
+    Tortoise,
+	Dragon,
+	Chomper,
+	Gas
 }
 public enum TerrainEnum
 {
-    One
+    One,
+	Two,
+	Three
 }
 public enum GoldEnum
 {

@@ -60,9 +60,10 @@ public class MonsterMediator : Mediator,IMonsterMediator {
             return monsterMediator;
         }
     }
-    public void OnCreateMonster()
+	public void OnCreateMonster(KeyCode key)
     {
-        SendNotification(EventsEnum.monsterCreateMonster);
+		SendNotification(EventsEnum.monsterCreateMonster,key);
+		//Debug.Log (1111);
     }
     /// <summary>
     /// view层创造的怪物传给后台
@@ -86,10 +87,15 @@ public class MonsterMediator : Mediator,IMonsterMediator {
         list.Add(EventsEnum.monsterCreateMonsterSuccess);
         list.Add(EventsEnum.monsterHPChange);
         list.Add(EventsEnum.monsterDie);
+
         return list;
     }
     public override void HandleNotification(INotification notification)
     {
-        base.HandleNotification(notification);
+		switch (notification.Name) {
+		case EventsEnum.monsterCreateMonsterSuccess:
+			SendNotification (EventsEnum.monsterCreateGameObject, monsterControl.ty);
+			break;
+		}
     }
 }

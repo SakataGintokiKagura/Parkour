@@ -11,17 +11,26 @@ public class PlayerProxy : Proxy {
     }
     public void OnUseSkill(ISkill skill)
     {
-        SendNotification(EventsEnum.playerUseSkillSuccess,skill);
+		//技能
+		if(skill.MP<player.MP){
+			player.MP -= skill.MP;
+			SendNotification(EventsEnum.playerUseSkillSuccess,skill);
+		}
     }
 
     public void OnInjured(GameObject game)
     { 
+		//判断哪个怪
+		IBlology monster = MonsterProxy.AllMonster.TryGetValue(game);
+		player.HP -= monster.damage;
         SendNotification(EventsEnum.playerHPChange,player);
-        SendNotification(EventsEnum.playerDie);
+		if(player.HP<=0){
+			OnDie ();
+		}
     }
     private void OnDie()
     {
-        
+		SendNotification(EventsEnum.playerDie);
     }
     //public void OnPickUpItem(int value)
     //{
