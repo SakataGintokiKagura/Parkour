@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class SkillRollAttack : ISkill
+public class SkillRollAttack : IMeleeAttack
 {
     public float damage
     {
@@ -28,18 +28,25 @@ public class SkillRollAttack : ISkill
         }
     }
 
-    public bool OnSkillAnimation(ref Vector3 velocity, Animator anim, PlayerState state)
+    public void OnEndSkillAnimation(Transform transform, Animator anim, PlayerState state)
+    {
+        anim.SetInteger(AnimationParameter.skill, AnimationParameter.skillUnUse);
+        state.OnEndSkill();
+    }
+
+    public int OnMiddleSkillAnimation()
     {
         throw new NotImplementedException();
     }
 
-    // Use this for initialization
-    void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public void OnMiddleSkillAnimation(Transform transform, Animator anim, PlayerState state)
+    {
+        Debug.Log("技能过程出错");
+    }
+
+    public void OnStartSkillAnimation(Transform transform, Animator anim, PlayerState state)
+    {
+        anim.SetInteger(AnimationParameter.skill, AnimationParameter.skillRollAttack);
+        state.OnUseSkill(true);
+    }
 }

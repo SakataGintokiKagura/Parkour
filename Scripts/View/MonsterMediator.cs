@@ -78,7 +78,7 @@ public class MonsterMediator : Mediator,IMonsterMediator {
     public void OnInjured(GameObject monster,ISkill skill)
     {
         MonsterInjuredInfor monsterTemp = new MonsterInjuredInfor(monster, skill);
-        SendNotification(EventsEnum.playerInjured,monsterTemp);
+        SendNotification(EventsEnum.monsterInjured,monsterTemp);
     }
     public override IList<string> ListNotificationInterests()
     {

@@ -2,24 +2,32 @@
 using System.Collections;
 using System;
 
-public class Run : IState
+public class Run : AbsState
 {
     public Run(PlayerState player) : base(player)
     {
     }
 
-    public override IState OnAttack(bool isAttack)
-    {
-        throw new NotImplementedException();
-    }
 
-    public override IState OnGrounded()
+    public override AbsState OnGrounded()
     {
         return player.run;
     }
 
-    public override IState OnJump(bool isJump)
+    public override AbsState OnJump()
     {
         return player.first;
+    }
+
+    public override AbsState OnUseSkill(bool isInterrupted)
+    {
+        if (isInterrupted)
+        {
+            return player.general;
+        }
+        else
+        {
+            return player.unInterrupted;
+        }
     }
 }

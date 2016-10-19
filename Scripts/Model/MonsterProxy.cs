@@ -18,7 +18,7 @@ public class MonsterProxy : Proxy {
     {
 
     }
-    public void OnInjured(GameObject monster,int hurt)
+    public void OnInjured(GameObject monster,float hurt)
     {
         IBlology monsterTemp = this.monster[monster];
         SendNotification(EventsEnum.monsterHPChange, hurt);

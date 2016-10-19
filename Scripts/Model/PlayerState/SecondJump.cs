@@ -2,24 +2,27 @@
 using System.Collections;
 using System;
 
-public class SecondJump : IState
+public class SecondJump : AbsState
 {
     public SecondJump(PlayerState player) : base(player)
     {
     }
 
-    public override IState OnAttack(bool isAttack)
-    {
-        throw new NotImplementedException();
-    }
 
-    public override IState OnGrounded()
+
+    public override AbsState OnGrounded()
     {
         return player.run;
     }
 
-    public override IState OnJump(bool isJump)
+    public override AbsState OnJump()
     {
-        return player.second;
+        Debug.Log("状态出错");
+        return this;
+    }
+    public override AbsState OnUseSkill(bool isInterrupted)
+    {
+        Debug.Log("状态出错");
+        return this;
     }
 }

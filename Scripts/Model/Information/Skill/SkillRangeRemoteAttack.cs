@@ -28,18 +28,26 @@ public class SkillRangeRomateAttack : ISkill
         }
     }
 
-    public bool OnSkillAnimation(ref Vector3 velocity, Animator anim, PlayerState state)
+    public void OnEndSkillAnimation(Transform transform, Animator anim, PlayerState state)
+    {
+        anim.SetInteger(AnimationParameter.skill, AnimationParameter.skillUnUse);
+        // Debug.Log("jieshu");
+        state.OnEndSkill();
+    }
+
+    public int OnMiddleSkillAnimation()
     {
         throw new NotImplementedException();
     }
 
-    // Use this for initialization
-    void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public void OnMiddleSkillAnimation(Transform transform, Animator anim, PlayerState state)
+    {
+        Debug.Log("释放飞行道具");
+    }
+
+    public void OnStartSkillAnimation(Transform transform, Animator anim, PlayerState state)
+    {
+        anim.SetInteger(AnimationParameter.skill, AnimationParameter.skillRangeRemoteAttack);
+        state.OnUseSkill(true);
+    }
 }

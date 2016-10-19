@@ -13,15 +13,21 @@ public class PlayerProxy : Proxy {
     {
         SendNotification(EventsEnum.playerUseSkillSuccess,skill);
     }
-
     public void OnInjured(GameObject game)
     { 
         SendNotification(EventsEnum.playerHPChange,player);
-        SendNotification(EventsEnum.playerDie);
+    }
+    public void OnGetScoure(int scoure)
+    {
+        SendNotification(EventsEnum.playerGetScoureSuccess,player);
     }
     private void OnDie()
     {
-        
+        SendNotification(EventsEnum.playerDie);
+    }
+    public void OnDropOutPit()
+    {
+        SendNotification(EventsEnum.playerDropOutNoDie,player);
     }
     //public void OnPickUpItem(int value)
     //{
