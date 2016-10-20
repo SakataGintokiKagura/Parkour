@@ -43,6 +43,10 @@ public class Player : MonoBehaviour {
     /// </summary>
     void FixedUpdate()
     {
+        //Ray rayA = new Ray(transform.position + new Vector3(1f, 0, 0), Vector3.down);
+        //Ray rayB = new Ray(transform.position + new Vector3(-0.16f, 0, 0), Vector3.down);
+        //Debug.DrawLine(rayA.origin, rayA.direction, new Color(255, 0, 0));
+        //Debug.DrawLine(rayB.origin, rayB.direction, new Color(0, 255, 0));
         //Ray ray = new Ray(transform.position, Vector3.down);
         //RaycastHit hit;
         //Physics.Raycast(ray, out hit);
@@ -206,7 +210,7 @@ public class Player : MonoBehaviour {
             Destroy(col.gameObject);
         }else if(col.tag == TagParameber.monster)
         {
-           // Debug.Log(1111);
+            Debug.Log(1111);
             OnHurtCheck(col.gameObject);
         }
         
@@ -217,15 +221,17 @@ public class Player : MonoBehaviour {
     /// <param name="monster"></param>
     void OnHurtCheck(GameObject monster)
     {
-        Ray rayA = new Ray(transform.position+new Vector3(0.16f,1.27f,0), Vector3.down);
-        Ray rayB = new Ray(transform.position + new Vector3(-0.16f, 1.27f, 0), Vector3.down);
-        RaycastHit hitA;
+        //Ray rayA = new Ray(transform.position+new Vector3(0.16f,1.7f,0), Vector3.down);
+        Ray rayB = new Ray(transform.position + new Vector3(-0.16f, 1.3f, 0), Vector3.down);
+        //Debug.DrawLine(rayA.origin, rayA.direction, new Color(255, 0, 0));
+        Debug.DrawLine(rayB.origin, rayB.direction, new Color(0, 255, 0));
+        //RaycastHit hitA;
         RaycastHit hitB;
-        Physics.Raycast(rayA, out hitA);
+        //Physics.Raycast(rayA, out hitA);
         Physics.Raycast(rayB, out hitB);
-        Debug.Log(hitA.collider.tag);
+        //Debug.Log(hitA.collider.tag);
         Debug.Log(hitB.collider.tag);
-        if (hitA.collider.tag == TagParameber.monster|| hitB.collider.tag == TagParameber.monster)
+        if (hitB.collider.tag == TagParameber.monster)
         {
             Debug.Log(3333);
             MonsterMediator.OnGetMonsterMediator().OnInjured(monster, treadAttack);
