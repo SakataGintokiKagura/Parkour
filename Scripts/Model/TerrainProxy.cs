@@ -17,7 +17,7 @@ public class TerrainProxy : Proxy {
 
     public new const string NAME = "terrainProxy";
     public ITerrain terrain;
-    Queue<ITerrain> terrainQueue = new Queue<ITerrain>(2);
+    Queue<ITerrain> terrainQueue = new Queue<ITerrain>(3);
     public TerrainProxy() : base(NAME)
     {
     }

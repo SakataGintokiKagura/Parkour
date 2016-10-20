@@ -11,5 +11,6 @@ public class MonsterCreate : SimpleCommand
     public override void Execute(INotification notification)
     {
         base.Execute(notification);
+
     }
 }

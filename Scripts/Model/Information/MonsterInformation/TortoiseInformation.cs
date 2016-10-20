@@ -8,8 +8,8 @@ public class TortoiseInformation : IBlology {
     //public Transform trans { get; set; }
     public TortoiseInformation(float time)
     {
-        HP = 1;
-        damage = 20;
+		this.HP = MonsterParameber.highHP*(int)time;
+		this.damage = MonsterParameber.lowdamage*(int)time;
         //this.trans = trans;
     }
 }
