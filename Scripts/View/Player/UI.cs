@@ -23,13 +23,8 @@ public class UI : MonoBehaviour {
     }
 	// Update is called once per frame
 	void Update () {
-<<<<<<< HEAD
-        
-	}
-    public void OnSetPlayerMediator(IPlayerMediator playerMediator)
-=======
-
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
             startJump = true;
         }
         if (Input.GetKeyDown(KeyCode.A))
@@ -54,8 +49,8 @@ public class UI : MonoBehaviour {
             startReadTime = true;
             skillA = false;
             listSkill.Add("A");
-       
-        }      
+
+        }
         if (skillB)
         {
             startReadTime = true;
@@ -63,7 +58,7 @@ public class UI : MonoBehaviour {
             listSkill.Add("B");
 
         }
-        if (startReadTime== true)
+        if (startReadTime == true)
         {
             curTime = curTime + Time.deltaTime;
             if (curTime > SkillParameber.SkillReadCD)
@@ -74,18 +69,11 @@ public class UI : MonoBehaviour {
                 curTime = 0;
             }
         }
+
     }
-
-
-
-    /*   void OnGUI() {
-          GUIStyle style = new GUIStyle();
-          style.fontSize = 14;
-          GUI.Label(new Rect(350,0,100,20), "Score:"+coinsnum, style );
-    }   
-  
-      }*/
-
+    public void OnSetPlayerMediator(IPlayerMediator playerMediator) {
+        this.playerMediator = playerMediator;
+    }
     public void SkillCheck(ArrayList listSkill) {
         int i = listSkill.Count;
         switch (i)
@@ -297,11 +285,6 @@ public class UI : MonoBehaviour {
                     break;
                 }
         }
-    }
-public void OnSetPlayerMediator(IPlayerMediator playerMediator)
->>>>>>> 56efbc86f45f924f30b362d10583f85cae37cddf
-    {
-        this.playerMediator = playerMediator;
     }
     
     public void OnButtonA()
