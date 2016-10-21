@@ -1,15 +1,23 @@
-﻿public enum MonsterEnum
+﻿/// <summary>
+/// 朱科锦
+/// 怪物种类的枚举类
+/// </summary>
+public enum MonsterEnum
 {
-    Tortoise,//龟
-	Dragon,//龙
-	Chomper,//食人花
-	Gas//瓦斯
+    Tortoise,
+	Dragon,
+	Chomper,
+	Gas
 }
+/// <summary>
+/// 朱科锦
+/// 地形编号的枚举类
+/// </summary>
 public enum TerrainEnum
 {
-    One,//地形一
-	Two,//地形二
-	Three//地形三
+    One,
+	Two,
+	Three
 }
 public enum GoldEnum
 {

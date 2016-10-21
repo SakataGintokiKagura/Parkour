@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
-//食人花
+/// <summary>
+/// 朱科锦
+/// 构造食人花类，实现Iblology接口
+/// 怪物属性随事件提升
+/// </summary>
 public class ChomperInformation : IBlology {
 
 	public int damage{get;set;}//攻击力

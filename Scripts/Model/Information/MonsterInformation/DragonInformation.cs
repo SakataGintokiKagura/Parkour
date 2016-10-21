@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
-//龙
+/// <summary>
+/// 朱科锦
+/// 构造龙类，实现Iblology接口
+/// 怪物属性随事件提升
+/// </summary>
 public class DragonInformation : IBlology {
 
 	public int damage{get;set;}//攻击力

@@ -2,7 +2,10 @@
 using System.Collections;
 using System;
 using System.Collections.Generic;
-//地形二
+/// <summary>
+/// 朱科锦
+/// 构造地形二并将坑的坐标记录下来
+/// </summary>
 public class TwoTerrain : ITerrain
 {
     public const TerrainEnum terrain = TerrainEnum.Two;

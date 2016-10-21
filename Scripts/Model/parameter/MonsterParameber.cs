@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-//怪物的属性类
+/// <summary>
+/// 朱科锦
+/// 怪物属性，以常量的形式写在数据类里
+/// 怪物属性份三档，low，mid，high
+/// </summary>
 public class MonsterParameber  {
     public const float damageShowTime = 0.5f;
-	//怪物的属性份三档 low  mid  high
     public const int lowHP = 1;
 	public const int lowdamage = 10;
 	public const int midHP = 2;

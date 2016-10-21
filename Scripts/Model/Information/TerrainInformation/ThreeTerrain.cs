@@ -2,7 +2,10 @@
 using System.Collections;
 using System;
 using System.Collections.Generic;
-//地形三
+/// <summary>
+/// 朱科锦
+/// 构造地形三并将坑的坐标记录下来
+/// </summary>
 public class ThreeTerrain : ITerrain
 {
     public const TerrainEnum terrain = TerrainEnum.Three;
