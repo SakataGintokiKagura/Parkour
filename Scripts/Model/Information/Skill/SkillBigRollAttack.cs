@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
-
+/// <summary>
+/// 唐耀 技能规划，技能控制设计
+/// 加强滚动攻击
+/// </summary>
 public class SkillBigRollAttack : IMeleeAttack
 {
     public float damage

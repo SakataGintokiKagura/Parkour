@@ -2,7 +2,9 @@
 using System.Collections;
 using PureMVC.Patterns;
 using PureMVC.Interfaces;
-
+/// <summary>
+/// 卢平原 怪物生成算法
+/// </summary>
 public class MonsterCreate : SimpleCommand
 {
 

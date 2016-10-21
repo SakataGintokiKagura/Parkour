@@ -1,7 +1,9 @@
 ﻿using PureMVC.Patterns;
 using PureMVC.Interfaces;
 using UnityEngine;
-
+/// <summary>
+/// 唐耀 同步数据
+/// </summary>
 class MonsterCreateGameObject : SimpleCommand
 {
 

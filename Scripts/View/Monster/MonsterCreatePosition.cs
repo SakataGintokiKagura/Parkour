@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
-
+/// <summary>
+/// 卢平原 判断是否生成怪物
+/// </summary>
 public class MonsterCreatePosition : MonoBehaviour {
 
 	private bool isCreateMonster = true;

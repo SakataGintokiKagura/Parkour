@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
-
+/// <summary>
+/// 唐耀 技能规划，技能控制设计
+/// 召唤攻击
+/// </summary>
 public class SkillCallRemoteAttack : ISkill {
     public float damage
     {

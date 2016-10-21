@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
-
+/// <summary>
+/// 唐耀 技能规划，技能控制设计
+/// 普攻
+/// </summary>
 public class SkillNormalAttack : IEnbaleAirSkill, IMeleeAttack
 {
     public float damage

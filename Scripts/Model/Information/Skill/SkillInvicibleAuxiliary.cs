@@ -3,7 +3,10 @@
 
 using System;
 using UnityEngine;
-
+/// <summary>
+/// 唐耀 技能规划，技能控制设计
+/// 无敌
+/// </summary>
 class SkillInvicibleAuxiliary : IAuxiliary
 {
     public float damage
