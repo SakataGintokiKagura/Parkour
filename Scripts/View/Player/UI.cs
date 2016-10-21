@@ -3,6 +3,11 @@ using System.Collections;
 using System;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+
+
+/// <summary>
+/// 易静 UI界面显示（按键识别，计分显示，主角血量蓝量增减）
+/// </summary>
 public class UI : MonoBehaviour
 {
     public Image HP;
@@ -18,10 +23,6 @@ public class UI : MonoBehaviour
     private float usedtime = 0;
     private float curTime = 0;
     private ArrayList listSkill;
-
-    //定义一个全局变量保存怪物地址
-
-
     //private Text allCoins;
     // private int coinsnum = 0;
     void Start()
@@ -79,7 +80,6 @@ public class UI : MonoBehaviour
                 curTime = 0;
             }
         }
-
     }
     public void OnSetPlayerMediator(IPlayerMediator playerMediator)
     {
