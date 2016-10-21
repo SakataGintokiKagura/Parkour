@@ -5,7 +5,9 @@ using System.Collections.Generic;
 
 public class TerrainCreateInfor
 {
+	//地形
     public ITerrain terrain;
+	//金币
     public Dictionary<float, GoldEnum> coin;
     public TerrainCreateInfor(ITerrain terrain, Dictionary<float, GoldEnum> coin)
     {
@@ -30,6 +32,7 @@ public class TerrainProxy : Proxy
     }
     public void OnCreateTerrain(TerrainEnum terrain, Dictionary<float, GoldEnum> coin)
     {
+		//生成地形，金币
         TerrainCreateInfor terrainCreateInfor;
         switch (terrain)
         {

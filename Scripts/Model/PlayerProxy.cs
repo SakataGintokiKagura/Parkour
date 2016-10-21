@@ -11,7 +11,7 @@ public class PlayerProxy : Proxy {
     }
     public void OnUseSkill(ISkill skill)
     {
-		//技能
+		//判断技能释放能否成功
 		if(skill.MP<player.MP){
 			player.MP -= skill.MP;
 			SendNotification(EventsEnum.playerUseSkillSuccess,skill);
@@ -20,7 +20,7 @@ public class PlayerProxy : Proxy {
     }
     public void OnInjured(GameObject game)
     {
-        //判断哪个怪
+        //判断伤害到哪个怪
         IBlology monster = MonsterProxy.AllMONSTER[game];
         player.HP -= monster.damage;
         //player.HP -= 100;
@@ -30,6 +30,7 @@ public class PlayerProxy : Proxy {
 			OnDie ();
 		}
     }
+	//人物死亡
     private void OnDie()
     {
 		SendNotification(EventsEnum.playerDie);

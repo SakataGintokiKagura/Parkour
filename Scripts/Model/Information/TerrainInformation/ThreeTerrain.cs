@@ -2,12 +2,12 @@
 using System.Collections;
 using System;
 using System.Collections.Generic;
-
+//地形三
 public class ThreeTerrain : ITerrain
 {
     public const TerrainEnum terrain = TerrainEnum.Three;
     public static Dictionary<float, float> pit = new Dictionary<float, float>();
-    public static Dictionary<float, float> Pit
+    public static Dictionary<float, float> Pit//记录坑坐标
     {
         get
         {

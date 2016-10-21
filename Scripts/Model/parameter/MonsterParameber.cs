@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-
+//怪物的属性类
 public class MonsterParameber  {
     public const float damageShowTime = 0.5f;
-
+	//怪物的属性份三档 low  mid  high
     public const int lowHP = 1;
 	public const int lowdamage = 10;
 	public const int midHP = 2;

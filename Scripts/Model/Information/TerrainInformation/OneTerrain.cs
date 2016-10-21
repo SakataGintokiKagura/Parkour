@@ -3,9 +3,10 @@ using System.Collections.Generic;
 
 public class OneTerrain : ITerrain
 {
+	//地形一
     public const TerrainEnum terrain = TerrainEnum.One;
     public static Dictionary<float, float> pit = new Dictionary<float, float>();
-    public static Dictionary<float, float> Pit
+    public static Dictionary<float, float> Pit//记录坑的位置
     {
         get
         {
