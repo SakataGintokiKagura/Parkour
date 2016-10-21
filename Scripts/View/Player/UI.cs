@@ -85,6 +85,9 @@ public class UI : MonoBehaviour
     {
         this.playerMediator = playerMediator;
     }
+    /// <summary>
+    /// 技能的识别
+    /// </summary>
     public void SkillCheck(ArrayList listSkill)
     {
         int i = listSkill.Count;
@@ -388,22 +391,33 @@ public class UI : MonoBehaviour
                 }
         }
     }
-
+    /// <summary>
+    /// 按键A的触发
+    /// </summary>
     public void OnButtonA()
     {
         skillA = true;
     }
+    /// <summary>
+    /// 按键B的触发
+    /// </summary>
     public void OnButtonB()
     {
         skillB = true;
 
 
     }
+    /// <summary>
+    /// 按键Jump的触发
+    /// </summary>
     public void OnButtonJump()
     {
         startJump = true;
 
     }
+    /// <summary>
+    /// 怪物受伤后显示伤害值//暂未调用
+    /// </summary>
     public void TimeText()
     {
         StartCoroutine(ssss());
