@@ -7,7 +7,7 @@ public class SkillAccelerateAuxiliary : IAuxiliary {
     {
         get
         {
-            throw new NotImplementedException();
+            return 0;
         }
     }
 
@@ -15,7 +15,7 @@ public class SkillAccelerateAuxiliary : IAuxiliary {
     {
         get
         {
-            throw new NotImplementedException();
+            return 30;
         }
     }
 

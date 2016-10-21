@@ -6,6 +6,7 @@ public class AnimationParameter{
     public const string ySpeed = "YSpeed";
 	public const string jump = "Jump";
     public const string skill = "Skill";
+    public const string dead = "Dead";
     public const int jumpGround = 0;
     public const int jumpfirst = 1;
     public const int jumpsecond = 2;

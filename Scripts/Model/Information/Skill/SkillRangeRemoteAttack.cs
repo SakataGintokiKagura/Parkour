@@ -8,7 +8,7 @@ public class SkillRangeRomateAttack : ISkill
     {
         get
         {
-            throw new NotImplementedException();
+            return 0.5f;
         }
     }
 
@@ -16,7 +16,7 @@ public class SkillRangeRomateAttack : ISkill
     {
         get
         {
-            throw new NotImplementedException();
+            return 30;
         }
     }
 
@@ -42,7 +42,9 @@ public class SkillRangeRomateAttack : ISkill
 
     public void OnMiddleSkillAnimation(Transform transform, Animator anim, PlayerState state)
     {
-        Debug.Log("释放飞行道具");
+        Player player = PlayerMediator.OnGetPlayerMediator().player;
+        GameObject temp = player.FlyItem[2];
+        GameObject.Instantiate(temp, player.FlyItemPosition.position, temp.transform.rotation);
     }
 
     public void OnStartSkillAnimation(Transform transform, Animator anim, PlayerState state)

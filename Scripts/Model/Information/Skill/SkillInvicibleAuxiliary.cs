@@ -10,7 +10,7 @@ class SkillInvicibleAuxiliary : IAuxiliary
     {
         get
         {
-            throw new NotImplementedException();
+            return 0;
         }
     }
 
@@ -18,7 +18,7 @@ class SkillInvicibleAuxiliary : IAuxiliary
     {
         get
         {
-            throw new NotImplementedException();
+            return 40;
         }
     }
 

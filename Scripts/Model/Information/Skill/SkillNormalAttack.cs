@@ -8,14 +8,15 @@ public class SkillNormalAttack : IEnbaleAirSkill, IMeleeAttack
     {
         get
         {
-            throw new NotImplementedException();
+
+            return 1;
         }
     }
     public int MP
     {
         get
         {
-            throw new NotImplementedException();
+            return 0;
         }
     }
     public float time
@@ -53,13 +54,5 @@ public class SkillNormalAttack : IEnbaleAirSkill, IMeleeAttack
     //    throw new NotImplementedException();
     //}
 
-    // Use this for initialization
-    void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
 }

@@ -4,6 +4,8 @@ using System.Collections;
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(CharacterController))]
 public class Player : MonoBehaviour {
+    public GameObject[] FlyItem;
+    public Transform FlyItemPosition;
     private ISkill treadAttack = new SkillTreadAttack();
     [SerializeField]
     private Light invincibleEffects;
@@ -43,27 +45,11 @@ public class Player : MonoBehaviour {
     /// </summary>
     void FixedUpdate()
     {
-        //Ray rayA = new Ray(transform.position + new Vector3(1f, 0, 0), Vector3.down);
-        //Ray rayB = new Ray(transform.position + new Vector3(-0.16f, 0, 0), Vector3.down);
-        //Debug.DrawLine(rayA.origin, rayA.direction, new Color(255, 0, 0));
-        //Debug.DrawLine(rayB.origin, rayB.direction, new Color(0, 255, 0));
-        //Ray ray = new Ray(transform.position, Vector3.down);
-        //RaycastHit hit;
-        //Physics.Raycast(ray, out hit);
-        //Debug.Log(hit.collider.tag);
-        //if (hit.collider.tag == TagParameber.monster)
-        //{
-        //    Debug.Log(3333);
-        //    //MonsterMediator.OnGetMonsterMediator().OnInjured(monster, treadAttack);
-        //    velocity.y = 0;
-        //    velocity.y += MotionParameber.elasticTread;
-        //    //OnHurt(monster);
-        //    //return;
-        //}
+        
         velocity = ApplyGravity(velocity);
         Vector3 lastPosition = transform.position;
         CollisionFlags flags = controller.Move(velocity);
-        velocity = (transform.position - lastPosition);
+        //velocity = (transform.position - lastPosition);
         if ((flags & CollisionFlags.Below) == 0 && (state.jumpState is Run))
         {
             state.OnJump();
@@ -81,7 +67,6 @@ public class Player : MonoBehaviour {
             invincibleEffects.enabled = false;
             invincibleEffects.color = invincibleColor[7];
         }
-        //Debug.Log(state.hurtState);
         if (transform.position.y < MotionParameber.yLimit)
         {
             playerMediator.OnDropOutPit();
@@ -210,7 +195,7 @@ public class Player : MonoBehaviour {
             Destroy(col.gameObject);
         }else if(col.tag == TagParameber.monster)
         {
-            Debug.Log(1111);
+           //Debug.Log(1111);
             OnHurtCheck(col.gameObject);
         }
         
@@ -230,15 +215,18 @@ public class Player : MonoBehaviour {
         //Physics.Raycast(rayA, out hitA);
         Physics.Raycast(rayB, out hitB);
         //Debug.Log(hitA.collider.tag);
-        Debug.Log(hitB.collider.tag);
-        if (hitB.collider.tag == TagParameber.monster)
+        //Debug.Log(hitB.collider.tag);
+        if(Physics.Raycast(rayB, out hitB))
         {
-            Debug.Log(3333);
-            MonsterMediator.OnGetMonsterMediator().OnInjured(monster, treadAttack);
-            velocity.y = 0;
-            velocity.y += MotionParameber.elasticTread;
-            OnHurt(monster);
-            return;
+            if (hitB.collider.tag == TagParameber.monster)
+            {
+                //Debug.Log(3333);
+                MonsterMediator.OnGetMonsterMediator().OnInjured(monster, treadAttack);
+                velocity.y = 0;
+                velocity.y += MotionParameber.elasticTread;
+                OnHurt(monster);
+                return;
+            }
         }
         if (skill != null)
         {
@@ -247,7 +235,11 @@ public class Player : MonoBehaviour {
                 MonsterMediator.OnGetMonsterMediator().OnInjured(monster, skill);
             }
         }
-        OnHurt(monster);
+        else
+        {
+            OnHurt(monster);
+        }
+        //OnHurt(monster);
     }
     /// <summary>
     /// 人物掉落执行
@@ -259,6 +251,7 @@ public class Player : MonoBehaviour {
         position += MotionParameber.rebornDelta;
         position.y = 0;
         transform.position = position;
+        velocity.y = 0;
     }
     /// <summary>
     /// 辅助技能无敌
@@ -300,5 +293,15 @@ public class Player : MonoBehaviour {
             playerMediator.OnInjured(monster);
             StartCoroutine(OnInvincibleTime(SkillParameber.hurtInvilicibleTime));
         }
+    }
+
+    public void OnDie()
+    {
+        anim.SetTrigger(AnimationParameter.dead);
+        velocity = new Vector3(0, 0, 0);
+    }
+    public void OnReStart()
+    {
+        Debug.Log("restart");
     }
 }

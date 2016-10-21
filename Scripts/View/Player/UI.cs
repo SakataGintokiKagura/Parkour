@@ -3,26 +3,36 @@ using System.Collections;
 using System;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-public class UI : MonoBehaviour {
+public class UI : MonoBehaviour
+{
+    public Image HP;
+    public Image MP;
+    public Text injured;
+    public Text allCoin;
     private IPlayerMediator playerMediator;
-    private bool jump=false;
-    private bool startJump= false;
+    private bool jump = false;
+    private bool startJump = false;
     private bool skillA = false;
     private bool skillB = false;
     private bool startReadTime = false;
     private float usedtime = 0;
-    private float curTime=0;
-    private int jumpCount = 0;
+    private float curTime = 0;
     private ArrayList listSkill;
 
-    private Text coinstext;
-    private int coinsnum;
-    void Start () {
-     listSkill = new ArrayList();
+    //定义一个全局变量保存怪物地址
+
+
+    //private Text allCoins;
+    // private int coinsnum = 0;
+    void Start()
+    {
+        listSkill = new ArrayList();
 
     }
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             startJump = true;
@@ -71,10 +81,12 @@ public class UI : MonoBehaviour {
         }
 
     }
-    public void OnSetPlayerMediator(IPlayerMediator playerMediator) {
+    public void OnSetPlayerMediator(IPlayerMediator playerMediator)
+    {
         this.playerMediator = playerMediator;
     }
-    public void SkillCheck(ArrayList listSkill) {
+    public void SkillCheck(ArrayList listSkill)
+    {
         int i = listSkill.Count;
         switch (i)
         {
@@ -102,7 +114,8 @@ public class UI : MonoBehaviour {
                             playerMediator.OnUseSkill(new SkillBigRemoteAttack());
                             Debug.Log(" AB  ");
                         }
-                        else {
+                        else
+                        {
                             playerMediator.OnUseSkill(new SkillNormalAttack());
                             Debug.Log(" A技能 ");
                         }
@@ -114,7 +127,8 @@ public class UI : MonoBehaviour {
                             playerMediator.OnUseSkill(new SkillRollAttack());
                             Debug.Log(" BA  ");
                         }
-                        else {
+                        else
+                        {
                             playerMediator.OnUseSkill(new SkillNormalRemoteAttack());
                             Debug.Log(" B技能 ");
                         }
@@ -142,9 +156,11 @@ public class UI : MonoBehaviour {
                         }
                         else if (listSkill[2].ToString() == "A")
                         {
-                            playerMediator.OnUseSkill(new SkillBigRemoteAttack());
-                            Debug.Log("  ABA //向前闪现没找到  ");
-                        }else {
+                            playerMediator.OnUseSkill(new SkillFlashAuxiliary());
+                            Debug.Log("  ABA   ");
+                        }
+                        else
+                        {
                             playerMediator.OnUseSkill(new SkillNormalAttack());
                             Debug.Log(" A技能 ");
                         }
@@ -196,8 +212,8 @@ public class UI : MonoBehaviour {
                             {
                                 if (listSkill[3].ToString() == "B")
                                 {
-                                    playerMediator.OnUseSkill(new SkillNormalRemoteAttack());
-                                    Debug.Log(" ABAB  //加速没找到 ");
+                                    playerMediator.OnUseSkill(new SkillAccelerateAuxiliary());
+                                    Debug.Log(" ABAB  ");
                                 }
                             }
                             else
@@ -219,8 +235,8 @@ public class UI : MonoBehaviour {
                             {
                                 if (listSkill[3].ToString() == "B")
                                 {
-                                    playerMediator.OnUseSkill(new SkillNormalRemoteAttack());
-                                    Debug.Log(" BAAB  //无敌没找到 ");
+                                    playerMediator.OnUseSkill(new SkillInvicibleAuxiliary());
+                                    Debug.Log(" BAAB  ");
                                 }
                                 else
                                 {
@@ -242,8 +258,8 @@ public class UI : MonoBehaviour {
                             {
                                 if (listSkill[3].ToString() == "A")
                                 {
-                                    playerMediator.OnUseSkill(new SkillNormalRemoteAttack());
-                                    Debug.Log("  BBAA //突击进攻不知道是哪个  ");
+                                    playerMediator.OnUseSkill(new SkillIaidoAttack());
+                                    Debug.Log("  BBAA   ");
                                 }
                                 else
                                 {
@@ -263,7 +279,6 @@ public class UI : MonoBehaviour {
                                     playerMediator.OnUseSkill(new SkillNormalRemoteAttack());
                                     Debug.Log(" B技能 ");
                                 }
-
                             }
                         }
                     }
@@ -271,22 +286,109 @@ public class UI : MonoBehaviour {
                 }
             default:
                 {
+
                     if (listSkill[0].ToString() == "A")
                     {
+                        if (listSkill[1].ToString() == "A")
+                        {
+                            if (listSkill[2].ToString() == "A")
+                            {
+                                if (listSkill[3].ToString() == "B")
+                                {
+                                    playerMediator.OnUseSkill(new SkillLightAttack());
+                                    Debug.Log(" AAAB   ");
+                                }
+                            }
+                            else
+                            {//AAB
+                                if (listSkill[3].ToString() == "B")
+                                {
+                                    playerMediator.OnUseSkill(new SkillCallRemoteAttack());
+                                    Debug.Log(" AABB   ");
+                                }
+                            }
+                        }
+                        else
+                        {//AB
+                            if (listSkill[2].ToString() == "A")
+                            {
+                                if (listSkill[3].ToString() == "B")
+                                {
+                                    playerMediator.OnUseSkill(new SkillAccelerateAuxiliary());
+                                    Debug.Log(" ABAB  ");
+                                }
+                            }
+                            else
+                            {//ABB
 
-                        playerMediator.OnUseSkill(new SkillNormalAttack());
-                        Debug.Log(" A技能 ");
+                                if (listSkill[3].ToString() == "B")
+                                {
+                                    playerMediator.OnUseSkill(new SkillNormalRemoteAttack());
+                                    Debug.Log(" ABBA//加血没找到   ");
+                                }
+                            }
+                        }
                     }
-                    else
+                    else//B*
                     {
-                        playerMediator.OnUseSkill(new SkillNormalRemoteAttack());
-                        Debug.Log(" B技能 ");
+                        if (listSkill[1].ToString() == "A")
+                        {
+                            if (listSkill[2].ToString() == "A")
+                            {
+                                if (listSkill[3].ToString() == "B")
+                                {
+                                    playerMediator.OnUseSkill(new SkillInvicibleAuxiliary());
+                                    Debug.Log(" BAAB  ");
+                                }
+                                else
+                                {
+                                    playerMediator.OnUseSkill(new SkillNormalRemoteAttack());
+                                    Debug.Log(" B技能 ");
+                                }
+
+
+                            }
+                            else
+                            {
+                                playerMediator.OnUseSkill(new SkillNormalRemoteAttack());
+                                Debug.Log(" B技能 ");
+                            }
+                        }
+                        else
+                        {//BB*
+                            if (listSkill[2].ToString() == "A")
+                            {
+                                if (listSkill[3].ToString() == "A")
+                                {
+                                    playerMediator.OnUseSkill(new SkillIaidoAttack());
+                                    Debug.Log("  BBAA   ");
+                                }
+                                else
+                                {
+                                    playerMediator.OnUseSkill(new SkillNormalRemoteAttack());
+                                    Debug.Log(" B技能 ");
+                                }
+                            }
+                            else
+                            {//BBB*
+                                if (listSkill[3].ToString() == "A")
+                                {
+                                    playerMediator.OnUseSkill(new SkillRangeAttack());
+                                    Debug.Log("  BBBA   ");
+                                }
+                                else
+                                {
+                                    playerMediator.OnUseSkill(new SkillNormalRemoteAttack());
+                                    Debug.Log(" B技能 ");
+                                }
+                            }
+                        }
                     }
                     break;
                 }
         }
     }
-    
+
     public void OnButtonA()
     {
         skillA = true;
@@ -294,7 +396,7 @@ public class UI : MonoBehaviour {
     public void OnButtonB()
     {
         skillB = true;
-      
+
 
     }
     public void OnButtonJump()
@@ -302,6 +404,15 @@ public class UI : MonoBehaviour {
         startJump = true;
 
     }
+    public void TimeText()
+    {
+        StartCoroutine(ssss());
+    }
+    IEnumerator ssss()
+    {
 
+        yield return new WaitForSeconds(MonsterParameber.damageShowTime);
+        injured.transform.position = new Vector3(-15, 1, 0);
+    }
 
 }

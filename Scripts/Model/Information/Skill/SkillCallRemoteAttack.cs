@@ -7,7 +7,7 @@ public class SkillCallRemoteAttack : ISkill {
     {
         get
         {
-            throw new NotImplementedException();
+            return 2;
         }
     }
 
@@ -15,10 +15,9 @@ public class SkillCallRemoteAttack : ISkill {
     {
         get
         {
-            throw new NotImplementedException();
+            return 70;
         }
     }
-
     public float time
     {
         get

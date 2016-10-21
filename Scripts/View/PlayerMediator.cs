@@ -7,7 +7,7 @@ using System;
 
 public class PlayerMediator : Mediator,IPlayerMediator {
     public new const string NAME = "PlayerMediator";
-    private Player player;
+    public Player player;
     private UI ui;
     private static PlayerMediator playerMediator;
     private PlayerMediator(Player player,UI ui):base(NAME)
@@ -47,15 +47,15 @@ public class PlayerMediator : Mediator,IPlayerMediator {
         {
             if(PlayerState.Instance.jumpState is Run)
             {
-                player.OnStartSkill(skill);
-                //SendNotification(EventsEnum.playerUseSkill, skill);
+                //player.OnStartSkill(skill);
+                SendNotification(EventsEnum.playerUseSkill, skill);
             }
             else
             {
                 if(skill is IEnbaleAirSkill)
                 {
-                    player.OnStartSkill(skill);
-                    //SendNotification(EventsEnum.playerUseSkill, skill);
+                    //player.OnStartSkill(skill);
+                    SendNotification(EventsEnum.playerUseSkill, skill);
                 }
             }
         }  
@@ -81,6 +81,29 @@ public class PlayerMediator : Mediator,IPlayerMediator {
             case EventsEnum.playerDropOutNoDie:
                 player.OnDropOut();
                 break;
+            case EventsEnum.playerUseSkillSuccess:
+                if(notification.Body is PLayerInformation)
+                {
+                    PLayerInformation playerMp = (PLayerInformation)notification.Body;
+                    ui.MP.fillAmount = (float)playerMp.MP / 100;
+                }
+                else
+                {
+                    player.OnStartSkill((ISkill)notification.Body);
+                }
+                break;
+            case EventsEnum.playerHPChange:
+                PLayerInformation player2 = (PLayerInformation)notification.Body;
+                Debug.Log(player2.HP);
+                ui.HP.fillAmount = (float)player2.HP / 100;
+                break;
+            case EventsEnum.playerGetScoureSuccess:
+                PLayerInformation playerScores = (PLayerInformation)notification.Body;
+                ui.allCoin.text = "金币数： " + playerScores.score;
+                break;
+            case EventsEnum.playerDie:
+                player.OnDie();
+                break;
         }
     }
 
@@ -94,6 +117,7 @@ public class PlayerMediator : Mediator,IPlayerMediator {
     }
     public void OnDropOutPit()
     {
+
         SendNotification(EventsEnum.playerDropOutPit);
     }
 }

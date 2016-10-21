@@ -8,7 +8,7 @@ public class SkillIaidoAttack : IMeleeAttack
     {
         get
         {
-            throw new NotImplementedException();
+            return 4;
         }
     }
 
@@ -16,7 +16,7 @@ public class SkillIaidoAttack : IMeleeAttack
     {
         get
         {
-            throw new NotImplementedException();
+            return 40;
         }
     }
 
@@ -57,14 +57,4 @@ public class SkillIaidoAttack : IMeleeAttack
     {
         throw new NotImplementedException();
     }
-
-    // Use this for initialization
-    void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

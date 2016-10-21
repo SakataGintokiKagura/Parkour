@@ -10,7 +10,12 @@ public class MonsterCreate : SimpleCommand
 
     public override void Execute(INotification notification)
     {
-        base.Execute(notification);
-
+        //Debug.Log(1111);
+        if (Random.Range(0, MonsterParameber.GeneratingprobabilityMax) < MonsterParameber.GeneratingprobabilityMin)
+        {
+            MonsterProxy monster = (MonsterProxy)Facade.RetrieveProxy(MonsterProxy.NAME);
+            //Debug.Log(222);
+            monster.OnCreatMonster((MonsterEnum)Random.Range(0, MonsterParameber.SpeciesNumber), 1);
+        }
     }
 }

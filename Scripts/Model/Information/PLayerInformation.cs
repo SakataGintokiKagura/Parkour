@@ -8,11 +8,27 @@ public class PLayerInformation : IBlology
     public int HP{get;set;}
     public int MP { get; set; }
     public int score { get; set; }
+
+    public int normalAttackDistance
+    {
+        get
+        {
+            throw new NotImplementedException();
+        }
+
+        set
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     //public Transform trans { get; set; }
 
     public PLayerInformation()
     {
         this.HP = 100;
         this.damage = 30;
+        this.MP = 100;
+        this.score = 0;
     }
 }

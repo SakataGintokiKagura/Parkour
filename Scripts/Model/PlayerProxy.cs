@@ -15,13 +15,15 @@ public class PlayerProxy : Proxy {
 		if(skill.MP<player.MP){
 			player.MP -= skill.MP;
 			SendNotification(EventsEnum.playerUseSkillSuccess,skill);
+            SendNotification(EventsEnum.playerUseSkillSuccess, player);
 		}
     }
     public void OnInjured(GameObject game)
-    { 
-		//判断哪个怪
-		IBlology monster = MonsterProxy.AllMonster.TryGetValue(game);
-		player.HP -= monster.damage;
+    {
+        //判断哪个怪
+        IBlology monster = MonsterProxy.AllMONSTER[game];
+        player.HP -= monster.damage;
+        //player.HP -= 100;
         SendNotification(EventsEnum.playerHPChange,player);
 
 		if(player.HP<=0){
@@ -35,7 +37,20 @@ public class PlayerProxy : Proxy {
     }
     public void OnGetScoure(int scoure)
     {
+       // Debug.Log(22222);
+        player.score += scoure;
         SendNotification(EventsEnum.playerGetScoureSuccess,player);
+    }
+    public void OnDropOutPit()
+    {
+        player.HP -= SkillParameber.dropOutHurt;
+        SendNotification(EventsEnum.playerHPChange, player);
+        //SendNotification(EventsEnum.playerDropOutNoDie, player);
+        if (player.HP <= 0)
+        {
+            OnDie();
+        }
+         SendNotification(EventsEnum.playerDropOutNoDie, player);
     }
     //public void OnPickUpItem(int value)
     //{

@@ -8,7 +8,7 @@ public class SkillTreadAttack : ISkill
     {
         get
         {
-            throw new NotImplementedException();
+            return 6;
         }
     }
 
@@ -16,7 +16,7 @@ public class SkillTreadAttack : ISkill
     {
         get
         {
-            throw new NotImplementedException();
+            return 0;
         }
     }
 

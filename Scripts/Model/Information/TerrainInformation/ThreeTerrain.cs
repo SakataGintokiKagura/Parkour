@@ -3,21 +3,34 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 
-public class ThreeTerrain : ITerrain {
-	public const TerrainEnum terrain = TerrainEnum.One;
-	public Dictionary<float, float>[] pit = new Dictionary<float, float>[5];
-	public ThreeTerrain()
-	{
-		pit[0].Add(24f, 30f);
-		pit[1].Add(42f, 46f);
-		pit[2].Add(50f, 54f);
-		pit[3].Add(58f, 64f);
-		pit[4].Add(96f, 100f);
-	}
+public class ThreeTerrain : ITerrain
+{
+    public const TerrainEnum terrain = TerrainEnum.Three;
+    public static Dictionary<float, float> pit = new Dictionary<float, float>();
+    public static Dictionary<float, float> Pit
+    {
+        get
+        {
+            if (pit.Count == 0)
+            {
+                pit.Add(0f, 24f);
+                pit.Add(30f, 42f);
+                pit.Add(46f, 50f);
+                pit.Add(54f, 58f);
+                pit.Add(64f, 96f);
+            }
+            return pit;
+        }
+    }
 
-	public Dictionary<float, float>[] OnGetPit()
-	{
-		return pit;
-	}
+    public ThreeTerrain()
+    {
+
+    }
+
+    public TerrainEnum getTerrain()
+    {
+        return terrain;
+    }
 }
 

@@ -7,7 +7,7 @@ public class SkillFlashAuxiliary : IAuxiliary {
     {
         get
         {
-            throw new NotImplementedException();
+            return 0;
         }
     }
 
@@ -15,7 +15,7 @@ public class SkillFlashAuxiliary : IAuxiliary {
     {
         get
         {
-            throw new NotImplementedException();
+            return 20;
         }
     }
 

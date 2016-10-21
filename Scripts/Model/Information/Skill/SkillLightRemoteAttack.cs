@@ -8,7 +8,7 @@ public class SkillLightAttack : ISkill
     {
         get
         {
-            throw new NotImplementedException();
+            return 3;
         }
     }
 
@@ -16,9 +16,10 @@ public class SkillLightAttack : ISkill
     {
         get
         {
-            throw new NotImplementedException();
+            return 55;
         }
     }
+
 
     public float time
     {
@@ -42,7 +43,9 @@ public class SkillLightAttack : ISkill
 
     public void OnMiddleSkillAnimation(Transform transform, Animator anim, PlayerState state)
     {
-        Debug.Log("释放飞行道具");
+        Player player = PlayerMediator.OnGetPlayerMediator().player;
+        GameObject temp = player.FlyItem[3];
+        GameObject.Instantiate(temp, player.FlyItemPosition.position, temp.transform.rotation);
     }
 
     public void OnStartSkillAnimation(Transform transform, Animator anim, PlayerState state)

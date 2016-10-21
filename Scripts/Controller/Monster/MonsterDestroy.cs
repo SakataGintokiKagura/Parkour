@@ -10,6 +10,8 @@ public class MonsterDestroy : SimpleCommand
 
     public override void Execute(INotification notification)
     {
-        base.Execute(notification);
+        MonsterProxy monster = (MonsterProxy)Facade.RetrieveProxy(MonsterProxy.NAME);
+        GameObject temp = (GameObject)notification.Body;
+        monster.OnDestroy(temp);
     }
 }

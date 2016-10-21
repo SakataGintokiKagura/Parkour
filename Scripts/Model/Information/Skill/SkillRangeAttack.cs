@@ -8,17 +8,16 @@ public class SkillRangeAttack : IMeleeAttack
     {
         get
         {
-            throw new NotImplementedException();
+            return 2;
         }
     }
     public int MP
     {
         get
         {
-            throw new NotImplementedException();
+            return 50;
         }
     }
-
     public float time
     {
         get

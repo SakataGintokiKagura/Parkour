@@ -8,7 +8,7 @@ public class SkillNormalRemoteAttack : IEnbaleAirSkill
     {
         get
         {
-            throw new NotImplementedException();
+            return 0.5f;
         }
     }
 
@@ -16,7 +16,7 @@ public class SkillNormalRemoteAttack : IEnbaleAirSkill
     {
         get
         {
-            throw new NotImplementedException();
+            return 5;
         }
     }
 
@@ -42,7 +42,12 @@ public class SkillNormalRemoteAttack : IEnbaleAirSkill
 
     public void OnMiddleSkillAnimation(Transform transform, Animator anim, PlayerState state)
     {
-        Debug.Log("释放飞行道具");
+        //GameObject.Instantiate(Resources.Load<GameObject>("NormalRemonteAttack"));
+        Player player = PlayerMediator.OnGetPlayerMediator().player;
+        GameObject temp = player.FlyItem[0];
+        GameObject.Instantiate(temp,player.FlyItemPosition.position,temp.transform.rotation);
+        //GameObject.Instantiate(temp, player.FlyItemPosition.position+ new Vector3(0,2,0), Quaternion.identity);
+        //Debug.Log("释放飞行道具");
     }
 
     public void OnStartSkillAnimation(Transform transform, Animator anim, PlayerState state)

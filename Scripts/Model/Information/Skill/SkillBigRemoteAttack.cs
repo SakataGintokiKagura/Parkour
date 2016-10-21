@@ -7,7 +7,7 @@ public class SkillBigRemoteAttack : IEnbaleAirSkill  {
     {
         get
         {
-            throw new NotImplementedException();
+            return 1;
         }
     }
 
@@ -15,7 +15,7 @@ public class SkillBigRemoteAttack : IEnbaleAirSkill  {
     {
         get
         {
-            throw new NotImplementedException();
+            return 15;
         }
     }
 
@@ -41,7 +41,9 @@ public class SkillBigRemoteAttack : IEnbaleAirSkill  {
 
     public void OnMiddleSkillAnimation(Transform transform, Animator anim, PlayerState state)
     {
-        Debug.Log("释放飞行道具");
+        Player player = PlayerMediator.OnGetPlayerMediator().player;
+        GameObject temp = player.FlyItem[1];
+        GameObject.Instantiate(temp, player.FlyItemPosition.position, temp.transform.rotation);
     }
 
     public void OnStartSkillAnimation(Transform transform, Animator anim, PlayerState state)

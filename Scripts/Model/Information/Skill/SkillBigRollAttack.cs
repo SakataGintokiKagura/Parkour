@@ -8,7 +8,7 @@ public class SkillBigRollAttack : IMeleeAttack
     {
         get
         {
-            throw new NotImplementedException();
+            return 2;
         }
     }
 
@@ -16,7 +16,7 @@ public class SkillBigRollAttack : IMeleeAttack
     {
         get
         {
-            throw new NotImplementedException();
+            return 20;
         }
     }
 
