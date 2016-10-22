@@ -3,9 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using PureMVC.Patterns;
 using PureMVC.Interfaces;
-/// <summary>
-/// 卢平原 地形生成算法
-/// </summary>
+
 public class TerrainCreate : SimpleCommand
 {
 

@@ -1,9 +1,6 @@
 ﻿
 using System.Collections.Generic;
-/// <summary>
-/// 朱科锦
-/// 构造地形一并将坑的坐标记录下来
-/// </summary>
+
 public class OneTerrain : ITerrain
 {
     public const TerrainEnum terrain = TerrainEnum.One;

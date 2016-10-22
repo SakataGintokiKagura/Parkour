@@ -1,9 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-/// <summary>
-/// 唐耀 完成 角色移动 ，应用重力，控制跳跃，播放技能动画，伤害检测。
-/// </summary>
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(CharacterController))]
 public class Player : MonoBehaviour {
@@ -305,7 +302,6 @@ public class Player : MonoBehaviour {
     }
     public void OnReStart()
     {
-        //Application.
         Debug.Log("restart");
     }
 }

@@ -2,9 +2,7 @@
 using System.Collections;
 using PureMVC.Patterns;
 using PureMVC.Interfaces;
-/// <summary>
-/// 唐耀 怪物移出屏幕同步数据
-/// </summary>
+
 public class MonsterDestroy : SimpleCommand
 {
 

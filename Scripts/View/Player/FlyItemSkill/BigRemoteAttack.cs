@@ -1,9 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-/// <summary>
-/// 朱科锦
-/// 加强远程攻击
-/// </summary>
+
 public class BigRemoteAttack : MonoBehaviour {
 	public float speedx;
 	public float speedy;
@@ -14,9 +11,6 @@ public class BigRemoteAttack : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	/// <summary>
-	/// 飞出屏幕时被销毁
-	/// </summary>
 	void Update () {
 		//gameObject.transform.rotation.x += speedx;
 		transform.Translate(0,0,-speedx);

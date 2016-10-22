@@ -2,9 +2,7 @@
 using System.Collections;
 using PureMVC.Patterns;
 using PureMVC.Interfaces;
-/// <summary>
-/// 唐耀 人受伤
-/// </summary>
+
 public class playerInjured : SimpleCommand
 {
 

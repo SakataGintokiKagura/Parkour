@@ -2,10 +2,7 @@
 using System.Collections;
 using PureMVC.Patterns;
 using System.Collections.Generic;
-/// <summary>
-/// name 朱科锦
-/// 地形相关的数据处理
-/// </summary>
+
 public class TerrainCreateInfor
 {
     public ITerrain terrain;
@@ -31,11 +28,6 @@ public class TerrainProxy : Proxy
     public TerrainProxy() : base(NAME)
     {
     }
-	/// <summary>
-	/// 生成地形与金币
-	/// </summary>
-	/// <param name="terrain">Terrain.</param>
-	/// <param name="coin">Coin.</param>
     public void OnCreateTerrain(TerrainEnum terrain, Dictionary<float, GoldEnum> coin)
     {
         TerrainCreateInfor terrainCreateInfor;

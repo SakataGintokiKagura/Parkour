@@ -1,9 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
-/// <summary>
-/// 判断地形生成的位置 与是否生成地形
-/// </summary>
 public class Terrain : MonoBehaviour
 {
     private ITerrainMediator terrainMediator;

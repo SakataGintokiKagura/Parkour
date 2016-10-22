@@ -1,10 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
-/// <summary>
-/// 唐耀 技能规划，技能控制设计
-/// 激光攻击
-/// </summary>
+
 public class SkillLightAttack : ISkill
 {
     public float damage

@@ -3,9 +3,7 @@ using System.Collections;
 using PureMVC.Patterns;
 using PureMVC.Interfaces;
 using System.Collections.Generic;
-/// <summary>
-/// 卢平原 创造地形和金币
-/// </summary>
+
 public class TerrainMediator : Mediator, ITerrainMediator
 {
 

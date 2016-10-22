@@ -4,9 +4,7 @@ using PureMVC.Patterns;
 using System.Collections.Generic;
 using PureMVC.Interfaces;
 using System;
-/// <summary>
-/// 怪物跑出屏幕控制   张子庆
-/// </summary>
+
 public class MonsterInjuredInfor
 {
     public GameObject monster;
@@ -89,10 +87,6 @@ public class MonsterMediator : Mediator,IMonsterMediator {
 
         return list;
     }
-    /// <summary>
-    /// 处理怪物通知信息
-    /// </summary>
-    /// <param name="notification"></param>
     public override void HandleNotification(INotification notification)
     {
         switch (notification.Name)
@@ -128,8 +122,6 @@ public class MonsterMediator : Mediator,IMonsterMediator {
             case EventsEnum.monsterHPChange:
                 Debug.Log(((int)notification.Body));
                 break;
-
-                //销毁怪物
             case EventsEnum.monsterDie:
                 //Debug.Log((IBlology)notification.Body);
                 GameObject temp = this.monster[(IBlology)notification.Body];

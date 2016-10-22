@@ -10,6 +10,6 @@ public class SkillParameber : MonoBehaviour {
     public static Vector3 skillAccelerateAuxiliaryDelta = new Vector3(3 * MotionParameber.fixedMotion, 0, 0);
 
     public const int dropOutHurt = 50;
-    public const float SkillReadCD=0.3f;
+    public const float SkillReadCD=0.2f;
     public const int reply = 10;
 }

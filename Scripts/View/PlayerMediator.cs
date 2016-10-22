@@ -4,9 +4,7 @@ using PureMVC.Patterns;
 using System.Collections.Generic;
 using PureMVC.Interfaces;
 using System;
-/// <summary>
-/// 易静  主角状态控制
-/// </summary>
+
 public class PlayerMediator : Mediator,IPlayerMediator {
     public new const string NAME = "PlayerMediator";
     public Player player;
@@ -76,12 +74,6 @@ public class PlayerMediator : Mediator,IPlayerMediator {
         list.Add(EventsEnum.playerDropOutNoDie);
         return list;
     }
-
-
-/// <summary>
-///易静  主角受伤时HP减少，释放技能MP减少，碰到金币分数增加。
-/// </summary>
-/// <param name="notification"></param>
     public override void HandleNotification(INotification notification)
     {
         switch (notification.Name)
@@ -125,6 +117,7 @@ public class PlayerMediator : Mediator,IPlayerMediator {
     }
     public void OnDropOutPit()
     {
+
         SendNotification(EventsEnum.playerDropOutPit);
     }
 }

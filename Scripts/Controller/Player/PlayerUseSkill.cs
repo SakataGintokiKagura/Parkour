@@ -2,9 +2,7 @@
 using System.Collections;
 using PureMVC.Patterns;
 using PureMVC.Interfaces;
-/// <summary>
-/// 唐耀 人物是否可以使用技能
-/// </summary>
+
 public class PlayerUseSkill : SimpleCommand {
     public new const string NAME = "PlayerUseSkill";
 

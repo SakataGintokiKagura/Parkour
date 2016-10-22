@@ -1,10 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
-/// <summary>
-/// 唐耀 技能规划，技能控制设计
-/// 踩击
-/// </summary>
+
 public class SkillTreadAttack : ISkill
 {
     public float damage

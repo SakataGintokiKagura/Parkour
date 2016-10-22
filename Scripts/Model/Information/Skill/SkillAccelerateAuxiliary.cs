@@ -1,10 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
-/// <summary>
-/// 唐耀 技能规划，技能控制设计
-/// 加速
-/// </summary>
+
 public class SkillAccelerateAuxiliary : IAuxiliary {
     public float damage
     {

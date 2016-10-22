@@ -2,15 +2,12 @@
 using System.Collections;
 using System;
 using System.Collections.Generic;
-/// <summary>
-/// 朱科锦
-/// 构造地形三并将坑的坐标记录下来
-/// </summary>
+
 public class ThreeTerrain : ITerrain
 {
     public const TerrainEnum terrain = TerrainEnum.Three;
     public static Dictionary<float, float> pit = new Dictionary<float, float>();
-    public static Dictionary<float, float> Pit//记录坑坐标
+    public static Dictionary<float, float> Pit
     {
         get
         {
