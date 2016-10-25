@@ -48,14 +48,14 @@ public class ReadTable {
     /// </summary>
     ReadTable()
     {
-        TextAsset tableIndex = Resources.Load<TextAsset>("IMEI");
+        TextAsset tableIndex = Resources.Load<TextAsset>("tableDate");
         buffer =tableIndex.bytes;
         while (canRead)
         {
             string line = OnReadLine();
             if (line == null) continue;
             string[] temp = line.Split('\t');
-            this.tableIndex.Add(temp[0],temp[1].Split('\\'));
+            this.tableIndex.Add(temp[0],temp[1].Split('/'));
         }
         OnRestore();
     }
