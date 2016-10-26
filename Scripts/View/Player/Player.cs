@@ -20,6 +20,15 @@ public class Player : MonoBehaviour {
     private Vector3 velocity;
     private PlayerState state;
     private float initialVelocity;
+
+    public Vector3 Velocity
+    {
+        get
+        {
+            return velocity;
+        }
+    }
+
     void Awake()
     {
     }
@@ -87,6 +96,8 @@ public class Player : MonoBehaviour {
     /// </summary>
     public void OnJump()
     {
+        if (skill != null)
+            return;
         if (state.jumpState is Run)
         {
             velocity.y = 0;
@@ -197,6 +208,9 @@ public class Player : MonoBehaviour {
         {
            //Debug.Log(1111);
             OnHurtCheck(col.gameObject);
+        }else if(col.tag == TagParameber.prop)
+        {
+            playerMediator.OnPickUpProp(col.name);
         }
         
     }
