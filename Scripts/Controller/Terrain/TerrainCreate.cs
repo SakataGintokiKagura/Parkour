@@ -4,18 +4,6 @@ using System.Collections.Generic;
 using PureMVC.Patterns;
 using PureMVC.Interfaces;
 
-public class pitDictionaryTool{
-	public static Dictionary<float,float> Parse(string temp_01){
-		Dictionary<float,float> fin = new Dictionary<float, float> ();
-		string[] temp_02 = temp_01.Split ('/');
-		foreach (string item in temp_02) {
-			string[] temp03 = item.Split (',');
-			fin.Add (float.Parse(temp03[0]),float.Parse(temp03[1]));
-		}
-		return fin;
-	}
-}
-
 public class TerrainCreate : SimpleCommand
 {
 
@@ -25,21 +13,32 @@ public class TerrainCreate : SimpleCommand
     {
         //base.Execute(notification);
 
-		int terrain=Random.Range(1, TerrainParameter.terrainEnumNum);
-		Dictionary<float, int> coin = new Dictionary<float, int>();
+        TerrainEnum terrain = (TerrainEnum)Random.Range(0, TerrainParameter.terrainEnumNum);
+        Dictionary<float, GoldEnum> coin = new Dictionary<float, GoldEnum>();
 
-		ReadTable temp = ReadTable.getTable;
-
-		Dictionary<float, float> tempCoin = pitDictionaryTool.Parse (temp.OnFind("terrainDate",terrain.ToString(),"noPitRoad"));
+        Dictionary<float, float> tempCoin = OneTerrain.Pit;
+        switch (terrain)
+        {
+            case TerrainEnum.One:
+                tempCoin = OneTerrain.Pit;
+                break;
+            case TerrainEnum.Two:
+                tempCoin = TwoTerrain.Pit;
+                break;
+            case TerrainEnum.Three:
+                tempCoin = ThreeTerrain.Pit;
+                break;
+            default:
+                break;
+        }
 
         foreach (KeyValuePair<float, float> item in tempCoin)
         {
-			
             for (float i = item.Key; i < item.Value - TerrainParameter.coinBuffer; i = i + TerrainParameter.coinZone)
             {
                 if (Random.Range(0, TerrainParameter.coinCreateDenominator) <= TerrainParameter.coinCreateNumerator)
                 {
-					coin.Add(i, (int)Random.Range(1, TerrainParameter.coinEnumNum+1));
+                    coin.Add(i, (GoldEnum)Random.Range(0, TerrainParameter.coinEnumNum));
                 }
             }
         }

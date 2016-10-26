@@ -10,7 +10,10 @@ public class Terrain : MonoBehaviour
     private UI ui;
     private ApplicationFacade facade;
     private float n;
-
+    [SerializeField]
+    private GameObject[] terrain;
+    [SerializeField]
+    private GameObject[] coin;
     void Awake()
     {
         Monster monster = GetComponent<Monster>();
@@ -40,5 +43,14 @@ public class Terrain : MonoBehaviour
     {
         return n;
     }
-		
+
+    public GameObject getTerrain(int num)
+    {
+        return terrain[num];
+    }
+
+    public GameObject getCoin(int num)
+    {
+        return coin[num];
+    }
 }

@@ -94,7 +94,7 @@ public class PlayerMediator : Mediator,IPlayerMediator {
                 break;
             case EventsEnum.playerHPChange:
                 PLayerInformation player2 = (PLayerInformation)notification.Body;
-                //Debug.Log(player2.HP);
+                Debug.Log(player2.HP);
                 ui.HP.fillAmount = (float)player2.HP / 100;
                 break;
             case EventsEnum.playerGetScoureSuccess:
