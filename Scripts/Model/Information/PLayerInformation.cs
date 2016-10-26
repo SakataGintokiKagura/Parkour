@@ -9,18 +9,9 @@ public class PLayerInformation : IBlology
     public int MP { get; set; }
     public int score { get; set; }
 
-    public int normalAttackDistance
-    {
-        get
-        {
-            throw new NotImplementedException();
-        }
+    public int normalAttackDistance { get; set; }
+    public bool hasAttack { get; set; }
 
-        set
-        {
-            throw new NotImplementedException();
-        }
-    }
 
     //public Transform trans { get; set; }
 
