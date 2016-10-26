@@ -1,0 +1,7 @@
+ID	name	dateType	dateValue	coinLength
+null	string	int		
+1	Star			
+2	Line			
+3	Arc			
+4	SecondArc			
+5	LinkArc			

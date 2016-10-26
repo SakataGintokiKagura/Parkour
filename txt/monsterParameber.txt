@@ -1,0 +1,11 @@
+ID	Name		Value
+1	damageShowTime	float	0.5
+2	lowHP	int	1
+3	lowdamage	int	10
+4	midHP	int	2
+5	middamage	int	20
+6	highHP	int	3
+7	highdamage	int	30
+8	GeneratingprobabilityMax	int	2
+9	GeneratingprobabilityMin	int	1
+10	SpeciesNumber	int	4
