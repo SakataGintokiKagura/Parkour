@@ -14,8 +14,7 @@ public class MonsterCreate : SimpleCommand
         if (Random.Range(0, MonsterParameber.GeneratingprobabilityMax) < MonsterParameber.GeneratingprobabilityMin)
         {
             MonsterProxy monster = (MonsterProxy)Facade.RetrieveProxy(MonsterProxy.NAME);
-            //Debug.Log(222);
-            monster.OnCreatMonster((MonsterEnum)Random.Range(0, MonsterParameber.SpeciesNumber), 1);
+            monster.OnCreatMonster(Random.Range(1, MonsterParameber.SpeciesNumber+1), 1);
         }
     }
 }

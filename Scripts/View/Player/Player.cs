@@ -40,7 +40,7 @@ public class Player : MonoBehaviour {
         state = PlayerState.Instance;
         anim = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
-		initialVelocity = MotionParameber.initialVelocity * MotionParameber.fixedMotion;
+        initialVelocity = MotionParameber.initialVelocity *MotionParameber.fixedMotion;
         velocity = new Vector3(initialVelocity, 0, 0);
         //StartCoroutine(OnAccelerate());
         anim.SetFloat(AnimationParameter.xSpeed, velocity.x);
