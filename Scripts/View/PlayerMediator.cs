@@ -128,11 +128,11 @@ public class PlayerMediator : Mediator,IPlayerMediator {
 
         SendNotification(EventsEnum.playerDropOutPit);
     }
-  
 
     public void OnPickUpProp(GameObject temp) {
         GameObject.Destroy(temp);
         SendNotification(EventsEnum.propPickUpProp);
   
+
     }
 }

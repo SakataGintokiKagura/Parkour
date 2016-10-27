@@ -73,7 +73,5 @@ public class MonsterProxy : Proxy {
     public void OnDestroyProp(GameObject prop)
     {
         SendNotification(EventsEnum.propPickUpProp, prop);
-        
- 
     }
 }

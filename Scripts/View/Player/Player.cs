@@ -232,8 +232,8 @@ public class Player : MonoBehaviour {
             OnHurtCheck(col.gameObject);
         }else if(col.tag == TagParameber.prop)
         {
-
             playerMediator.OnPickUpProp(col.gameObject);
+
 
         }
 
