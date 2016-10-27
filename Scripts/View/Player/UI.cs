@@ -33,6 +33,8 @@ public class UI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.S))
+            playerMediator.OnUseSkill(new SkillContinuousAttack());
         if (Input.GetKeyDown(KeyCode.Space))
         {
             startJump = true;

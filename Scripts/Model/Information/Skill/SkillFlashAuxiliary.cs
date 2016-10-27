@@ -44,7 +44,7 @@ public class SkillFlashAuxiliary : IAuxiliary {
 
     public void OnStartSkillAnimation(Transform transform, Animator anim, PlayerState state)
     {
-        transform.Translate(new Vector3(SkillParameber.flashDelta, 0, 0));
+        transform.Translate(new Vector3(0, 0, SkillParameber.flashDelta));
     }
 
 }

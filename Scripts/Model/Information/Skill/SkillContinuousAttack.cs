@@ -2,12 +2,13 @@
 using System.Collections;
 using System;
 
-public class SkillBigRemoteAttack : IEnbaleAirSkill  {
+public class SkillContinuousAttack : IMeleeAttack
+{
     public float damage
     {
         get
         {
-            return 1;
+            return 1.5f;
         }
     }
 
@@ -15,7 +16,7 @@ public class SkillBigRemoteAttack : IEnbaleAirSkill  {
     {
         get
         {
-            return 15;
+            return 30;
         }
     }
 
@@ -30,7 +31,6 @@ public class SkillBigRemoteAttack : IEnbaleAirSkill  {
     public void OnEndSkillAnimation(Transform transform, Animator anim, PlayerState state)
     {
         anim.SetInteger(AnimationParameter.skill, AnimationParameter.skillUnUse);
-       // Debug.Log("jieshu");
         state.OnEndSkill();
     }
 
@@ -41,14 +41,12 @@ public class SkillBigRemoteAttack : IEnbaleAirSkill  {
 
     public void OnMiddleSkillAnimation(Transform transform, Animator anim, PlayerState state)
     {
-        ReadTable table = ReadTable.getTable;
-        GameObject temp = Resources.Load("FlyItem/" + table.OnFind("flyItemDate", "2", "name")) as GameObject;
-        GameObject.Instantiate(temp, transform.position, temp.transform.rotation);
+        Debug.Log("技能过程出错");
     }
 
     public void OnStartSkillAnimation(Transform transform, Animator anim, PlayerState state)
     {
-        anim.SetInteger(AnimationParameter.skill, AnimationParameter.skillBigRemoteAttack);
+        anim.SetInteger(AnimationParameter.skill, AnimationParameter.skillContinuousAttack);
         state.OnUseSkill(true);
     }
 }

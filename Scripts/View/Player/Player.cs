@@ -4,7 +4,7 @@ using System.Collections;
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(CharacterController))]
 public class Player : MonoBehaviour {
-    public GameObject[] FlyItem;
+    //public GameObject[] FlyItem;
     public Transform FlyItemPosition;
     private ISkill treadAttack = new SkillTreadAttack();
     [SerializeField]
@@ -20,12 +20,24 @@ public class Player : MonoBehaviour {
     private Vector3 velocity;
     private PlayerState state;
     private float initialVelocity;
+    [SerializeField]
+    private SphereCollider lHard;
+    [SerializeField]
+    private SphereCollider rHard;
 
     public Vector3 Velocity
     {
         get
         {
             return velocity;
+        }
+    }
+
+    public ISkill Skill
+    {
+        get
+        {
+            return skill;
         }
     }
 
@@ -159,6 +171,11 @@ public class Player : MonoBehaviour {
         {
             this.skill = skill;
             skill.OnStartSkillAnimation(transform, anim, state);
+            if(skill is IMeleeAttack)
+            {
+                lHard.enabled = true;
+                rHard.enabled = true;
+            }
         }
     }
     /// <summary>
@@ -166,7 +183,7 @@ public class Player : MonoBehaviour {
     /// </summary>
     public void OnMiddleSkill()
     {
-        skill.OnMiddleSkillAnimation(transform, anim, state);
+        skill.OnMiddleSkillAnimation(FlyItemPosition, anim, state);
     }
     /// <summary>
     /// 使用技能结束
@@ -175,6 +192,11 @@ public class Player : MonoBehaviour {
     {
 
         skill.OnEndSkillAnimation(transform, anim, state);
+        if (skill is IMeleeAttack)
+        {
+            lHard.enabled = false;
+            rHard.enabled = false; ;
+        }
         skill = null;
     }
     /// <summary>
@@ -220,21 +242,13 @@ public class Player : MonoBehaviour {
     /// <param name="monster"></param>
     void OnHurtCheck(GameObject monster)
     {
-        //Ray rayA = new Ray(transform.position+new Vector3(0.16f,1.7f,0), Vector3.down);
         Ray rayB = new Ray(transform.position + new Vector3(-0.16f, 1.3f, 0), Vector3.down);
-        //Debug.DrawLine(rayA.origin, rayA.direction, new Color(255, 0, 0));
-        Debug.DrawLine(rayB.origin, rayB.direction, new Color(0, 255, 0));
-        //RaycastHit hitA;
         RaycastHit hitB;
-        //Physics.Raycast(rayA, out hitA);
         Physics.Raycast(rayB, out hitB);
-        //Debug.Log(hitA.collider.tag);
-        //Debug.Log(hitB.collider.tag);
         if(Physics.Raycast(rayB, out hitB))
         {
             if (hitB.collider.tag == TagParameber.monster)
             {
-                //Debug.Log(3333);
                 MonsterMediator.OnGetMonsterMediator().OnInjured(monster, treadAttack);
                 velocity.y = 0;
                 velocity.y += MotionParameber.elasticTread;
@@ -242,17 +256,8 @@ public class Player : MonoBehaviour {
                 return;
             }
         }
-        if (skill != null)
-        {
-            if(skill is IMeleeAttack)
-            {
-                MonsterMediator.OnGetMonsterMediator().OnInjured(monster, skill);
-            }
-        }
-        else
-        {
-            OnHurt(monster);
-        }
+
+        OnHurt(monster);
         //OnHurt(monster);
     }
     /// <summary>

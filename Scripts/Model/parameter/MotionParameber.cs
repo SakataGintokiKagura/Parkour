@@ -96,7 +96,7 @@ public class MotionParameber{
     public static Vector3 jumpDir
     {
         get
-        {
+        { 
 			if (initial)
 				new MotionParameber ();
             return jumpDirRecord;

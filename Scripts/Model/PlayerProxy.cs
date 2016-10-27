@@ -54,6 +54,6 @@ public class PlayerProxy : Proxy {
     }
     //public void OnPickUpItem(int value)
     //{
-    //    SendNotification(EventsEnum.playerPickUpItem);   
+    //    SendNotification(EventsEnum.playerPickUpItem);
     //}
 }

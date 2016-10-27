@@ -120,7 +120,7 @@ public class MonsterMediator : Mediator,IMonsterMediator {
                 //}
                 break;
             case EventsEnum.monsterHPChange:
-                Debug.Log(((int)notification.Body));
+                Debug.Log(((float)notification.Body));
                 break;
             case EventsEnum.monsterDie:
                 //Debug.Log((IBlology)notification.Body);
