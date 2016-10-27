@@ -2,12 +2,12 @@
 using System.Collections;
 public class Vector3Tool
 {
-    public static Vector3 Parse(string temp) {
+    public static Vector3 Parse(string temp)
+    {
         string[] s = temp.Split('/');
         return new Vector3(float.Parse(s[0]), float.Parse(s[1]), float.Parse(s[2]));
     }
 }
-
 public class MotionParameber{
 	private static bool initial = true;
     private static float initialVelocityRecord;
