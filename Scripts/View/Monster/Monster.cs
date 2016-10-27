@@ -11,7 +11,6 @@ public class Monster : MonoBehaviour
     private IMonsterMediator monsterMediator;
     private Dictionary<IBlology, GameObject> monster;
     public GameObject[] monsterPrefabs;
-    private List<GameObject> monsterList = new List<GameObject>();
     private List<GameObject> outList = new List<GameObject>();
     public GameObject player;
     public GameObject sphere;
@@ -29,7 +28,7 @@ public class Monster : MonoBehaviour
                 Camera.main.WorldToViewportPoint(kv.Value.transform.position).x < 1)
             {
                 //瓦斯弹
-                if (kv.Value.name == "Monster_Wasi(Clone)")
+                if (kv.Value.name == "Gas(Clone)")
                 {
                     kv.Value.GetComponent<Animator>().SetBool("InView", true);
                     if (kv.Value.transform.position.x - player.transform.position.x < kv.Key.normalAttackDistance &&
@@ -37,13 +36,12 @@ public class Monster : MonoBehaviour
                     {
                         kv.Key.hasAttack = true;
                         kv.Value.transform.FindChild("Monster_Wasi@skin").gameObject.SetActive(false);
-                        kv.Value.transform.FindChild("Monster_Wasi@skin").position+=new Vector3(0,-500,0);
                         kv.Value.transform.FindChild("Boom").gameObject.SetActive(true);
                         StartCoroutine(OnHideBoom(kv.Value.transform.FindChild("Boom").gameObject));
                     }
                 }
                 //龙
-                if (kv.Value.name == "Monster_Dragon(Clone)")
+                if (kv.Value.name == "Dragon(Clone)")
                 {
                     kv.Value.GetComponent<Animator>().SetBool("InView", true);
                     if (kv.Value.transform.position.x - player.transform.position.x < kv.Key.normalAttackDistance &&
@@ -54,7 +52,7 @@ public class Monster : MonoBehaviour
                     }
                 }
                 //龟壳
-                if (kv.Value.name == "Monster_GuiKeBlue(Clone)")
+                if (kv.Value.name == "Tortoise(Clone)")
                 {
                     kv.Value.GetComponent<Animator>().SetBool("InView", true);
                     if (kv.Value.transform.position.x - player.transform.position.x < kv.Key.normalAttackDistance &&
@@ -65,7 +63,7 @@ public class Monster : MonoBehaviour
                     }
                 }
                 //舔人花
-                if (kv.Value.name == "Monster_Tianrenhua(Clone)")
+                if (kv.Value.name == "Chomper(Clone)")
                 {
                     kv.Value.GetComponent<Animator>().SetBool("InView", true);
                     if (kv.Value.transform.position.x - player.transform.position.x < kv.Key.normalAttackDistance &&
@@ -83,9 +81,30 @@ public class Monster : MonoBehaviour
                 
 
             }
-            else if (Camera.main.WorldToViewportPoint(kv.Value.transform.position).x < 0)
+            //离开屏幕
+            else if (Camera.main.WorldToViewportPoint(kv.Value.transform.position).x < -0.1f)
             {
-                kv.Key.hasAttack = false;
+                if (kv.Value.name == "Gas(Clone)")
+                {
+                    kv.Value.GetComponent<Animator>().SetBool("InView", false);
+                    kv.Value.transform.FindChild("Monster_Wasi@skin").gameObject.SetActive(true);
+                }
+                if (kv.Value.name == "Dragon(Clone)")
+                {
+                    kv.Value.transform.FindChild("DragonWeapon").gameObject.SetActive(false);
+                    kv.Value.transform.FindChild("DragonWeapon").GetComponent<Rigidbody>().velocity=Vector3.zero;
+                    kv.Value.transform.FindChild("DragonWeapon").gameObject.transform.localPosition=Vector3.zero;
+                }
+                if (kv.Value.name == "Tortoise(Clone)")
+                {
+                    kv.Value.GetComponent<Animator>().SetBool("InView", false);
+                    kv.Value.GetComponent<Animator>().SetBool("Attack", false);
+                }
+                if (kv.Value.name == "Chomper(Clone)")
+                {
+                    kv.Value.GetComponent<Animator>().SetBool("InView", false);
+                    kv.Value.GetComponent<Animator>().SetBool("Attack", false);
+                }
                 outList.Add(kv.Value);
             }
         }

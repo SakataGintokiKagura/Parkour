@@ -2,6 +2,7 @@
 using System.Collections;
 using PureMVC.Patterns;
 using System.Collections.Generic;
+using System;
 public class MonsterProxy : Proxy {
     public new const string NAME = "MonsterProxy";
     private static Dictionary<GameObject, IBlology> AllMonster = new Dictionary<GameObject, IBlology>();
@@ -17,37 +18,21 @@ public class MonsterProxy : Proxy {
     public MonsterProxy() : base(NAME)
     {
     }
-    public void OnCreatMonster(MonsterEnum monster,float time)
+    public void OnCreatMonster(int monster,float time)
     {
-        IBlology temp = new ChomperInformation(time);
-		switch(monster){//判断生成怪物
-		case MonsterEnum.Chomper:
-                temp = new ChomperInformation(time);
-			//Debug.Log ("Chomper");
-			//AllMonster.Add ();
-			    break;
-		case MonsterEnum.Dragon:
-                temp = new DragonInformation(time);
-			    break;
-			//AllMonster.Add ();
-		case MonsterEnum.Gas:
-                temp = new GasInformation(time);
-                break;
-			//AllMonster.Add ();
-		case MonsterEnum.Tortoise:
-                temp = new TortoiseInformation(time);
-                break;
-			//AllMonster.Add ();
-		}
-        MonsterQueue.Enqueue(temp);
-        SendNotification(EventsEnum.monsterCreateMonsterSuccess, temp);
-        //Debug.Log(monster);
-        //Debug.Log(MonsterQueue);
-        //MonsterMediator.OnGetMonsterMediator().OnCreat()
+		ReadTable temp = ReadTable.getTable;
+		Type t=Type.GetType(temp.OnFind("monsterDate",monster.ToString(),"class"));
+		object obj = System.Activator.CreateInstance (t,time);
+
+		MonsterQueue.Enqueue((IBlology)obj);
+		SendNotification(EventsEnum.monsterCreateMonsterSuccess, (IBlology)obj);
+
     }
+
     public void OnGetMonster(GameObject monster)
     {
-		AllMonster.Add (monster,MonsterQueue.Dequeue());
+        AllMonster[monster] = MonsterQueue.Dequeue();
+        //AllMonster.Add (monster,MonsterQueue.Dequeue());
         
     }
     public void OnInjured(GameObject monster,float hurt)
@@ -76,6 +61,6 @@ public class MonsterProxy : Proxy {
     public void OnDestroy(GameObject monster)
     {
 		SendNotification(EventsEnum.monsterDie, AllMonster[monster]);
-		AllMonster.Remove(monster);
+		//AllMonster.Remove(monster);
     }
 }

@@ -3,7 +3,7 @@ using System.Collections;
 using System;
 
 public class ChomperInformation : IBlology {
-
+	public int ID{get;set;}
 	public int damage{get;set;}
 	public int HP{get;set;}
     public int normalAttackDistance { get; set; }
@@ -17,6 +17,9 @@ public class ChomperInformation : IBlology {
 		this.damage = MonsterParameber.highdamage*(int)time;
         normalAttackDistance = 6;
 	    hasAttack = false;
+        ID = 4;
 	    //this.trans = trans;
 	}
+
+	
 }

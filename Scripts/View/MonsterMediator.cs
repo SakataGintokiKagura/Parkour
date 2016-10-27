@@ -91,42 +91,47 @@ public class MonsterMediator : Mediator,IMonsterMediator {
     {
         switch (notification.Name)
         {
-            case EventsEnum.monsterCreateMonsterSuccess:
+		case EventsEnum.monsterCreateMonsterSuccess:
                 //Debug.Log(33333);
-                IBlology monsterSpecies = (IBlology)notification.Body;
-                GameObject monster;
-                if(monsterSpecies is ChomperInformation)
-                {
-                    monster = GameObject.Instantiate(monsterControl.monsterPrefabs[0],monsterCreatePosition.position,Quaternion.identity) as GameObject;
-                }
-                else if(monsterSpecies is GasInformation)
-                {
-                    monster = GameObject.Instantiate(monsterControl.monsterPrefabs[1], monsterCreatePosition.position, Quaternion.identity) as GameObject;
-                }
-                else if(monsterSpecies is DragonInformation)
-                {
-                    monster = GameObject.Instantiate(monsterControl.monsterPrefabs[2], monsterCreatePosition.position, Quaternion.identity) as GameObject;
-                }
-                else
-                {
-                    monster = GameObject.Instantiate(monsterControl.monsterPrefabs[3], monsterCreatePosition.position, Quaternion.identity) as GameObject;
-                } 
-                SendNotification(EventsEnum.monsterCreateGameObject, monster);
-                this.monster.Add(monsterSpecies, monster);
-                //foreach (var item in this.monster)
-                //{
-                //    Debug.Log(item.Key);
-                //    Debug.Log(item.Value);
-                //}
+			IBlology monsterSpecies = (IBlology)notification.Body;
+			//monsterSpecies.ID
+
+			ReadTable temp_01 = ReadTable.getTable;
+
+            GameObject monster = MemoryController.instance.OnFindMonsterByName(
+                    temp_01.OnFind("monsterDate", monsterSpecies.ID.ToString(), "name"), monsterCreatePosition.position);
+//			GameObject monster = GameObject.Instantiate (Resources.Load("Monster/"+temp_01.OnFind("monsterDate",monsterSpecies.ID.ToString(),"name")), monsterCreatePosition.position, Quaternion.identity) as GameObject;
+
+		/*	if (monsterSpecies is ChomperInformation) {
+				monster = GameObject.Instantiate (monsterControl.monsterPrefabs [0], monsterCreatePosition.position, Quaternion.identity) as GameObject;
+			} else if (monsterSpecies is GasInformation) {
+				monster = GameObject.Instantiate (monsterControl.monsterPrefabs [1], monsterCreatePosition.position, Quaternion.identity) as GameObject;
+			} else if (monsterSpecies is DragonInformation) {
+				monster = GameObject.Instantiate (monsterControl.monsterPrefabs [2], monsterCreatePosition.position, Quaternion.identity) as GameObject;
+			} else {
+				monster = GameObject.Instantiate (monsterControl.monsterPrefabs [3], monsterCreatePosition.position, Quaternion.identity) as GameObject;
+			} */
+
+
+			SendNotification (EventsEnum.monsterCreateGameObject, monster);
+			this.monster[monsterSpecies]= monster;
                 break;
             case EventsEnum.monsterHPChange:
                 Debug.Log(((int)notification.Body));
                 break;
             case EventsEnum.monsterDie:
                 //Debug.Log((IBlology)notification.Body);
-                GameObject temp = this.monster[(IBlology)notification.Body];
-                this.monster.Remove((IBlology)notification.Body);
-                GameObject.Destroy(temp);
+                IBlology blology = (IBlology)notification.Body;
+                GameObject temp = this.monster[blology];
+                if (this.monster.ContainsKey(blology))
+                {
+                    this.monster.Remove(blology);
+                }
+                //this.monster.Remove((IBlology)notification.Body);
+
+                temp.SetActive(false);
+                MemoryController.instance.OnAddMonster(temp);
+//                GameObject.Destroy(temp);
                 //Debug.Log(((IBlology)notification.Body));
                 break;
         }
