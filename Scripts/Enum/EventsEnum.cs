@@ -6,6 +6,7 @@ public class EventsEnum {
     public const string playerUseSkillSuccess = "PlayerUseSkillSuccess";
     public const string playerInjured = "PlayerInjured";
     public const string playerHPChange = "PlayerHPChange";
+    public const string playerMPChange = "PlayerMPChange";
     public const string playerDie = "PlayerDie";
     public const string playerGetScoure = "PlayerGetScoure";
     public const string playerGetScoureSuccess = "PlayerGetScoureSuccess";
@@ -22,6 +23,8 @@ public class EventsEnum {
 
     public const string terrainCreate = "TerrainCreate";
     public const string terrainCreateSuccess = "TerrainCreateSuccess";
+    public const string prop = "Prop";
+    public const string propCreate = "PropCreate";
+    public const string propPickUpProp = "PropPickUpProp";
 
-    
 }

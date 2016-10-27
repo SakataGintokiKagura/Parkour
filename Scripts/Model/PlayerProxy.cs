@@ -52,8 +52,13 @@ public class PlayerProxy : Proxy {
         }
          SendNotification(EventsEnum.playerDropOutNoDie, player);
     }
-    //public void OnPickUpItem(int value)
-    //{
-    //    SendNotification(EventsEnum.playerPickUpItem);   
-    //}
+  
+    public void OnPickUpItem(string name)
+    {
+
+      SendNotification(EventsEnum.playerDropOutPit,name);
+
+
+    }
+ 
 }

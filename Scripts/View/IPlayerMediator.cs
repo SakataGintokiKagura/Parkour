@@ -8,4 +8,6 @@ public interface IPlayerMediator {
     void OnJump();
     void OnGetScoure(int scoure);
     void OnDropOutPit();
+    void OnPickUpProp(GameObject temp);
+
 }

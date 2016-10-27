@@ -3,8 +3,9 @@ using System.Collections;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(CharacterController))]
+
 public class Player : MonoBehaviour {
-    public GameObject[] FlyItem;
+    //public GameObject[] FlyItem;
     public Transform FlyItemPosition;
     private ISkill treadAttack = new SkillTreadAttack();
     [SerializeField]
@@ -12,7 +13,7 @@ public class Player : MonoBehaviour {
     /// <summary>
     /// 赤橙黄绿青蓝紫 对应的三原色
     /// </summary>
-    private Color[] invincibleColor = { new Color(255, 0, 0),new Color(255, 128, 0),new Color(255, 255, 0), new Color(0,255, 0) , new Color(0, 255, 255) , new Color(0, 0, 255) , new Color(128, 0, 255),new Color(255,255,255)};
+    private Color[] invincibleColor = { new Color(255, 0, 0), new Color(255, 128, 0), new Color(255, 255, 0), new Color(0, 255, 0), new Color(0, 255, 255), new Color(0, 0, 255), new Color(128, 0, 255), new Color(255, 255, 255) };
     private IPlayerMediator playerMediator;
     private ISkill skill;
     private Animator anim;
@@ -20,6 +21,25 @@ public class Player : MonoBehaviour {
     private Vector3 velocity;
     private PlayerState state;
     private float initialVelocity;
+    [SerializeField]
+    private SphereCollider lHard;
+    [SerializeField]
+    private SphereCollider rHard;
+
+    public Vector3 Velocity
+    {
+        get
+        {
+            return velocity;
+        }
+    }
+    public ISkill Skill
+    {
+        get
+        {
+            return skill;
+        }
+    }
     void Awake()
     {
     }
@@ -31,7 +51,7 @@ public class Player : MonoBehaviour {
         state = PlayerState.Instance;
         anim = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
-        initialVelocity = MotionParameber.initialVelocity *MotionParameber.fixedMotion;
+        initialVelocity = MotionParameber.initialVelocity * MotionParameber.fixedMotion;
         velocity = new Vector3(initialVelocity, 0, 0);
         //StartCoroutine(OnAccelerate());
         anim.SetFloat(AnimationParameter.xSpeed, velocity.x);
@@ -45,7 +65,7 @@ public class Player : MonoBehaviour {
     /// </summary>
     void FixedUpdate()
     {
-        
+
         velocity = ApplyGravity(velocity);
         Vector3 lastPosition = transform.position;
         CollisionFlags flags = controller.Move(velocity);
@@ -56,11 +76,11 @@ public class Player : MonoBehaviour {
             anim.SetInteger(AnimationParameter.jump, AnimationParameter.jumpfirst);
         }
         anim.SetFloat(AnimationParameter.xSpeed, velocity.x);
-        anim.SetFloat(AnimationParameter.ySpeed, velocity.y); 
-        if(state.hurtState is Invincible)
+        anim.SetFloat(AnimationParameter.ySpeed, velocity.y);
+        if (state.hurtState is Invincible)
         {
             invincibleEffects.enabled = true;
-            invincibleEffects.color = invincibleColor[Random.Range(0,7)];
+            invincibleEffects.color = invincibleColor[Random.Range(0, 7)];
         }
         else
         {
@@ -87,6 +107,8 @@ public class Player : MonoBehaviour {
     /// </summary>
     public void OnJump()
     {
+        if (skill != null)
+            return;
         if (state.jumpState is Run)
         {
             velocity.y = 0;
@@ -97,11 +119,11 @@ public class Player : MonoBehaviour {
         else if (state.jumpState is FirstJump)
         {
             velocity.y = 0;
-            velocity += MotionParameber.jumpDir*MotionParameber.secondJump * MotionParameber.fixedMotion;
+            velocity += MotionParameber.jumpDir * MotionParameber.secondJump * MotionParameber.fixedMotion;
             state.OnJump();
             anim.SetInteger(AnimationParameter.jump, AnimationParameter.jumpsecond);
         }
-        
+
     }
     /// <summary>
     /// 对角色进行加速
@@ -124,22 +146,22 @@ public class Player : MonoBehaviour {
     {
         if (state.skillState is GeneralSkill || state.skillState is UnInterruptedSkill)
             return;
-        if(this.skill != null)
+        if (this.skill != null)
         {
             Debug.Log("技能使用出错");
             return;
         }
-        if(skill is IAuxiliary)
+        if (skill is IAuxiliary)
         {
-            if(skill is SkillInvicibleAuxiliary)
+            if (skill is SkillInvicibleAuxiliary)
             {
                 StartCoroutine(OnInvincibleTime(SkillParameber.skillInvilicibleAuxiliaryTime));
             }
-            else if(skill is SkillAccelerateAuxiliary)
+            else if (skill is SkillAccelerateAuxiliary)
             {
                 StartCoroutine(OnAccelerate(SkillParameber.skillAccelerateAuxiliaryTime));
             }
-            else if(skill is SkillFlashAuxiliary)
+            else if (skill is SkillFlashAuxiliary)
             {
                 skill.OnStartSkillAnimation(transform, anim, state);
             }
@@ -148,6 +170,11 @@ public class Player : MonoBehaviour {
         {
             this.skill = skill;
             skill.OnStartSkillAnimation(transform, anim, state);
+            if(skill is IMeleeAttack)
+            {
+                lHard.enabled = true;
+                rHard.enabled = true;
+            }
         }
     }
     /// <summary>
@@ -155,7 +182,7 @@ public class Player : MonoBehaviour {
     /// </summary>
     public void OnMiddleSkill()
     {
-        skill.OnMiddleSkillAnimation(transform, anim, state);
+        skill.OnMiddleSkillAnimation(FlyItemPosition, anim, state);
     }
     /// <summary>
     /// 使用技能结束
@@ -164,6 +191,11 @@ public class Player : MonoBehaviour {
     {
 
         skill.OnEndSkillAnimation(transform, anim, state);
+        if (skill is IMeleeAttack)
+        {
+            lHard.enabled = false;
+            rHard.enabled = false; ;
+        }
         skill = null;
     }
     /// <summary>
@@ -189,16 +221,22 @@ public class Player : MonoBehaviour {
     /// <param name="col"></param>
     void OnTriggerEnter(Collider col)
     {
-        if(col.tag == TagParameber.coin)
+        if (col.tag == TagParameber.coin)
         {
             playerMediator.OnGetScoure(1);
             Destroy(col.gameObject);
-        }else if(col.tag == TagParameber.monster)
-        {
-           //Debug.Log(1111);
-            OnHurtCheck(col.gameObject);
         }
-        
+        else if (col.tag == TagParameber.monster)
+        {
+            //Debug.Log(1111);
+            OnHurtCheck(col.gameObject);
+        }else if(col.tag == TagParameber.prop)
+        {
+
+            playerMediator.OnPickUpProp(col.gameObject);
+
+        }
+
     }
     /// <summary>
     /// 伤害检测
@@ -206,21 +244,13 @@ public class Player : MonoBehaviour {
     /// <param name="monster"></param>
     void OnHurtCheck(GameObject monster)
     {
-        //Ray rayA = new Ray(transform.position+new Vector3(0.16f,1.7f,0), Vector3.down);
         Ray rayB = new Ray(transform.position + new Vector3(-0.16f, 1.3f, 0), Vector3.down);
-        //Debug.DrawLine(rayA.origin, rayA.direction, new Color(255, 0, 0));
-        Debug.DrawLine(rayB.origin, rayB.direction, new Color(0, 255, 0));
-        //RaycastHit hitA;
         RaycastHit hitB;
-        //Physics.Raycast(rayA, out hitA);
         Physics.Raycast(rayB, out hitB);
-        //Debug.Log(hitA.collider.tag);
-        //Debug.Log(hitB.collider.tag);
         if(Physics.Raycast(rayB, out hitB))
         {
             if (hitB.collider.tag == TagParameber.monster)
             {
-                //Debug.Log(3333);
                 MonsterMediator.OnGetMonsterMediator().OnInjured(monster, treadAttack);
                 velocity.y = 0;
                 velocity.y += MotionParameber.elasticTread;
@@ -228,17 +258,8 @@ public class Player : MonoBehaviour {
                 return;
             }
         }
-        if (skill != null)
-        {
-            if(skill is IMeleeAttack)
-            {
-                MonsterMediator.OnGetMonsterMediator().OnInjured(monster, skill);
-            }
-        }
-        else
-        {
-            OnHurt(monster);
-        }
+
+        OnHurt(monster);
         //OnHurt(monster);
     }
     /// <summary>
@@ -260,7 +281,7 @@ public class Player : MonoBehaviour {
     /// <returns></returns>
     IEnumerator OnInvincibleTime(float time)
     {
-        while(state.hurtState is Invincible)
+        while (state.hurtState is Invincible)
         {
             yield return new WaitForFixedUpdate();
             time -= MotionParameber.fixedMotion;
@@ -304,4 +325,9 @@ public class Player : MonoBehaviour {
     {
         Debug.Log("restart");
     }
+    /// <summary>
+    /// 拾取道具
+    /// </summary>
+
 }
+//判断是否拾取了道具

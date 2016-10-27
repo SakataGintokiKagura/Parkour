@@ -72,6 +72,7 @@ public class PlayerMediator : Mediator,IPlayerMediator {
         list.Add(EventsEnum.playerDie);
         list.Add(EventsEnum.playerGetScoureSuccess);
         list.Add(EventsEnum.playerDropOutNoDie);
+        list.Add(EventsEnum.propPickUpProp);
         return list;
     }
     public override void HandleNotification(INotification notification)
@@ -80,6 +81,7 @@ public class PlayerMediator : Mediator,IPlayerMediator {
         {
             case EventsEnum.playerDropOutNoDie:
                 player.OnDropOut();
+
                 break;
             case EventsEnum.playerUseSkillSuccess:
                 if(notification.Body is PLayerInformation)
@@ -94,7 +96,7 @@ public class PlayerMediator : Mediator,IPlayerMediator {
                 break;
             case EventsEnum.playerHPChange:
                 PLayerInformation player2 = (PLayerInformation)notification.Body;
-                Debug.Log(player2.HP);
+                //Debug.Log(player2.HP);
                 ui.HP.fillAmount = (float)player2.HP / 100;
                 break;
             case EventsEnum.playerGetScoureSuccess:
@@ -104,6 +106,12 @@ public class PlayerMediator : Mediator,IPlayerMediator {
             case EventsEnum.playerDie:
                 player.OnDie();
                 break;
+           case EventsEnum.propPickUpProp:
+               //未完待续
+
+                break;
+
+
         }
     }
 
@@ -119,5 +127,12 @@ public class PlayerMediator : Mediator,IPlayerMediator {
     {
 
         SendNotification(EventsEnum.playerDropOutPit);
+    }
+  
+
+    public void OnPickUpProp(GameObject temp) {
+        GameObject.Destroy(temp);
+        SendNotification(EventsEnum.propPickUpProp);
+  
     }
 }
