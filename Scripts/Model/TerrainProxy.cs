@@ -1,22 +1,29 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System;
 using PureMVC.Patterns;
 using System.Collections.Generic;
 
 public class TerrainCreateInfor
 {
-    public ITerrain terrain;
-    public Dictionary<float, GoldEnum> coin;
-    public TerrainCreateInfor(ITerrain terrain, Dictionary<float, GoldEnum> coin)
+    private int terrain;
+    private Dictionary<float, int> coin;
+    public TerrainCreateInfor(int terrain, Dictionary<float, int> coin)
     {
         this.terrain = terrain;
         this.coin = coin;
     }
 
-    public Dictionary<float, GoldEnum> OnGetCoin()
+    public Dictionary<float, int> OnGetCoin()
     {
         return coin;
     }
+
+	public int OnGetTerrain()
+	{
+		return terrain;
+	}
 }
 
 public class TerrainProxy : Proxy
@@ -28,25 +35,12 @@ public class TerrainProxy : Proxy
     public TerrainProxy() : base(NAME)
     {
     }
-    public void OnCreateTerrain(TerrainEnum terrain, Dictionary<float, GoldEnum> coin)
+    public void OnCreateTerrain(int terrain, Dictionary<float,int> coin)
     {
-        TerrainCreateInfor terrainCreateInfor;
-        switch (terrain)
-        {
-            case TerrainEnum.One:
-                terrainCreateInfor = new TerrainCreateInfor(new OneTerrain(), coin);
-                SendNotification(EventsEnum.terrainCreateSuccess, terrainCreateInfor);
-                break;
-            case TerrainEnum.Two:
-                terrainCreateInfor = new TerrainCreateInfor(new TwoTerrain(), coin);
-                SendNotification(EventsEnum.terrainCreateSuccess, terrainCreateInfor);
-                break;
-            case TerrainEnum.Three:
-                terrainCreateInfor = new TerrainCreateInfor(new ThreeTerrain(), coin);
-                SendNotification(EventsEnum.terrainCreateSuccess, terrainCreateInfor);
-                break;
-            default:
-                break;
-        }
+		
+        TerrainCreateInfor terrainCreateInfor = new TerrainCreateInfor(terrain, coin);
+
+		SendNotification(EventsEnum.terrainCreateSuccess, terrainCreateInfor);
+
     }
 }

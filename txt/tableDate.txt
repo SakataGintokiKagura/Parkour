@@ -1,0 +1,12 @@
+tableName	tableElements
+animationParameber	ID/name/dateType/dateValue
+bulletParameter	ID/name/dateType/dateValue
+coinDate	ID/name/dateType/dateValue/coinLength
+monsterDate	ID/name/HP/demage/class/range
+monsterParameber	ID/Name/null/Value
+playerDate	
+propDate	
+skillDate	null/技能名/编号/动画参数/技能name/技能键/damage/MP/time/攻击距离
+skillParamber	
+terrainDate	ID/terrainName/className/length/noPitRoad
+terrainParamber	ID/name/dateTpye/dateValue

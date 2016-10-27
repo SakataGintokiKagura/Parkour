@@ -2,7 +2,10 @@
 using System.Collections;
 using System;
 using UnityEngine.UI;
+
 using UnityEngine.EventSystems;
+using System.Reflection;
+
 public class UI : MonoBehaviour
 {
     public Image HP;
@@ -18,14 +21,10 @@ public class UI : MonoBehaviour
     private float usedtime = 0;
     private float curTime = 0;
     private ArrayList listSkill;
-
-    //定义一个全局变量保存怪物地址
-
-
-    //private Text allCoins;
-    // private int coinsnum = 0;
+    private ReadTable skillTable;
     void Start()
     {
+
         listSkill = new ArrayList();
 
     }
@@ -33,6 +32,8 @@ public class UI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.S))
+            playerMediator.OnUseSkill(new SkillContinuousAttack());
         if (Input.GetKeyDown(KeyCode.Space))
         {
             startJump = true;
@@ -73,8 +74,8 @@ public class UI : MonoBehaviour
         if (startReadTime == true)
         {
             curTime = curTime + Time.deltaTime;
-            if (curTime > SkillParameber.SkillReadCD)
-            {
+                if (curTime >= SkillParameber.SkillReadCD)
+                {
                 SkillCheck(listSkill);
                 listSkill.Clear();
                 startReadTime = false;
@@ -89,308 +90,31 @@ public class UI : MonoBehaviour
     }
     public void SkillCheck(ArrayList listSkill)
     {
-        int i = listSkill.Count;
-        switch (i)
+        string skilllist=null;
+        foreach (string a in listSkill)
         {
-            case 1:
-                {
-                    if (listSkill[0].ToString() == "A")
-                    {
-
-                        playerMediator.OnUseSkill(new SkillNormalAttack());
-                        Debug.Log(" A技能 ");
-                    }
-                    else
-                    {
-                        playerMediator.OnUseSkill(new SkillNormalRemoteAttack());
-                        Debug.Log(" B技能 ");
-                    }
-                    break;
-                }
-            case 2:
-                {
-                    if (listSkill[0].ToString() == "A")
-                    {
-                        if (listSkill[1].ToString() == "B")
-                        {//AA
-                            playerMediator.OnUseSkill(new SkillBigRemoteAttack());
-                            Debug.Log(" AB  ");
-                        }
-                        else
-                        {
-                            playerMediator.OnUseSkill(new SkillNormalAttack());
-                            Debug.Log(" A技能 ");
-                        }
-                    }
-                    else
-                    {
-                        if (listSkill[1].ToString() == "A")
-                        {//BA
-                            playerMediator.OnUseSkill(new SkillRollAttack());
-                            Debug.Log(" BA  ");
-                        }
-                        else
-                        {
-                            playerMediator.OnUseSkill(new SkillNormalRemoteAttack());
-                            Debug.Log(" B技能 ");
-                        }
-                    }
-
-                    break;
-                }
-            case 3:
-                {
-                    if (listSkill[0].ToString() == "A")
-                    {
-                        if (listSkill[1].ToString() == "A")
-                        {
-                            if (listSkill[2].ToString() == "B")
-                            {
-                                playerMediator.OnUseSkill(new SkillRangeRomateAttack());
-                                Debug.Log("  AAB   ");
-                            }
-                            else
-                            {
-                                playerMediator.OnUseSkill(new SkillNormalAttack());
-                                Debug.Log(" A技能 ");
-                            }
-
-                        }
-                        else if (listSkill[2].ToString() == "A")
-                        {
-                            playerMediator.OnUseSkill(new SkillFlashAuxiliary());
-                            Debug.Log("  ABA   ");
-                        }
-                        else
-                        {
-                            playerMediator.OnUseSkill(new SkillNormalAttack());
-                            Debug.Log(" A技能 ");
-                        }
-                    }
-                    else
-                    {//B*
-                        if (listSkill[1].ToString() == "B")
-                        {
-                            if (listSkill[2].ToString() == "A")
-                            {
-                                playerMediator.OnUseSkill(new SkillBigRollAttack());
-                                Debug.Log("  BBA   ");
-                            }
-                        }
-                        else
-                        {
-                            playerMediator.OnUseSkill(new SkillNormalRemoteAttack());
-                            Debug.Log(" B技能 ");
-                        }
-                    }
-                    break;
-                }
-            case 4:
-                {
-                    if (listSkill[0].ToString() == "A")
-                    {
-                        if (listSkill[1].ToString() == "A")
-                        {
-                            if (listSkill[2].ToString() == "A")
-                            {
-                                if (listSkill[3].ToString() == "B")
-                                {
-                                    playerMediator.OnUseSkill(new SkillLightAttack());
-                                    Debug.Log(" AAAB   ");
-                                }
-                            }
-                            else
-                            {//AAB
-                                if (listSkill[3].ToString() == "B")
-                                {
-                                    playerMediator.OnUseSkill(new SkillCallRemoteAttack());
-                                    Debug.Log(" AABB   ");
-                                }
-                            }
-                        }
-                        else
-                        {//AB
-                            if (listSkill[2].ToString() == "A")
-                            {
-                                if (listSkill[3].ToString() == "B")
-                                {
-                                    playerMediator.OnUseSkill(new SkillAccelerateAuxiliary());
-                                    Debug.Log(" ABAB  ");
-                                }
-                            }
-                            else
-                            {//ABB
-
-                                if (listSkill[3].ToString() == "B")
-                                {
-                                    playerMediator.OnUseSkill(new SkillNormalRemoteAttack());
-                                    Debug.Log(" ABBA//加血没找到   ");
-                                }
-                            }
-                        }
-                    }
-                    else//B*
-                    {
-                        if (listSkill[1].ToString() == "A")
-                        {
-                            if (listSkill[2].ToString() == "A")
-                            {
-                                if (listSkill[3].ToString() == "B")
-                                {
-                                    playerMediator.OnUseSkill(new SkillInvicibleAuxiliary());
-                                    Debug.Log(" BAAB  ");
-                                }
-                                else
-                                {
-                                    playerMediator.OnUseSkill(new SkillNormalRemoteAttack());
-                                    Debug.Log(" B技能 ");
-                                }
-
-
-                            }
-                            else
-                            {
-                                playerMediator.OnUseSkill(new SkillNormalRemoteAttack());
-                                Debug.Log(" B技能 ");
-                            }
-                        }
-                        else
-                        {//BB*
-                            if (listSkill[2].ToString() == "A")
-                            {
-                                if (listSkill[3].ToString() == "A")
-                                {
-                                    playerMediator.OnUseSkill(new SkillIaidoAttack());
-                                    Debug.Log("  BBAA   ");
-                                }
-                                else
-                                {
-                                    playerMediator.OnUseSkill(new SkillNormalRemoteAttack());
-                                    Debug.Log(" B技能 ");
-                                }
-                            }
-                            else
-                            {//BBB*
-                                if (listSkill[3].ToString() == "A")
-                                {
-                                    playerMediator.OnUseSkill(new SkillRangeAttack());
-                                    Debug.Log("  BBBA   ");
-                                }
-                                else
-                                {
-                                    playerMediator.OnUseSkill(new SkillNormalRemoteAttack());
-                                    Debug.Log(" B技能 ");
-                                }
-                            }
-                        }
-                    }
-                    break;
-                }
-            default:
-                {
-
-                    if (listSkill[0].ToString() == "A")
-                    {
-                        if (listSkill[1].ToString() == "A")
-                        {
-                            if (listSkill[2].ToString() == "A")
-                            {
-                                if (listSkill[3].ToString() == "B")
-                                {
-                                    playerMediator.OnUseSkill(new SkillLightAttack());
-                                    Debug.Log(" AAAB   ");
-                                }
-                            }
-                            else
-                            {//AAB
-                                if (listSkill[3].ToString() == "B")
-                                {
-                                    playerMediator.OnUseSkill(new SkillCallRemoteAttack());
-                                    Debug.Log(" AABB   ");
-                                }
-                            }
-                        }
-                        else
-                        {//AB
-                            if (listSkill[2].ToString() == "A")
-                            {
-                                if (listSkill[3].ToString() == "B")
-                                {
-                                    playerMediator.OnUseSkill(new SkillAccelerateAuxiliary());
-                                    Debug.Log(" ABAB  ");
-                                }
-                            }
-                            else
-                            {//ABB
-
-                                if (listSkill[3].ToString() == "B")
-                                {
-                                    playerMediator.OnUseSkill(new SkillNormalRemoteAttack());
-                                    Debug.Log(" ABBA//加血没找到   ");
-                                }
-                            }
-                        }
-                    }
-                    else//B*
-                    {
-                        if (listSkill[1].ToString() == "A")
-                        {
-                            if (listSkill[2].ToString() == "A")
-                            {
-                                if (listSkill[3].ToString() == "B")
-                                {
-                                    playerMediator.OnUseSkill(new SkillInvicibleAuxiliary());
-                                    Debug.Log(" BAAB  ");
-                                }
-                                else
-                                {
-                                    playerMediator.OnUseSkill(new SkillNormalRemoteAttack());
-                                    Debug.Log(" B技能 ");
-                                }
-
-
-                            }
-                            else
-                            {
-                                playerMediator.OnUseSkill(new SkillNormalRemoteAttack());
-                                Debug.Log(" B技能 ");
-                            }
-                        }
-                        else
-                        {//BB*
-                            if (listSkill[2].ToString() == "A")
-                            {
-                                if (listSkill[3].ToString() == "A")
-                                {
-                                    playerMediator.OnUseSkill(new SkillIaidoAttack());
-                                    Debug.Log("  BBAA   ");
-                                }
-                                else
-                                {
-                                    playerMediator.OnUseSkill(new SkillNormalRemoteAttack());
-                                    Debug.Log(" B技能 ");
-                                }
-                            }
-                            else
-                            {//BBB*
-                                if (listSkill[3].ToString() == "A")
-                                {
-                                    playerMediator.OnUseSkill(new SkillRangeAttack());
-                                    Debug.Log("  BBBA   ");
-                                }
-                                else
-                                {
-                                    playerMediator.OnUseSkill(new SkillNormalRemoteAttack());
-                                    Debug.Log(" B技能 ");
-                                }
-                            }
-                        }
-                    }
-                    break;
-                }
+            skilllist += a;
         }
+        string str ="1111";
+        for (int i=1;i<32;i++)
+        {
+            string s=i.ToString();
+            str = ReadTable.getTable.OnFind("skillDate", s, "skillKeys");
+            if (str == skilllist)
+            {
+                Debug.Log("技能释放");
+                Assembly assembly = Assembly.GetExecutingAssembly(); // 获取当前程序集 
+                String s1 = ReadTable.getTable.OnFind("skillDate", s, "skillName");
+                object obj = assembly.CreateInstance(s1); // 创建类的实例，返回为 object 类型，需要强制类型转换
+                Debug.Log(obj);
+                Debug.Log("技能释放开始   " + str);
+                playerMediator.OnUseSkill((ISkill)obj);
+                break;
+            }
+        }
+        
     }
-
+    
     public void OnButtonA()
     {
         skillA = true;
@@ -412,9 +136,9 @@ public class UI : MonoBehaviour
     }
     IEnumerator ssss()
     {
-
         yield return new WaitForSeconds(MonsterParameber.damageShowTime);
         injured.transform.position = new Vector3(-15, 1, 0);
     }
 
 }
+

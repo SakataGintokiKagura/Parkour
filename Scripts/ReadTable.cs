@@ -49,6 +49,7 @@ public class ReadTable {
     ReadTable()
     {
         TextAsset tableIndex = Resources.Load<TextAsset>("tableDate");
+
         buffer =tableIndex.bytes;
         while (canRead)
         {
@@ -70,7 +71,7 @@ public class ReadTable {
     {
         if (!tableIndex.ContainsKey(table))
         {
-            Debug.Log("没有找到对应的表");
+			Debug.Log("没有找到对应的表 "+ table);
             return "1111";
         }
         if (!tableContent.ContainsKey(table))
