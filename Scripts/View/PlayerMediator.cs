@@ -120,7 +120,9 @@ public class PlayerMediator : Mediator,IPlayerMediator {
 
         SendNotification(EventsEnum.playerDropOutPit);
     }
-	public void OnPickUpProp(string name){
-		
-	}
+
+    public void OnPickUpProp(string name)
+    {
+        
+    }
 }

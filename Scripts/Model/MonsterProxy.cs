@@ -31,7 +31,8 @@ public class MonsterProxy : Proxy {
 
     public void OnGetMonster(GameObject monster)
     {
-		AllMonster.Add (monster,MonsterQueue.Dequeue());
+        AllMonster[monster] = MonsterQueue.Dequeue();
+        //AllMonster.Add (monster,MonsterQueue.Dequeue());
         
     }
     public void OnInjured(GameObject monster,float hurt)
@@ -60,6 +61,6 @@ public class MonsterProxy : Proxy {
     public void OnDestroy(GameObject monster)
     {
 		SendNotification(EventsEnum.monsterDie, AllMonster[monster]);
-		AllMonster.Remove(monster);
+		//AllMonster.Remove(monster);
     }
 }

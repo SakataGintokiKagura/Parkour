@@ -1,6 +1,0 @@
-ID	name	HP	demage	class	range
-null	string	int	int	null	int
-1	Dragon	 MonsterParameber.highHP*(int)time	MonsterParameber.lowdamage*(int)time	DragonInformation	6
-2	Tortoise	MonsterParameber.highHP*(int)time	MonsterParameber.lowdamage*(int)time	TortoiseInformation	8
-3	Gas	MonsterParameber.lowHP*(int)time	 MonsterParameber.highdamage*(int)time	GasInformation	3
-4	Chomper	 MonsterParameber.lowHP*(int)time	 MonsterParameber.highdamage*(int)time	ChomperInformation	6

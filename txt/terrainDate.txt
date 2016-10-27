@@ -1,5 +1,0 @@
-ID	terrainName	className	length	noPitRoad
-null	string	class	int	"Dictionary<float, float>"
-1	One	OneTerrain	100	0,24/30,54/60,84/88,96
-2	Two	TwoTerrain	100	0,54/60,84/88,96
-3	Three	ThreeTerrain	100	0,24/30,42/46,50/54,58/64,96
