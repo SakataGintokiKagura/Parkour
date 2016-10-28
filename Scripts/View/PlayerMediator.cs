@@ -129,6 +129,5 @@ public class PlayerMediator : Mediator,IPlayerMediator {
 		MemoryController.instance.OnAddObject(temp,ReadTable.getTable.OnFind("memoryObjectParameter","1","priority"));
 		MemoryController.instance.OnRemoveObject(temp,ReadTable.getTable.OnFind("memoryObjectParameter","1","priority"));
         SendNotification(EventsEnum.propPickUpProp,temp);
-        // GameObject.Destroy(temp);
     }
 }

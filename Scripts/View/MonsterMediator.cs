@@ -128,7 +128,6 @@ public class MonsterMediator : Mediator,IMonsterMediator {
 			break;
            
 		case EventsEnum.propCreate:
-                
 			string prop_name = notification.Body.ToString ();
             
 			ReadTable reatable = ReadTable.getTable;
