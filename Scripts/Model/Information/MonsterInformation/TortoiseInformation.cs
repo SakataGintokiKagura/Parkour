@@ -11,10 +11,11 @@ public class TortoiseInformation : IBlology {
     //public Transform trans { get; set; }
     public TortoiseInformation(float time)
     {
-		this.HP = MonsterParameber.highHP*(int)time;
-		this.damage = MonsterParameber.lowdamage*(int)time;
-        normalAttackDistance = 8;
-        hasAttack = false;
         ID = 2;
+        ReadTable monsterchomper = ReadTable.getTable;
+        this.HP = int.Parse(monsterchomper.OnFind("monsterDate", ID.ToString(), "HP"));
+        this.damage = int.Parse(monsterchomper.OnFind("monsterDate", ID.ToString(), "damage"));
+        normalAttackDistance = int.Parse(monsterchomper.OnFind("monsterDate", ID.ToString(), "range"));
+        hasAttack = false;
     }
 }

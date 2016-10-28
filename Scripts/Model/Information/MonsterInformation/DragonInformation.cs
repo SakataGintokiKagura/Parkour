@@ -11,10 +11,12 @@ public class DragonInformation : IBlology
     //public Transform trans { get; set; }
     public DragonInformation(float time)
     {
-        this.HP = MonsterParameber.highHP*(int) time;
-        this.damage = MonsterParameber.lowdamage*(int) time;
-        normalAttackDistance = 6;
         ID = 1;
+        ReadTable monsterchomper = ReadTable.getTable;
+        this.HP = int.Parse(monsterchomper.OnFind("monsterDate", ID.ToString(), "HP"));
+        this.damage = int.Parse(monsterchomper.OnFind("monsterDate", ID.ToString(), "damage"));
+        normalAttackDistance = int.Parse(monsterchomper.OnFind("monsterDate", ID.ToString(), "range"));
+
 
         hasAttack = false;
 

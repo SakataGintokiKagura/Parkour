@@ -13,13 +13,16 @@ public class ChomperInformation : IBlology {
     //public Transform trans { get; set; }
     public ChomperInformation(float time)
 	{
-		this.HP = MonsterParameber.lowHP*(int)time;
-		this.damage = MonsterParameber.highdamage*(int)time;
-        normalAttackDistance = 6;
-	    hasAttack = false;
         ID = 4;
-	    //this.trans = trans;
-	}
+        ReadTable monsterchomper = ReadTable.getTable;
+        //Type t;
+        //t=Type.GetType(monsterchomper.OnFind("monsterParameber",monster.ToString(),"class"));
+        this.HP = int.Parse(monsterchomper.OnFind("monsterDate", ID.ToString(), "HP"));
+        this.damage = int.Parse(monsterchomper.OnFind("monsterDate", ID.ToString(), "damage"));
+        normalAttackDistance = int.Parse(monsterchomper.OnFind("monsterDate", ID.ToString(), "range"));
+        hasAttack = false;
+        //this.trans = trans;
+    }
 
 	
 }

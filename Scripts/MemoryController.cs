@@ -33,7 +33,7 @@ public class MemoryController:MonoBehaviour
 		
 	}
 	void Update(){
-		
+        //Debug.Log(Profiler.GetTotalAllocatedMemory());
 		deleteListObject ();
 	}
 
@@ -55,7 +55,7 @@ public class MemoryController:MonoBehaviour
 			}
 		}
 
-		GameObject obj = GameObject.Instantiate(Resources.Load(path + name), position
+		GameObject obj = Instantiate(Resources.Load(path + name), position
 			, Quaternion.identity) as GameObject;
 
 		return obj;

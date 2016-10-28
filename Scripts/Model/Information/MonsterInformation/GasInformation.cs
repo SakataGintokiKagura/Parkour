@@ -10,13 +10,15 @@ public class GasInformation : IBlology {
     //public Transform trans { get; set; }
     public GasInformation(float time)
 	{
-		this.HP = MonsterParameber.lowHP*(int)time;
-		this.damage = MonsterParameber.highdamage*(int)time;
-        normalAttackDistance = 3;
-        ID = 3;
 
-	    hasAttack = false;
-	
+        ID = 3;
+        ReadTable monsterchomper = ReadTable.getTable;
+        this.HP = int.Parse(monsterchomper.OnFind("monsterDate", ID.ToString(), "HP"));
+        this.damage = int.Parse(monsterchomper.OnFind("monsterDate", ID.ToString(), "damage"));
+        normalAttackDistance = int.Parse(monsterchomper.OnFind("monsterDate", ID.ToString(), "range"));
+
+        hasAttack = false;
+
 
     }
 }

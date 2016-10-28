@@ -4,6 +4,7 @@ using PureMVC.Patterns;
 using System.Collections.Generic;
 using System;
 public class MonsterProxy : Proxy {
+    private bool isboss = false;
     public new const string NAME = "MonsterProxy";
     private static Dictionary<GameObject, IBlology> AllMonster = new Dictionary<GameObject, IBlology>();
     public static Dictionary<GameObject, IBlology> AllMONSTER
@@ -18,14 +19,26 @@ public class MonsterProxy : Proxy {
     public MonsterProxy() : base(NAME)
     {
     }
-    public void OnCreatMonster(int monster,float time)
+    public void OnCreatMonster(int monster, float time)
     {
-		ReadTable temp = ReadTable.getTable;
-		Type t=Type.GetType(temp.OnFind("monsterDate",monster.ToString(),"class"));
-		object obj = System.Activator.CreateInstance (t,time);
+        ReadTable temp = ReadTable.getTable;
+        Type t;
+        if (isboss)
+        {
+            if (monster > 2)
+                monster -= 2;
+            t = Type.GetType(temp.OnFind("monsterDate", (monster * 10).ToString(), "class"));
+        }
+        else
+        {
+            t = Type.GetType(temp.OnFind("monsterDate", monster.ToString(), "class"));
+        }
+        //ReadTable temp = ReadTable.getTable;
+        //Type t=Type.GetType(temp.OnFind("monsterDate",monster.ToString(),"class"));
+        IBlology obj = (IBlology)System.Activator.CreateInstance(t, time);
+        MonsterQueue.Enqueue((IBlology)obj);
+        SendNotification(EventsEnum.monsterCreateMonsterSuccess, (IBlology)obj);
 
-		MonsterQueue.Enqueue((IBlology)obj);
-		SendNotification(EventsEnum.monsterCreateMonsterSuccess, (IBlology)obj);
 
     }
 
@@ -39,10 +52,11 @@ public class MonsterProxy : Proxy {
     {
        // Debug.Log(monster);
         PlayerProxy player = (PlayerProxy)Facade.RetrieveProxy(PlayerProxy.NAME);
-        if (AllMonster[monster].HP - player.player.damage*hurt > 0)
+        float temp = ((float)player.player.damage) * hurt;
+        if (AllMonster[monster].HP - ((float)player.player.damage)*hurt > 0)
         {
-            
-            SendNotification (EventsEnum.monsterHPChange, hurt);
+            AllMonster[monster].HP -=(int)(player.player.damage* hurt);
+            SendNotification (EventsEnum.monsterHPChange, AllMonster[monster].HP);
         }
         else
         {
@@ -73,5 +87,15 @@ public class MonsterProxy : Proxy {
     public void OnDestroyProp(GameObject prop)
     {
         SendNotification(EventsEnum.propPickUpProp, prop);
+    }
+    public void OnCreateBoss(int id)
+    {
+        isboss = true;
+        ReadTable temp = ReadTable.getTable;
+        Type t;
+        t = Type.GetType(temp.OnFind("monsterDate", (id * 100).ToString(), "class"));
+        object obj = System.Activator.CreateInstance(t, 1);
+        MonsterQueue.Enqueue((IBlology)obj);
+        SendNotification(EventsEnum.monsterCreateMonsterSuccess, (IBlology)obj);
     }
 }

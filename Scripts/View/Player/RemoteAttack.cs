@@ -42,7 +42,7 @@ public class RemoteAttack : MonoBehaviour {
         string name = temp.OnFind("flyItemDate", ID, "skillName");
         Assembly assembly = Assembly.GetExecutingAssembly();
         ISkill obj = (ISkill)assembly.CreateInstance(name);
-        MonsterMediator.OnGetMonsterMediator().OnInjured(col.gameObject,obj);
+        MonsterMediator.OnGetMonsterMediator().OnInjured(col.gameObject.transform.root.gameObject, obj);
         if(temp.OnFind("flyItemDate", ID, "hide") == "Yes")
             Destroy(gameObject);
 	}

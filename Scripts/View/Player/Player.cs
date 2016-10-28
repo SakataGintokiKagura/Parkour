@@ -65,7 +65,6 @@ public class Player : MonoBehaviour {
     /// </summary>
     void FixedUpdate()
     {
-
         velocity = ApplyGravity(velocity);
         Vector3 lastPosition = transform.position;
         CollisionFlags flags = controller.Move(velocity);
@@ -206,7 +205,6 @@ public class Player : MonoBehaviour {
     {
         if ((controller.collisionFlags & CollisionFlags.Below) != 0 && !(state.jumpState is Run))
         {
-            //Debug.Log(controller.collisionFlags);
             state.OnGrounded();
             anim.SetInteger(AnimationParameter.jump, AnimationParameter.jumpGround);
         }
@@ -244,17 +242,18 @@ public class Player : MonoBehaviour {
     /// <param name="monster"></param>
     void OnHurtCheck(GameObject monster)
     {
-        Ray rayB = new Ray(transform.position + new Vector3(-0.16f, 1.3f, 0), Vector3.down);
+        Ray rayB = new Ray(transform.position + new Vector3(-0.2f, 1.3f, 0), Vector3.down);
         RaycastHit hitB;
         Physics.Raycast(rayB, out hitB);
-        if(Physics.Raycast(rayB, out hitB))
+        if (Physics.Raycast(rayB, out hitB))
         {
+            //Debug.Log(hita.collider.tag);
             if (hitB.collider.tag == TagParameber.monster)
             {
-                MonsterMediator.OnGetMonsterMediator().OnInjured(monster, treadAttack);
+                MonsterMediator.OnGetMonsterMediator().OnInjured(monster.transform.root.gameObject, treadAttack);
                 velocity.y = 0;
                 velocity.y += MotionParameber.elasticTread;
-                OnHurt(monster);
+                //OnHurt(monster);
                 return;
             }
         }

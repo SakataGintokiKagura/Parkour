@@ -14,7 +14,7 @@ public class Monster : MonoBehaviour
     private List<GameObject> outList = new List<GameObject>();
     public GameObject player;
     public GameObject sphere;
-
+    private float initialPosition = 0;
     void Start()
     {
         monster = monsterMediator.monster;
@@ -23,6 +23,11 @@ public class Monster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (transform.position.x - initialPosition > 400)
+        {
+            monsterMediator.OnCreateBoss();
+            initialPosition = transform.position.x;
+        }
         //如果怪物出现在视野之中
         foreach (KeyValuePair<IBlology, GameObject> kv in monster)
         {
@@ -30,7 +35,7 @@ public class Monster : MonoBehaviour
                 Camera.main.WorldToViewportPoint(kv.Value.transform.position).x < 1)
             {
                 //瓦斯弹
-                if (kv.Value.name == "Gas(Clone)")
+                if (kv.Value.name == "Gas(Clone)"|| kv.Value.name == "RedGas(Clone)" || kv.Value.name == "BlueGas(Clone)")
                 {
                     kv.Value.GetComponent<Animator>().SetBool("InView", true);
                     if (kv.Value.transform.position.x - player.transform.position.x < kv.Key.normalAttackDistance &&

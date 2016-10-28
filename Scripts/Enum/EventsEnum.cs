@@ -20,6 +20,7 @@ public class EventsEnum {
     public const string monsterHPChange = "MonsterHPChange";
     public const string monsterDie = "MonsterDie";
     public const string monsterDestroy = "MonsterDestroy";
+    public const string monsterCreateBoss = "MonsterCreateBoss";
 
     public const string terrainCreate = "TerrainCreate";
     public const string terrainCreateSuccess = "TerrainCreateSuccess";

@@ -114,33 +114,38 @@ public class MonsterMediator : Mediator,IMonsterMediator {
 			this.monster[monsterSpecies]= monster;
                 break;
             case EventsEnum.monsterHPChange:
-                Debug.Log(((float)notification.Body));
+                Debug.Log(((int)notification.Body));
                 break;
-		case EventsEnum.monsterDie:     
-			IBlology blology = (IBlology)notification.Body;
-			GameObject temp = this.monster [blology];
-			position = temp.transform.position;
-			if (this.monster.ContainsKey (blology)) {
-				this.monster.Remove (blology);
-			}
-			temp.SetActive (false); 
-			MemoryController.instance.OnAddObject (temp,ReadTable.getTable.OnFind("memoryObjectParameter","2","priority"));    
-			break;
+		    case EventsEnum.monsterDie:     
+			    IBlology blology = (IBlology)notification.Body;
+			    GameObject temp = this.monster [blology];
+			    position = temp.transform.position;
+			    if (this.monster.ContainsKey (blology)) {
+				        this.monster.Remove (blology);
+			    }
+			    temp.SetActive (false); 
+			    MemoryController.instance.OnAddObject (temp,ReadTable.getTable.OnFind("memoryObjectParameter","2","priority"));    
+			    break;
            
-		case EventsEnum.propCreate:
-			string prop_name = notification.Body.ToString ();
+		    case EventsEnum.propCreate:
+			    string prop_name = notification.Body.ToString ();
             
-			ReadTable reatable = ReadTable.getTable;
+			    ReadTable reatable = ReadTable.getTable;
 
-			GameObject prop = MemoryController.instance.OnFindGameObjectByName (
-				prop_name, 
-				position, 
-				reatable.OnFind("memoryObjectParameter","1","priority"),
-				reatable.OnFind("memoryObjectParameter","1","path")
-			);
-			MemoryController.instance.OnAddObject (prop,ReadTable.getTable.OnFind("memoryObjectParameter","1","priority")); 
+			    GameObject prop = MemoryController.instance.OnFindGameObjectByName (
+				    prop_name, 
+				    position, 
+				    reatable.OnFind("memoryObjectParameter","1","priority"),
+				    reatable.OnFind("memoryObjectParameter","1","path")
+			    );
+			    MemoryController.instance.OnAddObject (prop,ReadTable.getTable.OnFind("memoryObjectParameter","1","priority")); 
                 
-			break;
+			    break;
         }
+    }
+
+    public void OnCreateBoss()
+    {
+        SendNotification(EventsEnum.monsterCreateBoss);
     }
 }

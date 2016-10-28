@@ -22,6 +22,7 @@ public class ApplicationFacade :Facade {
         RegisterCommand(EventsEnum.playerGetScoure, typeof(PlayerGetSource));
         RegisterCommand(EventsEnum.playerDropOutPit, typeof(PlayerDropOutPit));
         RegisterCommand(EventsEnum.propPickUpProp, typeof(PlayerPickUpProp));
+        RegisterCommand(EventsEnum.monsterCreateBoss, typeof(MonsterCreateBoss));
         //添加一些消息
         RegisterCommand(EventsEnum.propCreate,typeof(PropCreate));
         //RegisterCommand(EventsEnum.prop,typeof(PropCreate));
