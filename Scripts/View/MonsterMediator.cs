@@ -102,7 +102,7 @@ public class MonsterMediator : Mediator,IMonsterMediator {
 			//monsterSpecies.ID
 
 			ReadTable temp_01 = ReadTable.getTable;
-
+            
             GameObject monster = MemoryController.instance.OnFindMonsterByName(
                     temp_01.OnFind("monsterDate", monsterSpecies.ID.ToString(), "name"), monsterCreatePosition.position);
 			SendNotification (EventsEnum.monsterCreateGameObject, monster);
