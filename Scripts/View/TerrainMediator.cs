@@ -64,16 +64,25 @@ public class TerrainMediator : Mediator, ITerrainMediator
 
 			ReadTable temp = ReadTable.getTable;
 
-			GameObject newTerrain =MemoryController.instance.OnFindTerrainByName(temp.OnFind("terrainDate",infor.OnGetTerrain().ToString(),
-				"terrainName"),new Vector3((terrain.getN() + 1) * TerrainParameter.mapSize, 0, 0));
+			GameObject newTerrain =MemoryController.instance.OnFindGameObjectByName(
+				temp.OnFind("terrainDate",infor.OnGetTerrain().ToString(),"terrainName"),
+				new Vector3((terrain.getN() + 1) * TerrainParameter.mapSize, 0, 0),
+				temp.OnFind("memoryObjectParameter","4","priority"),
+				temp.OnFind("memoryObjectParameter","4","path")
+			);
+
 			oldTerraian.Enqueue(newTerrain);
 
 			GameObject newCoin;
 			List<GameObject> newCoinList = new List<GameObject>();
 			    
 			foreach (KeyValuePair<float,int> item in infor.OnGetCoin()){
-				newCoin = MemoryController.instance.OnFindCoinByName(temp.OnFind("coinDate",item.Value.ToString(),"name"), 
-					new Vector3(item.Key + ((terrain.getN() + 1) * TerrainParameter.mapSize), 0, 0));
+				newCoin = MemoryController.instance.OnFindGameObjectByName(
+					temp.OnFind("coinDate",item.Value.ToString(),"name"), 
+					new Vector3(item.Key + ((terrain.getN() + 1) * TerrainParameter.mapSize), 0, 0),
+					temp.OnFind("memoryObjectParameter","3","priority"),
+					temp.OnFind("memoryObjectParameter","3","path")
+				);
 				newCoin.SetActiveRecursively (true);
 				newCoinList.Add(newCoin);
 			}
@@ -84,11 +93,11 @@ public class TerrainMediator : Mediator, ITerrainMediator
 			{  
 				GameObject deleterTerrain = oldTerraian.Dequeue(); 
 				deleterTerrain.SetActive (false);
-				MemoryController.instance.OnAddTerrain (deleterTerrain);
+				MemoryController.instance.OnAddObject(deleterTerrain,ReadTable.getTable.OnFind("memoryObjectParameter","4","priority"));
 				List<GameObject> deleterCoin = oldCoin.Dequeue();    
 				foreach (GameObject elem in deleterCoin) {
 					elem.SetActive (false);
-					MemoryController.instance.OnAddCoin (elem);
+					MemoryController.instance.OnAddObject(elem,ReadTable.getTable.OnFind("memoryObjectParameter","3","priority"));
 				}	
 			}
 			break;
