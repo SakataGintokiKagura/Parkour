@@ -226,6 +226,7 @@ public class Player : MonoBehaviour {
             playerMediator.OnGetScoure(1);
 			col.gameObject.SetActive (false);
         }else if(col.tag == TagParameber.monster)
+
         {
             //Debug.Log(1111);
             OnHurtCheck(col.gameObject);

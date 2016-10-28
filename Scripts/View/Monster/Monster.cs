@@ -14,10 +14,12 @@ public class Monster : MonoBehaviour
     private List<GameObject> outList = new List<GameObject>();
     public GameObject player;
     public GameObject sphere;
+
     void Start()
     {
         monster = monsterMediator.monster;
     }
+
     // Update is called once per frame
     void Update()
     {
@@ -107,6 +109,24 @@ public class Monster : MonoBehaviour
                 }
                 outList.Add(kv.Value);
             }
+
+            for (int i = 0; i < MemoryController.instance.propInViewList.Count; i++)
+            {
+                GameObject go = MemoryController.instance.propInViewList[i];
+                if (Camera.main.WorldToViewportPoint(go.transform.position).x < -0.1f)
+                {
+                    go.SetActive(false);
+                    MemoryController.instance.OnAddProp(go);
+                    MemoryController.instance.propInViewList.Remove(go);
+                }
+            }
+            //            foreach (GameObject go in MemoryController.instance.propInViewList)
+            //            {
+            //                if (Camera.main.WorldToViewportPoint(go.transform.position).x < -0.1f)
+            //                {
+            //                    MemoryController.instance.propInViewList.Remove(go);
+            //                }
+            //            }
         }
 
         foreach (var temp in outList)
@@ -114,6 +134,8 @@ public class Monster : MonoBehaviour
             monsterMediator.OnDestroyMonster(temp);
         }
         outList.Clear();
+
+       
     }
 
     public void OnSetMonsterMediator(IMonsterMediator monsterMediator)
