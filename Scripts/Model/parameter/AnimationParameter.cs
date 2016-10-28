@@ -17,10 +17,11 @@ public class AnimationParameter{
     public const int skillBigRollAttack = 3;
     public const int skillRangeAttack = 4;
     public const int skillIaidoAttack = 5;
+    public const int skillContinuousAttack = 11;
 
     public const int skillNormalRemoteAttack = 6;
     public const int skillBigRemoteAttack = 7;
     public const int skillRangeRemoteAttack = 8;
-    public const int skillLightRemoteAttack =9;
+    public const int skillLightRemoteAttack = 9;
     public const int SkillCallRemoteAttack = 10;
 }

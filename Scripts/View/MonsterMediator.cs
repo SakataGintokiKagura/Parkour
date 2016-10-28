@@ -21,6 +21,7 @@ public class MonsterMediator : Mediator,IMonsterMediator {
     Dictionary<IBlology, GameObject> monster = new Dictionary<IBlology, GameObject>();
     private Monster monsterControl;
     public UI ui;
+    private Vector3 position;
     public Transform monsterCreatePosition;
     private static MonsterMediator monsterMediator;
 
@@ -66,6 +67,10 @@ public class MonsterMediator : Mediator,IMonsterMediator {
 		SendNotification(EventsEnum.monsterCreateMonster);
 		//Debug.Log (1111);
     }
+    public void OnCreateProp()
+    {
+        SendNotification(EventsEnum.propCreate);
+    }
     /// <summary>
     /// view层创造的怪物传给后台
     /// </summary>
@@ -84,7 +89,7 @@ public class MonsterMediator : Mediator,IMonsterMediator {
         list.Add(EventsEnum.monsterCreateMonsterSuccess);
         list.Add(EventsEnum.monsterHPChange);
         list.Add(EventsEnum.monsterDie);
-
+        list.Add(EventsEnum.propCreate);
         return list;
     }
     public override void HandleNotification(INotification notification)
@@ -100,29 +105,19 @@ public class MonsterMediator : Mediator,IMonsterMediator {
 
             GameObject monster = MemoryController.instance.OnFindMonsterByName(
                     temp_01.OnFind("monsterDate", monsterSpecies.ID.ToString(), "name"), monsterCreatePosition.position);
-//			GameObject monster = GameObject.Instantiate (Resources.Load("Monster/"+temp_01.OnFind("monsterDate",monsterSpecies.ID.ToString(),"name")), monsterCreatePosition.position, Quaternion.identity) as GameObject;
-
-		/*	if (monsterSpecies is ChomperInformation) {
-				monster = GameObject.Instantiate (monsterControl.monsterPrefabs [0], monsterCreatePosition.position, Quaternion.identity) as GameObject;
-			} else if (monsterSpecies is GasInformation) {
-				monster = GameObject.Instantiate (monsterControl.monsterPrefabs [1], monsterCreatePosition.position, Quaternion.identity) as GameObject;
-			} else if (monsterSpecies is DragonInformation) {
-				monster = GameObject.Instantiate (monsterControl.monsterPrefabs [2], monsterCreatePosition.position, Quaternion.identity) as GameObject;
-			} else {
-				monster = GameObject.Instantiate (monsterControl.monsterPrefabs [3], monsterCreatePosition.position, Quaternion.identity) as GameObject;
-			} */
-
-
 			SendNotification (EventsEnum.monsterCreateGameObject, monster);
 			this.monster[monsterSpecies]= monster;
                 break;
             case EventsEnum.monsterHPChange:
-                Debug.Log(((int)notification.Body));
+                Debug.Log(((float)notification.Body));
                 break;
             case EventsEnum.monsterDie:
+                
                 //Debug.Log((IBlology)notification.Body);
                 IBlology blology = (IBlology)notification.Body;
                 GameObject temp = this.monster[blology];
+                position = temp.transform.position;
+
                 if (this.monster.ContainsKey(blology))
                 {
                     this.monster.Remove(blology);
@@ -134,6 +129,14 @@ public class MonsterMediator : Mediator,IMonsterMediator {
 //                GameObject.Destroy(temp);
                 //Debug.Log(((IBlology)notification.Body));
                 break;
+            case EventsEnum.propCreate:
+                //IBlology propSpecies = (IBlology)notification.Body;
+                //  ReadTable temp_01 = ReadTable.getTable;
+                string prop_name = notification.Body.ToString();
+                GameObject.Instantiate(Resources.Load("Prop/"+prop_name), position, Quaternion.identity);
+                break;
+
+
         }
     }
 }

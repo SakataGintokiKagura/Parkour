@@ -30,7 +30,6 @@ public class SkillNormalAttack : IEnbaleAirSkill, IMeleeAttack
     {
         //Debug.Log(11111);
         anim.SetInteger(AnimationParameter.skill, AnimationParameter.skillUnUse);
-        
         state.OnEndSkill();
     }
 
@@ -45,6 +44,8 @@ public class SkillNormalAttack : IEnbaleAirSkill, IMeleeAttack
     }
     public void OnStartSkillAnimation(Transform transform, Animator anim, PlayerState state)
     {
+        //BoxCollider temp = transform.gameObject.AddComponent<BoxCollider>();
+        //temp.center = new Vector3(10, 10, 10);
         anim.SetInteger(AnimationParameter.skill, AnimationParameter.skillNormalAttack);
         state.OnUseSkill(true);
     }

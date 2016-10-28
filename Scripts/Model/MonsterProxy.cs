@@ -52,15 +52,26 @@ public class MonsterProxy : Proxy {
             //AllMonster.Remove(monster);
         }
     }
-    private void OnDie(IBlology monster)
+    private void OnDie(IBlology monster)//一个怪物死亡之后  发送产生的道具，确定是否产生某个道具
     {
-        
         SendNotification(EventsEnum.monsterDie, monster);
-        
+        int a = UnityEngine.Random.Range(1, 4);
+        string str = a.ToString();
+        String prop_name = ReadTable.getTable.OnFind("propDate", str, "propName");
+        if (prop_name != "1111")
+        {
+            SendNotification(EventsEnum.propCreate, prop_name);
+        }
+
     }
     public void OnDestroy(GameObject monster)
     {
 		SendNotification(EventsEnum.monsterDie, AllMonster[monster]);
 		//AllMonster.Remove(monster);
+
+    }
+    public void OnDestroyProp(GameObject prop)
+    {
+        SendNotification(EventsEnum.propPickUpProp, prop);
     }
 }
