@@ -28,7 +28,7 @@ public class RemoteAttack : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log(rig.velocity);
+      //  Debug.Log(rig.velocity);
 		if(Camera.main.WorldToViewportPoint(transform.position).x>1){
 			Destroy (gameObject); 
             
@@ -44,7 +44,7 @@ public class RemoteAttack : MonoBehaviour {
         Assembly assembly = Assembly.GetExecutingAssembly();
         ISkill obj = (ISkill)assembly.CreateInstance(name);
         MonsterMediator.OnGetMonsterMediator().OnInjured(col.gameObject,obj);
-        Debug.Log(temp.OnFind("flyItemDate", ID, "hide"));
+        //Debug.Log(temp.OnFind("flyItemDate", ID, "hide"));
         if(temp.OnFind("flyItemDate", ID, "hide") == "Yes")
             Destroy(gameObject);
 	}

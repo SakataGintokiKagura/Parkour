@@ -130,9 +130,10 @@ public class PlayerMediator : Mediator,IPlayerMediator {
     }
 
     public void OnPickUpProp(GameObject temp) {
-        GameObject.Destroy(temp);
+        temp.SetActive(false);
+        MemoryController.instance.OnAddProp(temp);
+        MemoryController.instance.propInViewList.Remove(temp);
+//        GameObject.Destroy(temp);
         SendNotification(EventsEnum.propPickUpProp);
-  
-
     }
 }

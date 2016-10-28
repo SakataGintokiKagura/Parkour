@@ -57,8 +57,6 @@ public class PlayerProxy : Proxy {
     {
 
       SendNotification(EventsEnum.playerDropOutPit,name);
-
-
     }
  
 
