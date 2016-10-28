@@ -102,7 +102,7 @@ public class MonsterMediator : Mediator,IMonsterMediator {
 			//monsterSpecies.ID
 
 			ReadTable temp_01 = ReadTable.getTable;
-
+            
             GameObject monster = MemoryController.instance.OnFindMonsterByName(
                     temp_01.OnFind("monsterDate", monsterSpecies.ID.ToString(), "name"), monsterCreatePosition.position);
 			SendNotification (EventsEnum.monsterCreateGameObject, monster);
@@ -130,10 +130,11 @@ public class MonsterMediator : Mediator,IMonsterMediator {
                 //Debug.Log(((IBlology)notification.Body));
                 break;
             case EventsEnum.propCreate:
-                //IBlology propSpecies = (IBlology)notification.Body;
-                //  ReadTable temp_01 = ReadTable.getTable;
                 string prop_name = notification.Body.ToString();
-                GameObject.Instantiate(Resources.Load("Prop/"+prop_name), position, Quaternion.identity);
+                //生成道具
+                GameObject prop = MemoryController.instance.OnFindPropByName(prop_name, position);
+                MemoryController.instance.propInViewList.Add(prop);
+//                GameObject.Instantiate(Resources.Load("Prop/"+prop_name), position, Quaternion.identity);
                 break;
 
 

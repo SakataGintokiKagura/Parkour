@@ -3,6 +3,8 @@ using System.Collections;
 using PureMVC.Patterns;
 
 public class PlayerProxy : Proxy {
+    private UI ui;
+
     public new const string NAME = "PlayerProxy";
     public PLayerInformation player { get; set; }
     public PlayerProxy() : base(NAME)
@@ -22,8 +24,7 @@ public class PlayerProxy : Proxy {
     {
         //判断哪个怪
         IBlology monster = MonsterProxy.AllMONSTER[game];
-        player.HP -= monster.damage;
-        //player.HP -= 100;
+		player.HP -= monster.damage;
         SendNotification(EventsEnum.playerHPChange,player);
 
 		if(player.HP<=0){
@@ -44,6 +45,7 @@ public class PlayerProxy : Proxy {
     public void OnDropOutPit()
     {
         player.HP -= SkillParameber.dropOutHurt;
+		//player.HP -= 0;
         SendNotification(EventsEnum.playerHPChange, player);
         //SendNotification(EventsEnum.playerDropOutNoDie, player);
         if (player.HP <= 0)
@@ -53,13 +55,32 @@ public class PlayerProxy : Proxy {
          SendNotification(EventsEnum.playerDropOutNoDie, player);
     }
   
-    public void OnPickUpItem(string name)
+    public void OnPickUpItem(string propName)
     {
-
-      SendNotification(EventsEnum.playerDropOutPit,name);
-
+        if (propName == "prop_HP(Clone)")
+        {
+            Debug.Log("PROP_hp");
+            player.HP += 100;
+            SendNotification(EventsEnum.playerHPChange, player);
+            // ui.HP.fillAmount = ui.HP.fillAmount + ui.HP.fillAmount / 3;
+        }
+        else if (propName == "prop_MP(Clone)")
+        {
+            Debug.Log("prop_MP");
+            //PLayerInformation player4 = (PLayerInformation)notification.Body;
+            //Debug.Log(player2.HP);
+            // ui.MP.fillAmount = ui.MP.fillAmount + ui.MP.fillAmount / 3;
+            player.MP += 100;
+            SendNotification(EventsEnum.playerUseSkillSuccess, player);
+        }
+        else if (propName == "prop_score(Clone)")
+        {
+            Debug.Log("prop_SCore");
+            player.score+=100;
+            SendNotification(EventsEnum.playerGetScoureSuccess, player);
+        }
 
     }
- 
+
 
 }

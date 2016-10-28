@@ -9,7 +9,7 @@ public class PlayerPickUpProp : SimpleCommand
     public override void Execute(INotification notification)
     {
         PlayerProxy player = (PlayerProxy)Facade.RetrieveProxy(PlayerProxy.NAME);
-
-        //player.OnPickUpItem();
+        player.OnPickUpItem(((GameObject)notification.Body).name);
+       
     }
 }

@@ -9,6 +9,7 @@ public class PlayerMediator : Mediator,IPlayerMediator {
     public new const string NAME = "PlayerMediator";
     public Player player;
     private UI ui;
+   // private PlayerProxy playerProxy;
     private static PlayerMediator playerMediator;
     private PlayerMediator(Player player,UI ui):base(NAME)
     {
@@ -106,12 +107,6 @@ public class PlayerMediator : Mediator,IPlayerMediator {
             case EventsEnum.playerDie:
                 player.OnDie();
                 break;
-           case EventsEnum.propPickUpProp:
-               //未完待续
-
-                break;
-
-
         }
     }
 
@@ -130,9 +125,15 @@ public class PlayerMediator : Mediator,IPlayerMediator {
     }
 
     public void OnPickUpProp(GameObject temp) {
-        GameObject.Destroy(temp);
-        SendNotification(EventsEnum.propPickUpProp);
-  
+      //  SendNotification(EventsEnum.propPickUpProp,temp);
+        //
+
+        temp.SetActive(false);
+        MemoryController.instance.OnAddProp(temp);
+        MemoryController.instance.propInViewList.Remove(temp);
+//        GameObject.Destroy(temp);
+        SendNotification(EventsEnum.propPickUpProp,temp);
+        //GameObject.Destroy(temp);
 
     }
 }

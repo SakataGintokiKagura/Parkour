@@ -224,16 +224,16 @@ public class Player : MonoBehaviour {
         if (col.tag == TagParameber.coin)
         {
             playerMediator.OnGetScoure(1);
-            Destroy(col.gameObject);
-        }
-        else if (col.tag == TagParameber.monster)
+			col.gameObject.SetActive (false);
+        }else if(col.tag == TagParameber.monster)
+
         {
             //Debug.Log(1111);
             OnHurtCheck(col.gameObject);
         }else if(col.tag == TagParameber.prop)
         {
             playerMediator.OnPickUpProp(col.gameObject);
-
+           
 
         }
 
@@ -328,6 +328,5 @@ public class Player : MonoBehaviour {
     /// <summary>
     /// 拾取道具
     /// </summary>
-
+    
 }
-//判断是否拾取了道具

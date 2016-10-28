@@ -24,6 +24,8 @@ public class Terrain : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		//MemoryController.instance.deleteListObject ();
+
         if (gameObject.transform.position.x >= TerrainParameter.mapDistance + (n * TerrainParameter.mapSize))
         {
             terrainMediator.OnCreateTerrain();
