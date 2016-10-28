@@ -25,7 +25,7 @@ public class TerrainCreate : SimpleCommand
     {
         //base.Execute(notification);
 
-		int terrain=Random.Range(1, TerrainParameter.terrainEnumNum);
+		int terrain=Random.Range(1, TerrainParameter.terrainEnumNum+1);
 		Dictionary<float, int> coin = new Dictionary<float, int>();
 
 		ReadTable temp = ReadTable.getTable;

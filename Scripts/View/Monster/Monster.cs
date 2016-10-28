@@ -124,6 +124,7 @@ public class Monster : MonoBehaviour
     IEnumerator OnHideBoom(GameObject go)
     {
         yield return new WaitForSeconds(0.5f);
-        go.SetActive(false);
+		if(go!= null)
+        	go.SetActive(false);
     }
 }

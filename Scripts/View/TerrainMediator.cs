@@ -63,14 +63,18 @@ public class TerrainMediator : Mediator, ITerrainMediator
 			TerrainCreateInfor infor = notification.Body as TerrainCreateInfor;
 
 			ReadTable temp = ReadTable.getTable;
-			GameObject newTerrain = GameObject.Instantiate(Resources.Load("terrain/"+temp.OnFind("terrainDate",infor.OnGetTerrain().ToString(),"terrainName")), new Vector3((terrain.getN() + 1) * TerrainParameter.mapSize, 0, 0), Quaternion.identity) as GameObject;    
+
+			GameObject newTerrain =MemoryController.instance.OnFindTerrainByName(temp.OnFind("terrainDate",infor.OnGetTerrain().ToString(),
+				"terrainName"),new Vector3((terrain.getN() + 1) * TerrainParameter.mapSize, 0, 0));
 			oldTerraian.Enqueue(newTerrain);
 
 			GameObject newCoin;
 			List<GameObject> newCoinList = new List<GameObject>();
 			    
 			foreach (KeyValuePair<float,int> item in infor.OnGetCoin()){
-				newCoin = GameObject.Instantiate(Resources.Load("Coins/"+temp.OnFind("coinDate",item.Value.ToString(),"name")), new Vector3(item.Key + ((terrain.getN() + 1) * TerrainParameter.mapSize), 0, 0), Quaternion.identity) as GameObject;
+				newCoin = MemoryController.instance.OnFindCoinByName(temp.OnFind("coinDate",item.Value.ToString(),"name"), 
+					new Vector3(item.Key + ((terrain.getN() + 1) * TerrainParameter.mapSize), 0, 0));
+				newCoin.SetActiveRecursively (true);
 				newCoinList.Add(newCoin);
 			}
                 
@@ -78,11 +82,14 @@ public class TerrainMediator : Mediator, ITerrainMediator
     
 			if (terrain.getN() >= 2)       
 			{  
-				GameObject deleterTerrain = oldTerraian.Dequeue();  
-				GameObject.Destroy(deleterTerrain);
+				GameObject deleterTerrain = oldTerraian.Dequeue(); 
+				deleterTerrain.SetActive (false);
+				MemoryController.instance.OnAddTerrain (deleterTerrain);
 				List<GameObject> deleterCoin = oldCoin.Dequeue();    
-				foreach (GameObject elem in deleterCoin) 
-					GameObject.Destroy(elem);
+				foreach (GameObject elem in deleterCoin) {
+					elem.SetActive (false);
+					MemoryController.instance.OnAddCoin (elem);
+				}	
 			}
 			break;
             
