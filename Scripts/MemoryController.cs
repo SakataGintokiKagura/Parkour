@@ -33,6 +33,7 @@ public class MemoryController:MonoBehaviour
 		
 	}
 	void Update(){
+		
 		deleteListObject ();
 	}
 
@@ -74,12 +75,14 @@ public class MemoryController:MonoBehaviour
 	public void deleteListObject(){
 		while (Profiler.GetTotalAllocatedMemory () >= MemoryParameter.threshold) {
 			for (int i = 0; i < MemoryParameter.objectType; i++) {
+				if (memoryList [MemoryParameter.objectType - 1].Count == 0)
+					return;
 				if (memoryList [i].Count != 0) {
 					foreach (GameObject go in memoryList [i])
 					{
 						memoryList [i].Remove (go);
 						GameObject.Destroy (go);
-						break;
+						return;
 					}
 				}
 			}
