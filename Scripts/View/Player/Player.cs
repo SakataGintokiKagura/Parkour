@@ -258,7 +258,6 @@ public class Player : MonoBehaviour {
                 return;
             }
         }
-
         OnHurt(monster);
         //OnHurt(monster);
     }
@@ -311,7 +310,7 @@ public class Player : MonoBehaviour {
     {
         if (state.hurtState is UnInvincile)
         {
-			playerMediator.OnInjured(monster.transform.root.gameObject);
+            playerMediator.OnInjured(monster.transform.root.gameObject);
             StartCoroutine(OnInvincibleTime(SkillParameber.hurtInvilicibleTime));
         }
     }
