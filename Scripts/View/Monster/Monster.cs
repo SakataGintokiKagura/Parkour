@@ -110,23 +110,16 @@ public class Monster : MonoBehaviour
                 outList.Add(kv.Value);
             }
 
-            for (int i = 0; i < MemoryController.instance.propInViewList.Count; i++)
-            {
-                GameObject go = MemoryController.instance.propInViewList[i];
-                if (Camera.main.WorldToViewportPoint(go.transform.position).x < -0.1f)
-                {
-                    go.SetActive(false);
-                    MemoryController.instance.OnAddProp(go);
-                    MemoryController.instance.propInViewList.Remove(go);
-                }
-            }
-            //            foreach (GameObject go in MemoryController.instance.propInViewList)
-            //            {
-            //                if (Camera.main.WorldToViewportPoint(go.transform.position).x < -0.1f)
-            //                {
-            //                    MemoryController.instance.propInViewList.Remove(go);
-            //                }
-            //            }
+			for (int i = 0; i < MemoryController.instance.getMemoryList(ReadTable.getTable.OnFind("memoryObjectParameter","1","priority")).Count; i++)
+			{
+				GameObject go = MemoryController.instance.getMemoryList(ReadTable.getTable.OnFind("memoryObjectParameter","1","priority"))[i];
+				if (Camera.main.WorldToViewportPoint(go.transform.position).x < -0.1f)
+				{
+					go.SetActive(false);
+					MemoryController.instance.OnAddObject (go, ReadTable.getTable.OnFind("memoryObjectParameter","1","priority"));
+					MemoryController.instance.OnRemoveObject (go,ReadTable.getTable.OnFind("memoryObjectParameter","1","priority"));
+				}
+			}
         }
 
         foreach (var temp in outList)

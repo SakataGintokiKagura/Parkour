@@ -102,42 +102,46 @@ public class MonsterMediator : Mediator,IMonsterMediator {
 			//monsterSpecies.ID
 
 			ReadTable temp_01 = ReadTable.getTable;
-            
-            GameObject monster = MemoryController.instance.OnFindMonsterByName(
-                    temp_01.OnFind("monsterDate", monsterSpecies.ID.ToString(), "name"), monsterCreatePosition.position);
+
+			GameObject monster = MemoryController.instance.OnFindGameObjectByName(    
+				temp_01.OnFind("monsterDate", monsterSpecies.ID.ToString(), "name"),
+				monsterCreatePosition.position,
+				temp_01.OnFind("memoryObjectParameter", "2", "priority"),
+				temp_01.OnFind("memoryObjectParameter", "2", "path")
+			);
 			SendNotification (EventsEnum.monsterCreateGameObject, monster);
+
 			this.monster[monsterSpecies]= monster;
                 break;
             case EventsEnum.monsterHPChange:
                 Debug.Log(((float)notification.Body));
                 break;
-            case EventsEnum.monsterDie:
+		case EventsEnum.monsterDie:     
+			IBlology blology = (IBlology)notification.Body;
+			GameObject temp = this.monster [blology];
+			position = temp.transform.position;
+			if (this.monster.ContainsKey (blology)) {
+				this.monster.Remove (blology);
+			}
+			temp.SetActive (false); 
+			MemoryController.instance.OnAddObject (temp,ReadTable.getTable.OnFind("memoryObjectParameter","2","priority"));    
+			break;
+           
+		case EventsEnum.propCreate:
                 
-                //Debug.Log((IBlology)notification.Body);
-                IBlology blology = (IBlology)notification.Body;
-                GameObject temp = this.monster[blology];
-                position = temp.transform.position;
+			string prop_name = notification.Body.ToString ();
+            
+			ReadTable reatable = ReadTable.getTable;
 
-                if (this.monster.ContainsKey(blology))
-                {
-                    this.monster.Remove(blology);
-                }
-                //this.monster.Remove((IBlology)notification.Body);
-
-                temp.SetActive(false);
-                MemoryController.instance.OnAddMonster(temp);
-//                GameObject.Destroy(temp);
-                //Debug.Log(((IBlology)notification.Body));
-                break;
-            case EventsEnum.propCreate:
-                string prop_name = notification.Body.ToString();
-                //生成道具
-                GameObject prop = MemoryController.instance.OnFindPropByName(prop_name, position);
-                MemoryController.instance.propInViewList.Add(prop);
-//                GameObject.Instantiate(Resources.Load("Prop/"+prop_name), position, Quaternion.identity);
-                break;
-
-
+			GameObject prop = MemoryController.instance.OnFindGameObjectByName (
+				prop_name, 
+				position, 
+				reatable.OnFind("memoryObjectParameter","1","priority"),
+				reatable.OnFind("memoryObjectParameter","1","path")
+			);
+			MemoryController.instance.OnAddObject (prop,ReadTable.getTable.OnFind("memoryObjectParameter","1","priority")); 
+                
+			break;
         }
     }
 }

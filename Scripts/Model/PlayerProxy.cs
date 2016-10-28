@@ -75,11 +75,10 @@ public class PlayerProxy : Proxy {
         }
         else if (propName == "prop_score(Clone)")
         {
-            Debug.Log("prop_SCore");
+            Debug.Log("prop_score");
             player.score+=100;
             SendNotification(EventsEnum.playerGetScoureSuccess, player);
         }
-
     }
 
 
