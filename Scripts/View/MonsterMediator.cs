@@ -109,8 +109,8 @@ public class MonsterMediator : Mediator,IMonsterMediator {
 				temp_01.OnFind("memoryObjectParameter", "2", "priority"),
 				temp_01.OnFind("memoryObjectParameter", "2", "path")
 			);
-			
 			SendNotification (EventsEnum.monsterCreateGameObject, monster);
+
 			this.monster[monsterSpecies]= monster;
                 break;
             case EventsEnum.monsterHPChange:
