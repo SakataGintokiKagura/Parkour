@@ -10,6 +10,7 @@ public class PlayerProxy : Proxy {
     public PlayerProxy() : base(NAME)
     {
         player = new PLayerInformation();
+        SendNotification(EventsEnum.playerInitizal,player);
     }
     public void OnUseSkill(ISkill skill)
     {

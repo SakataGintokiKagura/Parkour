@@ -74,6 +74,7 @@ public class PlayerMediator : Mediator,IPlayerMediator {
         list.Add(EventsEnum.playerGetScoureSuccess);
         list.Add(EventsEnum.playerDropOutNoDie);
         list.Add(EventsEnum.propPickUpProp);
+        list.Add(EventsEnum.playerInitizal);
         return list;
     }
     public override void HandleNotification(INotification notification)
@@ -88,7 +89,7 @@ public class PlayerMediator : Mediator,IPlayerMediator {
                 if(notification.Body is PLayerInformation)
                 {
                     PLayerInformation playerMp = (PLayerInformation)notification.Body;
-                    ui.MP.fillAmount = (float)playerMp.MP / 100;
+                    ui.MP.fillAmount = (float)playerMp.MP / ui.MPInitizal;
                 }
                 else
                 {
@@ -98,7 +99,7 @@ public class PlayerMediator : Mediator,IPlayerMediator {
             case EventsEnum.playerHPChange:
                 PLayerInformation player2 = (PLayerInformation)notification.Body;
                 //Debug.Log(player2.HP);
-                ui.HP.fillAmount = (float)player2.HP / 100;
+                ui.HP.fillAmount = (float)player2.HP / ui.HPInitizal;
                 break;
             case EventsEnum.playerGetScoureSuccess:
                 PLayerInformation playerScores = (PLayerInformation)notification.Body;
@@ -106,6 +107,11 @@ public class PlayerMediator : Mediator,IPlayerMediator {
                 break;
             case EventsEnum.playerDie:
                 player.OnDie();
+                break;
+            case EventsEnum.playerInitizal:
+                PLayerInformation playerTemp = (PLayerInformation)notification.Body;
+                ui.HPInitizal = playerTemp.HP;
+                ui.MPInitizal = playerTemp.MP;
                 break;
         }
     }

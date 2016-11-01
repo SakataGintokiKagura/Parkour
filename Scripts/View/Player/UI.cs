@@ -8,6 +8,8 @@ using System.Reflection;
 
 public class UI : MonoBehaviour
 {
+    private int hPInitizal = 0;
+    private int mPInitizal = 0;
     public Image HP;
     public Image MP;
     public Text injured;
@@ -21,10 +23,41 @@ public class UI : MonoBehaviour
     private float usedtime = 0;
     private float curTime = 0;
     private ReadTable skillTable;
-
+    //private ArrayList
     private string skillName=null;
+    private int stringLen=0;
+    public int HPInitizal
+    {
+        get
+        {
+            return hPInitizal;
+        }
+
+        set
+        {
+            if (hPInitizal == 0)
+                hPInitizal = value;
+        }
+    }
+
+    public int MPInitizal
+    {
+        get
+        {
+            return mPInitizal;
+        }
+
+        set
+        {
+            if (mPInitizal == 0)
+                mPInitizal = value;
+        }
+    }
+
     void Start()
     {
+        hPInitizal = 100;
+        mPInitizal = 100;
     }
 
     // Update is called once per frame
@@ -57,6 +90,7 @@ public class UI : MonoBehaviour
             startReadTime = true;
             skillA = false;
             skillName = skillName + "A";
+            stringLen++;
             curTime = 0;
         }
         if (skillB)
@@ -64,18 +98,20 @@ public class UI : MonoBehaviour
             startReadTime = true;
             skillB = false;
             skillName = skillName + "B";
+            stringLen++;
             curTime = 0;
 
         }
         if (startReadTime == true)
         {
             curTime = curTime + Time.deltaTime;
-                if (curTime >= SkillParameber.SkillReadCD)
+                if (curTime >= SkillParameber.SkillReadCD|| stringLen>4)
                 {
                 SkillCheck(skillName);
                 skillName = null;
                 startReadTime = false;
                 curTime = 0;
+                stringLen = 0;
             }
         }
 
@@ -87,7 +123,7 @@ public class UI : MonoBehaviour
     public void SkillCheck(string skillName)
     {
         string str ="1111";
-        for (int i=1;i<32;i++)
+        for (int i=1;i<24;i++)
         {
             string s=i.ToString();
             str = ReadTable.getTable.OnFind("skillDate", s, "skillKeys");
