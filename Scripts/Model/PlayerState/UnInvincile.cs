@@ -22,8 +22,14 @@ public class UnInvincile : AbsState
     /// <returns></returns>
     public override AbsState OnJump()
     {
-        return player.invincible;
-        Debug.Log(1111);
+        foreach (var item in player.stateList)
+        {
+            if (item is Invincible)
+            {
+                return item;
+            }
+        }
+        return this;
     }
 
     public override AbsState OnUseSkill(bool isInterrupted)

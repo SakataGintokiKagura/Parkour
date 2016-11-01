@@ -13,7 +13,14 @@ class Invincible : AbsState
     /// <returns></returns>
     public override AbsState OnGrounded()
     {
-        return player.unInvincible;
+        foreach (var item in player.stateList)
+        {
+            if (item is UnInvincile)
+            {
+                return item;
+            }
+        }
+        return this;
     }
     /// <summary>
     /// 开始无敌状态

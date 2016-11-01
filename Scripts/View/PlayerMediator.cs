@@ -44,9 +44,9 @@ public class PlayerMediator : Mediator,IPlayerMediator {
     }
     public void OnUseSkill(ISkill skill)
     {
-        if(PlayerState.Instance.skillState is Run)
+        if(PlayerState.Instance.sharedStates[0] == null)
         {
-            if(PlayerState.Instance.jumpState is Run)
+            if(PlayerState.Instance.singletonState is Run)
             {
                 //player.OnStartSkill(skill);
                 SendNotification(EventsEnum.playerUseSkill, skill);

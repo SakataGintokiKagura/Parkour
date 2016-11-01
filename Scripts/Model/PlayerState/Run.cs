@@ -11,23 +11,51 @@ public class Run : AbsState
 
     public override AbsState OnGrounded()
     {
-        return player.run;
+        foreach (var item in player.stateList)
+        {
+            if (item is Run)
+            {
+                return item;
+            }
+        }
+        return this;
     }
 
     public override AbsState OnJump()
     {
-        return player.first;
+        foreach (var item in player.stateList)
+        {
+            if (item is FirstJump)
+            {
+                return item;
+            }
+        }
+        return this;
     }
 
     public override AbsState OnUseSkill(bool isInterrupted)
     {
         if (isInterrupted)
         {
-            return player.general;
+            foreach (var item in player.stateList)
+            {
+                if (item is GeneralSkill)
+                {
+                    return item;
+                }
+            }
+            return this;
         }
         else
         {
-            return player.unInterrupted;
+            foreach (var item in player.stateList)
+            {
+                if (item is UnInterruptedSkill)
+                {
+                    return item;
+                }
+            }
+            return this;
         }
     }
 }

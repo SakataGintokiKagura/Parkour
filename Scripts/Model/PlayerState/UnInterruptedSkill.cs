@@ -9,7 +9,7 @@ public class UnInterruptedSkill : AbsState
 
     public override AbsState OnGrounded()
     {
-        return player.run;
+        return null;
     }
 
     public override AbsState OnJump()

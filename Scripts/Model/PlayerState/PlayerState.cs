@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System;
 
 public class PlayerState  {
     private static PlayerState instance;
@@ -12,56 +14,87 @@ public class PlayerState  {
         }
     }
     public AbsState singletonState;
-    public AbsState[] sharedStates;
+    public AbsState[] sharedStates = new AbsState[2];
 
-    public AbsState first;
-    public AbsState second;
-    public AbsState run;
-    public AbsState general;
-    public AbsState unInterrupted;
-    public AbsState invincible;
-    public AbsState unInvincible;
+    public List<AbsState> stateList;
+    //public AbsState first;
+    //public AbsState second;
+    //public AbsState run;
+    //public AbsState general;
+    //public AbsState unInterrupted;
+    //public AbsState invincible;
+    //public AbsState unInvincible;
 
-    public AbsState jumpState;
-    public AbsState skillState;
-    public AbsState hurtState;
+    //public AbsState jumpState;
+    //public AbsState skillState;
+    //public AbsState hurtState;
     private PlayerState() {
-        first = new FirstJump(this);
-        second = new SecondJump(this);
-        run = new Run(this);
-        general = new GeneralSkill(this);
-        unInterrupted = new UnInterruptedSkill(this);
-        invincible = new Invincible(this);
-        unInvincible = new UnInvincile(this);
-        jumpState = run;
-        skillState = run;
-        hurtState = unInvincible;
+        stateList = new List<AbsState>();
+        //string appPath = Application.dataPath;
+        //appPath += "/Parkour/Scripts/Model/PlayerState";
+        string appPath = Directory.GetCurrentDirectory();
+        appPath += "\\Assets\\Parkour\\Scripts\\Model\\PlayerState";
+        DirectoryInfo dir = new DirectoryInfo(appPath);
+        if (dir.Exists)
+        {
+            FileInfo[] fiList = dir.GetFiles();
+            foreach (var item in fiList)
+            {
+                //Debug.Log(item.FullName);
+                //Debug.Log(item.Name);     //文件名加后缀
+                string[] name = item.Name.Split('.');
+                if(name.Length<3&&name[1] == "cs" && (name[0] != "AbsState"&&name[0]!="PlayerState"))
+                {
+                    Type t = Type.GetType(name[0]);
+                    stateList.Add((AbsState)System.Activator.CreateInstance(t,this));
+                }
+            }
+        }
+        //first = new FirstJump(this);
+        //second = new SecondJump(this);
+        //run = new Run(this);
+        //general = new GeneralSkill(this);
+        //unInterrupted = new UnInterruptedSkill(this);
+        //invincible = new Invincible(this);
+        //unInvincible = new UnInvincile(this);
+        foreach(var item in stateList)
+        {
+            if(item is Run)
+            {
+                singletonState = item;
+            }else if(item is UnInvincile)
+            {
+                sharedStates[1] = item;
+            }
+        }
     }
 
     public void OnJump() {
-        jumpState = jumpState.OnJump();
+        singletonState = singletonState.OnJump();
     }
 
     public void OnGrounded() {
-        jumpState = jumpState.OnGrounded();
+        singletonState = singletonState.OnGrounded();
     }
 
     public void OnUseSkill(bool isInterrupted)
     {
-        skillState = skillState.OnUseSkill(isInterrupted);
+        if (sharedStates[0] == null)
+            sharedStates[0] = singletonState.OnUseSkill(isInterrupted);
+        else
+            sharedStates[0] = sharedStates[0].OnUseSkill(isInterrupted);
     }
 
     public void OnEndSkill()
     {
-        skillState = skillState.OnGrounded();
-
+        sharedStates[0] = sharedStates[0].OnGrounded();
     }
     public void OnUnHurt()
     {
-        hurtState = hurtState.OnJump();
+        sharedStates[1] = sharedStates[1].OnJump();
     }
     public void OnHurt()
     {
-        hurtState = hurtState.OnGrounded();
+        sharedStates[1] = sharedStates[1].OnGrounded();
     }
 }

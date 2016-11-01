@@ -13,17 +13,52 @@ public class FirstJump : AbsState
     //}
     public override AbsState OnGrounded()
     {
-        return player.run;
+        foreach(var item in player.stateList)
+        {
+            if(item is Run)
+            {
+                return item;
+            }
+        }
+        return this;
     }
 
     public override AbsState OnJump()
     {
-        return player.second;
+        foreach (var item in player.stateList)
+        {
+            if (item is SecondJump)
+            {
+                return item;
+            }
+        }
+        return this;
     }
 
     public override AbsState OnUseSkill(bool isInterrupted)
     {
-        Debug.Log("状态出错");
+        if (isInterrupted)
+        {
+            foreach (var item in player.stateList)
+            {
+                if (item is GeneralSkill)
+                {
+                    return item;
+                }
+            }
+            return this;
+        }
+        else
+        {
+            foreach (var item in player.stateList)
+            {
+                if (item is UnInterruptedSkill)
+                {
+                    return item;
+                }
+            }
+            return this;
+        }
         return this;
     }
 }

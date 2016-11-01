@@ -69,14 +69,14 @@ public class Player : MonoBehaviour {
         Vector3 lastPosition = transform.position;
         CollisionFlags flags = controller.Move(velocity);
         velocity.y = (transform.position.y - lastPosition.y);
-        if ((flags & CollisionFlags.Below) == 0 && (state.jumpState is Run))
+        if ((flags & CollisionFlags.Below) == 0 && (state.singletonState is Run))
         {
             state.OnJump();
             anim.SetInteger(AnimationParameter.jump, AnimationParameter.jumpfirst);
         }
         anim.SetFloat(AnimationParameter.xSpeed, velocity.x);
         anim.SetFloat(AnimationParameter.ySpeed, velocity.y);
-        if (state.hurtState is Invincible)
+        if (state.sharedStates[1] is Invincible)
         {
             invincibleEffects.enabled = true;
             invincibleEffects.color = invincibleColor[Random.Range(0, 7)];
@@ -98,8 +98,6 @@ public class Player : MonoBehaviour {
     /// <returns></returns>
     Vector3 ApplyGravity(Vector3 velocity)
     {
-        if (velocity.y < 0)
-            Debug.Log(velocity);
         velocity.y -= MotionParameber.gravity * MotionParameber.fixedMotion;
         return velocity;
     }
@@ -110,14 +108,14 @@ public class Player : MonoBehaviour {
     {
         if (skill != null)
             return;
-        if (state.jumpState is Run)
+        if (state.singletonState is Run)
         {
             velocity.y = 0;
             velocity += MotionParameber.jumpDir * MotionParameber.fixedMotion;
             state.OnJump();
             anim.SetInteger(AnimationParameter.jump, AnimationParameter.jumpfirst);
         }
-        else if (state.jumpState is FirstJump)
+        else if (state.singletonState is FirstJump)
         {
             velocity.y = 0;
             velocity += MotionParameber.jumpDir * MotionParameber.secondJump * MotionParameber.fixedMotion;
@@ -145,7 +143,7 @@ public class Player : MonoBehaviour {
     /// <param name="skill"></param>
     public void OnStartSkill(ISkill skill)
     {
-        if (state.skillState is GeneralSkill || state.skillState is UnInterruptedSkill)
+        if (state.sharedStates[0] is GeneralSkill || state.sharedStates[0] is UnInterruptedSkill)
             return;
         if (this.skill != null)
         {
@@ -205,7 +203,7 @@ public class Player : MonoBehaviour {
     /// <param name="hit"></param>
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if ((controller.collisionFlags & CollisionFlags.Below) != 0 && !(state.jumpState is Run))
+        if ((controller.collisionFlags & CollisionFlags.Below) != 0 && !(state.singletonState is Run))
         {
             state.OnGrounded();
             anim.SetInteger(AnimationParameter.jump, AnimationParameter.jumpGround);
@@ -281,7 +279,7 @@ public class Player : MonoBehaviour {
     /// <returns></returns>
     IEnumerator OnInvincibleTime(float time)
     {
-        while (state.hurtState is Invincible)
+        while (state.sharedStates[1] is Invincible)
         {
             yield return new WaitForFixedUpdate();
             time -= MotionParameber.fixedMotion;
@@ -309,7 +307,7 @@ public class Player : MonoBehaviour {
     /// <param name="monster"></param>
     void OnHurt(GameObject monster)
     {
-        if (state.hurtState is UnInvincile)
+        if (state.sharedStates[1] is UnInvincile)
         {
             playerMediator.OnInjured(monster.transform.root.gameObject);
             StartCoroutine(OnInvincibleTime(SkillParameber.hurtInvilicibleTime));
