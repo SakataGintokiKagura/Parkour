@@ -2,7 +2,6 @@
 using System.Collections;
 using System;
 using UnityEngine.UI;
-
 using UnityEngine.EventSystems;
 using System.Reflection;
 
@@ -24,12 +23,8 @@ public class UI : MonoBehaviour
     private ReadTable skillTable;
 
     private string skillName=null;
-
-    
-
     void Start()
     {
-
     }
 
     // Update is called once per frame
