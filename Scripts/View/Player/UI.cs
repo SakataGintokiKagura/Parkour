@@ -8,6 +8,7 @@ using System.Reflection;
 
 public class UI : MonoBehaviour
 {
+
     public Image HP;
     public Image MP;
     public Text injured;
@@ -20,12 +21,14 @@ public class UI : MonoBehaviour
     private bool startReadTime = false;
     private float usedtime = 0;
     private float curTime = 0;
-    private ArrayList listSkill;
     private ReadTable skillTable;
+
+    private string skillName=null;
+
+    
+
     void Start()
     {
-
-        listSkill = new ArrayList();
 
     }
 
@@ -52,22 +55,20 @@ public class UI : MonoBehaviour
         {
             startJump = false;
             playerMediator.OnJump();
-            curTime = 0;
-
         }
         //按键技能触发
         if (skillA)
         {
             startReadTime = true;
             skillA = false;
-            listSkill.Add("A");
-
+            skillName = skillName + "A";
+            curTime = 0;
         }
         if (skillB)
         {
             startReadTime = true;
             skillB = false;
-            listSkill.Add("B");
+            skillName = skillName + "B";
             curTime = 0;
 
         }
@@ -76,8 +77,8 @@ public class UI : MonoBehaviour
             curTime = curTime + Time.deltaTime;
                 if (curTime >= SkillParameber.SkillReadCD)
                 {
-                SkillCheck(listSkill);
-                listSkill.Clear();
+                SkillCheck(skillName);
+                skillName = null;
                 startReadTime = false;
                 curTime = 0;
             }
@@ -88,19 +89,14 @@ public class UI : MonoBehaviour
     {
         this.playerMediator = playerMediator;
     }
-    public void SkillCheck(ArrayList listSkill)
+    public void SkillCheck(string skillName)
     {
-        string skilllist=null;
-        foreach (string a in listSkill)
-        {
-            skilllist += a;
-        }
         string str ="1111";
         for (int i=1;i<32;i++)
         {
             string s=i.ToString();
             str = ReadTable.getTable.OnFind("skillDate", s, "skillKeys");
-            if (str == skilllist)
+            if (str == skillName)
             {
                 Debug.Log("技能释放");
                 Assembly assembly = Assembly.GetExecutingAssembly(); // 获取当前程序集 
@@ -111,8 +107,8 @@ public class UI : MonoBehaviour
                 playerMediator.OnUseSkill((ISkill)obj);
                 break;
             }
+           
         }
-        
     }
     
     public void OnButtonA()
@@ -122,8 +118,6 @@ public class UI : MonoBehaviour
     public void OnButtonB()
     {
         skillB = true;
-
-
     }
     public void OnButtonJump()
     {
