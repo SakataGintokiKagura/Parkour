@@ -109,12 +109,10 @@ public class UI : MonoBehaviour
     public void OnButtonA()
     {
         skillA = true;
-        curTime = 0;
     }
     public void OnButtonB()
     {
         skillB = true;
-        curTime = 0;
     }
     public void OnButtonJump()
     {
