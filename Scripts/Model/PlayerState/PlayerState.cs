@@ -11,6 +11,9 @@ public class PlayerState  {
             return instance;
         }
     }
+    public AbsState singletonState;
+    public AbsState[] sharedStates;
+
     public AbsState first;
     public AbsState second;
     public AbsState run;

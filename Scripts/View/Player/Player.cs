@@ -68,7 +68,7 @@ public class Player : MonoBehaviour {
         velocity = ApplyGravity(velocity);
         Vector3 lastPosition = transform.position;
         CollisionFlags flags = controller.Move(velocity);
-        //velocity = (transform.position - lastPosition);
+        velocity.y = (transform.position.y - lastPosition.y);
         if ((flags & CollisionFlags.Below) == 0 && (state.jumpState is Run))
         {
             state.OnJump();
@@ -98,6 +98,8 @@ public class Player : MonoBehaviour {
     /// <returns></returns>
     Vector3 ApplyGravity(Vector3 velocity)
     {
+        if (velocity.y < 0)
+            Debug.Log(velocity);
         velocity.y -= MotionParameber.gravity * MotionParameber.fixedMotion;
         return velocity;
     }

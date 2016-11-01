@@ -15,9 +15,6 @@ public class BlueGasInformation : IBlology {
 		this.HP = int.Parse (monsterchomper.OnFind ("monsterDate", ID.ToString (), "HP"));
 		this.damage = int.Parse (monsterchomper.OnFind ("monsterDate", ID.ToString (), "damage"));
 		normalAttackDistance = int.Parse (monsterchomper.OnFind ("monsterDate", ID.ToString (), "range"));
-
 		hasAttack = false;
-
-
 	}
 }
