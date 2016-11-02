@@ -69,11 +69,11 @@ public class MemoryController:MonoBehaviour
 			}
 		}
 			
-		WWW bundle = new WWW (PathURL + path+name+".assetbundle"); 
+		/*WWW bundle = new WWW (PathURL + path+name+".assetbundle"); 
 		GameObject obj = GameObject.Instantiate(bundle.assetBundle.mainAsset,position,Quaternion.identity)as GameObject;
-		bundle.assetBundle.Unload(false);
+		bundle.assetBundle.Unload(false);*/
 
-		//GameObject obj = GameObject.Instantiate(Resources.Load(path + name), position, Quaternion.identity) as GameObject;
+		GameObject obj = GameObject.Instantiate(Resources.Load(path + name), position, Quaternion.identity) as GameObject;
 
 		return obj;
 
