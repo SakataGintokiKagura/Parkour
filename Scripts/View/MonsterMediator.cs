@@ -65,7 +65,6 @@ public class MonsterMediator : Mediator,IMonsterMediator {
 	public void OnCreateMonster()
     {
 		SendNotification(EventsEnum.monsterCreateMonster);
-		//Debug.Log (1111);
     }
     public void OnCreateProp()
     {

@@ -8,6 +8,8 @@ public class MemoryController:MonoBehaviour
 
 	private List <GameObject>[] memoryList;
 
+	private string PathURL ;
+
     public static MemoryController instance
     {
         get
@@ -21,7 +23,20 @@ public class MemoryController:MonoBehaviour
     }
 
 	void Start(){ 
+
+		PathURL =
+			#if UNITY_ANDROID
+			"jar:file://" + Application.dataPath + "!/assets/";
+			#elif UNITY_IPHONE
+			Application.dataPath + "/Raw/";
+			#elif UNITY_STANDALONE_WIN || UNITY_EDITOR
+			"file://" + Application.dataPath + "/StreamingAssets/";
+			#else
+			string.Empty;
+			#endif
+		
 		memoryList=new List<GameObject>[MemoryParameter.objectType];
+
 		for(int i=0;i<MemoryParameter.objectType;i++){
 			memoryList [i] = new List<GameObject> ();
 		}
@@ -33,7 +48,6 @@ public class MemoryController:MonoBehaviour
 		
 	}
 	void Update(){
-        //Debug.Log(Profiler.GetTotalAllocatedMemory());
 		deleteListObject ();
 	}
 
@@ -54,9 +68,12 @@ public class MemoryController:MonoBehaviour
 				return go;
 			}
 		}
+			
+		WWW bundle = new WWW (PathURL + path+name+".assetbundle"); 
+		GameObject obj = GameObject.Instantiate(bundle.assetBundle.mainAsset,position,Quaternion.identity)as GameObject;
+		bundle.assetBundle.Unload(false);
 
-		GameObject obj = Instantiate(Resources.Load(path + name), position
-			, Quaternion.identity) as GameObject;
+		//GameObject obj = GameObject.Instantiate(Resources.Load(path + name), position, Quaternion.identity) as GameObject;
 
 		return obj;
 
