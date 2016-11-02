@@ -1,6 +1,7 @@
 ﻿
 
 
+using NPlayerState;
 using System;
 using UnityEngine;
 

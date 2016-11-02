@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using NPlayerState;
 
 public interface ISkill {
 	float damage { get; }

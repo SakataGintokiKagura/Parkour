@@ -4,6 +4,7 @@ using PureMVC.Patterns;
 using System.Collections.Generic;
 using PureMVC.Interfaces;
 using System;
+using NPlayerState;
 
 public class PlayerMediator : Mediator,IPlayerMediator {
     public new const string NAME = "PlayerMediator";

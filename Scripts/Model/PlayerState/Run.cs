@@ -1,61 +1,63 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
-
-public class Run : AbsState
+namespace NPlayerState
 {
-    public Run(PlayerState player) : base(player)
+    public class Run : AbsState
     {
-    }
-
-
-    public override AbsState OnGrounded()
-    {
-        foreach (var item in player.stateList)
+        public Run(PlayerState player) : base(player)
         {
-            if (item is Run)
-            {
-                return item;
-            }
         }
-        return this;
-    }
 
-    public override AbsState OnJump()
-    {
-        foreach (var item in player.stateList)
-        {
-            if (item is FirstJump)
-            {
-                return item;
-            }
-        }
-        return this;
-    }
 
-    public override AbsState OnUseSkill(bool isInterrupted)
-    {
-        if (isInterrupted)
+        public override AbsState OnGrounded()
         {
             foreach (var item in player.stateList)
             {
-                if (item is GeneralSkill)
+                if (item is Run)
                 {
                     return item;
                 }
             }
             return this;
         }
-        else
+
+        public override AbsState OnJump()
         {
             foreach (var item in player.stateList)
             {
-                if (item is UnInterruptedSkill)
+                if (item is FirstJump)
                 {
                     return item;
                 }
             }
             return this;
+        }
+
+        public override AbsState OnUseSkill(bool isInterrupted)
+        {
+            if (isInterrupted)
+            {
+                foreach (var item in player.stateList)
+                {
+                    if (item is GeneralSkill)
+                    {
+                        return item;
+                    }
+                }
+                return this;
+            }
+            else
+            {
+                foreach (var item in player.stateList)
+                {
+                    if (item is UnInterruptedSkill)
+                    {
+                        return item;
+                    }
+                }
+                return this;
+            }
         }
     }
 }

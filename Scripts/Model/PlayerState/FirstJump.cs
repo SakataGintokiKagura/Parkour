@@ -2,63 +2,66 @@
 using System.Collections;
 using System;
 
-public class FirstJump : AbsState
+namespace NPlayerState
 {
-    public FirstJump(PlayerState player) : base(player)
+    public class FirstJump : AbsState
     {
-    }
-
-    //public FirstJump(PlayerState player) {
-    //    this.player = player;
-    //}
-    public override AbsState OnGrounded()
-    {
-        foreach(var item in player.stateList)
+        public FirstJump(PlayerState player) : base(player)
         {
-            if(item is Run)
-            {
-                return item;
-            }
         }
-        return this;
-    }
 
-    public override AbsState OnJump()
-    {
-        foreach (var item in player.stateList)
-        {
-            if (item is SecondJump)
-            {
-                return item;
-            }
-        }
-        return this;
-    }
-
-    public override AbsState OnUseSkill(bool isInterrupted)
-    {
-        if (isInterrupted)
+        //public FirstJump(PlayerState player) {
+        //    this.player = player;
+        //}
+        public override AbsState OnGrounded()
         {
             foreach (var item in player.stateList)
             {
-                if (item is GeneralSkill)
+                if (item is Run)
                 {
                     return item;
                 }
             }
             return this;
         }
-        else
+
+        public override AbsState OnJump()
         {
             foreach (var item in player.stateList)
             {
-                if (item is UnInterruptedSkill)
+                if (item is SecondJump)
                 {
                     return item;
                 }
             }
             return this;
         }
-        return this;
+
+        public override AbsState OnUseSkill(bool isInterrupted)
+        {
+            if (isInterrupted)
+            {
+                foreach (var item in player.stateList)
+                {
+                    if (item is GeneralSkill)
+                    {
+                        return item;
+                    }
+                }
+                return this;
+            }
+            else
+            {
+                foreach (var item in player.stateList)
+                {
+                    if (item is UnInterruptedSkill)
+                    {
+                        return item;
+                    }
+                }
+                return this;
+            }
+            return this;
+        }
     }
 }

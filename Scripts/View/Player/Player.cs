@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using NPlayerState;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(CharacterController))]

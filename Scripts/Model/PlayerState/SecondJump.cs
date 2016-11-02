@@ -1,56 +1,58 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
-
-public class SecondJump : AbsState
+namespace NPlayerState
 {
-    public SecondJump(PlayerState player) : base(player)
+    public class SecondJump : AbsState
     {
-    }
-
-
-
-    public override AbsState OnGrounded()
-    {
-        foreach (var item in player.stateList)
+        public SecondJump(PlayerState player) : base(player)
         {
-            if (item is Run)
-            {
-                return item;
-            }
         }
-        return this;
-    }
 
-    public override AbsState OnJump()
-    {
-        Debug.Log("状态出错");
-        return this;
-    }
-    public override AbsState OnUseSkill(bool isInterrupted)
-    {
-        if (isInterrupted)
+
+
+        public override AbsState OnGrounded()
         {
             foreach (var item in player.stateList)
             {
-                if (item is GeneralSkill)
+                if (item is Run)
                 {
                     return item;
                 }
             }
             return this;
         }
-        else
+
+        public override AbsState OnJump()
         {
-            foreach (var item in player.stateList)
+            Debug.Log("状态出错");
+            return this;
+        }
+        public override AbsState OnUseSkill(bool isInterrupted)
+        {
+            if (isInterrupted)
             {
-                if (item is UnInterruptedSkill)
+                foreach (var item in player.stateList)
                 {
-                    return item;
+                    if (item is GeneralSkill)
+                    {
+                        return item;
+                    }
                 }
+                return this;
+            }
+            else
+            {
+                foreach (var item in player.stateList)
+                {
+                    if (item is UnInterruptedSkill)
+                    {
+                        return item;
+                    }
+                }
+                return this;
             }
             return this;
         }
-        return this;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using NPlayerState;
 
 public class SkillRangeAttack : IMeleeAttack
 {
