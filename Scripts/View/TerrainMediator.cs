@@ -76,13 +76,14 @@ public class TerrainMediator : Mediator, ITerrainMediator
 			GameObject newCoin;
 			List<GameObject> newCoinList = new List<GameObject>();
 			    
-			foreach (KeyValuePair<float,int> item in infor.OnGetCoin()){
-				newCoin = MemoryController.instance.OnFindGameObjectByName(
-					temp.OnFind("coinDate",item.Value.ToString(),"name"), 
-					new Vector3(item.Key + ((terrain.getN() + 1) * TerrainParameter.mapSize), 0, 0),
+			foreach(Coin item in infor.OnGetCoin()){
+				newCoin = MemoryController.instance.OnFindGameObjectByName (
+					temp.OnFind("coinDate",item.OnGetKind().ToString(),"name"), 
+					new Vector3(item.OnGetStart() + ((terrain.getN() + 1) * TerrainParameter.mapSize), item.OnGetHigh(), 0),
 					temp.OnFind("memoryObjectParameter","3","priority"),
 					temp.OnFind("memoryObjectParameter","3","path")
 				);
+
 				newCoin.SetActiveRecursively (true);
 				newCoinList.Add(newCoin);
 			}
