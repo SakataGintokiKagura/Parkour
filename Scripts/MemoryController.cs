@@ -1,14 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
-public class MemoryController:MonoBehaviour
-{
-    private static MemoryController _instance;
+using System;
+public class MemoryController:MonoBehaviour{
+    
+	private static MemoryController _instance;
 
 	private List <GameObject>[] memoryList;
 
 	private string PathURL ;
+
+	private string URL;
+
+    private GameObject temp;
 
     public static MemoryController instance
     {
@@ -23,25 +27,17 @@ public class MemoryController:MonoBehaviour
     }
 
 	void Start(){ 
-
-		PathURL =
-			#if UNITY_ANDROID
-			"jar:file://" + Application.dataPath + "!/assets/";
-			#elif UNITY_IPHONE
-			Application.dataPath + "/Raw/";
-			#elif UNITY_STANDALONE_WIN || UNITY_EDITOR
-			"file://" + Application.dataPath + "/StreamingAssets/";
-			#else
-			string.Empty;
-			#endif
+		URL="file://" + Application.dataPath + "/StreamingAssets/";
+    	PathURL =Application.dataPath + "/StreamingAssets/";
+//		PathURL = Application.dataPath +"!assets/";
 		
 		memoryList=new List<GameObject>[MemoryParameter.objectType];
 
-		for(int i=0;i<MemoryParameter.objectType;i++){
+		for(int i=0;i<MemoryParameter.objectType;i++)
 			memoryList [i] = new List<GameObject> ();
-		}
 	}
 
+	
 	void Awake(){
 		if(_instance==null)
 			_instance = this;
@@ -65,20 +61,24 @@ public class MemoryController:MonoBehaviour
 				go.transform.position = position;
 				go.SetActive(true);
 				memoryList[(int.Parse(serial))-1].Remove(go);
-				return go;
+                return go;    
 			}
 		}
-			
-		WWW bundle = new WWW (PathURL + path+name+".assetbundle"); 
-		GameObject obj = GameObject.Instantiate(bundle.assetBundle.mainAsset,position,Quaternion.identity)as GameObject;
-		bundle.assetBundle.Unload(false);
+        //AssetBundle bundle = AssetBundle.LoadFromFile(PathURL+path+name+".assetbundle");
+        if (path == "Monster/")
+            StartCoroutine(LoadAssetAsyncCoroutine(path, name, position));
 
-		//GameObject obj = GameObject.Instantiate(Resources.Load(path + name), position, Quaternion.identity) as GameObject;
+        //		GameObject obj =Instantiate(bundle.LoadAsset(name) ,position,Quaternion.identity)as GameObject;
+        //
+        //		bundle.Unload (false);
 
-		return obj;
-
+        if (path != "Monster/")
+            return Instantiate(Resources.Load(path + name), position, Quaternion.identity) as GameObject;
+        else
+            return null;
 	}
 
+	
 	public void OnAddObject(GameObject go,string num)
 	{
 		memoryList [(int.Parse(num))-1].Add (go);
@@ -89,6 +89,7 @@ public class MemoryController:MonoBehaviour
 		memoryList [(int.Parse(num)-1)].Remove (go);
 	}
 
+	
 	public void deleteListObject(){
 		while (Profiler.GetTotalAllocatedMemory () >= MemoryParameter.threshold) {
 			for (int i = 0; i < MemoryParameter.objectType; i++) {
@@ -105,4 +106,29 @@ public class MemoryController:MonoBehaviour
 			}
 		}
 	}
+	void OnReturn(string path,UnityEngine.Object asset, Vector3 position,string name)
+    {
+        if(path == "Monster/")
+        {
+            GameObject monster = Instantiate(asset
+               , position, Quaternion.identity) as GameObject;
+            //MonsterMediator.OnGetMonsterMediator().OnAddMonster(monster);
+        }
+    }
+
+	IEnumerator LoadAssetAsyncCoroutine(string path,string name, Vector3 position)
+	{
+        WWW www = new WWW(URL+name+".assetbundle");
+        yield return www;
+		yield return temp = Instantiate(www.assetBundle.mainAsset,position,Quaternion.identity) as GameObject;
+        OnReturn(temp);
+		www.assetBundle.Unload (false);
+        www.Dispose();
+        www = null;
+    }
+
+    private void OnReturn(UnityEngine.Object @object)
+    {
+        MonsterMediator.OnGetMonsterMediator().OnAddMonster((GameObject)@object);
+    }
 }

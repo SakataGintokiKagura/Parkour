@@ -6,7 +6,8 @@ using NPlayerState;
 [RequireComponent(typeof(CharacterController))]
 
 public class Player : MonoBehaviour {
-    //public GameObject[] FlyItem;
+    public GameObject[] effect;
+    private int id =0;
     public Transform FlyItemPosition;
     private ISkill treadAttack = new SkillTreadAttack();
     [SerializeField]
@@ -197,6 +198,7 @@ public class Player : MonoBehaviour {
             rHard.enabled = false; ;
         }
         skill = null;
+        effect[id].SetActive(false);
     }
     /// <summary>
     /// 有物体与角色碰撞
@@ -232,8 +234,6 @@ public class Player : MonoBehaviour {
         }else if(col.tag == TagParameber.prop)
         {
             playerMediator.OnPickUpProp(col.gameObject);
-           
-
         }
 
     }
@@ -327,5 +327,12 @@ public class Player : MonoBehaviour {
     /// <summary>
     /// 拾取道具
     /// </summary>
-    
+    public void OnPlayEffect(int id)
+    {
+        effect[this.id].SetActive(false);
+        if (id == 2)
+            Debug.Log(id);
+        this.id = id;
+        effect[id].SetActive(true);
+    }
 }
