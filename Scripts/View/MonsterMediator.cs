@@ -24,6 +24,7 @@ public class MonsterMediator : Mediator,IMonsterMediator {
     private Vector3 position;
     public Transform monsterCreatePosition;
     private static MonsterMediator monsterMediator;
+    private Queue<IBlology> blology = new Queue<IBlology>();
 
     Dictionary<IBlology, GameObject> IMonsterMediator.monster
     {
@@ -102,16 +103,25 @@ public class MonsterMediator : Mediator,IMonsterMediator {
 
 			ReadTable temp_01 = ReadTable.getTable;
 
-			//GameObject monster = 
-				MemoryController.instance.OnFindGameObjectByName(    
+            GameObject monster=
+			MemoryController.instance.OnFindGameObjectByName(    
 				temp_01.OnFind("monsterDate", monsterSpecies.ID.ToString(), "name"),
 				monsterCreatePosition.position,
 				temp_01.OnFind("memoryObjectParameter", "2", "priority"),
 				temp_01.OnFind("memoryObjectParameter", "2", "path")
 			);
-			//SendNotification (EventsEnum.monsterCreateGameObject, monster);
-
-			//this.monster[monsterSpecies]= monster;
+                // this.blology.Enqueue(monsterSpecies);
+                if (monster == null)
+                {
+                    this.blology.Enqueue(monsterSpecies);
+                }
+                else
+                {
+                    SendNotification(EventsEnum.monsterCreateGameObject, monster);
+                    this.monster[monsterSpecies] = monster;
+                }
+                //SendNotification (EventsEnum.monsterCreateGameObject, monster);
+                //this.monster[monsterSpecies]= monster;
                 break;
             case EventsEnum.monsterHPChange:
                 Debug.Log(((int)notification.Body));
@@ -147,5 +157,10 @@ public class MonsterMediator : Mediator,IMonsterMediator {
     public void OnCreateBoss()
     {
         SendNotification(EventsEnum.monsterCreateBoss);
+    }
+    public void OnAddMonster(GameObject monster)
+    {
+        SendNotification(EventsEnum.monsterCreateGameObject, monster);
+        this.monster[blology.Dequeue()]= monster;
     }
 }

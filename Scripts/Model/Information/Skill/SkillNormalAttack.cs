@@ -2,7 +2,6 @@
 using System.Collections;
 using System;
 using NPlayerState;
-
 public class SkillNormalAttack : IEnbaleAirSkill, IMeleeAttack
 {
     public float damage

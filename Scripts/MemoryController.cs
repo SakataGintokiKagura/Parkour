@@ -61,19 +61,17 @@ public class MemoryController:MonoBehaviour{
 				go.transform.position = position;
 				go.SetActive(true);
 				memoryList[(int.Parse(serial))-1].Remove(go);
-				return go;
+                return go;    
 			}
 		}
         //AssetBundle bundle = AssetBundle.LoadFromFile(PathURL+path+name+".assetbundle");
         if (path == "Monster/")
             StartCoroutine(LoadAssetAsyncCoroutine(path, name, position));
-
         //		GameObject obj =Instantiate(bundle.LoadAsset(name) ,position,Quaternion.identity)as GameObject;
         //
         //		bundle.Unload (false);
-
         if (path != "Monster/")
-            return Instantiate(Resources.Load(path + name), position, Quaternion.identity) as GameObject;
+			return Instantiate(Resources.Load(path + name), position, Quaternion.identity) as GameObject;
         else
             return null;
 	}
@@ -129,6 +127,7 @@ public class MemoryController:MonoBehaviour{
 
     private void OnReturn(UnityEngine.Object @object)
     {
-        //MonsterMediator.OnGetMonsterMediator().OnAddMonster((GameObject)@object);
+        MonsterMediator.OnGetMonsterMediator().OnAddMonster((GameObject)@object);
+
     }
 }
