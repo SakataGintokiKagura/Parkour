@@ -67,11 +67,9 @@ public class MemoryController:MonoBehaviour{
         //AssetBundle bundle = AssetBundle.LoadFromFile(PathURL+path+name+".assetbundle");
         if (path == "Monster/")
             StartCoroutine(LoadAssetAsyncCoroutine(path, name, position));
-
         //		GameObject obj =Instantiate(bundle.LoadAsset(name) ,position,Quaternion.identity)as GameObject;
         //
         //		bundle.Unload (false);
-
         if (path != "Monster/")
             return Instantiate(Resources.Load(path + name), position, Quaternion.identity) as GameObject;
         else
