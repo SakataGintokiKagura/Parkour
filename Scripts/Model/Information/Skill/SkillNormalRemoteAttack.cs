@@ -48,11 +48,23 @@ public class SkillNormalRemoteAttack : IEnbaleAirSkill
         GameObject.Instantiate(temp,transform.position,temp.transform.rotation);
         //GameObject.Instantiate(temp, player.FlyItemPosition.position+ new Vector3(0,2,0), Quaternion.identity);
         //Debug.Log("释放飞行道具");
+        //Player player = PlayerMediator.OnGetPlayerMediator().player;
+        //if (!(player.State.singletonState is Run))
+        //{
+        //    if(player.Velocity.y<0)
+        //        player.Velocity += Vector3.up * 0.3f;
+        //}
     }
 
     public void OnStartSkillAnimation(Transform transform, Animator anim, PlayerState state)
     {
         anim.SetInteger(AnimationParameter.skill, AnimationParameter.skillNormalRemoteAttack);
         state.OnUseSkill(true);
+        Player player = PlayerMediator.OnGetPlayerMediator().player;
+        if (!(player.State.singletonState is Run))
+        {
+            if (player.Velocity.y < -0.1f)
+                player.Velocity += Vector3.up * 0.3f;
+        }
     }
 }
