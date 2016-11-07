@@ -259,7 +259,7 @@ public class Player : MonoBehaviour {
     /// <param name="monster"></param>
     void OnHurtCheck(GameObject monster)
     {
-        Ray rayB = new Ray(transform.position + new Vector3(-0.2f, 1.3f, 0), Vector3.down);
+        Ray rayB = new Ray(transform.position + new Vector3(-0.2f, 0.5f, 0), Vector3.down);
         RaycastHit hitB;
         Physics.Raycast(rayB, out hitB);
         if (Physics.Raycast(rayB, out hitB))
@@ -304,11 +304,11 @@ public class Player : MonoBehaviour {
                 break;
         }
         State.OnUnHurt();
-        //effect[4].SetActive(true);
+        effect[4].SetActive(true);
         yield return new WaitForSeconds(time);
         //effect[4].SetActive(false);
         State.OnHurt();
-        //effect[4].SetActive(false);
+        effect[4].SetActive(false);
     }
     /// <summary>
     /// 辅助技能：加速

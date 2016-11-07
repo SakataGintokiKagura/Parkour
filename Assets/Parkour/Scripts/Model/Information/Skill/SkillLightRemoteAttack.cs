@@ -63,15 +63,9 @@ public class SkillLightAttack : ISkill
         anim.SetInteger(AnimationParameter.skill, AnimationParameter.skillLightRemoteAttack);
         state.OnUseSkill(true);
         Player player = PlayerMediator.OnGetPlayerMediator().player;
-        if (!(player.State.singletonState is Run))
-        {
-            if (player.Velocity.y < 0.1f)
-            {
-                Vector3 temp = player.Velocity;
-                temp.y = 0;
-                player.Velocity = temp;
-                player.isApplyGravity = false;
-            }
-        }
+        Vector3 temp = player.Velocity;
+        temp.y = 0;
+        player.Velocity = temp;
+        player.isApplyGravity = false;
     }
 }

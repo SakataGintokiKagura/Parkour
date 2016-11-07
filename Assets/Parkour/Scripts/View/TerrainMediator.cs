@@ -91,11 +91,7 @@ public class TerrainMediator : Mediator, ITerrainMediator
 				if (CoinTemp) {
 					OnEnqueueOldCoin (CoinTemp);
 				}
-				//necwCoin.SetActiveRecursively (true);
-				//newCoinList.Add (newCoin);
 			}
-				
-			//oldCoin.Enqueue (newCoinList);
 
 			if (terrain.getN() >= 2)       
 			{  
@@ -124,7 +120,7 @@ public class TerrainMediator : Mediator, ITerrainMediator
 	}
 
 	public void OnEnqueueOldCoin(GameObject coin){
-		coin.SetActiveRecursively (true);
+        //coin.SetActiveRecursively(true);
 		newCoinList.Add (coin);
 		if (coin.transform.position == lastPosition) {
 			oldCoin.Enqueue (newCoinList);
