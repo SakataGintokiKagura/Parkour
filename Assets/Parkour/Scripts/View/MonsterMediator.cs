@@ -107,7 +107,8 @@ public class MonsterMediator : Mediator,IMonsterMediator {
 				temp_01.OnFind("monsterDate", monsterSpecies.ID.ToString(), "name"),
 				monsterCreatePosition,
 				temp_01.OnFind("memoryObjectParameter", "2", "priority"),
-				temp_01.OnFind("memoryObjectParameter", "2", "path")
+				temp_01.OnFind("memoryObjectParameter", "2", "path"),
+				temp_01.OnFind("memoryObjectParameter", "2", "load")
 			);
                 // this.blology.Enqueue(monsterSpecies);
                 if (monster == null)
@@ -144,7 +145,8 @@ public class MonsterMediator : Mediator,IMonsterMediator {
 				    prop_name, 
 				    position, 
 				    reatable.OnFind("memoryObjectParameter","1","priority"),
-				    reatable.OnFind("memoryObjectParameter","1","path")
+				    reatable.OnFind("memoryObjectParameter","1","path"),
+				    reatable.OnFind("memoryObjectParameter", "1", "load")
 			    );
 			    MemoryController.instance.OnAddObject (prop,ReadTable.getTable.OnFind("memoryObjectParameter","1","priority")); 
                 

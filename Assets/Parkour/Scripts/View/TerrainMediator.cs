@@ -70,7 +70,8 @@ public class TerrainMediator : Mediator, ITerrainMediator
 				                        temp.OnFind ("terrainDate", infor.OnGetTerrain ().ToString (), "terrainName"),
 				                        new Vector3 ((terrain.getN () + 1) * TerrainParameter.mapSize, 0, 0),
 				                        temp.OnFind ("memoryObjectParameter", "4", "priority"),
-				                        temp.OnFind ("memoryObjectParameter", "4", "path")
+				                        temp.OnFind ("memoryObjectParameter", "4", "path"),
+				                        temp.OnFind ("memoryObjectParameter", "4", "load")
 			                        );
 
 			if (newTerrain != null)
@@ -86,7 +87,8 @@ public class TerrainMediator : Mediator, ITerrainMediator
 					temp.OnFind ("coinDate", item.OnGetKind ().ToString (), "name"), 
 					new Vector3 (item.OnGetStart () + ((terrain.getN () + 1) * TerrainParameter.mapSize), item.OnGetHigh (), 0),
 					temp.OnFind ("memoryObjectParameter", "3", "priority"),
-					temp.OnFind ("memoryObjectParameter", "3", "path")
+					temp.OnFind ("memoryObjectParameter", "3", "path"),
+					temp.OnFind ("memoryObjectParameter", "3", "load")
 				);
 				if (CoinTemp) {
 					OnEnqueueOldCoin (CoinTemp);
