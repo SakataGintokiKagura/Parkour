@@ -9,7 +9,7 @@ public class MonsterCreateBoss : SimpleCommand {
 
 	public override void Execute(INotification notification)
 	{
-		MonsterProxy monster = (MonsterProxy)Facade.RetrieveProxy(MonsterProxy.NAME);
-		monster.OnCreateBoss (1);
+//		MonsterProxy monster = (MonsterProxy)Facade.RetrieveProxy(MonsterProxy.NAME);
+//		monster.OnCreateBoss (1);
 	}
 }

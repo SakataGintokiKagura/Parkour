@@ -304,11 +304,11 @@ public class Player : MonoBehaviour {
                 break;
         }
         State.OnUnHurt();
-        effect[4].SetActive(true);
+        //effect[4].SetActive(true);
         yield return new WaitForSeconds(time);
         //effect[4].SetActive(false);
         State.OnHurt();
-        effect[4].SetActive(false);
+        //effect[4].SetActive(false);
     }
     /// <summary>
     /// 辅助技能：加速

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SkillParameber : MonoBehaviour {
+public class SkillParameber {
     private static bool initial = true;
     private static float flashDeltaRecord;
     private static float hurtInvilicibleTimeRecord;

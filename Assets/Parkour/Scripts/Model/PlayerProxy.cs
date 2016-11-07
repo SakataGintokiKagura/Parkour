@@ -25,6 +25,7 @@ public class PlayerProxy : Proxy {
     {
         //判断哪个怪
         IBlology monster = MonsterProxy.AllMONSTER[game];
+
 		//player.HP -= monster.damage;
         SendNotification(EventsEnum.playerHPChange,player);
 
@@ -45,8 +46,9 @@ public class PlayerProxy : Proxy {
     }
     public void OnDropOutPit()
     {
-        //player.HP -= SkillParameber.dropOutHurt;
-		//player.HP -= 0;
+
+//        player.HP -= SkillParameber.dropOutHurt;
+
         SendNotification(EventsEnum.playerHPChange, player);
         //SendNotification(EventsEnum.playerDropOutNoDie, player);
         if (player.HP <= 0)
@@ -68,9 +70,6 @@ public class PlayerProxy : Proxy {
         else if (propName == "prop_MP(Clone)")
         {
             Debug.Log("prop_MP");
-            //PLayerInformation player4 = (PLayerInformation)notification.Body;
-            //Debug.Log(player2.HP);
-            // ui.MP.fillAmount = ui.MP.fillAmount + ui.MP.fillAmount / 3;
             player.MP += 100;
             SendNotification(EventsEnum.playerUseSkillSuccess, player);
         }
