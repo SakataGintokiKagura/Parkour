@@ -18,7 +18,7 @@ public class MonsterCreatePosition : MonoBehaviour {
 	void Update () {
 		position = new Vector3 (transform.position.x,y,transform.position.z);
 		MonsterMediator.OnGetMonsterMediator().monsterCreatePosition = position;
-        if (gameObject.transform.position.x-count>=10.0f) {
+        if (gameObject.transform.position.x-count>=15f) {
 			count = gameObject.transform.position.x;
 			if (isCreateMonster&&isContactTerrain) {
 				MonsterMediator.OnGetMonsterMediator ().OnCreateMonster ();

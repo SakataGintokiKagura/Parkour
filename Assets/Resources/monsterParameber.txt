@@ -8,4 +8,4 @@ ID	Name		Value
 7	highdamage	int	30
 8	GeneratingprobabilityMax	int	2
 9	GeneratingprobabilityMin	int	1
-10	SpeciesNumber	int	4
+10	SpeciesNumber	int	6
