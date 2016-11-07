@@ -33,8 +33,7 @@ public class MonsterProxy : Proxy {
         {
             t = Type.GetType(temp.OnFind("monsterDate", monster.ToString(), "class"));
         }
-        //ReadTable temp = ReadTable.getTable;
-        //Type t=Type.GetType(temp.OnFind("monsterDate",monster.ToString(),"class"));
+
         IBlology obj = (IBlology)System.Activator.CreateInstance(t, time);
         MonsterQueue.Enqueue((IBlology)obj);
         SendNotification(EventsEnum.monsterCreateMonsterSuccess, (IBlology)obj);
@@ -45,8 +44,6 @@ public class MonsterProxy : Proxy {
     public void OnGetMonster(GameObject monster)
     {
         AllMonster[monster] = MonsterQueue.Dequeue();
-        //AllMonster.Add (monster,MonsterQueue.Dequeue());
-        
     }
     public void OnInjured(GameObject monster,float hurt)
     {

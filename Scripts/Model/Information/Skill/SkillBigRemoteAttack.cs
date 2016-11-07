@@ -43,9 +43,17 @@ public class SkillBigRemoteAttack : IEnbaleAirSkill  {
     public void OnMiddleSkillAnimation(Transform transform, Animator anim, PlayerState state)
     {
         ReadTable table = ReadTable.getTable;
-        GameObject temp = Resources.Load("FlyItem/" + table.OnFind("flyItemDate", "2", "name")) as GameObject;
-        GameObject.Instantiate(temp, transform.position, temp.transform.rotation);
-    }
+
+		MemoryController.instance.OnFindGameObjectByName (
+			table.OnFind ("flyItemDate", "2", "name"),
+			transform.position,
+			table.OnFind ("memoryObjectParameter", "5", "priority"),
+			table.OnFind ("memoryObjectParameter", "5", "path")
+		);
+	}
+//        GameObject temp = Resources.Load("FlyItem/" + table.OnFind("flyItemDate", "2", "name")) as GameObject;
+//        GameObject.Instantiate(temp, transform.position, temp.transform.rotation);
+	
 
     public void OnStartSkillAnimation(Transform transform, Animator anim, PlayerState state)
     {

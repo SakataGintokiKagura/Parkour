@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using PureMVC.Patterns;
-using System.Collections.Generic;
 
 public class TerrainCreateInfor
 {

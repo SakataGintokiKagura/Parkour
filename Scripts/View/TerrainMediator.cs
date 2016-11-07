@@ -10,8 +10,10 @@ public class TerrainMediator : Mediator, ITerrainMediator
     public new const string NAME = "TerrainMediator";
     private Terrain terrain;
     private static TerrainMediator terrainMediator;
+	private Vector3 lastPosition;
+	private List<GameObject> newCoinList = new List<GameObject> ();
 
-    private Queue<GameObject> oldTerraian = new Queue<GameObject>();
+    private Queue<GameObject> oldTerrain = new Queue<GameObject>();
     private Queue<List<GameObject>> oldCoin = new Queue<List<GameObject>>();
 
     private TerrainMediator(Terrain terrain) : base(NAME)
@@ -64,42 +66,50 @@ public class TerrainMediator : Mediator, ITerrainMediator
 
 			ReadTable temp = ReadTable.getTable;
 
-			GameObject newTerrain =MemoryController.instance.OnFindGameObjectByName(
-				temp.OnFind("terrainDate",infor.OnGetTerrain().ToString(),"terrainName"),
-				new Vector3((terrain.getN() + 1) * TerrainParameter.mapSize, 0, 0),
-				temp.OnFind("memoryObjectParameter","4","priority"),
-				temp.OnFind("memoryObjectParameter","4","path")
-			);
+			GameObject newTerrain = MemoryController.instance.OnFindGameObjectByName (
+				                        temp.OnFind ("terrainDate", infor.OnGetTerrain ().ToString (), "terrainName"),
+				                        new Vector3 ((terrain.getN () + 1) * TerrainParameter.mapSize, 0, 0),
+				                        temp.OnFind ("memoryObjectParameter", "4", "priority"),
+				                        temp.OnFind ("memoryObjectParameter", "4", "path")
+			                        );
 
-			oldTerraian.Enqueue(newTerrain);
+			if (newTerrain != null)
+				OnEnqueueOldTerraian (newTerrain);
 
-			GameObject newCoin;
-			List<GameObject> newCoinList = new List<GameObject>();
-			    
-			foreach(Coin item in infor.OnGetCoin()){
-				newCoin = MemoryController.instance.OnFindGameObjectByName (
-					temp.OnFind("coinDate",item.OnGetKind().ToString(),"name"), 
-					new Vector3(item.OnGetStart() + ((terrain.getN() + 1) * TerrainParameter.mapSize), item.OnGetHigh(), 0),
-					temp.OnFind("memoryObjectParameter","3","priority"),
-					temp.OnFind("memoryObjectParameter","3","path")
+			//List<GameObject> newCoinList = new List<GameObject> ();
+
+			//GameObject newCoin;
+			List<Coin> coin = infor.OnGetCoin ();
+			lastPosition = new Vector3 (coin[coin.Count-1].OnGetStart () + ((terrain.getN () + 1) * TerrainParameter.mapSize), coin[coin.Count-1].OnGetHigh (), 0);
+			foreach (Coin item in infor.OnGetCoin()) {
+				GameObject CoinTemp = MemoryController.instance.OnFindGameObjectByName (
+					temp.OnFind ("coinDate", item.OnGetKind ().ToString (), "name"), 
+					new Vector3 (item.OnGetStart () + ((terrain.getN () + 1) * TerrainParameter.mapSize), item.OnGetHigh (), 0),
+					temp.OnFind ("memoryObjectParameter", "3", "priority"),
+					temp.OnFind ("memoryObjectParameter", "3", "path")
 				);
-
-				newCoin.SetActiveRecursively (true);
-				newCoinList.Add(newCoin);
+				if (CoinTemp) {
+					OnEnqueueOldCoin (CoinTemp);
+				}
+				//necwCoin.SetActiveRecursively (true);
+				//newCoinList.Add (newCoin);
 			}
-                
-			oldCoin.Enqueue(newCoinList);
-    
+				
+			//oldCoin.Enqueue (newCoinList);
+
 			if (terrain.getN() >= 2)       
 			{  
-				GameObject deleterTerrain = oldTerraian.Dequeue(); 
+				GameObject deleterTerrain = oldTerrain.Dequeue(); 
 				deleterTerrain.SetActive (false);
 				MemoryController.instance.OnAddObject(deleterTerrain,ReadTable.getTable.OnFind("memoryObjectParameter","4","priority"));
-				List<GameObject> deleterCoin = oldCoin.Dequeue();    
-				foreach (GameObject elem in deleterCoin) {
-					elem.SetActive (false);
-					MemoryController.instance.OnAddObject(elem,ReadTable.getTable.OnFind("memoryObjectParameter","3","priority"));
-				}	
+				if (oldCoin.Count > 0) {
+					List<GameObject> deleterCoin = oldCoin.Dequeue ();    
+					foreach (GameObject elem in deleterCoin) {
+						if (elem)
+							elem.SetActive (false);
+						MemoryController.instance.OnAddObject (elem, ReadTable.getTable.OnFind ("memoryObjectParameter", "3", "priority"));
+					}
+				}
 			}
 			break;
             
@@ -108,4 +118,18 @@ public class TerrainMediator : Mediator, ITerrainMediator
 			break;
 		}
     }
+
+	public void OnEnqueueOldTerraian(GameObject terrain){
+		this.oldTerrain.Enqueue(terrain);
+	}
+
+	public void OnEnqueueOldCoin(GameObject coin){
+		coin.SetActiveRecursively (true);
+		newCoinList.Add (coin);
+		if (coin.transform.position == lastPosition) {
+			oldCoin.Enqueue (newCoinList);
+			newCoinList = new List<GameObject> ();
+		}
+	}
+		
 }

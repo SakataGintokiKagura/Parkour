@@ -22,7 +22,7 @@ public class pitDictionaryTool{
 public class TerrainCreate : SimpleCommand
 {
 
-    public new const string NAME = "TerrainCreate";
+    public const string NAME = "TerrainCreate";
 
     public override void Execute(INotification notification)
     {
@@ -37,7 +37,7 @@ public class TerrainCreate : SimpleCommand
 
 		foreach (string[] item in tempCoin)
         {
-			for (float i = float.Parse (item [0]); i < float.Parse (item [1]) - TerrainParameter.coinBuffer; i = i + TerrainParameter.coinZone) {
+			for (float i = float.Parse (item [0]); i < float.Parse (item [1]) ; i = i + TerrainParameter.coinZone) {//+ TerrainParameter.coinBuffer
 	
 				if (Random.Range(0, TerrainParameter.coinCreateDenominator) <= TerrainParameter.coinCreateNumerator)
 				{
