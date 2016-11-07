@@ -11,7 +11,25 @@ public class PLayerInformation : IBlology
     public int score { get; set; }
 
     public int normalAttackDistance { get; set; }
-    public bool hasAttack { get; set; }
+    public void OnInView(Transform tran)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void OnAttack(Transform tran)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void OnOutOfAttack(Transform tran)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void OnOutView(Transform tran)
+    {
+        throw new NotImplementedException();
+    }
 
 
     //public Transform trans { get; set; }
