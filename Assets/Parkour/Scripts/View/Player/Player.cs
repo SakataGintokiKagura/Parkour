@@ -102,7 +102,7 @@ public class Player : MonoBehaviour {
         }
         anim.SetFloat(AnimationParameter.xSpeed, velocity.x);
         anim.SetFloat(AnimationParameter.ySpeed, velocity.y);
-        if (transform.position.y < MotionParameber.yLimit)
+        if (transform.position.y < MotionParameber.yLimit||Camera.main.WorldToViewportPoint(transform.position).x < 0)
         {
             playerMediator.OnDropOutPit();
         }
