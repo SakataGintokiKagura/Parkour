@@ -31,6 +31,7 @@ public class SkillNormalAttack : IEnbaleAirSkill, IMeleeAttack
         //Debug.Log(11111);
         anim.SetInteger(AnimationParameter.skill, AnimationParameter.skillUnUse);
         state.OnEndSkill();
+        PlayerMediator.OnGetPlayerMediator().player.isApplyGravity = true;
     }
 
     public int OnMiddleSkillAnimation()
@@ -48,6 +49,11 @@ public class SkillNormalAttack : IEnbaleAirSkill, IMeleeAttack
         //temp.center = new Vector3(10, 10, 10);
         anim.SetInteger(AnimationParameter.skill, AnimationParameter.skillNormalAttack);
         state.OnUseSkill(true);
+        Player player = PlayerMediator.OnGetPlayerMediator().player;
+        Vector3 temp = player.Velocity;
+        temp.y = 0;
+        player.Velocity = temp;
+        player.isApplyGravity = false;
     }
 
     //public bool OnSkillAnimation(ref Vector3 velocity, Animator anim, PlayerState state)

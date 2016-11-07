@@ -47,7 +47,7 @@ public class PlayerProxy : Proxy {
     public void OnDropOutPit()
     {
 
-//        player.HP -= SkillParameber.dropOutHurt;
+        //player.HP -= SkillParameber.dropOutHurt;
 
         SendNotification(EventsEnum.playerHPChange, player);
         //SendNotification(EventsEnum.playerDropOutNoDie, player);
