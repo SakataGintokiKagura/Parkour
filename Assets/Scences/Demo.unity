@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44692534, g: 0.49678725, b: 0.5750856, a: 1}
+  m_IndirectSpecularColor: {r: 0.44692492, g: 0.4967869, b: 0.57508546, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1868,7 +1868,7 @@ GameObject:
   - 81: {fileID: 1603873191}
   - 114: {fileID: 1603873197}
   - 114: {fileID: 1603873198}
-  - 114: {fileID: 1603873199}
+  - 114: {fileID: 1603873196}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1944,6 +1944,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 367344202}
   m_RootOrder: 1
+--- !u!114 &1603873196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1603873190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8800e6f9cd0387948bae38e6b6559ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1603873197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1952,16 +1963,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1603873190}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 453399ce04a6ebe47bc055cefa7be95d, type: 3}
+  m_Script: {fileID: 11500000, guid: 4653489fc4e009443b61bb21a69c026d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterPrefabs:
-  - {fileID: 1000010860254810, guid: 704b4251a5c84484cb05d87f44fa0a36, type: 2}
-  - {fileID: 1000013296123868, guid: 8eaccf62734abb44a8c6f2bfda88e4c5, type: 2}
-  - {fileID: 1000011757957288, guid: e021ed09263ca424d843315767264e7f, type: 2}
-  - {fileID: 1000012084791322, guid: add29db9db1366d4d96d180374db9a4a, type: 2}
+  monsterPrefabs: []
   player: {fileID: 1928589355}
-  sphere: {fileID: 1000013764463932, guid: 177a6f27e65ee8e4f93845b1d4db3da7, type: 2}
 --- !u!114 &1603873198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1975,17 +1981,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1928589356}
   ui: {fileID: 836890138}
---- !u!114 &1603873199
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1603873190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81e19164e55296b43999587f446ad851, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1660576999
 Prefab:
   m_ObjectHideFlags: 0

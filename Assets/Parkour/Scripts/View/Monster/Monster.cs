@@ -13,7 +13,6 @@ public class Monster : MonoBehaviour
     public GameObject[] monsterPrefabs;
     private List<GameObject> outList = new List<GameObject>();
     public GameObject player;
-    public GameObject sphere;
     private float initialPosition = 0;
     void Start()
     {
