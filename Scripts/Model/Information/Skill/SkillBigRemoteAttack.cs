@@ -59,5 +59,11 @@ public class SkillBigRemoteAttack : IEnbaleAirSkill  {
     {
         anim.SetInteger(AnimationParameter.skill, AnimationParameter.skillBigRemoteAttack);
         state.OnUseSkill(true);
+        Player player = PlayerMediator.OnGetPlayerMediator().player;
+        if (!(player.State.singletonState is Run))
+        {
+            if (player.Velocity.y < 0)
+                player.Velocity += Vector3.up * 0.3f;
+        }
     }
 }

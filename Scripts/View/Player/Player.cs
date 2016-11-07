@@ -10,15 +10,10 @@ public class Player : MonoBehaviour {
     private int id =0;
     public Transform FlyItemPosition;
     private ISkill treadAttack = new SkillTreadAttack();
-    [SerializeField]
-    private Light invincibleEffects;
-    /// <summary>
-    /// 赤橙黄绿青蓝紫 对应的三原色
-    /// </summary>
-    private Color[] invincibleColor = { new Color(255, 0, 0), new Color(255, 128, 0), new Color(255, 255, 0), new Color(0, 255, 0), new Color(0, 255, 255), new Color(0, 0, 255), new Color(128, 0, 255), new Color(255, 255, 255) };
     private IPlayerMediator playerMediator;
     private ISkill skill;
     private Animator anim;
+    private bool isfly;
     private CharacterController controller;
     private Vector3 velocity;
     private PlayerState state;
@@ -27,12 +22,18 @@ public class Player : MonoBehaviour {
     private SphereCollider lHard;
     [SerializeField]
     private SphereCollider rHard;
+    public bool isApplyGravity = true;
 
     public Vector3 Velocity
     {
         get
         {
             return velocity;
+        }
+
+        set
+        {
+            velocity = value;
         }
     }
     public ISkill Skill
@@ -42,6 +43,28 @@ public class Player : MonoBehaviour {
             return skill;
         }
     }
+
+    public PlayerState State
+    {
+        get
+        {
+            return state;
+        }
+
+        private set
+        {
+            state = value;
+        }
+    }
+
+    public bool Isfly
+    {
+        get
+        {
+            return isfly;
+        }
+    }
+
     void Awake()
     {
     }
@@ -50,15 +73,16 @@ public class Player : MonoBehaviour {
     /// </summary>
     void Start()
     {
-        state = PlayerState.Instance;
+        State = PlayerState.Instance;
         anim = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
         initialVelocity = MotionParameber.initialVelocity * MotionParameber.fixedMotion;
         velocity = new Vector3(initialVelocity, 0, 0);
-        //StartCoroutine(OnAccelerate());
+        StartCoroutine(OnAccelerate());
         anim.SetFloat(AnimationParameter.xSpeed, velocity.x);
         anim.SetFloat(AnimationParameter.ySpeed, velocity.y);
         anim.SetInteger(AnimationParameter.jump, AnimationParameter.jumpGround);
+        //StartCoroutine(OnFly(10f));
     }
     /// <summary>
     /// 每帧移动物体，并对物体施加重力
@@ -71,23 +95,13 @@ public class Player : MonoBehaviour {
         Vector3 lastPosition = transform.position;
         CollisionFlags flags = controller.Move(velocity);
         velocity.y = (transform.position.y - lastPosition.y);
-        if ((flags & CollisionFlags.Below) == 0 && (state.singletonState is Run))
+        if ((flags & CollisionFlags.Below) == 0 && (State.singletonState is Run))
         {
-            state.OnJump();
+            State.OnJump();
             anim.SetInteger(AnimationParameter.jump, AnimationParameter.jumpfirst);
         }
         anim.SetFloat(AnimationParameter.xSpeed, velocity.x);
         anim.SetFloat(AnimationParameter.ySpeed, velocity.y);
-        if (state.sharedStates[1] is Invincible)
-        {
-            invincibleEffects.enabled = true;
-            invincibleEffects.color = invincibleColor[Random.Range(0, 7)];
-        }
-        else
-        {
-            invincibleEffects.enabled = false;
-            invincibleEffects.color = invincibleColor[7];
-        }
         if (transform.position.y < MotionParameber.yLimit)
         {
             playerMediator.OnDropOutPit();
@@ -100,6 +114,8 @@ public class Player : MonoBehaviour {
     /// <returns></returns>
     Vector3 ApplyGravity(Vector3 velocity)
     {
+        if (!isApplyGravity)
+            return velocity;
         velocity.y -= MotionParameber.gravity * MotionParameber.fixedMotion;
         return velocity;
     }
@@ -110,18 +126,18 @@ public class Player : MonoBehaviour {
     {
         if (skill != null)
             return;
-        if (state.singletonState is Run)
+        if (State.singletonState is Run)
         {
             velocity.y = 0;
             velocity += MotionParameber.jumpDir * MotionParameber.fixedMotion;
-            state.OnJump();
+            State.OnJump();
             anim.SetInteger(AnimationParameter.jump, AnimationParameter.jumpfirst);
         }
-        else if (state.singletonState is FirstJump)
+        else if (State.singletonState is FirstJump)
         {
             velocity.y = 0;
             velocity += MotionParameber.jumpDir * MotionParameber.secondJump * MotionParameber.fixedMotion;
-            state.OnJump();
+            State.OnJump();
             anim.SetInteger(AnimationParameter.jump, AnimationParameter.jumpsecond);
         }
 
@@ -145,7 +161,7 @@ public class Player : MonoBehaviour {
     /// <param name="skill"></param>
     public void OnStartSkill(ISkill skill)
     {
-        if (state.sharedStates[0] is GeneralSkill || state.sharedStates[0] is UnInterruptedSkill)
+        if (State.sharedStates[0] is GeneralSkill || State.sharedStates[0] is UnInterruptedSkill)
             return;
         if (this.skill != null)
         {
@@ -164,13 +180,13 @@ public class Player : MonoBehaviour {
             }
             else if (skill is SkillFlashAuxiliary)
             {
-                skill.OnStartSkillAnimation(transform, anim, state);
+                skill.OnStartSkillAnimation(transform, anim, State);
             }
         }
         else
         {
             this.skill = skill;
-            skill.OnStartSkillAnimation(transform, anim, state);
+            skill.OnStartSkillAnimation(transform, anim, State);
             if(skill is IMeleeAttack)
             {
                 lHard.enabled = true;
@@ -183,7 +199,7 @@ public class Player : MonoBehaviour {
     /// </summary>
     public void OnMiddleSkill()
     {
-        skill.OnMiddleSkillAnimation(FlyItemPosition, anim, state);
+        skill.OnMiddleSkillAnimation(FlyItemPosition, anim, State);
     }
     /// <summary>
     /// 使用技能结束
@@ -191,7 +207,7 @@ public class Player : MonoBehaviour {
     public void OnEndSkill()
     {
 
-        skill.OnEndSkillAnimation(transform, anim, state);
+        skill.OnEndSkillAnimation(transform, anim, State);
         if (skill is IMeleeAttack)
         {
             lHard.enabled = false;
@@ -206,9 +222,9 @@ public class Player : MonoBehaviour {
     /// <param name="hit"></param>
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if ((controller.collisionFlags & CollisionFlags.Below) != 0 && !(state.singletonState is Run))
+        if ((controller.collisionFlags & CollisionFlags.Below) != 0 && !(State.singletonState is Run))
         {
-            state.OnGrounded();
+            State.OnGrounded();
             anim.SetInteger(AnimationParameter.jump, AnimationParameter.jumpGround);
         }
     }
@@ -269,7 +285,7 @@ public class Player : MonoBehaviour {
         //Debug.Log(velocity);
         Vector3 position = transform.position;
         position += MotionParameber.rebornDelta;
-        position.y = 0;
+        position.y = 3;
         transform.position = position;
         velocity.y = 0;
     }
@@ -280,16 +296,19 @@ public class Player : MonoBehaviour {
     /// <returns></returns>
     IEnumerator OnInvincibleTime(float time)
     {
-        while (state.sharedStates[1] is Invincible)
+        while (State.sharedStates[1] is Invincible)
         {
             yield return new WaitForFixedUpdate();
             time -= MotionParameber.fixedMotion;
             if (time <= 0)
                 break;
         }
-        state.OnUnHurt();
+        State.OnUnHurt();
+        //effect[4].SetActive(true);
         yield return new WaitForSeconds(time);
-        state.OnHurt();
+        //effect[4].SetActive(false);
+        State.OnHurt();
+        //effect[4].SetActive(false);
     }
     /// <summary>
     /// 辅助技能：加速
@@ -308,7 +327,7 @@ public class Player : MonoBehaviour {
     /// <param name="monster"></param>
     void OnHurt(GameObject monster)
     {
-        if (state.sharedStates[1] is UnInvincile)
+        if (State.sharedStates[1] is UnInvincile)
         {
             playerMediator.OnInjured(monster.transform.root.gameObject);
             StartCoroutine(OnInvincibleTime(SkillParameber.hurtInvilicibleTime));
@@ -324,9 +343,6 @@ public class Player : MonoBehaviour {
     {
         Debug.Log("restart");
     }
-    /// <summary>
-    /// 拾取道具
-    /// </summary>
     public void OnPlayEffect(int id)
     {
         effect[this.id].SetActive(false);
@@ -334,5 +350,25 @@ public class Player : MonoBehaviour {
             Debug.Log(id);
         this.id = id;
         effect[id].SetActive(true);
+    }
+    public IEnumerator OnFly(float time)
+    {
+        isfly = true;
+        velocity.y = 0;
+        anim.SetTrigger(AnimationParameter.fly);
+        isApplyGravity = false;
+        effect[5].SetActive(true);
+        while (transform.position.y < 5f)
+        {
+            transform.Translate(0, 2f*MotionParameber.fixedMotion, 0);
+            velocity.y = 0;
+            yield return new WaitForFixedUpdate();
+            time -= MotionParameber.fixedMotion;
+        }
+        yield return new WaitForSeconds(time);
+        effect[5].SetActive(false);
+        isApplyGravity = true;
+        velocity.y = 0;
+        isfly = false;
     }
 }

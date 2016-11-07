@@ -9,7 +9,7 @@ public class SkillBigRollAttack : IMeleeAttack
     {
         get
         {
-            return 2;
+            return 0.2f;
         }
     }
 

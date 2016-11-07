@@ -46,5 +46,6 @@ public class SkillRangeAttack : IMeleeAttack
     {
         anim.SetInteger(AnimationParameter.skill, AnimationParameter.skillRangeAttack);
         state.OnUseSkill(true);
+
     }
 }

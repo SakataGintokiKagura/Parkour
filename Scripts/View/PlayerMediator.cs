@@ -45,6 +45,8 @@ public class PlayerMediator : Mediator,IPlayerMediator {
     }
     public void OnUseSkill(ISkill skill)
     {
+        if (player.Isfly)
+            return;
         if(PlayerState.Instance.sharedStates[0] == null)
         {
             if(PlayerState.Instance.singletonState is Run)
@@ -64,6 +66,8 @@ public class PlayerMediator : Mediator,IPlayerMediator {
     }
     public void OnInjured(GameObject monster)
     {
+        if (player.Isfly)
+            return;
         SendNotification(EventsEnum.playerInjured, monster);
     }
     public override IList<string> ListNotificationInterests()
@@ -119,6 +123,8 @@ public class PlayerMediator : Mediator,IPlayerMediator {
 
     public void OnJump()
     {
+        if (player.Isfly)
+            return;
         player.OnJump();
     }
     public void OnGetScoure(int scoure)
@@ -127,7 +133,6 @@ public class PlayerMediator : Mediator,IPlayerMediator {
     }
     public void OnDropOutPit()
     {
-
         SendNotification(EventsEnum.playerDropOutPit);
     }
 

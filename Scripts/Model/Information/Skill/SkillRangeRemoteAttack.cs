@@ -60,5 +60,11 @@ public class SkillRangeRomateAttack : ISkill
     {
         anim.SetInteger(AnimationParameter.skill, AnimationParameter.skillRangeRemoteAttack);
         state.OnUseSkill(true);
+        Player player = PlayerMediator.OnGetPlayerMediator().player;
+        if (!(player.State.singletonState is Run))
+        {
+            if (player.Velocity.y < -0.1f)
+                player.Velocity += Vector3.up * 0.3f;
+        }
     }
 }
