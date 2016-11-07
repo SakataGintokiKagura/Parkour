@@ -1,0 +1,5 @@
+ID	name	priority	path
+1	Prop	1	Prop/
+2	Monster	2	Monster/
+3	Coins	3	Coins/
+4	Terrain/	4	terrain/

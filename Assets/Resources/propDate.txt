@@ -1,0 +1,4 @@
+ID	propName	property	propShape
+1	prop_HP	PlayerHPChange	sphere
+2	prop_MP	PlayerMPChange	cylinder
+3	prop_score	PlayerGetScoure	cube

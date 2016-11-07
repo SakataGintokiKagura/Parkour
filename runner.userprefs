@@ -1,0 +1,34 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench>
+    <Files>
+      <File FileName="Assets\Parkour\Scripts\Model\parameter\MotionParameber.cs" Line="1" Column="1" />
+      <File FileName="Assets\Parkour\Scripts\ReadTable.cs" Line="1" Column="1" />
+      <File FileName="Assets\Parkour\Scripts\View\Player\Player.cs" Line="1" Column="1" />
+      <File FileName="Assets\Parkour\Scripts\Model\PlayerState\FirstJump.cs" Line="1" Column="1" />
+      <File FileName="Assets\Parkour\Scripts\View\Player\UI.cs" Line="1" Column="1" />
+      <File FileName="Assets\Parkour\Scripts\Model\MonsterProxy.cs" Line="5" Column="31" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="D:\unity project\runner\Assets\Parkour\Scripts\Model\parameter\MotionParameber.cs" line="114" column="28" />
+      <Breakpoint file="D:\unity project\runner\Assets\Parkour\Scripts\Model\parameter\MotionParameber.cs" line="113" column="1" />
+      <Breakpoint file="D:\unity project\runner\Assets\Parkour\Scripts\Model\parameter\MotionParameber.cs" line="115" column="1" />
+      <Breakpoint file="D:\unity project\runner\Assets\Parkour\Scripts\View\Player\Player.cs" line="35" column="83" />
+      <Breakpoint file="D:\unity project\runner\Assets\Parkour\Scripts\Model\parameter\MotionParameber.cs" line="31" column="1" />
+      <Breakpoint file="D:\unity project\runner\Assets\Parkour\Scripts\Model\parameter\MotionParameber.cs" line="32" column="1" />
+      <Breakpoint file="D:\unity project\runner\Assets\Parkour\Scripts\Model\parameter\MotionParameber.cs" line="33" column="1" />
+      <Breakpoint file="D:\unity project\runner\Assets\Parkour\Scripts\Model\parameter\MotionParameber.cs" line="34" column="1" />
+      <Breakpoint file="D:\unity project\runner\Assets\Parkour\Scripts\Model\parameter\MotionParameber.cs" line="35" column="1" />
+      <Breakpoint file="D:\unity project\runner\Assets\Parkour\Scripts\Model\parameter\MotionParameber.cs" line="36" column="1" />
+      <Breakpoint file="D:\unity project\runner\Assets\Parkour\Scripts\Model\parameter\MotionParameber.cs" line="37" column="87" />
+      <Breakpoint file="D:\unity project\runner\Assets\Parkour\Scripts\Model\parameter\MotionParameber.cs" line="38" column="1" />
+      <Breakpoint file="D:\unity project\runner\Assets\Parkour\Scripts\Model\parameter\MotionParameber.cs" line="39" column="1" />
+      <Breakpoint file="D:\unity project\runner\Assets\Parkour\Scripts\Model\parameter\MotionParameber.cs" line="40" column="1" />
+      <Breakpoint file="D:\unity project\runner\Assets\Parkour\Scripts\Model\parameter\MotionParameber.cs" line="42" column="1" />
+      <Breakpoint file="D:\unity project\runner\Assets\Parkour\Scripts\Model\parameter\MotionParameber.cs" line="41" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

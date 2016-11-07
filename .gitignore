@@ -1,6 +1,15 @@
 # Windows image file caches
+Temp/
+Library/
 Thumbs.db
 ehthumbs.db
+obj/
+*.suo
+/*.sln
+*.user
+*.unityproj
+*.booproj
+.Trashes
 
 # Folder config file
 Desktop.ini
