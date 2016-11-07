@@ -7,7 +7,26 @@ public class BossGasInformation : IBlology {
 	public int damage{get;set;}
 	public int HP{get;set;}
 	public int normalAttackDistance { get; set; }
-	public bool hasAttack { get; set; }
+    public void OnInView(Transform tran)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void OnAttack(Transform tran)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void OnOutOfAttack(Transform tran)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void OnOutView(Transform tran)
+    {
+        throw new System.NotImplementedException();
+    }
+
 	//public Transform trans { get; set; }
 	public BossGasInformation(float time)
 	{
@@ -16,9 +35,5 @@ public class BossGasInformation : IBlology {
 		this.HP = int.Parse (monsterchomper.OnFind ("monsterDate", ID.ToString (), "HP"));
 		this.damage = int.Parse (monsterchomper.OnFind ("monsterDate", ID.ToString (), "damage"));
 		normalAttackDistance = int.Parse (monsterchomper.OnFind ("monsterDate", ID.ToString (), "range"));
-
-		hasAttack = false;
-
-
 	}
 }
