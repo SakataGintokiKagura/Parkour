@@ -32,7 +32,7 @@ public class MemoryController:MonoBehaviour{
 		
 		isLoading = new bool[MemoryParameter.objectType];
 
-//		URL="jar:file://" + Application.dataPath + "!/assets/";
+		//URL="jar:file://" + Application.dataPath + "!/assets/";
 		URL="file://" + Application.dataPath + "/StreamingAssets/";
 //    	PathURL =Application.dataPath + "/StreamingAssets/";
 //		PathURL = Application.dataPath +"!assets/";
