@@ -20,9 +20,8 @@ public class MonsterCreatePosition : MonoBehaviour {
 		MonsterMediator.OnGetMonsterMediator().monsterCreatePosition = position;
         if (gameObject.transform.position.x-count>=15f) {
 			count = gameObject.transform.position.x;
-			if (isCreateMonster&&isContactTerrain) {
+			if (isCreateMonster&&isContactTerrain) 
 				MonsterMediator.OnGetMonsterMediator ().OnCreateMonster ();
-			}
 		}
 	}
 
