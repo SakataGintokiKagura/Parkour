@@ -99,7 +99,6 @@ public class UI : MonoBehaviour
             skillName = skillName + "B";
             stringLen++;
             curTime = 0;
-
         }
         if (startReadTime == true)
         {
