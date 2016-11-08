@@ -149,6 +149,7 @@
      <None Include="Assets\Resources\terrainDate.txt" />
      <None Include="Assets\Resources\motionParameber.txt" />
      <None Include="Assets\Resources\tableDate.txt" />
+     <None Include="Assets\Resources\PetParaember.txt" />
      <None Include="Assets\Resources\coinDate.txt" />
      <None Include="Assets\Resources\monsterParameber.txt" />
      <None Include="Assets\Resources\cameraParamber.txt" />
