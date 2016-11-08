@@ -572,13 +572,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000012744647182}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a61df8c2e1b31442a75208c64014ee2, type: 3}
+  m_Script: {fileID: 11500000, guid: 6bf59bc5f62ad1540ae257315cce83e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: {fileID: 114000012458338226}
-  MP: {fileID: 114000011461301064}
-  injured: {fileID: 114000012728710444}
-  allCoin: {fileID: 114000011199105868}
+  HP: {fileID: 0}
+  MP: {fileID: 0}
+  injured: {fileID: 0}
+  allCoin: {fileID: 0}
 --- !u!114 &114000012402574240
 MonoBehaviour:
   m_ObjectHideFlags: 1

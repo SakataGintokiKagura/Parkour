@@ -11,7 +11,6 @@ public class Monster : MonoBehaviour
 {
     private IMonsterMediator monsterMediator;
     private Dictionary<IBlology, GameObject> monster;
-    public GameObject[] monsterPrefabs;
     private List<GameObject> outList = new List<GameObject>();
     public GameObject player;
     private float initialPosition = 0;

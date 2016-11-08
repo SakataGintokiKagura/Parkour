@@ -1,6 +1,5 @@
-ID	name	dateType	dateValue	coinLength
-null	string	int		
-1	Star			
-2	Line			
-3	Arc			
-4	LowtoHigh
+ID	name	memoryID	
+1	Star	3			
+2	Line	3			
+3	Arc	3			
+4	LowtoHigh	3

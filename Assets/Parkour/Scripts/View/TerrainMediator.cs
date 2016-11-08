@@ -57,8 +57,6 @@ public class TerrainMediator : Mediator, ITerrainMediator
     }
     public override void HandleNotification(INotification notification)
     {
-        //        base.HandleNotification(notification);
-        //
         switch (notification.Name){  
 		case EventsEnum.terrainCreateSuccess:
                 
@@ -69,38 +67,32 @@ public class TerrainMediator : Mediator, ITerrainMediator
 			GameObject newTerrain = MemoryController.instance.OnFindGameObjectByName (
 				                        temp.OnFind ("terrainDate", infor.OnGetTerrain ().ToString (), "terrainName"),
 				                        new Vector3 ((terrain.getN () + 1) * TerrainParameter.mapSize, 0, 0),
-				                        temp.OnFind ("memoryObjectParameter", "4", "priority"),
-				                        temp.OnFind ("memoryObjectParameter", "4", "path")
+				                        temp.OnFind ("terrainDate", infor.OnGetTerrain ().ToString (), "memoryID")
 			                        );
 
 			if (newTerrain != null)
-				OnEnqueueOldTerraian (newTerrain);
+				OnEnqueueOldTerrain (newTerrain);
 
-			//List<GameObject> newCoinList = new List<GameObject> ();
-
-			//GameObject newCoin;
 			List<Coin> coin = infor.OnGetCoin ();
 			lastPosition = new Vector3 (coin[coin.Count-1].OnGetStart () + ((terrain.getN () + 1) * TerrainParameter.mapSize), coin[coin.Count-1].OnGetHigh (), 0);
 			foreach (Coin item in infor.OnGetCoin()) {
 				GameObject CoinTemp = MemoryController.instance.OnFindGameObjectByName (
 					temp.OnFind ("coinDate", item.OnGetKind ().ToString (), "name"), 
 					new Vector3 (item.OnGetStart () + ((terrain.getN () + 1) * TerrainParameter.mapSize), item.OnGetHigh (), 0),
-					temp.OnFind ("memoryObjectParameter", "3", "priority"),
-					temp.OnFind ("memoryObjectParameter", "3", "path")
+					temp.OnFind ("coinDate", item.OnGetKind ().ToString (), "memoryID")
 				);
-				if (CoinTemp) {
+				if (CoinTemp) 
 					OnEnqueueOldCoin (CoinTemp);
-				}
 			}
 
 			if (terrain.getN() >= 2)       
 			{  
-				GameObject deleterTerrain = oldTerrain.Dequeue(); 
-				deleterTerrain.SetActive (false);
-				MemoryController.instance.OnAddObject(deleterTerrain,ReadTable.getTable.OnFind("memoryObjectParameter","4","priority"));
+				GameObject deleteTerrain = oldTerrain.Dequeue(); 
+				deleteTerrain.SetActive (false);
+				MemoryController.instance.OnAddObject(deleteTerrain,ReadTable.getTable.OnFind("memoryObjectParameter","4","priority"));
 				if (oldCoin.Count > 0) {
-					List<GameObject> deleterCoin = oldCoin.Dequeue ();    
-					foreach (GameObject elem in deleterCoin) {
+					List<GameObject> deleteCoin = oldCoin.Dequeue ();    
+					foreach (GameObject elem in deleteCoin) {
 						if (elem)
 							elem.SetActive (false);
 						MemoryController.instance.OnAddObject (elem, ReadTable.getTable.OnFind ("memoryObjectParameter", "3", "priority"));
@@ -115,7 +107,7 @@ public class TerrainMediator : Mediator, ITerrainMediator
 		}
     }
 
-	public void OnEnqueueOldTerraian(GameObject terrain){
+	public void OnEnqueueOldTerrain(GameObject terrain){
 		this.oldTerrain.Enqueue(terrain);
 	}
 

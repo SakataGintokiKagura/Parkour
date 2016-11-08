@@ -49,8 +49,7 @@ public class SkillNormalRemoteAttack : IEnbaleAirSkill
 		MemoryController.instance.OnFindGameObjectByName (
 			table.OnFind("flyItemDate", "1", "name"),
 			transform.position,
-			table.OnFind ("memoryObjectParameter", "5", "priority"),
-			table.OnFind ("memoryObjectParameter", "5", "path")
+			table.OnFind("flyItemDate", "1", "memoryID")
 		);
 
 //        GameObject temp = Resources.Load("FlyItem/" + table.OnFind("flyItemDate", "1", "name"))as GameObject;

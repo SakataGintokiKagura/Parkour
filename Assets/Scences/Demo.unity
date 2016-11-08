@@ -389,6 +389,16 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013882025116, guid: 801ef8fddbcbac84f94bf03fa9b87b39,
+        type: 2}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 132000010767578498, guid: 801ef8fddbcbac84f94bf03fa9b87b39,
+        type: 2}
+      propertyPath: m_Text
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 801ef8fddbcbac84f94bf03fa9b87b39, type: 2}
   m_IsPrefabParent: 0
@@ -2007,7 +2017,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4653489fc4e009443b61bb21a69c026d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterPrefabs: []
   player: {fileID: 1928589355}
 --- !u!114 &1603873198
 MonoBehaviour:

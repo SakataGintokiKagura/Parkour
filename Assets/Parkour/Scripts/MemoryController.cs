@@ -1,4 +1,4 @@
-﻿ using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System;
@@ -16,37 +16,37 @@ public class MemoryController:MonoBehaviour{
 
 	private string URL;
 
-    private GameObject temp;
+	private GameObject temp;
 
-    public static MemoryController instance
-    {
-        get
-        {
-            if (_instance==null)
+	public static MemoryController instance
+	{
+		get
+		{
+			if (_instance==null)
 				_instance=new MemoryController();
-            return _instance;
-        }
-    }
+			return _instance;
+		}
+	}
 
 	void Start(){ 
-		
+
 		isLoading = new bool[MemoryParameter.objectType];
 
 		//URL="jar:file://" + Application.dataPath + "!/assets/";
 		URL="file://" + Application.dataPath + "/StreamingAssets/";
-//    	PathURL =Application.dataPath + "/StreamingAssets/";
-//		PathURL = Application.dataPath +"!assets/";
-		
+		//    	PathURL =Application.dataPath + "/StreamingAssets/";
+		//		PathURL = Application.dataPath +"!assets/";
+
 		memoryList=new List<GameObject>[MemoryParameter.objectType];
 
 		for(int i=0;i<MemoryParameter.objectType;i++)
 			memoryList [i] = new List<GameObject> ();
 	}
-		
+
 	void Awake(){
 		if(_instance==null)
 			_instance = this;
-		
+
 	}
 
 	void Update(){
@@ -58,7 +58,13 @@ public class MemoryController:MonoBehaviour{
 		return memoryList[(int.Parse(num))-1];
 	}
 
-	public GameObject OnFindGameObjectByName(string name,Vector3 position,string serial,string path){
+	public GameObject OnFindGameObjectByName(string name,Vector3 position,string ID){
+		//string serial,string path,string load
+
+		ReadTable temp = ReadTable.getTable;
+		string serial = temp.OnFind ("memoryObjectParameter", ID, "priority");
+		string path= temp.OnFind ("memoryObjectParameter", ID, "path");
+		string load= temp.OnFind ("memoryObjectParameter", ID, "load");
 
 		string nameClone = name + "(Clone)";
 		foreach (var go in memoryList[(int.Parse(serial))-1])
@@ -68,34 +74,44 @@ public class MemoryController:MonoBehaviour{
 				go.transform.position = position;
 				go.SetActive(true);
 				memoryList[(int.Parse(serial))-1].Remove(go);
-                return go;    
+				return go;    
 			}
 		}
 
-//      AssetBundle bundle = AssetBundle.LoadFromFile(PathURL+path+name+".assetbundle");
-//		GameObject obj =Instantiate(bundle.LoadAsset(name) ,position,Quaternion.identity)as GameObject;
-//		bundle.Unload (false);
+		//      AssetBundle bundle = AssetBundle.LoadFromFile(PathURL+path+name+".assetbundle");
+		//		GameObject obj =Instantiate(bundle.LoadAsset(name) ,position,Quaternion.identity)as GameObject;
+		//		bundle.Unload (false);
 
-//		if (path == "FlyItem/") {
-//			GameObject temp = Resources.Load(path + name) as GameObject;
-//			return Instantiate(temp, position, temp.transform.rotation)as GameObject;
-//		}
-//		else
-//			return Instantiate(Resources.Load(path + name), position, Quaternion.identity) as GameObject;
-
-		if (path == "Monster/" || path == "Coins/") {
-			StartCoroutine (LoadAssetAsyncCoroutine (path, name, position, serial));
-			return null;
-		}
-		else if(path == "FlyItem/") {
-			GameObject temp = Resources.Load(path + name) as GameObject;
-			return Instantiate(temp, position, temp.transform.rotation)as GameObject;
-		}
-        else
-			return Instantiate(Resources.Load(path + name), position, Quaternion.identity) as GameObject;            
+		MemoryController cb = MemoryController.instance;
+		Type t =cb.GetType ();
+		return (GameObject)t.InvokeMember (load,BindingFlags.Instance | BindingFlags.Public | BindingFlags.InvokeMethod,
+	    null, cb, new object[] {name, position, serial, path });
 	}
 
-	
+	public GameObject OnCreateTerrain(string name,Vector3 position,string serial,string path){
+		GameObject temp = Resources.Load(path + name) as GameObject;
+		return Instantiate(temp, position, temp.transform.rotation)as GameObject;
+	}
+
+	public GameObject OnCreateProp(string name,Vector3 position,string serial,string path){
+		return Instantiate(Resources.Load(path + name), position, Quaternion.identity) as GameObject;
+	}
+
+	public GameObject OnCreateFlyItem(string name,Vector3 position,string serial,string path){
+		GameObject temp = Resources.Load(path + name) as GameObject;
+		return Instantiate(temp, position, temp.transform.rotation)as GameObject;
+	}
+
+	public GameObject OnCreateMonster(string name,Vector3 position,string serial,string path){
+		StartCoroutine (LoadAssetAsyncCoroutine (path, name, position, serial));
+		return null;
+	}
+
+	public GameObject OnCreateCoin(string name,Vector3 position,string serial,string path){
+		StartCoroutine (LoadAssetAsyncCoroutine (path, name, position, serial));
+		return null;
+	}
+
 	public void OnAddObject(GameObject go,string num)
 	{
 		memoryList [(int.Parse(num))-1].Add (go);
@@ -106,7 +122,7 @@ public class MemoryController:MonoBehaviour{
 		memoryList [(int.Parse(num)-1)].Remove (go);
 	}
 
-	
+
 	public void deleteListObject(){
 		while (Profiler.GetTotalAllocatedMemory () >= MemoryParameter.threshold) {
 			for (int i = 0; i < MemoryParameter.objectType; i++) {
@@ -128,7 +144,7 @@ public class MemoryController:MonoBehaviour{
 	IEnumerator LoadAssetAsyncCoroutine(string path,string name, Vector3 position,string serial)
 	{
 		WWW www = new WWW(URL+path+name+".assetbundle");
-        yield return www;
+		yield return www;
 		while (isLoading[int.Parse(serial)-1]) {
 			yield return new WaitForSeconds (0.06f);
 		}
@@ -137,15 +153,18 @@ public class MemoryController:MonoBehaviour{
 		OnReturn(path,temp);
 		www.assetBundle.Unload (false);
 		isLoading [int.Parse (serial) - 1] = false;
-        www.Dispose();
-        www = null;
-    }
-		
+		www.Dispose();
+		www = null;
+	}
+
 	private void OnReturn(string path,UnityEngine.Object @object)
-    {
+	{
 		if (path == "Monster/")
 			MonsterMediator.OnGetMonsterMediator().OnAddMonster((GameObject)@object);
 		if (path == "Coins/")
 			TerrainMediator.OnGetTerrainMediator ().OnEnqueueOldCoin ((GameObject)@object);
-    }
+		if (path == "Terrain/")
+			TerrainMediator.OnGetTerrainMediator ().OnEnqueueOldTerrain ((GameObject)@object);
+	}
 }
+

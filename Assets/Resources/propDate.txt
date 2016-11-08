@@ -1,4 +1,4 @@
-ID	propName	property	propShape
-1	prop_HP	PlayerHPChange	sphere
-2	prop_MP	PlayerMPChange	cylinder
-3	prop_score	PlayerGetScoure	cube
+ID	propName	property	propShape	memoryID
+1	prop_HP	PlayerHPChange	sphere	1
+2	prop_MP	PlayerMPChange	cylinder	1
+3	prop_score	PlayerGetScoure	cube	1

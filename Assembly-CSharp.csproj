@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{1231BB7E-CE19-282C-7A69-EFAADCEBE4E7}</ProjectGuid>
+    <ProjectGuid>{8FC88C1C-2DD0-EEDF-5469-9A4AFFA6E67F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -38,32 +38,47 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>E:/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>E:/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Art\Effect\Scripts\TextureFrameAnimation.cs" />
+     <Compile Include="Assets\Art\Effect\Scripts\TextureTileAnimation.cs" />
+     <Compile Include="Assets\Art\Effect\Scripts\UVAnimation.cs" />
+     <Compile Include="Assets\ExportAssetBundles.cs" />
      <Compile Include="Assets\Parkour\Scripts\ApplicationFacade.cs" />
      <Compile Include="Assets\Parkour\Scripts\CameraFollow.cs" />
      <Compile Include="Assets\Parkour\Scripts\Controller\Monster\MonsterCreate.cs" />
+     <Compile Include="Assets\Parkour\Scripts\Controller\Monster\MonsterCreateBoss.cs" />
      <Compile Include="Assets\Parkour\Scripts\Controller\Monster\MonsterCreateGameObject.cs" />
      <Compile Include="Assets\Parkour\Scripts\Controller\Monster\MonsterDestroy.cs" />
      <Compile Include="Assets\Parkour\Scripts\Controller\Monster\MonsterInjured.cs" />
+     <Compile Include="Assets\Parkour\Scripts\Controller\Monster\skill.cs" />
      <Compile Include="Assets\Parkour\Scripts\Controller\Player\PlayerDropOutPit.cs" />
      <Compile Include="Assets\Parkour\Scripts\Controller\Player\PlayerGetSource.cs" />
      <Compile Include="Assets\Parkour\Scripts\Controller\Player\PlayerInjured.cs" />
+     <Compile Include="Assets\Parkour\Scripts\Controller\Player\PlayerPickUpProp.cs" />
      <Compile Include="Assets\Parkour\Scripts\Controller\Player\PlayerUseSkill.cs" />
+     <Compile Include="Assets\Parkour\Scripts\Controller\Prop\PropCreate.cs" />
+     <Compile Include="Assets\Parkour\Scripts\Controller\Prop\PropDestroy.cs" />
      <Compile Include="Assets\Parkour\Scripts\Controller\Terrain\TerrainCreate.cs" />
      <Compile Include="Assets\Parkour\Scripts\Enum\AggregateEnum.cs" />
      <Compile Include="Assets\Parkour\Scripts\Enum\EventsEnum.cs" />
+     <Compile Include="Assets\Parkour\Scripts\MemoryController.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\Information\IBlology.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\Information\ITerrain.cs" />
+     <Compile Include="Assets\Parkour\Scripts\Model\Information\MonsterInformation\BlueGasInformation.cs" />
+     <Compile Include="Assets\Parkour\Scripts\Model\Information\MonsterInformation\BossGasInformation.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\Information\MonsterInformation\ChomperInformation.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\Information\MonsterInformation\DragonInformation.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\Information\MonsterInformation\GasInformation.cs" />
+     <Compile Include="Assets\Parkour\Scripts\Model\Information\MonsterInformation\RedGasInformation.cs" />
+     <Compile Include="Assets\Parkour\Scripts\Model\Information\MonsterInformation\RocketInformation.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\Information\MonsterInformation\TortoiseInformation.cs" />
+     <Compile Include="Assets\Parkour\Scripts\Model\Information\MonsterInformation\WhirlwindInformation.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\Information\PLayerInformation.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\Information\Skill\IAuxiliary.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\Information\Skill\IEnbaleAirSkill.cs" />
@@ -73,6 +88,7 @@
      <Compile Include="Assets\Parkour\Scripts\Model\Information\Skill\SkillBigRemoteAttack.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\Information\Skill\SkillBigRollAttack.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\Information\Skill\SkillCallRemoteAttack.cs" />
+     <Compile Include="Assets\Parkour\Scripts\Model\Information\Skill\SkillContinuousAttack.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\Information\Skill\SkillFlashAuxiliary.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\Information\Skill\SkillIaidoAttack.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\Information\Skill\SkillInvicibleAuxiliary.cs" />
@@ -105,44 +121,48 @@
      <Compile Include="Assets\Parkour\Scripts\Model\parameter\SkillParameber.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\parameter\TagParameber.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\parameter\TerrainParameter.cs" />
+     <Compile Include="Assets\Parkour\Scripts\Model\parameter\memoryParameter.cs" />
      <Compile Include="Assets\Parkour\Scripts\ReadTable.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\IMonsterMediator.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\IPlayerMediator.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\ITerrainMediator.cs" />
+     <Compile Include="Assets\Parkour\Scripts\View\Monster\BOSS.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\Monster\Monster.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\Monster\MonsterCreatePosition.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\MonsterMediator.cs" />
-     <Compile Include="Assets\Parkour\Scripts\View\Player\FlyItemSkill\BigRemoteAttack.cs" />
-     <Compile Include="Assets\Parkour\Scripts\View\Player\FlyItemSkill\LightAttack.cs" />
-     <Compile Include="Assets\Parkour\Scripts\View\Player\FlyItemSkill\NormalRemoteAttack.cs" />
-     <Compile Include="Assets\Parkour\Scripts\View\Player\FlyItemSkill\RangeRomateAttack.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\Player\Player.cs" />
+     <Compile Include="Assets\Parkour\Scripts\View\Player\RemoteAttack.cs" />
+     <Compile Include="Assets\Parkour\Scripts\View\Player\ShortRangeHurtCheck.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\Player\UI.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\PlayerMediator.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\Terrain\Terrain.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\TerrainMediator.cs" />
-     <None Include="Assets\Resources\skillDate.txt" />
-     <None Include="Assets\Standard Assets\Detonator\Resources\Detonator\Textures\HeatDistort.shader" />
-     <None Include="Assets\Resources\skillParaember.txt" />
-     <None Include="Assets\Resources\Shaders\Character.shader" />
-     <None Include="Assets\Resources\motionParameber.txt" />
+     <None Include="Assets\Resources\effectDate.txt" />
+     <None Include="Assets\Resources\monsterDate.txt" />
+     <None Include="Assets\Resources\skillParameber.txt" />
+     <None Include="Assets\Resources\memoryObjectParameter.txt" />
      <None Include="Assets\Resources\animationParameter.txt" />
+     <None Include="Assets\Resources\skillDate.txt" />
+     <None Include="Assets\Resources\memoryParameter.txt" />
+     <None Include="Assets\Resources\terrainParamber.txt" />
+     <None Include="Assets\Resources\Shaders\Character.shader" />
+     <None Include="Assets\Resources\flyItemDate.txt" />
+     <None Include="Assets\Resources\terrainDate.txt" />
+     <None Include="Assets\Resources\motionParameber.txt" />
      <None Include="Assets\Resources\tableDate.txt" />
+     <None Include="Assets\Resources\coinDate.txt" />
+     <None Include="Assets\Resources\monsterParameber.txt" />
+     <None Include="Assets\Resources\cameraParamber.txt" />
+     <None Include="Assets\Resources\propDate.txt" />
  <Reference Include="UnityEngine.UI">
- <HintPath>E:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
- <HintPath>E:/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="PureMVC.DotNET.35">
- <HintPath>D:/unity project/runner/Assets/Parkour/Plugins/PureMVC.DotNET.35.dll</HintPath>
+ <HintPath>D:/Unity/Runner/Parkour/Assets/Parkour/Plugins/PureMVC.DotNET.35.dll</HintPath>
  </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{C82EF417-CC26-0C00-CFAF-85A037D43B4D}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
-    <ProjectReference Include="Assembly-UnityScript-firstpass.unityproj">
-      <Project>{F70D9997-BA91-FF4A-5983-BECDF37A5414}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
