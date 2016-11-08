@@ -58,7 +58,13 @@ public class MemoryController:MonoBehaviour{
 		return memoryList[(int.Parse(num))-1];
 	}
 
-	public GameObject OnFindGameObjectByName(string name,Vector3 position,string serial,string path,string load){
+	public GameObject OnFindGameObjectByName(string name,Vector3 position,string ID){
+		//string serial,string path,string load
+
+		ReadTable temp = ReadTable.getTable;
+		string serial = temp.OnFind ("memoryObjectParameter", ID, "priority");
+		string path= temp.OnFind ("memoryObjectParameter", ID, "path");
+		string load= temp.OnFind ("memoryObjectParameter", ID, "load");
 
 		string nameClone = name + "(Clone)";
 		foreach (var go in memoryList[(int.Parse(serial))-1])
@@ -80,28 +86,14 @@ public class MemoryController:MonoBehaviour{
 		Type t =cb.GetType ();
 		return (GameObject)t.InvokeMember (load,BindingFlags.Instance | BindingFlags.Public | BindingFlags.InvokeMethod,
 	    null, cb, new object[] {name, position, serial, path });
-
 	}
 
-	public GameObject OnCreateTerrain(string name,Vector3 position,string serial,string path){
-		return Instantiate(Resources.Load(path + name), position, Quaternion.identity) as GameObject;
-	}
-
-	public GameObject OnCreateProp(string name,Vector3 position,string serial,string path){
-		return Instantiate(Resources.Load(path + name), position, Quaternion.identity) as GameObject;
-	}
-
-	public GameObject OnCreateFlyItem(string name,Vector3 position,string serial,string path){
+	public GameObject OnSynchronous(string name,Vector3 position,string serial,string path){
 		GameObject temp = Resources.Load(path + name) as GameObject;
 		return Instantiate(temp, position, temp.transform.rotation)as GameObject;
 	}
 
-	public GameObject OnCreateMonster(string name,Vector3 position,string serial,string path){
-		StartCoroutine (LoadAssetAsyncCoroutine (path, name, position, serial));
-		return null;
-	}
-
-	public GameObject OnCreateCoin(string name,Vector3 position,string serial,string path){
+	public GameObject OnAsynchronous(string name,Vector3 position,string serial,string path){
 		StartCoroutine (LoadAssetAsyncCoroutine (path, name, position, serial));
 		return null;
 	}
@@ -125,7 +117,6 @@ public class MemoryController:MonoBehaviour{
 				if (memoryList [i].Count != 0) {
 					foreach (GameObject go in memoryList [i])
 					{
-						Debug.Log (go.name);
 						memoryList [i].Remove (go);
 						GameObject.Destroy (go);
 						return;
@@ -137,6 +128,8 @@ public class MemoryController:MonoBehaviour{
 
 	IEnumerator LoadAssetAsyncCoroutine(string path,string name, Vector3 position,string serial)
 	{
+//		if(path=="terrain/")
+//			Debug.Log ("Fuck!" + name + "--" + path);
 		WWW www = new WWW(URL+path+name+".assetbundle");
 		yield return www;
 		while (isLoading[int.Parse(serial)-1]) {
@@ -144,6 +137,8 @@ public class MemoryController:MonoBehaviour{
 		}
 		isLoading [int.Parse (serial) - 1] = true;
 		yield return temp = Instantiate(www.assetBundle.mainAsset,position,Quaternion.identity) as GameObject;
+//		if(path=="terrain/")
+//			Debug.Log ("Fuck Again!" + temp.name + "--" + path);
 		OnReturn(path,temp);
 		www.assetBundle.Unload (false);
 		isLoading [int.Parse (serial) - 1] = false;
@@ -153,9 +148,12 @@ public class MemoryController:MonoBehaviour{
 
 	private void OnReturn(string path,UnityEngine.Object @object)
 	{
-		if (path == "Monster/")
-			MonsterMediator.OnGetMonsterMediator().OnAddMonster((GameObject)@object);
-		if (path == "Coins/")
+		if (path == "terrain/") {
+			TerrainMediator.OnGetTerrainMediator ().OnEnqueueOldTerrain ((GameObject)@object);
+		}
+		else if (path == "Monster/") 
+			MonsterMediator.OnGetMonsterMediator ().OnAddMonster ((GameObject)@object);		
+		else if (path == "Coins/") 
 			TerrainMediator.OnGetTerrainMediator ().OnEnqueueOldCoin ((GameObject)@object);
 	}
 }
