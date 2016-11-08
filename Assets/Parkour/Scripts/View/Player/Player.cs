@@ -192,6 +192,8 @@ public class Player : MonoBehaviour {
                 lHard.enabled = true;
                 rHard.enabled = true;
             }
+            if (skill is SkillCallRemoteAttack)
+                OnEndSkill();
         }
     }
     /// <summary>

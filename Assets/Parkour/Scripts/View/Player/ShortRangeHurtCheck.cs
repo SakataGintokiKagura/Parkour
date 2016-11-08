@@ -8,7 +8,7 @@ public class ShortRangeHurtCheck : MonoBehaviour {
     {
         if(col.tag == TagParameber.monster)
         {
-            MonsterMediator.OnGetMonsterMediator().OnInjured(col.gameObject.transform.root.gameObject, skill.Skill);
+            MonsterMediator.OnGetMonsterMediator().OnInjured(col.gameObject, skill.Skill);
             if(skill.Skill is SkillBigRollAttack)
             {
                 Rigidbody rig = col.gameObject.GetComponent<Rigidbody>();
