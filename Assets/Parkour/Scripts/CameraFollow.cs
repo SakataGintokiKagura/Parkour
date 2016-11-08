@@ -33,9 +33,17 @@ public class CameraFollow : MonoBehaviour
         transform.Translate(velocity);
         float xVelocity = transform.position.x - lastPosition;
         if(player.Velocity.x - xVelocity< delta)
-            if (Camera.main.ViewportToWorldPoint(playerPosition).x - playertrans.transform.position.x > 0.5f)
+        {
+            float xPosition = Camera.main.ViewportToWorldPoint(playerPosition).x;
+            if (xPosition - playertrans.transform.position.x > delta)
             {
                 transform.Translate(-velocity * replySpeed);
+            }else if(xPosition - playertrans.transform.position.x < -delta)
+            {
+                transform.Translate(velocity * replySpeed);
             }
+
+        }
+
     }
 }
