@@ -342,12 +342,11 @@ public class Player : MonoBehaviour {
     public void OnReStart()
     {
         Debug.Log("restart");
+        Application.LoadLevel(0);
     }
     public void OnPlayEffect(int id)
     {
         effect[this.id].SetActive(false);
-        if (id == 2)
-            Debug.Log(id);
         this.id = id;
         effect[id].SetActive(true);
     }
