@@ -21,18 +21,9 @@ public class MonsterCreatePosition : MonoBehaviour {
         if (gameObject.transform.position.x-count>=15f) {
 
 			count = gameObject.transform.position.x;
-			if (isCreateMonster&&isContactTerrain) {
-			    if (gameObject.transform.position.x - count >= 16)
-			    {
-			        StartCoroutine(OnWait());
-			    }
-			    else
-			    {
-                    MonsterMediator.OnGetMonsterMediator().OnCreateMonster();
-                }
-				
-			    
-			}
+
+			if (isCreateMonster&&isContactTerrain) 
+				MonsterMediator.OnGetMonsterMediator ().OnCreateMonster ();
 		}
 	}
 

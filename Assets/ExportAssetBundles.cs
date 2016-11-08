@@ -15,7 +15,7 @@ public class ExportAssetBundles : MonoBehaviour {
 			//StreamingAssets是只读路径，不能写入
 			//服务器下载：就不需要放在这里，服务器上客户端用www类进行下载。
 			string targetPath = Application.dataPath + "/StreamingAssets/" + obj.name + ".assetbundle";
-			if (BuildPipeline.BuildAssetBundle (obj, null, targetPath, BuildAssetBundleOptions.CollectDependencies| BuildAssetBundleOptions.CompleteAssets, BuildTarget.StandaloneWindows)) {
+			if (BuildPipeline.BuildAssetBundle (obj, null, targetPath, BuildAssetBundleOptions.CollectDependencies| BuildAssetBundleOptions.CompleteAssets, BuildTarget.Android)) {
 				Debug.Log(obj.name +"资源打包成功");
 			} 
 			else 
