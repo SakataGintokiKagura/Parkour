@@ -58,7 +58,13 @@ public class MemoryController:MonoBehaviour{
 		return memoryList[(int.Parse(num))-1];
 	}
 
-	public GameObject OnFindGameObjectByName(string name,Vector3 position,string serial,string path,string load){
+	public GameObject OnFindGameObjectByName(string name,Vector3 position,string ID){
+		//string serial,string path,string load
+
+		ReadTable temp = ReadTable.getTable;
+		string serial = temp.OnFind ("memoryObjectParameter", ID, "priority");
+		string path= temp.OnFind ("memoryObjectParameter", ID, "path");
+		string load= temp.OnFind ("memoryObjectParameter", ID, "load");
 
 		string nameClone = name + "(Clone)";
 		foreach (var go in memoryList[(int.Parse(serial))-1])
@@ -80,11 +86,11 @@ public class MemoryController:MonoBehaviour{
 		Type t =cb.GetType ();
 		return (GameObject)t.InvokeMember (load,BindingFlags.Instance | BindingFlags.Public | BindingFlags.InvokeMethod,
 	    null, cb, new object[] {name, position, serial, path });
-
 	}
 
 	public GameObject OnCreateTerrain(string name,Vector3 position,string serial,string path){
-		return Instantiate(Resources.Load(path + name), position, Quaternion.identity) as GameObject;
+		GameObject temp = Resources.Load(path + name) as GameObject;
+		return Instantiate(temp, position, temp.transform.rotation)as GameObject;
 	}
 
 	public GameObject OnCreateProp(string name,Vector3 position,string serial,string path){
@@ -157,6 +163,8 @@ public class MemoryController:MonoBehaviour{
 			MonsterMediator.OnGetMonsterMediator().OnAddMonster((GameObject)@object);
 		if (path == "Coins/")
 			TerrainMediator.OnGetTerrainMediator ().OnEnqueueOldCoin ((GameObject)@object);
+		if (path == "Terrain/")
+			TerrainMediator.OnGetTerrainMediator ().OnEnqueueOldTerrain ((GameObject)@object);
 	}
 }
 

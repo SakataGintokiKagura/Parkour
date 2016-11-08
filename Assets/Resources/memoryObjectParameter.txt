@@ -2,5 +2,5 @@ ID	name	priority	path	load
 1	Prop	1	Prop/	OnCreateProp
 2	Monster	2	Monster/	OnCreateMonster
 3	Coins	3	Coins/	OnCreateCoin
-4	Terrain/	4	terrain/	OnCreateTerrain
+4	Terrain	4	terrain/	OnCreateTerrain
 5	FlyItem	5	FlyItem/	OnCreateFlyItem

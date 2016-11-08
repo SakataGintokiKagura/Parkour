@@ -48,6 +48,7 @@
      <Compile Include="Assets\Art\Effect\Scripts\TextureFrameAnimation.cs" />
      <Compile Include="Assets\Art\Effect\Scripts\TextureTileAnimation.cs" />
      <Compile Include="Assets\Art\Effect\Scripts\UVAnimation.cs" />
+     <Compile Include="Assets\ExportAssetBundles.cs" />
      <Compile Include="Assets\Parkour\Scripts\ApplicationFacade.cs" />
      <Compile Include="Assets\Parkour\Scripts\CameraFollow.cs" />
      <Compile Include="Assets\Parkour\Scripts\Controller\Monster\MonsterCreate.cs" />
@@ -75,7 +76,9 @@
      <Compile Include="Assets\Parkour\Scripts\Model\Information\MonsterInformation\DragonInformation.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\Information\MonsterInformation\GasInformation.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\Information\MonsterInformation\RedGasInformation.cs" />
+     <Compile Include="Assets\Parkour\Scripts\Model\Information\MonsterInformation\RocketInformation.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\Information\MonsterInformation\TortoiseInformation.cs" />
+     <Compile Include="Assets\Parkour\Scripts\Model\Information\MonsterInformation\WhirlwindInformation.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\Information\PLayerInformation.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\Information\Skill\IAuxiliary.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\Information\Skill\IEnbaleAirSkill.cs" />
@@ -132,9 +135,7 @@
      <Compile Include="Assets\Parkour\Scripts\View\Player\ShortRangeHurtCheck.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\Player\UI.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\PlayerMediator.cs" />
-     <Compile Include="Assets\Parkour\Scripts\View\Terrain\Move.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\Terrain\Terrain.cs" />
-     <Compile Include="Assets\Parkour\Scripts\View\Terrain\Triggerrr.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\TerrainMediator.cs" />
      <None Include="Assets\Resources\effectDate.txt" />
      <None Include="Assets\Resources\monsterDate.txt" />
