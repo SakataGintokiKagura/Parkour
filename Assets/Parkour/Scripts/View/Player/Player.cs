@@ -82,7 +82,7 @@ public class Player : MonoBehaviour {
         anim.SetFloat(AnimationParameter.xSpeed, velocity.x);
         anim.SetFloat(AnimationParameter.ySpeed, velocity.y);
         anim.SetInteger(AnimationParameter.jump, AnimationParameter.jumpGround);
-        //StartCoroutine(OnFly(10f));
+//        StartCoroutine(OnFly(10f));
     }
     /// <summary>
     /// 每帧移动物体，并对物体施加重力
@@ -359,7 +359,8 @@ public class Player : MonoBehaviour {
         anim.SetTrigger(AnimationParameter.fly);
         isApplyGravity = false;
         effect[5].SetActive(true);
-        while (transform.position.y < 5f)
+        StartCoroutine(OnInvincibleTime(time));
+        while (transform.position.y < 3f)
         {
             transform.Translate(0, 2f*MotionParameber.fixedMotion, 0);
             velocity.y = 0;

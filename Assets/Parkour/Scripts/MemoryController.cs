@@ -88,7 +88,9 @@ public class MemoryController:MonoBehaviour{
 	    null, cb, new object[] {name, position, serial, path });
 	}
 
+
 	public GameObject OnSynchronous(string name,Vector3 position,string serial,string path){
+
 		GameObject temp = Resources.Load(path + name) as GameObject;
 		return Instantiate(temp, position, temp.transform.rotation)as GameObject;
 	}
@@ -148,6 +150,7 @@ public class MemoryController:MonoBehaviour{
 
 	private void OnReturn(string path,UnityEngine.Object @object)
 	{
+
 		if (path == "terrain/") {
 			TerrainMediator.OnGetTerrainMediator ().OnEnqueueOldTerrain ((GameObject)@object);
 		}

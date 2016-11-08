@@ -70,9 +70,14 @@ public class TerrainMediator : Mediator, ITerrainMediator
 				                        temp.OnFind ("terrainDate", infor.OnGetTerrain ().ToString (), "memoryID")
 			                        );
 
+<<<<<<< HEAD
+			if (newTerrain != null)
+				OnEnqueueOldTerrain (newTerrain);
+=======
 			if (newTerrain != null) { 
 				OnEnqueueOldTerrain (newTerrain);
 			}
+>>>>>>> origin/dev
 
 			List<Coin> coin = infor.OnGetCoin ();
 			lastPosition = new Vector3 (coin[coin.Count-1].OnGetStart () + ((terrain.getN () + 1) * TerrainParameter.mapSize), coin[coin.Count-1].OnGetHigh (), 0);
@@ -82,9 +87,12 @@ public class TerrainMediator : Mediator, ITerrainMediator
 					new Vector3 (item.OnGetStart () + ((terrain.getN () + 1) * TerrainParameter.mapSize), item.OnGetHigh (), 0),
 					temp.OnFind ("coinDate", item.OnGetKind ().ToString (), "memoryID")
 				);
+<<<<<<< HEAD
+				if (CoinTemp) 
+=======
 				if (CoinTemp) { 
+>>>>>>> origin/dev
 					OnEnqueueOldCoin (CoinTemp);
-				}
 			}
 
 			if (terrain.getN() >= 2)       
@@ -110,7 +118,11 @@ public class TerrainMediator : Mediator, ITerrainMediator
     }
 
 	public void OnEnqueueOldTerrain(GameObject terrain){
+<<<<<<< HEAD
+		this.oldTerrain.Enqueue(terrain);
+=======
 		oldTerrain.Enqueue(terrain);
+>>>>>>> origin/dev
 	}
 
 	public void OnEnqueueOldCoin(GameObject coin){

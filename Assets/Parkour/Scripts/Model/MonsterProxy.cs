@@ -37,8 +37,6 @@ public class MonsterProxy : Proxy {
         IBlology obj = (IBlology)System.Activator.CreateInstance(t, time);
         MonsterQueue.Enqueue((IBlology)obj);
         SendNotification(EventsEnum.monsterCreateMonsterSuccess, (IBlology)obj);
-
-
     }
 
     public void OnGetMonster(GameObject monster)
@@ -66,13 +64,38 @@ public class MonsterProxy : Proxy {
     private void OnDie(IBlology monster)//一个怪物死亡之后  发送产生的道具，确定是否产生某个道具
     {
         SendNotification(EventsEnum.monsterDie, monster);
-        int a = UnityEngine.Random.Range(1, 4);
-		string str = a.ToString ();
-        String prop_name = ReadTable.getTable.OnFind("propDate", str, "propName");
-        if (prop_name != "1111")
+        int temp = UnityEngine.Random.Range(0, 100);
+        int a=0;
+        if (temp < 10)
         {
-            SendNotification(EventsEnum.propCreate, prop_name);
+            a = 1;
         }
+        else if(temp<25)
+        {
+            a = 2;
+        }
+        else if(temp<50)
+        {
+            a = 3;
+        }
+        else if (temp < 55)
+        {
+            a = 4;
+        }
+        else
+        {
+            a = 100;
+        }
+        if (a != 100)
+        {
+            string str = a.ToString();
+            String prop_name = ReadTable.getTable.OnFind("propDate", str, "propName");
+            if (prop_name != "1111")
+            {
+                SendNotification(EventsEnum.propCreate, prop_name);
+            }
+        }
+		
 
     }
     public void OnDestroy(GameObject monster)

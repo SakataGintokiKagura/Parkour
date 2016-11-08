@@ -2,15 +2,15 @@
 using System.Collections;
 using System;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+
 /// <summary>
 /// 怪物的AI控制
-/// 张子庆
 /// </summary>
 public class Monster : MonoBehaviour
 {
     private IMonsterMediator monsterMediator;
     private Dictionary<IBlology, GameObject> monster;
-    public GameObject[] monsterPrefabs;
     private List<GameObject> outList = new List<GameObject>();
     public GameObject player;
     private float initialPosition = 0;
