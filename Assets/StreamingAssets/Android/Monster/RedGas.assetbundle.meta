@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/StreamingAssets/Monster/RedGas.assetbundle.meta
+guid: 881420c375f54d140b8221cec4651429
+timeCreated: 1478670119
+licenseType: Pro
+=======
 guid: ccee7bae4b0d0b0419cc30e26a31f6e7
 timeCreated: 1478669039
 licenseType: Free
+>>>>>>> origin/dev:Assets/StreamingAssets/Android/Monster/RedGas.assetbundle.meta
 DefaultImporter:
   userData: 
   assetBundleName: 

@@ -20,7 +20,9 @@ public class MemoryController:MonoBehaviour{
 	private string URL;
 
 	private GameObject temp;
-
+    /// <summary>
+    /// 单例模式
+    /// </summary>
 	public static MemoryController instance
 	{
 		get
