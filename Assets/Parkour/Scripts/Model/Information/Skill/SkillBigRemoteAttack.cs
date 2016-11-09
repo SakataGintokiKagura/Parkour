@@ -48,7 +48,8 @@ public class SkillBigRemoteAttack : IEnbaleAirSkill  {
 		MemoryController.instance.OnFindGameObjectByName (
 			table.OnFind ("flyItemDate", "2", "name"),
 			transform.position,
-			table.OnFind ("flyItemDate", "2", "memoryID")
+			table.OnFind ("flyItemDate", "2", "memoryID"),
+			new ReturnObject(MemoryController.instance.emptyDelegate)
 		);
 	}
 //        GameObject temp = Resources.Load("FlyItem/" + table.OnFind("flyItemDate", "2", "name")) as GameObject;

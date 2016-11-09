@@ -48,7 +48,6 @@
      <Compile Include="Assets\Art\Effect\Scripts\TextureFrameAnimation.cs" />
      <Compile Include="Assets\Art\Effect\Scripts\TextureTileAnimation.cs" />
      <Compile Include="Assets\Art\Effect\Scripts\UVAnimation.cs" />
-     <Compile Include="Assets\ExportAssetBundles.cs" />
      <Compile Include="Assets\Parkour\Scripts\ApplicationFacade.cs" />
      <Compile Include="Assets\Parkour\Scripts\CameraFollow.cs" />
      <Compile Include="Assets\Parkour\Scripts\Controller\Monster\MonsterCreate.cs" />
@@ -129,6 +128,7 @@
      <Compile Include="Assets\Parkour\Scripts\View\Monster\Monster.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\Monster\MonsterCreatePosition.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\MonsterMediator.cs" />
+     <Compile Include="Assets\Parkour\Scripts\View\Player\PetDragon.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\Player\Player.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\Player\RemoteAttack.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\Player\ShortRangeHurtCheck.cs" />

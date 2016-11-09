@@ -8,7 +8,7 @@ public class SkillCallRemoteAttack : ISkill {
     {
         get
         {
-            return 2;
+            return 3;
         }
     }
 
@@ -29,7 +29,7 @@ public class SkillCallRemoteAttack : ISkill {
 
     public void OnEndSkillAnimation(Transform transform, Animator anim, PlayerState state)
     {
-        throw new NotImplementedException();
+        state.OnEndSkill();
     }
 
     public int OnMiddleSkillAnimation()
@@ -54,16 +54,8 @@ public class SkillCallRemoteAttack : ISkill {
 
     public void OnStartSkillAnimation(Transform transform, Animator anim, PlayerState state)
     {
-        throw new NotImplementedException();
+        state.OnUseSkill(true);
+        GameObject pet = Resources.Load("Pet" + "dragon")as GameObject;
+        GameObject.Instantiate(pet, Vector3.zero, pet.transform.rotation);
     }
-
-    // Use this for initialization
-    void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

@@ -13,7 +13,7 @@ public class WhirlwindInformation : IBlology {
 
     public void OnAttack(Transform tran)
     {
-       
+        tran.position += new Vector3(0.05f, 0, 0);
     }
 
     public void OnOutOfAttack(Transform tran)
