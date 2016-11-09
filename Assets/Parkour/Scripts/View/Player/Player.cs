@@ -244,7 +244,7 @@ public class Player : MonoBehaviour {
         {
             playerMediator.OnGetScoure(1);
 			col.gameObject.SetActive (false);
-        }else if(col.tag == TagParameber.monster)
+        }else if(col.transform.root.gameObject.tag == TagParameber.monster)
 
         {
             //Debug.Log(1111);
@@ -352,7 +352,12 @@ public class Player : MonoBehaviour {
         this.id = id;
         effect[id].SetActive(true);
     }
-    public IEnumerator OnFly(float time)
+
+    public void OnFly(float time)
+    {
+        StartCoroutine(OnFlyEffect(time));
+    }
+    public IEnumerator OnFlyEffect(float time)
     {
         isfly = true;
         velocity.y = 0;

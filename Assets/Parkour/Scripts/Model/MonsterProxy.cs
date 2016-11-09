@@ -65,7 +65,8 @@ public class MonsterProxy : Proxy {
     {
         SendNotification(EventsEnum.monsterDie, monster);
         int temp = UnityEngine.Random.Range(0, 100);
-        int a=0;
+        Debug.Log(temp);
+        int a = 100;
         if (temp < 10)
         {
             a = 1;
@@ -82,14 +83,10 @@ public class MonsterProxy : Proxy {
         {
             a = 4;
         }
-        else
-        {
-            a = 100;
-        }
         if (a != 100)
         {
             string str = a.ToString();
-            String prop_name = ReadTable.getTable.OnFind("propDate", str, "propName");
+                String prop_name = ReadTable.getTable.OnFind("propDate", str, "propName");
             if (prop_name != "1111")
             {
                 SendNotification(EventsEnum.propCreate, prop_name);

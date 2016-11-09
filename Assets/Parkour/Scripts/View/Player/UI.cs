@@ -24,8 +24,8 @@ public class UI : MonoBehaviour
     private float curTime = 0;
     private ReadTable skillTable;
     //private ArrayList
-    private string skillName=null;
-    private int stringLen=0;
+    private string skillName = null;
+    private int stringLen = 0;
     public int HPInitizal
     {
         get
@@ -104,8 +104,8 @@ public class UI : MonoBehaviour
         if (startReadTime == true)
         {
             curTime = curTime + Time.deltaTime;
-                if (curTime >= SkillParameber.SkillReadCD|| stringLen>4)
-                {
+            if (curTime >= SkillParameber.SkillReadCD || stringLen > 4)
+            {
                 SkillCheck(skillName);
                 skillName = null;
                 startReadTime = false;
@@ -121,10 +121,10 @@ public class UI : MonoBehaviour
     }
     public void SkillCheck(string skillName)
     {
-        string str ="1111";
-        for (int i=1;i<24;i++)
+        string str = "1111";
+        for (int i = 1; i < 24; i++)
         {
-            string s=i.ToString();
+            string s = i.ToString();
             str = ReadTable.getTable.OnFind("skillDate", s, "skillKeys");
             if (str == skillName)
             {
@@ -137,10 +137,10 @@ public class UI : MonoBehaviour
                 playerMediator.OnUseSkill((ISkill)obj);
                 break;
             }
-           
+
         }
     }
-    
+
     public void OnButtonA()
     {
         skillA = true;

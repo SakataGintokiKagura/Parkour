@@ -20,11 +20,25 @@ public class MonsterCreatePosition : MonoBehaviour {
 		MonsterMediator.OnGetMonsterMediator().monsterCreatePosition = position;
         if (gameObject.transform.position.x-count>=15f) {
 
-			count = gameObject.transform.position.x;
+//			
 
-//			if (isCreateMonster&&isContactTerrain) 
-				//MonsterMediator.OnGetMonsterMediator ().OnCreateMonster ();
-		}
+            if (isCreateMonster && isContactTerrain)
+            {
+                if (gameObject.transform.position.x - count > 15.5f)
+                {
+                   StartCoroutine(OnWait()) ;
+                }
+                else
+                {
+                    MonsterMediator.OnGetMonsterMediator().OnCreateMonster();
+                }
+               
+               
+                count = gameObject.transform.position.x;
+            }
+          
+
+        }
 	}
 
 	void OnTriggerStay(Collider other){

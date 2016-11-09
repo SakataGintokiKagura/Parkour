@@ -146,7 +146,11 @@ public class MonsterMediator : Mediator,IMonsterMediator {
 				    "1",
 				    new ReturnObject(MemoryController.instance.emptyDelegate)
 			    );
-			    MemoryController.instance.OnAddObject (prop,ReadTable.getTable.OnFind("memoryObjectParameter","1","priority")); 
+                if (!prop)
+                {
+                    Debug.Log("chuangjiansibai");
+                }
+			    //MemoryController.instance.OnAddObject (prop,ReadTable.getTable.OnFind("memoryObjectParameter","1","priority")); 
                 
 			    break;
         }
