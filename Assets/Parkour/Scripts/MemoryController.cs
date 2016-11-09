@@ -82,10 +82,10 @@ public class MemoryController:MonoBehaviour{
 		//		GameObject obj =Instantiate(bundle.LoadAsset(name) ,position,Quaternion.identity)as GameObject;
 		//		bundle.Unload (false);
 
-		MemoryController cb = MemoryController.instance;
-		Type t =cb.GetType ();
+		//MemoryController cb = MemoryController.instance;
+		Type t =GetType ();
 		return (GameObject)t.InvokeMember (load,BindingFlags.Instance | BindingFlags.Public | BindingFlags.InvokeMethod,
-	    null, cb, new object[] {name, position, serial, path });
+	    null, this, new object[] {name, position, serial, path });
 	}
 
 
