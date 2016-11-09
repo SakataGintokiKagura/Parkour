@@ -3,7 +3,7 @@ using System.Collections;
 using System;
 using NPlayerState;
 
-public class SkillLightAttack : ISkill
+public class SkillLightRemoteAttack : ISkill
 {
     public float damage
     {

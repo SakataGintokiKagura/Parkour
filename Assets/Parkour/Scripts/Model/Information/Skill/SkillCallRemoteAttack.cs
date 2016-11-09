@@ -8,7 +8,7 @@ public class SkillCallRemoteAttack : ISkill {
     {
         get
         {
-            return 3;
+            return 1000;
         }
     }
 
@@ -16,7 +16,7 @@ public class SkillCallRemoteAttack : ISkill {
     {
         get
         {
-            return 70;
+            return 40;
         }
     }
     public float time
@@ -55,7 +55,7 @@ public class SkillCallRemoteAttack : ISkill {
     public void OnStartSkillAnimation(Transform transform, Animator anim, PlayerState state)
     {
         state.OnUseSkill(true);
-        GameObject pet = Resources.Load("Pet" + "dragon")as GameObject;
+        GameObject pet = Resources.Load("Pet/" + "dragon")as GameObject;
         GameObject.Instantiate(pet, Vector3.zero, pet.transform.rotation);
     }
 }

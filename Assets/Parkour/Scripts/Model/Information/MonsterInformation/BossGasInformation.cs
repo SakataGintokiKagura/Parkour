@@ -9,22 +9,22 @@ public class BossGasInformation : IBlology {
 	public int normalAttackDistance { get; set; }
     public void OnInView(Transform tran)
     {
-        throw new System.NotImplementedException();
+        return;
     }
 
     public void OnAttack(Transform tran)
     {
-        throw new System.NotImplementedException();
+        return;
     }
 
     public void OnOutOfAttack(Transform tran)
     {
-        throw new System.NotImplementedException();
+        return;
     }
 
     public void OnOutView(Transform tran)
     {
-        throw new System.NotImplementedException();
+        return;
     }
 
 	//public Transform trans { get; set; }
