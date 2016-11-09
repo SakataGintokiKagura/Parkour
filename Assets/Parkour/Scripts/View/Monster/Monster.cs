@@ -46,7 +46,7 @@ public class Monster : MonoBehaviour
 
             }
             //离开屏幕
-            else if (Camera.main.WorldToViewportPoint(kv.Value.transform.position).x < -0.1f)
+            else if (Camera.main.WorldToViewportPoint(kv.Value.transform.position).x <0)
             {
                 kv.Key.OnOutView(kv.Value.transform);
                 outList.Add(kv.Value);

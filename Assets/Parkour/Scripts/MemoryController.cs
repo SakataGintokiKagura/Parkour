@@ -17,7 +17,9 @@ public class MemoryController:MonoBehaviour{
 	private string URL;
 
 	private GameObject temp;
-
+    /// <summary>
+    /// 单例模式
+    /// </summary>
 	public static MemoryController instance
 	{
 		get
@@ -32,8 +34,8 @@ public class MemoryController:MonoBehaviour{
 
 		isLoading = new bool[MemoryParameter.objectType];
 
-		//URL="jar:file://" + Application.dataPath + "!/assets/";
-		URL="file://" + Application.dataPath + "/StreamingAssets/";
+		URL="jar:file://" + Application.dataPath + "!/assets/";
+		//URL="file://" + Application.dataPath + "/StreamingAssets/";
 		//    	PathURL =Application.dataPath + "/StreamingAssets/";
 		//		PathURL = Application.dataPath +"!assets/";
 
