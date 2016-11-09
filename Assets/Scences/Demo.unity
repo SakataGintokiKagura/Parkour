@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44692492, g: 0.4967869, b: 0.57508546, a: 1}
+  m_IndirectSpecularColor: {r: 0.44692534, g: 0.49678725, b: 0.5750856, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -253,11 +253,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114000011396227116, guid: 801ef8fddbcbac84f94bf03fa9b87b39,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224000012249525972, guid: 801ef8fddbcbac84f94bf03fa9b87b39,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -353,52 +348,6 @@ Prefab:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: c7b97237ee049014cb46158d4b14f2a8, type: 2}
-    - target: {fileID: 114000012820506376, guid: 801ef8fddbcbac84f94bf03fa9b87b39,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: e41313e8bfe741f48947b7493c5522f4,
-        type: 3}
-    - target: {fileID: 114000011396227116, guid: 801ef8fddbcbac84f94bf03fa9b87b39,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 836890138}
-    - target: {fileID: 114000011396227116, guid: 801ef8fddbcbac84f94bf03fa9b87b39,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnButtonJump
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011396227116, guid: 801ef8fddbcbac84f94bf03fa9b87b39,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011396227116, guid: 801ef8fddbcbac84f94bf03fa9b87b39,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011396227116, guid: 801ef8fddbcbac84f94bf03fa9b87b39,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012351131880, guid: 801ef8fddbcbac84f94bf03fa9b87b39,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013882025116, guid: 801ef8fddbcbac84f94bf03fa9b87b39,
-        type: 2}
-      propertyPath: m_Type
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 132000010767578498, guid: 801ef8fddbcbac84f94bf03fa9b87b39,
-        type: 2}
-      propertyPath: m_Text
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 801ef8fddbcbac84f94bf03fa9b87b39, type: 2}
   m_IsPrefabParent: 0
@@ -2049,11 +1998,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1603873190}
   m_Enabled: 1
   m_EditorHideFlags: 0
-<<<<<<< HEAD
-  m_Script: {fileID: 11500000, guid: 8800e6f9cd0387948bae38e6b6559ee6, type: 3}
-=======
   m_Script: {fileID: 11500000, guid: 59e2260f198d88c41adb0e3af268e130, type: 3}
->>>>>>> origin/dev
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1603873197
