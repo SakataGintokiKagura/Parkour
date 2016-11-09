@@ -80,7 +80,7 @@ public class MemoryController:MonoBehaviour{
 				return go;    
 			}
 		}
-
+			
 		Type t =this.GetType ();
 		return (GameObject)t.InvokeMember (load,BindingFlags.Instance | BindingFlags.Public | BindingFlags.InvokeMethod,
 			null, this, new object[] {name, position, serial, path,ID,returnObject});

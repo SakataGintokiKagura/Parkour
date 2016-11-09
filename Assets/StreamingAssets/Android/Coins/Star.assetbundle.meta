@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/StreamingAssets/Android/Coins/Star.assetbundle.meta
 guid: d3952383adc699b4cba80deb04eda38e
 timeCreated: 1478668921
+=======
+guid: 38b75246d2846844f9456e055f6d042e
+timeCreated: 1478311313
+>>>>>>> origin/dev:Assets/StreamingAssets/Coins/Star.assetbundle.meta
 licenseType: Free
 DefaultImporter:
   userData: 
