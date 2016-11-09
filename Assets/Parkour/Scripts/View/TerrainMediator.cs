@@ -70,7 +70,8 @@ public class TerrainMediator : Mediator, ITerrainMediator
                 GameObject newTerrain = MemoryController.instance.OnFindGameObjectByName(
                     temp.OnFind("terrainDate", infor.OnGetTerrain().ToString(), "terrainName"),
                     new Vector3((terrain.getN() + 1)*TerrainParameter.mapSize, 0, 0),
-                    temp.OnFind("terrainDate", infor.OnGetTerrain().ToString(), "memoryID")
+                    temp.OnFind("terrainDate", infor.OnGetTerrain().ToString(), "memoryID"),
+				    new ReturnObject(OnEnqueueOldTerrain)
                 );
 
 
@@ -91,7 +92,8 @@ public class TerrainMediator : Mediator, ITerrainMediator
                         temp.OnFind("coinDate", item.OnGetKind().ToString(), "name"),
                         new Vector3(item.OnGetStart() + ((terrain.getN() + 1)*TerrainParameter.mapSize),
                             item.OnGetHigh(), 0),
-                        temp.OnFind("coinDate", item.OnGetKind().ToString(), "memoryID")
+                        temp.OnFind("coinDate", item.OnGetKind().ToString(), "memoryID"),
+					    new ReturnObject(OnEnqueueOldCoin)
                     );
 
                     if (CoinTemp)

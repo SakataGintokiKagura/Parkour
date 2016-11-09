@@ -48,7 +48,6 @@
      <Compile Include="Assets\Art\Effect\Scripts\TextureFrameAnimation.cs" />
      <Compile Include="Assets\Art\Effect\Scripts\TextureTileAnimation.cs" />
      <Compile Include="Assets\Art\Effect\Scripts\UVAnimation.cs" />
-     <Compile Include="Assets\ExportAssetBundles.cs" />
      <Compile Include="Assets\Parkour\Scripts\ApplicationFacade.cs" />
      <Compile Include="Assets\Parkour\Scripts\CameraFollow.cs" />
      <Compile Include="Assets\Parkour\Scripts\Controller\Monster\MonsterCreate.cs" />
@@ -56,7 +55,6 @@
      <Compile Include="Assets\Parkour\Scripts\Controller\Monster\MonsterCreateGameObject.cs" />
      <Compile Include="Assets\Parkour\Scripts\Controller\Monster\MonsterDestroy.cs" />
      <Compile Include="Assets\Parkour\Scripts\Controller\Monster\MonsterInjured.cs" />
-     <Compile Include="Assets\Parkour\Scripts\Controller\Monster\skill.cs" />
      <Compile Include="Assets\Parkour\Scripts\Controller\Player\PlayerDropOutPit.cs" />
      <Compile Include="Assets\Parkour\Scripts\Controller\Player\PlayerGetSource.cs" />
      <Compile Include="Assets\Parkour\Scripts\Controller\Player\PlayerInjured.cs" />
@@ -130,6 +128,7 @@
      <Compile Include="Assets\Parkour\Scripts\View\Monster\Monster.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\Monster\MonsterCreatePosition.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\MonsterMediator.cs" />
+     <Compile Include="Assets\Parkour\Scripts\View\Player\PetDragon.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\Player\Player.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\Player\RemoteAttack.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\Player\ShortRangeHurtCheck.cs" />
@@ -150,6 +149,7 @@
      <None Include="Assets\Resources\terrainDate.txt" />
      <None Include="Assets\Resources\motionParameber.txt" />
      <None Include="Assets\Resources\tableDate.txt" />
+     <None Include="Assets\Resources\PetParaember.txt" />
      <None Include="Assets\Resources\coinDate.txt" />
      <None Include="Assets\Resources\monsterParameber.txt" />
      <None Include="Assets\Resources\cameraParamber.txt" />

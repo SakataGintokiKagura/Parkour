@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using System.Reflection;
+	
+public delegate void ReturnObject(GameObject obj);
+
 
 public class MemoryController:MonoBehaviour{
 
@@ -31,13 +34,15 @@ public class MemoryController:MonoBehaviour{
 	}
 
 	void Start(){ 
+	    isLoading = new bool[MemoryParameter.objectType];
 
-		isLoading = new bool[MemoryParameter.objectType];
 
-		URL="jar:file://" + Application.dataPath + "!/assets/";
-		//URL="file://" + Application.dataPath + "/StreamingAssets/";
-		//    	PathURL =Application.dataPath + "/StreamingAssets/";
-		//		PathURL = Application.dataPath +"!assets/";
+		URL=
+		#if UNITY_EDITOR
+		"file://" + Application.dataPath + "/StreamingAssets/windows/";
+		#elif UNITY_ANDROID
+		"jar:file://" + Application.dataPath + "!/assets/Android/";
+		#endif
 
 		memoryList=new List<GameObject>[MemoryParameter.objectType];
 
@@ -52,7 +57,6 @@ public class MemoryController:MonoBehaviour{
 	}
 
 	void Update(){
-		//Debug.Log (Profiler.GetTotalAllocatedMemory ());
 		deleteListObject ();
 	}
 
@@ -60,7 +64,7 @@ public class MemoryController:MonoBehaviour{
 		return memoryList[(int.Parse(num))-1];
 	}
 
-	public GameObject OnFindGameObjectByName(string name,Vector3 position,string ID){
+	public GameObject OnFindGameObjectByName(string name,Vector3 position,string ID,ReturnObject returnObject){
 		//string serial,string path,string load
 
 		ReadTable temp = ReadTable.getTable;
@@ -79,26 +83,20 @@ public class MemoryController:MonoBehaviour{
 				return go;    
 			}
 		}
-
-		//      AssetBundle bundle = AssetBundle.LoadFromFile(PathURL+path+name+".assetbundle");
-		//		GameObject obj =Instantiate(bundle.LoadAsset(name) ,position,Quaternion.identity)as GameObject;
-		//		bundle.Unload (false);
-
-		MemoryController cb = MemoryController.instance;
-		Type t =cb.GetType ();
+			
+		Type t =this.GetType ();
 		return (GameObject)t.InvokeMember (load,BindingFlags.Instance | BindingFlags.Public | BindingFlags.InvokeMethod,
-	    null, cb, new object[] {name, position, serial, path });
+			null, this, new object[] {name, position, serial, path,ID,returnObject});
 	}
 
 
-	public GameObject OnSynchronous(string name,Vector3 position,string serial,string path){
-
+	public GameObject OnSynchronous(string name,Vector3 position,string serial,string path,string ID,ReturnObject returnObject){
 		GameObject temp = Resources.Load(path + name) as GameObject;
 		return Instantiate(temp, position, temp.transform.rotation)as GameObject;
 	}
 
-	public GameObject OnAsynchronous(string name,Vector3 position,string serial,string path){
-		StartCoroutine (LoadAssetAsyncCoroutine (path, name, position, serial));
+	public GameObject OnAsynchronous(string name,Vector3 position,string serial,string path,string ID,ReturnObject returnObject){
+		StartCoroutine (LoadAssetAsyncCoroutine (path, name, position, serial,returnObject));
 		return null;
 	}
 
@@ -116,9 +114,13 @@ public class MemoryController:MonoBehaviour{
 	public void deleteListObject(){
 		while (Profiler.GetTotalAllocatedMemory () >= MemoryParameter.threshold) {
 			for (int i = 0; i < MemoryParameter.objectType; i++) {
-				if (memoryList [MemoryParameter.objectType - 1].Count == 0)
+				if (memoryList [i].Count == 0&&i==MemoryParameter.objectType-1) {
 					return;
-				if (memoryList [i].Count != 0) {
+				}
+				if (memoryList [i].Count == 0&&i!=MemoryParameter.objectType-1) {
+					continue;
+				}
+				else if (memoryList [i].Count != 0) {
 					foreach (GameObject go in memoryList [i])
 					{
 						memoryList [i].Remove (go);
@@ -130,36 +132,25 @@ public class MemoryController:MonoBehaviour{
 		}
 	}
 
-	IEnumerator LoadAssetAsyncCoroutine(string path,string name, Vector3 position,string serial)
-	{
-//		if(path=="terrain/")
-//			Debug.Log ("Fuck!" + name + "--" + path);
+	IEnumerator LoadAssetAsyncCoroutine(string path,string name, Vector3 position,string serial,ReturnObject returnObject){//ReturnObject action,
 		WWW www = new WWW(URL+path+name+".assetbundle");
 		yield return www;
 		while (isLoading[int.Parse(serial)-1]) {
 			yield return new WaitForSeconds (0.06f);
 		}
 		isLoading [int.Parse (serial) - 1] = true;
-		yield return temp = Instantiate(www.assetBundle.mainAsset,position,Quaternion.identity) as GameObject;
-//		if(path=="terrain/")
-//			Debug.Log ("Fuck Again!" + temp.name + "--" + path);
-		OnReturn(path,temp);
+		AssetBundle assetbundle = www.assetBundle;
+		AssetBundleRequest abr = assetbundle.LoadAssetAsync (name,typeof(GameObject));
+		yield return abr;
+		GameObject fin = Instantiate (abr.asset,position,Quaternion.identity)as GameObject;
+		returnObject (fin);
 		www.assetBundle.Unload (false);
 		isLoading [int.Parse (serial) - 1] = false;
 		www.Dispose();
-		www = null;
 	}
 
-	private void OnReturn(string path,UnityEngine.Object @object)
-	{
-
-		if (path == "terrain/") {
-			TerrainMediator.OnGetTerrainMediator ().OnEnqueueOldTerrain ((GameObject)@object);
-		}
-		else if (path == "Monster/") 
-			MonsterMediator.OnGetMonsterMediator ().OnAddMonster ((GameObject)@object);		
-		else if (path == "Coins/") 
-			TerrainMediator.OnGetTerrainMediator ().OnEnqueueOldCoin ((GameObject)@object);
+	public void emptyDelegate(GameObject @object){
+		Debug.Log ("233");
 	}
 }
 

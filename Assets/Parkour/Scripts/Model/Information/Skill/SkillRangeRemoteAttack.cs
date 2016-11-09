@@ -49,7 +49,8 @@ public class SkillRangeRomateAttack : ISkill
 		MemoryController.instance.OnFindGameObjectByName (
 			table.OnFind("flyItemDate", "3", "name"),
 			transform.position,
-			table.OnFind("flyItemDate", "3", "memoryID")
+			table.OnFind("flyItemDate", "3", "memoryID"),
+			new ReturnObject(MemoryController.instance.emptyDelegate)
 		);
 
 //        GameObject temp = Resources.Load("FlyItem/" + table.OnFind("flyItemDate", "3", "name")) as GameObject;

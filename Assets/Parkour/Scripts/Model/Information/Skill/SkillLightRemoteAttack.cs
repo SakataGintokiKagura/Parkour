@@ -50,7 +50,8 @@ public class SkillLightAttack : ISkill
 		MemoryController.instance.OnFindGameObjectByName (
 			table.OnFind("flyItemDate", "4", "name"),
 			transform.position,
-			table.OnFind("flyItemDate", "4", "memoryID")
+			table.OnFind("flyItemDate", "4", "memoryID"),
+			new ReturnObject(MemoryController.instance.emptyDelegate)
 		);
 
 //        GameObject temp = Resources.Load("FlyItem/" + table.OnFind("flyItemDate", "4", "name")) as GameObject;

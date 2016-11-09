@@ -2,8 +2,8 @@
 using System.Collections;
 using UnityEditor;
 public class ExportAssetBundles : MonoBehaviour {
-	[MenuItem("Custom Editor/Create AssetBunldes Main")]
-	static void CreateAssetBunldesMain ()
+	[MenuItem("Custom Editor/Create AssetBunldes For Android")]
+	static void CreateAssetBunldesAndroid ()
 	{
 		//获取在Project视图中选择的所有游戏对象
 		Object[] SelectedAsset = Selection.GetFiltered (typeof(Object), SelectionMode.DeepAssets);
@@ -24,6 +24,29 @@ public class ExportAssetBundles : MonoBehaviour {
 			}
 		}
 	
+		AssetDatabase.Refresh ();	
+
+	}
+
+	[MenuItem("Custom Editor/Create AssetBunldes For Windows")]
+	static void CreateAssetBunldesWin ()
+	{
+		//获取在Project视图中选择的所有游戏对象
+		Object[] SelectedAsset = Selection.GetFiltered (typeof(Object), SelectionMode.DeepAssets);
+
+		foreach (Object obj in SelectedAsset) 
+		{
+			string sourcePath = AssetDatabase.GetAssetPath (obj);
+			string targetPath = Application.dataPath + "/StreamingAssets/" + obj.name + ".assetbundle";
+			if (BuildPipeline.BuildAssetBundle (obj, null, targetPath, BuildAssetBundleOptions.CollectDependencies| BuildAssetBundleOptions.CompleteAssets, BuildTarget.StandaloneWindows)) {
+				Debug.Log(obj.name +"资源打包成功");
+			} 
+			else 
+			{
+				Debug.Log(obj.name +"资源打包失败");
+			}
+		}
+
 		AssetDatabase.Refresh ();	
 
 	}
