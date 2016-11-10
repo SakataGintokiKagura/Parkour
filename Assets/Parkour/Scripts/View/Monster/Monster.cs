@@ -57,8 +57,7 @@ public class Monster : MonoBehaviour
 				GameObject go = MemoryController.instance.getMemoryList(ReadTable.getTable.OnFind("memoryObjectParameter","1","priority"))[i];
 				if (Camera.main.WorldToViewportPoint(go.transform.position).x < -0.1f)
 				{
-					go.SetActive(false);
-					MemoryController.instance.OnAddObject (go, ReadTable.getTable.OnFind("memoryObjectParameter","1","priority"));
+					MemoryController.instance.OnListAddObject (go, ReadTable.getTable.OnFind("memoryObjectParameter","1","priority"));
 					MemoryController.instance.OnRemoveObject (go,ReadTable.getTable.OnFind("memoryObjectParameter","1","priority"));
 				}
 			}

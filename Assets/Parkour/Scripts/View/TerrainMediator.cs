@@ -105,8 +105,7 @@ public class TerrainMediator : Mediator, ITerrainMediator
                 if (terrain.getN() >= 2)
                     {
                         GameObject deleteTerrain = oldTerrain.Dequeue();
-                        deleteTerrain.SetActive(false);
-                        MemoryController.instance.OnAddObject(deleteTerrain,
+                        MemoryController.instance.OnListAddObject(deleteTerrain,
                             ReadTable.getTable.OnFind("memoryObjectParameter", "4", "priority"));
                         if (oldCoin.Count > 0)
                         {
@@ -114,8 +113,7 @@ public class TerrainMediator : Mediator, ITerrainMediator
                             foreach (GameObject elem in deleteCoin)
                             {
                                 if (elem)
-                                    elem.SetActive(false);
-                                MemoryController.instance.OnAddObject(elem,
+                                MemoryController.instance.OnListAddObject(elem,
                                     ReadTable.getTable.OnFind("memoryObjectParameter", "3", "priority"));
                             }
                         }

@@ -131,8 +131,7 @@ public class MonsterMediator : Mediator,IMonsterMediator {
 			    if (this.monster.ContainsKey (blology)) {
 				        this.monster.Remove (blology);
 			    }
-			    temp.SetActive (false); 
-			    MemoryController.instance.OnAddObject (temp,ReadTable.getTable.OnFind("memoryObjectParameter","2","priority"));    
+			    MemoryController.instance.OnListAddObject (temp,ReadTable.getTable.OnFind("memoryObjectParameter","2","priority"));    
 			    break;
            
 		    case EventsEnum.propCreate:
@@ -146,7 +145,7 @@ public class MonsterMediator : Mediator,IMonsterMediator {
 				    "1",
 				    new ReturnObject(MemoryController.instance.emptyDelegate)
 			    );
-			    MemoryController.instance.OnAddObject (prop,ReadTable.getTable.OnFind("memoryObjectParameter","1","priority")); 
+			    MemoryController.instance.OnListAddObject (prop,ReadTable.getTable.OnFind("memoryObjectParameter","1","priority")); 
                 
 			    break;
         }

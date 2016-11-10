@@ -55,7 +55,8 @@ public class SkillCallRemoteAttack : ISkill {
     public void OnStartSkillAnimation(Transform transform, Animator anim, PlayerState state)
     {
         state.OnUseSkill(true);
-        GameObject pet = Resources.Load("Pet/" + "dragon")as GameObject;
-        GameObject.Instantiate(pet, Vector3.zero, pet.transform.rotation);
+		MemoryController.instance.OnFindGameObjectByName ("dragon",Vector3.zero,"6",MemoryController.instance.emptyDelegate);
+//        GameObject pet = Resources.Load("Pet/" + "dragon")as GameObject;
+//        GameObject.Instantiate(pet, Vector3.zero, pet.transform.rotation);
     }
 }

@@ -96,8 +96,9 @@ public class MemoryController:MonoBehaviour{
 		return null;
 	}
 
-	public void OnAddObject(GameObject go,string num)
+	public void OnListAddObject(GameObject go,string num)
 	{
+		go.SetActive (false);
 		memoryList [(int.Parse(num))-1].Add (go);
 	}
 
