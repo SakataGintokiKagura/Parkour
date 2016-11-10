@@ -35,17 +35,13 @@ public class MemoryController:MonoBehaviour{
 
 	void Start(){ 
 	    isLoading = new bool[MemoryParameter.objectType];
-
-
 		URL=
 		#if UNITY_EDITOR
 		"file://" + Application.dataPath + "/StreamingAssets/windows/";
 		#elif UNITY_ANDROID
 		"jar:file://" + Application.dataPath + "!/assets/Android/";
 		#endif
-
 		memoryList=new List<GameObject>[MemoryParameter.objectType];
-
 		for(int i=0;i<MemoryParameter.objectType;i++)
 			memoryList [i] = new List<GameObject> ();
 	}
@@ -84,7 +80,7 @@ public class MemoryController:MonoBehaviour{
 			}
 		}
 			
-		Type t =this.GetType ();
+		Type t =GetType ();
 		return (GameObject)t.InvokeMember (load,BindingFlags.Instance | BindingFlags.Public | BindingFlags.InvokeMethod,
 			null, this, new object[] {name, position, serial, path,ID,returnObject});
 	}

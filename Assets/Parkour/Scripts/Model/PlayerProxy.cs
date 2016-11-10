@@ -65,7 +65,7 @@ public class PlayerProxy : Proxy {
         {
             Debug.Log("PROP_hp");
 //            player.HP += 100;
-            player.HP += Int32.Parse(ReadTable.getTable.OnFind("propDate", "1", "priority"));
+            player.HP += Int32.Parse(ReadTable.getTable.OnFind("propDate", "1", "prop"));
             SendNotification(EventsEnum.playerHPChange, player);
             // ui.HP.fillAmount = ui.HP.fillAmount + ui.HP.fillAmount / 3;
         }
@@ -73,19 +73,20 @@ public class PlayerProxy : Proxy {
         {
             Debug.Log("prop_MP");
 //            player.MP += 100;
-            player.MP += Int32.Parse(ReadTable.getTable.OnFind("propDate", "2", "priority"));
+            player.MP += Int32.Parse(ReadTable.getTable.OnFind("propDate", "2", "prop"));
             SendNotification(EventsEnum.playerUseSkillSuccess, player);
         }
         else if (propName == "prop_score(Clone)")
         {
             Debug.Log("prop_score");
 //            player.score+=100;
-            player.score+= Int32.Parse(ReadTable.getTable.OnFind("propDate", "3", "priority"));
+            player.score+= Int32.Parse(ReadTable.getTable.OnFind("propDate", "3", "prop"));
             SendNotification(EventsEnum.playerGetScoureSuccess, player);
         }else if (propName == "prop_fly(Clone)")
         {
             Debug.Log("prop_fly");
-            SendNotification(EventsEnum.playerFly, float.Parse(ReadTable.getTable.OnFind("propDate", "4", "priority")));
+            Debug.Log(float.Parse(ReadTable.getTable.OnFind("propDate", "4", "prop")));
+            SendNotification(EventsEnum.playerFly, float.Parse(ReadTable.getTable.OnFind("propDate", "4", "prop")));
         }
     }
 

@@ -5,13 +5,13 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Reflection;
 using UnityEngine.Assertions.Must;
-
 public class UI : MonoBehaviour
 {
     private int hPInitizal = 0;
     private int mPInitizal = 0;
     public Image HP;
     public Image MP;
+
     public Text injured;
     public Text allCoin;
     private IPlayerMediator playerMediator;
@@ -24,8 +24,169 @@ public class UI : MonoBehaviour
     private float curTime = 0;
     private ReadTable skillTable;
     //private ArrayList
+
+
+    private float time;
     private string skillName = null;
     private int stringLen = 0;
+    private bool isButtonAHaveDown = false;
+    private bool isButtonBHaveDown = false;
+    private bool temp = false;
+    private bool isA = false;
+    private float waitUpTime;
+    private float waitDownTime;
+    private float waitTime;
+    // Update is called once per frame
+    void Update()
+    {
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            playerMediator.OnJump();
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            OnButtonADown();
+        }
+        else
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            OnButtonBDown();
+        }
+        else
+        if (Input.GetKeyUp(KeyCode.A))
+        {
+            OnButtonAUp();
+        }
+        else
+        if (Input.GetKeyUp(KeyCode.D))
+        {
+            OnButtonBUp();
+        }
+
+        if (isButtonAHaveDown || isButtonBHaveDown)
+        {
+            time += Time.deltaTime;
+        }
+        if (time > waitTime && temp)
+        {
+            isA = true;
+            skillName = "AAA";
+            SkillCheck(skillName);
+
+        }
+
+    }
+
+    public void OnButtonADown()
+    {
+        isButtonAHaveDown = true;
+        temp = true;
+        if (isButtonBHaveDown)
+        {
+            if (time < waitDownTime)
+            {
+                skillName = "BA";
+                SkillCheck(skillName);
+                OnInit();
+            }
+        }
+
+    }
+    /// <summary>
+    /// A键抬起
+    /// </summary>
+    public void OnButtonAUp()
+    {
+        if (isA)
+        {
+            isA = false;
+
+            OnInit();
+        }
+        temp = false;
+
+        if (time < waitTime)
+        {
+            time = 0;
+        }
+        StartCoroutine(Wait());
+
+    }
+    /// <summary>
+    /// B键按下
+    /// </summary>
+    public void OnButtonBDown()
+    {
+        isButtonBHaveDown = true;
+        //第一次按下的是B键
+        if (!isButtonAHaveDown)
+        {
+
+        }
+        //第一次按下的是A键
+        if (isButtonAHaveDown)
+        {
+            if (time < waitDownTime)
+            {
+                skillName = "AB";
+                SkillCheck(skillName);
+
+                OnInit();
+            }
+        }
+    }
+    /// <summary>
+    /// B键抬起
+    /// </summary>
+    public void OnButtonBUp()
+    {
+        if (time > waitDownTime)
+        {
+            skillName = "BBB";
+            SkillCheck(skillName);
+            OnInit();
+
+        }
+        else
+        {
+            time = 0;
+        }
+        StartCoroutine(Wait());
+    }
+    /// <summary>
+    /// 技能按完初始化
+    /// </summary>
+    void OnInit()
+    {
+        time = 0;
+        //skillName = null;
+        isButtonAHaveDown = false;
+        isButtonBHaveDown = false;
+    }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(waitUpTime);
+        if ((isButtonAHaveDown && isButtonBHaveDown) == false)
+        {
+            if (isButtonAHaveDown)
+            {
+                skillName = "A";
+                SkillCheck(skillName);
+                OnInit();
+            }
+            if (isButtonBHaveDown)
+            {
+                skillName = "B";
+                SkillCheck(skillName);
+                OnInit();
+            }
+        }
+    }
+
+
+
     public int HPInitizal
     {
         get
@@ -58,62 +219,9 @@ public class UI : MonoBehaviour
     {
         hPInitizal = 100;
         mPInitizal = 100;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.S))
-            playerMediator.OnUseSkill(new SkillContinuousAttack());
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            startJump = true;
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            skillA = true;
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            skillB = true;
-        }
-
-        //按钮识别
-        if (startJump)
-        {
-            startJump = false;
-            playerMediator.OnJump();
-        }
-        //按键技能触发
-        if (skillA)
-        {
-            startReadTime = true;
-            skillA = false;
-            skillName = skillName + "A";
-            stringLen++;
-            curTime = 0;
-        }
-        if (skillB)
-        {
-            startReadTime = true;
-            skillB = false;
-            skillName = skillName + "B";
-            stringLen++;
-            curTime = 0;
-        }
-        if (startReadTime == true)
-        {
-            curTime = curTime + Time.deltaTime;
-            if (curTime >= SkillParameber.SkillReadCD || stringLen > 4)
-            {
-                SkillCheck(skillName);
-                skillName = null;
-                startReadTime = false;
-                curTime = 0;
-                stringLen = 0;
-            }
-        }
-
+        waitUpTime = float.Parse(ReadTable.getTable.OnFind("skillParameber","9", "dateValue"));
+        waitDownTime = float.Parse(ReadTable.getTable.OnFind("skillParameber", "10", "dateValue"));
+        waitTime = float.Parse(ReadTable.getTable.OnFind("skillParameber", "11", "dateValue"));
     }
     public void OnSetPlayerMediator(IPlayerMediator playerMediator)
     {
@@ -122,7 +230,8 @@ public class UI : MonoBehaviour
     public void SkillCheck(string skillName)
     {
         string str = "1111";
-        for (int i = 1; i < 24; i++)
+        for (int i = 1; i < 7; i++)
+
         {
             string s = i.ToString();
             str = ReadTable.getTable.OnFind("skillDate", s, "skillKeys");
@@ -132,37 +241,17 @@ public class UI : MonoBehaviour
                 Assembly assembly = Assembly.GetExecutingAssembly(); // 获取当前程序集 
                 String s1 = ReadTable.getTable.OnFind("skillDate", s, "skillName");
                 object obj = assembly.CreateInstance(s1); // 创建类的实例，返回为 object 类型，需要强制类型转换
-                Debug.Log(obj);
                 Debug.Log("技能释放开始   " + str);
                 playerMediator.OnUseSkill((ISkill)obj);
                 break;
             }
-
         }
     }
 
-    public void OnButtonA()
-    {
-        skillA = true;
-    }
-    public void OnButtonB()
-    {
-        skillB = true;
-    }
     public void OnButtonJump()
     {
-        startJump = true;
+        playerMediator.OnJump();
 
     }
-    public void TimeText()
-    {
-        StartCoroutine(ssss());
-    }
-    IEnumerator ssss()
-    {
-        yield return new WaitForSeconds(MonsterParameber.damageShowTime);
-        injured.transform.position = new Vector3(-15, 1, 0);
-    }
-
 }
 

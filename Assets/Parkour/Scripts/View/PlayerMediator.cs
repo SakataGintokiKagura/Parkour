@@ -120,7 +120,7 @@ public class PlayerMediator : Mediator,IPlayerMediator {
                 ui.MPInitizal = playerTemp.MP;
                 break;
             case EventsEnum.playerFly:
-                player.OnFly(float.Parse(ReadTable.getTable.OnFind("propDate", "4", "priority")));
+                player.OnFly(float.Parse(ReadTable.getTable.OnFind("propDate", "4", "prop")));
                 break;
                 
         }

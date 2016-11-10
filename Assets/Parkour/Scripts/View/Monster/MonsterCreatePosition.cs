@@ -20,11 +20,9 @@ public class MonsterCreatePosition : MonoBehaviour {
 		MonsterMediator.OnGetMonsterMediator().monsterCreatePosition = position;
         if (gameObject.transform.position.x-count>=15f) {
 
-//			
-
             if (isCreateMonster && isContactTerrain)
             {
-                if (gameObject.transform.position.x - count > 15.5f)
+                if (gameObject.transform.position.x - count > 15.2f)
                 {
                    StartCoroutine(OnWait()) ;
                 }
@@ -32,12 +30,8 @@ public class MonsterCreatePosition : MonoBehaviour {
                 {
                     MonsterMediator.OnGetMonsterMediator().OnCreateMonster();
                 }
-               
-               
                 count = gameObject.transform.position.x;
             }
-          
-
         }
 	}
 
@@ -59,7 +53,7 @@ public class MonsterCreatePosition : MonoBehaviour {
 
     IEnumerator OnWait()
     {
-        yield return new WaitForSeconds(0.07f);
+        yield return new WaitForSeconds(0.2f);
         MonsterMediator.OnGetMonsterMediator().OnCreateMonster();
     }
 }
