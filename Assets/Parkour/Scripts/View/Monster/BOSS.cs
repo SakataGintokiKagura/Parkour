@@ -2,61 +2,109 @@
 using System.Collections;
 
 public class BOSS : MonoBehaviour {
-	private  Player Myplayer;
-	public  static int time;
-	public  static int ontime = 0;
-	public  static float xx;
-	public  static float yy;
-	public  static int RandKey;
-	// Use this for initialization
+	private int ID=1;
+	private GameObject Gb;
+	private Player Myplayer;
+	private Vector3 velocity = Vector3.zero;
+	private int hit=0;
+	private float time=1;
+	private int ontime;
+	private float speedx;
+	private float speedy;
+	private float yup;
+	private float ydown;
+	private float biux;
+	private float biuy;
 	void Start () {
+		ReadTable read = ReadTable.getTable;
+		Vector3 tempp;
+		tempp=Vector3Tool.Parse(read.OnFind("bossDate", "1", "coordinate"));
 		Myplayer = PlayerMediator.OnGetPlayerMediator ().player;
-	    time = 0;
-		xx = 7;
-		yy = 0;
+		Gb=GameObject.Find("MonsterCreatePosition");
+		Vector3 position = Camera.main.ViewportToWorldPoint(tempp);
+//		position.y = 0;
+//		position.z = 0;
+		transform.position = position; 
+		this.transform.parent = Gb.transform;
+		ontime=int.Parse(read.OnFind("bossDate", "1", "time"));
+		speedx = float.Parse (read.OnFind("bossDate", "1", "speedx"));
+		speedy = float.Parse (read.OnFind("bossDate", "1", "speedy"));
+		yup=float.Parse (read.OnFind("bossDate", "1", "yup"));
+		ydown=float.Parse (read.OnFind("bossDate", "1", "ydown"));
+		biux=float.Parse (read.OnFind("bossDate", "1", "biux"));
+		biuy=float.Parse (read.OnFind("bossDate", "1", "biuy"));
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		ontime++;
-		if (ontime > 100) {
-		   RandKey = Random.Range(0,3);
-		   ontime = 0;
+		if(time>=ontime){
+			time = 0;
+			hit = stochastic ();
+		}
+		time += Time.deltaTime;
+//		if (Input.GetKeyDown (KeyCode.V)) {
+//			hit = 3;
+//		}
+//		if (Input.GetKeyDown (KeyCode.B)) {
+//			hit = 1;
+//		}
+//		if (Input.GetKeyDown (KeyCode.N)) {
+//			hit = 4;
+//		}
+
+		switch(hit){
+		case 1:
+			move ();
+			break;
+		case 2:
+			back ();
+			break;
+		case 3:
+			biu ();
+			break;
+//		case 4:
+//			staticlaser ();
+//			break;
 		}
 
-
-
-
-		if (RandKey==1) {
-			time = 1;
-			RandKey = 0;
+	}
+	void move(){
+		if (this.transform.position.y >= ydown) {
+			this.transform.position = new Vector3 (transform.position.x - speedx, transform.position.y - speedy, transform.position.z);
+		} else {
+			hit = 2;
 		}
-		if(time==0){
-		    gameObject.transform.position =new Vector3( Myplayer.gameObject.transform.position.x+7,1.5f,0);
-			//Debug.Log(gameObject.transform.position);
+	}
+	void back(){
+		if (this.transform.position.y <= yup) {
+			this.transform.position = new Vector3 (transform.position.x + speedx, transform.position.y + speedy, transform.position.z);
+		} else {
+			hit = 0;
 		}
-		if(time==1){
-			yy += 0.25f;
-			xx -= 0.5f;
-			gameObject.transform.position =new Vector3( Myplayer.gameObject.transform.position.x+xx,1.5f-yy,0);
-			//Debug.Log (gameObject.transform.position);
-		}
-		if(gameObject.transform.position.y<=-1.5f){
-			time = 2;
-		}
-		if(time==2){
-			yy -= 0.25f;
-			xx += 0.5f;
-			gameObject.transform.position =new Vector3( Myplayer.gameObject.transform.position.x+xx,1.5f-yy,0);
-			if (gameObject.transform.position.y>=1.5f) {
-				time = 0;
+	}
+	void OnTriggerEnter(Collider collider){
+		if(collider.tag=="Player"){
+			Debug.Log (transform.position);
+			hit = 2;
 			}
 		}
-		if (RandKey==2) {
-			GameObject skill=GameObject.Instantiate 
-				(Resources.Load("Monster/Bossskill"),new Vector3(gameObject.transform.position.x+1.5f,5,0),
-					new Quaternion(0,0,0.89f,0.46f))as GameObject;
-			RandKey = 0;
-		}
+	void biu(){
+		GameObject temp = Resources.Load("Monster/Bossskill") as GameObject;
+		GameObject biuu=Instantiate(temp, new Vector3(0,1000,0), temp.transform.rotation)as GameObject;
+		biuu.transform.parent = this.transform;
+		biuu.transform.position = new Vector3 (this.transform.position.x+biux,this.transform.position.y+biuy,this.transform.position.z);
+		hit = 0;
+	}
+//	void staticlaser(){
+//		GameObject temp = Resources.Load("Monster/BOSSSKILL/staticlaser") as GameObject;
+//		GameObject claser =Instantiate(temp, new Vector3(0,1000,0), temp.transform.rotation)as GameObject;
+//		claser.transform.parent = this.transform;
+//		claser.transform.position = new Vector3 (this.transform.position.x-1,this.transform.position.y+1,this.transform.position.z);
+//		hit = 0;
+//	}
+	int  stochastic(){
+		int t;
+		t = Random.Range (1,4);
+		return t;
 	}
 }

@@ -13,6 +13,7 @@ public class EventsEnum {
     public const string playerDropOutPit = "PlayerDropOutPit";
     public const string playerDropOutNoDie = "PlayerDropOutNoDie";
     public const string playerInitizal = "PlayerInitizal";
+    public const string playerFly = "PlayerFly";
     public const string monsterCreateMonster = "MonsterCreateMonster";
     public const string monsterCreateMonsterSuccess = "MonsterCreateMonsterSuccess";
     public const string monsterCreateGameObject = "MonsterCreateGameObject";

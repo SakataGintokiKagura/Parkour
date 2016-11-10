@@ -20,6 +20,7 @@ public class MotionParameber{
     private static float secondJumpRecord;
     private static float yLimitRecord;
     private static float elasticTreadRecord;
+    private static float speedMaxRecord;
     public static float initialVelocity
     {
         get
@@ -42,6 +43,7 @@ public class MotionParameber{
         secondJumpRecord = float.Parse(temp.OnFind("motionParameber", "8", "dateValue"));
         yLimitRecord = float.Parse(temp.OnFind("motionParameber", "9", "dateValue"));
         elasticTreadRecord = float.Parse(temp.OnFind("motionParameber", "10", "dateValue"));
+        speedMaxRecord = float.Parse(temp.OnFind("motionParameber", "11", "dateValue"));
 		initial = false;
     }
     //public const float acceleration = 1f;
@@ -148,6 +150,18 @@ public class MotionParameber{
                 new MotionParameber();
             }
             return elasticTreadRecord;
+        }
+    }
+
+    public static float speedMax
+    {
+        get
+        {
+            if (initial)
+            {
+                new MotionParameber();
+            }
+            return speedMaxRecord;
         }
     }
 }

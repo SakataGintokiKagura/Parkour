@@ -27,7 +27,7 @@ public class WhirlwindInformation : IBlology {
     }
     public WhirlwindInformation(float time)
     {
-        ID = 6;
+        ID = 30;
         ReadTable monsterchomper = ReadTable.getTable;
         //Type t;
         //t=Type.GetType(monsterchomper.OnFind("monsterParameber",monster.ToString(),"class"));

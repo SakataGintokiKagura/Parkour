@@ -121,10 +121,15 @@
      <Compile Include="Assets\Parkour\Scripts\ReadTable.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\IMonsterMediator.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\IPlayerMediator.cs" />
-     <Compile Include="Assets\Parkour\Scripts\View\ITerrainMediator.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\Monster\BOSS.cs" />
+     <Compile Include="Assets\Parkour\Scripts\View\Monster\BOSS2th.cs" />
+     <Compile Include="Assets\Parkour\Scripts\View\Monster\BOSS3rd.cs" />
+     <Compile Include="Assets\Parkour\Scripts\View\Monster\ITerrainMediator.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\Monster\Monster.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\Monster\MonsterCreatePosition.cs" />
+     <Compile Include="Assets\Parkour\Scripts\View\Monster\claser.cs" />
+     <Compile Include="Assets\Parkour\Scripts\View\Monster\moveclaser.cs" />
+     <Compile Include="Assets\Parkour\Scripts\View\Monster\skill.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\MonsterMediator.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\Player\PetDragon.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\Player\Player.cs" />
@@ -135,23 +140,24 @@
      <Compile Include="Assets\Parkour\Scripts\View\Terrain\Terrain.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\TerrainMediator.cs" />
      <None Include="Assets\Resources\effectDate.txt" />
-     <None Include="Assets\Resources\monsterDate.txt" />
      <None Include="Assets\Resources\skillParameber.txt" />
      <None Include="Assets\Resources\memoryObjectParameter.txt" />
      <None Include="Assets\Resources\animationParameter.txt" />
+     <None Include="Assets\Resources\bossDate.txt" />
      <None Include="Assets\Resources\memoryParameter.txt" />
      <None Include="Assets\Resources\terrainParamber.txt" />
      <None Include="Assets\Resources\Shaders\Character.shader" />
      <None Include="Assets\Resources\flyItemDate.txt" />
      <None Include="Assets\Resources\terrainDate.txt" />
+     <None Include="Assets\Resources\monsterParameber.txt" />
      <None Include="Assets\Resources\motionParameber.txt" />
      <None Include="Assets\Resources\tableDate.txt" />
      <None Include="Assets\Resources\PetParaember.txt" />
      <None Include="Assets\Resources\coinDate.txt" />
-     <None Include="Assets\Resources\monsterParameber.txt" />
      <None Include="Assets\Resources\skillDate.txt" />
      <None Include="Assets\Resources\cameraParamber.txt" />
      <None Include="Assets\Resources\propDate.txt" />
+     <None Include="Assets\Resources\monsterDate.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

@@ -80,6 +80,7 @@ public class PlayerMediator : Mediator,IPlayerMediator {
         list.Add(EventsEnum.playerDropOutNoDie);
         list.Add(EventsEnum.propPickUpProp);
         list.Add(EventsEnum.playerInitizal);
+        list.Add(EventsEnum.playerFly);
         return list;
     }
     public override void HandleNotification(INotification notification)
@@ -118,6 +119,10 @@ public class PlayerMediator : Mediator,IPlayerMediator {
                 ui.HPInitizal = playerTemp.HP;
                 ui.MPInitizal = playerTemp.MP;
                 break;
+            case EventsEnum.playerFly:
+                player.OnFly(float.Parse(ReadTable.getTable.OnFind("propDate", "4", "prop")));
+                break;
+                
         }
     }
 
