@@ -142,8 +142,7 @@ public class PlayerMediator : Mediator,IPlayerMediator {
     }
 
     public void OnPickUpProp(GameObject temp) {
-        temp.SetActive(false);
-		MemoryController.instance.OnAddObject(temp,ReadTable.getTable.OnFind("memoryObjectParameter","1","priority"));
+		MemoryController.instance.OnListAddObject(temp,ReadTable.getTable.OnFind("memoryObjectParameter","1","priority"));
 		MemoryController.instance.OnRemoveObject(temp,ReadTable.getTable.OnFind("memoryObjectParameter","1","priority"));
         SendNotification(EventsEnum.propPickUpProp,temp);
     }

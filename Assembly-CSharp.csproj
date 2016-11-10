@@ -60,8 +60,6 @@
      <Compile Include="Assets\Parkour\Scripts\Controller\Player\PlayerInjured.cs" />
      <Compile Include="Assets\Parkour\Scripts\Controller\Player\PlayerPickUpProp.cs" />
      <Compile Include="Assets\Parkour\Scripts\Controller\Player\PlayerUseSkill.cs" />
-     <Compile Include="Assets\Parkour\Scripts\Controller\Prop\PropCreate.cs" />
-     <Compile Include="Assets\Parkour\Scripts\Controller\Prop\PropDestroy.cs" />
      <Compile Include="Assets\Parkour\Scripts\Controller\Terrain\TerrainCreate.cs" />
      <Compile Include="Assets\Parkour\Scripts\Enum\AggregateEnum.cs" />
      <Compile Include="Assets\Parkour\Scripts\Enum\EventsEnum.cs" />
@@ -141,7 +139,6 @@
      <None Include="Assets\Resources\skillParameber.txt" />
      <None Include="Assets\Resources\memoryObjectParameter.txt" />
      <None Include="Assets\Resources\animationParameter.txt" />
-     <None Include="Assets\Resources\skillDate.txt" />
      <None Include="Assets\Resources\memoryParameter.txt" />
      <None Include="Assets\Resources\terrainParamber.txt" />
      <None Include="Assets\Resources\Shaders\Character.shader" />
@@ -152,6 +149,7 @@
      <None Include="Assets\Resources\PetParaember.txt" />
      <None Include="Assets\Resources\coinDate.txt" />
      <None Include="Assets\Resources\monsterParameber.txt" />
+     <None Include="Assets\Resources\skillDate.txt" />
      <None Include="Assets\Resources\cameraParamber.txt" />
      <None Include="Assets\Resources\propDate.txt" />
  <Reference Include="UnityEngine.UI">

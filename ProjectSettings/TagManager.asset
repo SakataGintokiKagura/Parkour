@@ -8,10 +8,7 @@ TagManager:
   - Monster
   - Terrain
   - Prop
-  - coins
-  - move2
-  - move3
-  - move1
+  - Bottom
   layers:
   - Default
   - TransparentFX

@@ -59,7 +59,7 @@ public class PetDragon : MonoBehaviour {
     void OnDisappear()
     {
         attacking = isHasAttack = false;
-        gameObject.SetActive(false);
+		MemoryController.instance.OnListAddObject (gameObject,"6");
         delta = startdelta;
     }
     void OnTriggerEnter(Collider col)

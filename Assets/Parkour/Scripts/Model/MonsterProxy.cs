@@ -55,7 +55,6 @@ public class MonsterProxy : Proxy {
     }
     public void OnInjured(GameObject monster,float hurt)
     {
-       // Debug.Log(monster);
         PlayerProxy player = (PlayerProxy)Facade.RetrieveProxy(PlayerProxy.NAME);
         float temp = ((float)player.player.damage) * hurt;
         if (AllMonster[monster].HP - ((float)player.player.damage)*hurt > 0)
@@ -65,14 +64,16 @@ public class MonsterProxy : Proxy {
         }
         else
         {
-            //AllMonster.Remove(monster);
             player.player.MP += SkillParameber.reply;
             OnDie(AllMonster[monster]);
-            //AllMonster.Remove(monster);
         }
     }
     private void OnDie(IBlology monster)//一个怪物死亡之后  发送产生的道具，确定是否产生某个道具
     {
+        if(monster is BossGasInformation)
+        {
+            isboss = false;
+        }
         SendNotification(EventsEnum.monsterDie, monster);
         int temp = UnityEngine.Random.Range(0, 100);
         Debug.Log(temp);
