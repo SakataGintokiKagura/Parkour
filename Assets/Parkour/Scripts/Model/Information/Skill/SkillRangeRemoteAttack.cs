@@ -34,7 +34,9 @@ public class SkillRangeRomateAttack : ISkill
         anim.SetInteger(AnimationParameter.skill, AnimationParameter.skillUnUse);
         // Debug.Log("jieshu");
         state.OnEndSkill();
-        PlayerMediator.OnGetPlayerMediator().player.isApplyGravity = true;
+        Player player = PlayerMediator.OnGetPlayerMediator().player;
+        if (!player.Isfly)
+            PlayerMediator.OnGetPlayerMediator().player.isApplyGravity = true;
     }
 
     public int OnMiddleSkillAnimation()
