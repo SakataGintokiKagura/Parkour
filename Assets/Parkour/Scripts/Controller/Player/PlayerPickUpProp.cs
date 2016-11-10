@@ -10,6 +10,5 @@ public class PlayerPickUpProp : SimpleCommand
     {
         PlayerProxy player = (PlayerProxy)Facade.RetrieveProxy(PlayerProxy.NAME);
         player.OnPickUpItem(((GameObject)notification.Body).name);
-       
     }
 }

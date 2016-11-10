@@ -4,19 +4,31 @@ using System;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Reflection;
-
+using UnityEngine.Assertions.Must;
 public class UI : MonoBehaviour
 {
     private int hPInitizal = 0;
     private int mPInitizal = 0;
     public Image HP;
     public Image MP;
+
     public Text injured;
     public Text allCoin;
     private IPlayerMediator playerMediator;
+    private bool jump = false;
+    private bool startJump = false;
+    private bool skillA = false;
+    private bool skillB = false;
+    private bool startReadTime = false;
+    private float usedtime = 0;
+    private float curTime = 0;
+    private ReadTable skillTable;
+    //private ArrayList
+
 
     private float time;
     private string skillName = null;
+    private int stringLen = 0;
     private bool isButtonAHaveDown = false;
     private bool isButtonBHaveDown = false;
     private bool temp = false;
@@ -27,6 +39,7 @@ public class UI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             playerMediator.OnJump();
@@ -218,6 +231,7 @@ public class UI : MonoBehaviour
     {
         string str = "1111";
         for (int i = 1; i < 7; i++)
+
         {
             string s = i.ToString();
             str = ReadTable.getTable.OnFind("skillDate", s, "skillKeys");
@@ -233,6 +247,7 @@ public class UI : MonoBehaviour
             }
         }
     }
+
     public void OnButtonJump()
     {
         playerMediator.OnJump();

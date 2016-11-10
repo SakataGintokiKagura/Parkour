@@ -88,7 +88,13 @@ public class MemoryController:MonoBehaviour{
 
 	public GameObject OnSynchronous(string name,Vector3 position,string serial,string path,string ID,ReturnObject returnObject){
 		GameObject temp = Resources.Load(path + name) as GameObject;
-		return Instantiate(temp, position, temp.transform.rotation)as GameObject;
+        GameObject ttt= Instantiate(temp, position, temp.transform.rotation) as GameObject;
+	    if (!ttt)
+	    {
+	        Debug.Log("shengchengshibai");
+	    }
+
+        return ttt;
 	}
 
 	public GameObject OnAsynchronous(string name,Vector3 position,string serial,string path,string ID,ReturnObject returnObject){
@@ -96,8 +102,9 @@ public class MemoryController:MonoBehaviour{
 		return null;
 	}
 
-	public void OnAddObject(GameObject go,string num)
+	public void OnListAddObject(GameObject go,string num)
 	{
+		go.SetActive (false);
 		memoryList [(int.Parse(num))-1].Add (go);
 	}
 

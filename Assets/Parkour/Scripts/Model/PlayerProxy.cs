@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using PureMVC.Patterns;
 
@@ -63,21 +64,29 @@ public class PlayerProxy : Proxy {
         if (propName == "prop_HP(Clone)")
         {
             Debug.Log("PROP_hp");
-            player.HP += 100;
+//            player.HP += 100;
+            player.HP += Int32.Parse(ReadTable.getTable.OnFind("propDate", "1", "prop"));
             SendNotification(EventsEnum.playerHPChange, player);
             // ui.HP.fillAmount = ui.HP.fillAmount + ui.HP.fillAmount / 3;
         }
         else if (propName == "prop_MP(Clone)")
         {
             Debug.Log("prop_MP");
-            player.MP += 100;
+//            player.MP += 100;
+            player.MP += Int32.Parse(ReadTable.getTable.OnFind("propDate", "2", "prop"));
             SendNotification(EventsEnum.playerUseSkillSuccess, player);
         }
         else if (propName == "prop_score(Clone)")
         {
             Debug.Log("prop_score");
-            player.score+=100;
+//            player.score+=100;
+            player.score+= Int32.Parse(ReadTable.getTable.OnFind("propDate", "3", "prop"));
             SendNotification(EventsEnum.playerGetScoureSuccess, player);
+        }else if (propName == "prop_fly(Clone)")
+        {
+            Debug.Log("prop_fly");
+            Debug.Log(float.Parse(ReadTable.getTable.OnFind("propDate", "4", "prop")));
+            SendNotification(EventsEnum.playerFly, float.Parse(ReadTable.getTable.OnFind("propDate", "4", "prop")));
         }
     }
 

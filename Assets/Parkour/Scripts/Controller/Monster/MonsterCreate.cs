@@ -13,7 +13,16 @@ public class MonsterCreate : SimpleCommand
         if (Random.Range(0, MonsterParameber.GeneratingprobabilityMax) < MonsterParameber.GeneratingprobabilityMin)
         {
             MonsterProxy monster = (MonsterProxy)Facade.RetrieveProxy(MonsterProxy.NAME);
-            monster.OnCreatMonster(Random.Range(1, MonsterParameber.SpeciesNumber+1), 1);
+            int a = Random.Range(1, MonsterParameber.SpeciesNumber + 1);
+            if (a>5)
+            {
+                Debug.Log(111);
+            }
+            if (a == 6)
+            {
+                Debug.LogError("怪物不够");
+            }
+            monster.OnCreatMonster(a, 1);
         }
     }
 }

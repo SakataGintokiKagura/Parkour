@@ -4,3 +4,4 @@ ID	name	priority	path	load
 3	Coins	3	Coins/	OnAsynchronous	 
 4	Terrain	4	terrain/	OnAsynchronous	
 5	FlyItem	5	FlyItem/	OnSynchronous
+6	Pet	6	Pet/	OnSynchronous	

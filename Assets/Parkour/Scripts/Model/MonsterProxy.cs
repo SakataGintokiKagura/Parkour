@@ -27,15 +27,25 @@ public class MonsterProxy : Proxy {
         {
             if (monster > 2)
                 monster -= 2;
+            if (monster>5)
+            {
+                Debug.Log("fuck");
+            }
             t = Type.GetType(temp.OnFind("monsterDate", (monster * 10).ToString(), "class"));
         }
         else
         {
+            if (monster > 5)
+            {
+                Debug.Log("fuck shit");
+            }
+            //Debug.Log(monster.ToString());
             t = Type.GetType(temp.OnFind("monsterDate", monster.ToString(), "class"));
         }
 
         IBlology obj = (IBlology)System.Activator.CreateInstance(t, time);
         MonsterQueue.Enqueue((IBlology)obj);
+        
         SendNotification(EventsEnum.monsterCreateMonsterSuccess, (IBlology)obj);
     }
 
@@ -66,7 +76,8 @@ public class MonsterProxy : Proxy {
         }
         SendNotification(EventsEnum.monsterDie, monster);
         int temp = UnityEngine.Random.Range(0, 100);
-        int a=0;
+        Debug.Log(temp);
+        int a = 100;
         if (temp < 10)
         {
             a = 1;
@@ -83,14 +94,10 @@ public class MonsterProxy : Proxy {
         {
             a = 4;
         }
-        else
-        {
-            a = 100;
-        }
         if (a != 100)
         {
             string str = a.ToString();
-            String prop_name = ReadTable.getTable.OnFind("propDate", str, "propName");
+                String prop_name = ReadTable.getTable.OnFind("propDate", str, "propName");
             if (prop_name != "1111")
             {
                 SendNotification(EventsEnum.propCreate, prop_name);
