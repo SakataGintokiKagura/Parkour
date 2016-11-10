@@ -135,6 +135,7 @@ public class MonsterMediator : Mediator,IMonsterMediator {
 			    break;
            
 		    case EventsEnum.propCreate:
+                Debug.Log("生成道具");
 			    string prop_name = notification.Body.ToString ();
             
 			    ReadTable reatable = ReadTable.getTable;
@@ -145,10 +146,8 @@ public class MonsterMediator : Mediator,IMonsterMediator {
 				    "1",
 				    new ReturnObject(MemoryController.instance.emptyDelegate)
 			    );
-
-			    MemoryController.instance.OnListAddObject (prop,ReadTable.getTable.OnFind("memoryObjectParameter","1","priority")); 
-
-                
+                //下面的话注释掉，要不然不能生成道具
+			    //MemoryController.instance.OnListAddObject (prop,ReadTable.getTable.OnFind("memoryObjectParameter","1","priority")); 
 			    break;
         }
     }
