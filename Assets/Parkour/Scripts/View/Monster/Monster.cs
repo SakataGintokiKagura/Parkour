@@ -22,7 +22,7 @@ public class Monster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.x - initialPosition > 400)
+        if (transform.position.x - initialPosition > 600)
         {
             monsterMediator.OnCreateBoss();
             initialPosition = transform.position.x;

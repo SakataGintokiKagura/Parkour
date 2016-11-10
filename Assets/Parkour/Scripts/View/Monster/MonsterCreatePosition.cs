@@ -22,9 +22,9 @@ public class MonsterCreatePosition : MonoBehaviour {
 
 			count = gameObject.transform.position.x;
 
-//			if (isCreateMonster&&isContactTerrain) 
-				//MonsterMediator.OnGetMonsterMediator ().OnCreateMonster ();
-		}
+            if (isCreateMonster && isContactTerrain)
+                MonsterMediator.OnGetMonsterMediator().OnCreateMonster();
+        }
 	}
 
 	void OnTriggerStay(Collider other){
