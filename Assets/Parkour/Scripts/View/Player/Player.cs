@@ -119,7 +119,7 @@ public class Player : MonoBehaviour {
         {
             playerMediator.OnDropOutPit();
         }
-        Debug.Log(velocity);
+        //Debug.Log(velocity);
     }
     /// <summary>
     /// 施加重力

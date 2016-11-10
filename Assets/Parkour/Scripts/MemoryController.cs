@@ -56,10 +56,6 @@ public class MemoryController:MonoBehaviour{
 		deleteListObject ();
 	}
 
-	public List<GameObject> getMemoryList(string num){
-		return memoryList[(int.Parse(num))-1];
-	}
-
 	public GameObject OnFindGameObjectByName(string name,Vector3 position,string ID,ReturnObject returnObject){
 		//string serial,string path,string load
 
@@ -101,13 +97,7 @@ public class MemoryController:MonoBehaviour{
 		go.SetActive (false);
 		memoryList [(int.Parse(num))-1].Add (go);
 	}
-
-	public void OnRemoveObject(GameObject go,string num)
-	{
-		memoryList [(int.Parse(num)-1)].Remove (go);
-	}
-
-
+		
 	public void deleteListObject(){
 		while (Profiler.GetTotalAllocatedMemory () >= MemoryParameter.threshold) {
 			for (int i = 0; i < MemoryParameter.objectType; i++) {

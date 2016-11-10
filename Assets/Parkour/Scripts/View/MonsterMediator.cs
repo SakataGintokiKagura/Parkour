@@ -145,7 +145,6 @@ public class MonsterMediator : Mediator,IMonsterMediator {
 				    "1",
 				    new ReturnObject(MemoryController.instance.emptyDelegate)
 			    );
-			    MemoryController.instance.OnListAddObject (prop,ReadTable.getTable.OnFind("memoryObjectParameter","1","priority")); 
                 
 			    break;
         }
@@ -157,9 +156,9 @@ public class MonsterMediator : Mediator,IMonsterMediator {
     }
     public void OnAddMonster(GameObject monster)
     {
-        string temp = "BOSS";
-        if (monster.name == "boss(Clone)")
-            monster.AddComponent(Type.GetType(temp));
+//        string temp = "BOSS";
+//        if (monster.name == "boss(Clone)")
+//            monster.AddComponent(Type.GetType(temp));
         SendNotification(EventsEnum.monsterCreateGameObject, monster);
         this.monster[blology.Dequeue()]= monster;
     }
