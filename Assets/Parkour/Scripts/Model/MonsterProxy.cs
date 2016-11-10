@@ -60,6 +60,10 @@ public class MonsterProxy : Proxy {
     }
     private void OnDie(IBlology monster)//一个怪物死亡之后  发送产生的道具，确定是否产生某个道具
     {
+        if(monster is BossGasInformation)
+        {
+            isboss = false;
+        }
         SendNotification(EventsEnum.monsterDie, monster);
         int temp = UnityEngine.Random.Range(0, 100);
         int a=0;

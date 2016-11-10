@@ -8,4 +8,5 @@ class TagParameber
     public const string coin = "Coin";
     public const string prop = "Prop";
     public const string terrain = "Terrain";
+    public const string bottom = "Bottom";
 }

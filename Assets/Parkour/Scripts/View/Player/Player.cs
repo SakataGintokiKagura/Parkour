@@ -14,6 +14,7 @@ public class Player : MonoBehaviour {
     private ISkill skill;
     private Animator anim;
     private bool isfly;
+    private bool isDrop;
     private CharacterController controller;
     private Vector3 velocity;
     private PlayerState state;
@@ -94,18 +95,31 @@ public class Player : MonoBehaviour {
         velocity = ApplyGravity(velocity);
         Vector3 lastPosition = transform.position;
         CollisionFlags flags = controller.Move(velocity);
-        velocity.y = (transform.position.y - lastPosition.y);
+        //if (transform.position.y - lastPosition.y < 0.000000000005f)
+        //    velocity.y = 0f;
+        if (isDrop)
+        {
+            velocity.y = 0;
+            isDrop = false;
+        }
+        else
+            velocity.y = (transform.position.y - lastPosition.y);
         if ((flags & CollisionFlags.Below) == 0 && (State.singletonState is Run))
         {
-            State.OnJump();
+            //State.OnJump();
             anim.SetInteger(AnimationParameter.jump, AnimationParameter.jumpfirst);
         }
         anim.SetFloat(AnimationParameter.xSpeed, velocity.x);
         anim.SetFloat(AnimationParameter.ySpeed, velocity.y);
-        if (transform.position.y < MotionParameber.yLimit||Camera.main.WorldToViewportPoint(transform.position).x < 0)
+        //if (transform.position.y<MotionParameber.yLimit|| Camera.main.WorldToViewportPoint(transform.position).x < 0)
+        //{
+        //    playerMediator.OnDropOutPit();
+        //}
+        if (Camera.main.WorldToViewportPoint(transform.position).x < 0)
         {
             playerMediator.OnDropOutPit();
         }
+        Debug.Log(velocity);
     }
     /// <summary>
     /// 施加重力
@@ -224,11 +238,18 @@ public class Player : MonoBehaviour {
     /// <param name="hit"></param>
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if ((controller.collisionFlags & CollisionFlags.Below) != 0 && !(State.singletonState is Run))
+        //if ((controller.collisionFlags & CollisionFlags.Below) != 0 && !(State.singletonState is Run))
+        //{
+        //    State.OnGrounded();
+        //    anim.SetInteger(AnimationParameter.jump, AnimationParameter.jumpGround);
+        //}
+        if ((controller.collisionFlags & CollisionFlags.Below) != 0)
         {
             State.OnGrounded();
             anim.SetInteger(AnimationParameter.jump, AnimationParameter.jumpGround);
         }
+        if (hit.collider.tag == TagParameber.bottom)
+            playerMediator.OnDropOutPit();
     }
     public void OnSetPlayerMediator(IPlayerMediator playerMediator)
     {
@@ -245,14 +266,9 @@ public class Player : MonoBehaviour {
             playerMediator.OnGetScoure(1);
 			col.gameObject.SetActive (false);
         }else if(col.tag == TagParameber.monster)
-
-        {
-            //Debug.Log(1111);
             OnHurtCheck(col.gameObject);
-        }else if(col.tag == TagParameber.prop)
-        {
+        else if(col.tag == TagParameber.prop)
             playerMediator.OnPickUpProp(col.gameObject);
-        }
 
     }
     /// <summary>
@@ -289,7 +305,8 @@ public class Player : MonoBehaviour {
         position += MotionParameber.rebornDelta;
         position.y = 3;
         transform.position = position;
-        velocity.y = 0;
+        isDrop = true;
+        //velocity.y = 0;
     }
     /// <summary>
     /// 辅助技能无敌
