@@ -119,7 +119,7 @@ public class Player : MonoBehaviour {
         {
             playerMediator.OnDropOutPit();
         }
-        Debug.Log(velocity);
+        //Debug.Log(velocity);
     }
     /// <summary>
     /// 施加重力
@@ -166,6 +166,8 @@ public class Player : MonoBehaviour {
         {
             yield return new WaitForSeconds(MotionParameber.accelerationCD);
             velocity.x += MotionParameber.acceleration * MotionParameber.fixedMotion;
+            if (velocity.x > MotionParameber.speedMax)
+                break;
         }
 
     }
