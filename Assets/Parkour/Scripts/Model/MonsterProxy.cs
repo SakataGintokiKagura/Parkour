@@ -96,12 +96,7 @@ public class MonsterProxy : Proxy {
         }
         if (a != 100)
         {
-            string str = a.ToString();
-                String prop_name = ReadTable.getTable.OnFind("propDate", str, "propName");
-            if (prop_name != "1111")
-            {
-                SendNotification(EventsEnum.propCreate, prop_name);
-            }
+			SendNotification(EventsEnum.propCreate, a.ToString());
         }
 		
 

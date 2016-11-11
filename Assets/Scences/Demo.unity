@@ -363,6 +363,30 @@ Prefab:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: c7b97237ee049014cb46158d4b14f2a8, type: 2}
+    - target: {fileID: 114000011199105868, guid: 801ef8fddbcbac84f94bf03fa9b87b39,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 0.102941155
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011199105868, guid: 801ef8fddbcbac84f94bf03fa9b87b39,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 0.103698075
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011199105868, guid: 801ef8fddbcbac84f94bf03fa9b87b39,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 0.103698075
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000012739102736, guid: 801ef8fddbcbac84f94bf03fa9b87b39, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011199105868, guid: 801ef8fddbcbac84f94bf03fa9b87b39,
+        type: 2}
+      propertyPath: m_FontData.m_RichText
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 801ef8fddbcbac84f94bf03fa9b87b39, type: 2}
   m_IsPrefabParent: 0
@@ -1921,41 +1945,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc816323fd7ab0f4c8f2bca3a842b567, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1529346047 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1000013864233936, guid: 801ef8fddbcbac84f94bf03fa9b87b39,
-    type: 2}
-  m_PrefabInternal: {fileID: 729711755}
---- !u!114 &1529346052
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1529346047}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1862395651, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 2
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 836890138}
-          m_MethodName: OnButtonJump
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  delegates: []
 --- !u!1 &1603873190
 GameObject:
   m_ObjectHideFlags: 0

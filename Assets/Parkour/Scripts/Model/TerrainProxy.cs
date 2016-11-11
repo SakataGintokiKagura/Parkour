@@ -6,12 +6,12 @@ using PureMVC.Patterns;
 
 public class TerrainCreateInfor
 {
-    private int terrain;
 	private List<Coin> coin;
+	private string name;
 	public TerrainCreateInfor(int terrain, List<Coin> coin)
     {
-        this.terrain = terrain;
         this.coin = coin;
+		this.name = terrain.ToString();
     }
 
 	public List<Coin> OnGetCoin()
@@ -19,34 +19,33 @@ public class TerrainCreateInfor
         return coin;
     }
 
-	public int OnGetTerrain()
-	{
-		return terrain;
+	public string OnGetName(){
+		return name;
 	}
 }
 
 public class Coin{
 	
 	private float start;
-	private int kind;
 	private float high;
+	private string name;
 
 	public Coin(float start,int kind,float high){
 		this.start = start;
-		this.kind = kind;
 		this.high = high;
+		this.name = kind.ToString();
 	}
 
 	public float OnGetStart(){
 		return start;
 	}
 
-	public int OnGetKind(){
-		return kind;
-	}
-
 	public float OnGetHigh(){
 		return high;
+	}
+
+	public string OnGetName(){
+		return name;
 	}
 }
 	

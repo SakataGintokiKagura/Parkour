@@ -89,7 +89,6 @@ public class PlayerMediator : Mediator,IPlayerMediator {
         {
             case EventsEnum.playerDropOutNoDie:
                 player.OnDropOut();
-
                 break;
             case EventsEnum.playerUseSkillSuccess:
                 if(notification.Body is PLayerInformation)

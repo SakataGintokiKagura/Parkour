@@ -177,7 +177,7 @@ GameObject:
   - 114: {fileID: 114000013101538056}
   - 54: {fileID: 54000010122362032}
   m_Layer: 0
-  m_Name: dragon
+  m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

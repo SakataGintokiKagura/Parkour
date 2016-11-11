@@ -97,7 +97,7 @@ public class MonsterMediator : Mediator,IMonsterMediator {
         switch (notification.Name)
         {
 		case EventsEnum.monsterCreateMonsterSuccess:
-                //Debug.Log(33333);
+
 			IBlology monsterSpecies = (IBlology)notification.Body;
 
 			ReadTable temp_01 = ReadTable.getTable;
@@ -106,7 +106,10 @@ public class MonsterMediator : Mediator,IMonsterMediator {
 			MemoryController.instance.OnFindGameObjectByName(    
 				temp_01.OnFind("monsterDate", monsterSpecies.ID.ToString(), "name"),
 				monsterCreatePosition,
-				temp_01.OnFind("monsterDate", monsterSpecies.ID.ToString(), "memoryID"),
+				MemoryParameter.MonsterPriority.ToString(),
+				temp_01.OnFind("monsterDate", monsterSpecies.ID.ToString(), "path"),
+				temp_01.OnFind("monsterDate", monsterSpecies.ID.ToString(), "load"),
+				monsterSpecies.ID.ToString(),
 				new ReturnObject(OnAddMonster)
 			);
                 // this.blology.Enqueue(monsterSpecies);
@@ -140,9 +143,12 @@ public class MonsterMediator : Mediator,IMonsterMediator {
 			    ReadTable reatable = ReadTable.getTable;
 
 			    GameObject prop = MemoryController.instance.OnFindGameObjectByName (
-				    prop_name, 
-				    position, 
-				    "1",
+				    reatable.OnFind("propDate", prop_name,"name"),
+				    position,  
+				    MemoryParameter.PropPriority.ToString(), 
+				    reatable.OnFind("propDate", prop_name,"path"),
+				    reatable.OnFind("propDate", prop_name,"load"),
+				    prop_name,
 				    new ReturnObject(MemoryController.instance.emptyDelegate)
 			    );
                 

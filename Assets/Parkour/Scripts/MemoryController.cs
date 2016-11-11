@@ -6,7 +6,6 @@ using System.Reflection;
 	
 public delegate void ReturnObject(GameObject obj);
 
-
 public class MemoryController:MonoBehaviour{
 
 	private bool[] isLoading;
@@ -56,15 +55,9 @@ public class MemoryController:MonoBehaviour{
 		deleteListObject ();
 	}
 
-	public GameObject OnFindGameObjectByName(string name,Vector3 position,string ID,ReturnObject returnObject){
-		//string serial,string path,string load
+	public GameObject OnFindGameObjectByName(string name,Vector3 position,string serial,string path,string load,string ID,ReturnObject returnObject){
 
-		ReadTable temp = ReadTable.getTable;
-		string serial = temp.OnFind ("memoryObjectParameter", ID, "priority");
-		string path= temp.OnFind ("memoryObjectParameter", ID, "path");
-		string load= temp.OnFind ("memoryObjectParameter", ID, "load");
-
-		string nameClone = name + "(Clone)";
+		string nameClone = ID + "(Clone)";
 		foreach (var go in memoryList[(int.Parse(serial))-1])
 		{
 			if (go.name == nameClone)
@@ -84,17 +77,12 @@ public class MemoryController:MonoBehaviour{
 
 	public GameObject OnSynchronous(string name,Vector3 position,string serial,string path,string ID,ReturnObject returnObject){
 		GameObject temp = Resources.Load(path + name) as GameObject;
-        GameObject ttt= Instantiate(temp, position, temp.transform.rotation) as GameObject;
-	    if (!ttt)
-	    {
-	        Debug.Log("shengchengshibai");
-	    }
-
-        return ttt;
+		temp.name = ID;
+        return Instantiate(temp, position, temp.transform.rotation) as GameObject;
 	}
 
 	public GameObject OnAsynchronous(string name,Vector3 position,string serial,string path,string ID,ReturnObject returnObject){
-		StartCoroutine (LoadAssetAsyncCoroutine (path, name, position, serial,returnObject));
+		StartCoroutine (LoadAssetAsyncCoroutine (path, name, position, serial,ID,returnObject));
 		return null;
 	}
 
@@ -125,7 +113,7 @@ public class MemoryController:MonoBehaviour{
 		}
 	}
 
-	IEnumerator LoadAssetAsyncCoroutine(string path,string name, Vector3 position,string serial,ReturnObject returnObject){//ReturnObject action,
+	IEnumerator LoadAssetAsyncCoroutine(string path,string name, Vector3 position,string serial,string ID,ReturnObject returnObject){//ReturnObject action,
 		WWW www = new WWW(URL+path+name+".assetbundle");
 		yield return www;
 		while (isLoading[int.Parse(serial)-1]) {
@@ -136,6 +124,7 @@ public class MemoryController:MonoBehaviour{
 		AssetBundleRequest abr = assetbundle.LoadAssetAsync (name,typeof(GameObject));
 		yield return abr;
 		GameObject fin = Instantiate (abr.asset,position,Quaternion.identity)as GameObject;
+		fin.name = ID;
 		returnObject (fin);
 		www.assetBundle.Unload (false);
 		isLoading [int.Parse (serial) - 1] = false;
