@@ -94,11 +94,12 @@ public class MonsterProxy : Proxy {
             if (temp < pro)
             {
                 a = i;
-                return;
+                break;
             }
         }
         if (a != 100)
         {
+            Debug.Log("生成道具的ID："+a);
             string str = a.ToString();
             SendNotification(EventsEnum.propCreate, str);
         }
