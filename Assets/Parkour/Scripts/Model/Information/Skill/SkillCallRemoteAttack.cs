@@ -59,7 +59,7 @@ public class SkillCallRemoteAttack : IEnbaleAirSkill {
 		MemoryController.instance.OnFindGameObjectByName (
 			table.OnFind("PetDate","1","name"),
 			Vector3.zero,
-			"6",
+			MemoryParameter.PetPriority,
 			table.OnFind("PetDate","1","path"),
 			table.OnFind("PetDate","1","load"),
 			"1",

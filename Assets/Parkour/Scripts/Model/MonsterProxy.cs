@@ -78,36 +78,29 @@ public class MonsterProxy : Proxy {
 
         ReadTable prop=ReadTable.getTable;
         float temp = UnityEngine.Random.Range(0, 100)/(float)100;
-        float temp1 = float.Parse(prop.OnFind("propDate", "1", "probability"));
-        float temp2 = float.Parse(prop.OnFind("propDate", "2", "probability"));
-        float temp3 = float.Parse(prop.OnFind("propDate", "3", "probability"));
-        float temp4 = float.Parse(prop.OnFind("propDate", "4", "probability"));
+        
+        int num=Int32.Parse(prop.OnFind("propDate", "1000", "name"));
+        List<float> proba=new List<float>();
+        for (int i = 1; i <= num; i++)
+        {
+            proba.Add(float.Parse(prop.OnFind("propDate", i.ToString(), "probability")));
+        }
+        
         int a = 100;
-        if (temp <temp1)
+        float pro = 0;
+        for (int i = 1; i <= num; i++)
         {
-            a = 1;
-        }
-        else if(temp<temp1+temp2)
-        {
-            a = 2;
-        }
-        else if(temp< temp1 + temp2+temp3)
-        {
-            a = 3;
-        }
-        else if (temp < temp1 + temp2 + temp3 + temp4)
-        {
-            a = 4;
+            pro += proba[i - 1];
+            if (temp < pro)
+            {
+                a = i;
+                return;
+            }
         }
         if (a != 100)
         {
             string str = a.ToString();
-            String prop_name = ReadTable.getTable.OnFind("propDate", str, "propName");
-            if (prop_name != "1111")
-            {
-                Debug.Log(prop_name);
-                SendNotification(EventsEnum.propCreate, prop_name);
-            }
+            SendNotification(EventsEnum.propCreate, str);
         }
     }
     public void OnDestroy(GameObject monster)

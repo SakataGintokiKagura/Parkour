@@ -51,7 +51,7 @@ public class SkillRangeRomateAttack : ISkill
 		MemoryController.instance.OnFindGameObjectByName (
 			table.OnFind ("flyItemDate", "3", "name"),
 			transform.position,
-			MemoryParameter.FlyItemPriority.ToString(),
+			MemoryParameter.FlyItemPriority,
 			table.OnFind ("flyItemDate", "3", "path"),
 			table.OnFind ("flyItemDate", "3", "load"),
 			"3",

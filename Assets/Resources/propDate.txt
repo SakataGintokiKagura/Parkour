@@ -3,3 +3,4 @@ ID	name	property	prop	memoryID	path	load	probability
 2	prop_MP	PlayerMPChange	100	1	Prop/	OnSynchronous	0.15
 3	prop_score	PlayerGetScoure	100	1	Prop/	OnSynchronous	0.25
 4	prop_fly	PlayerFly	10	1	Prop/	OnSynchronous	0.05
+1000	4

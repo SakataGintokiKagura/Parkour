@@ -106,7 +106,7 @@ public class MonsterMediator : Mediator,IMonsterMediator {
 			MemoryController.instance.OnFindGameObjectByName(    
 				temp_01.OnFind("monsterDate", monsterSpecies.ID.ToString(), "name"),
 				monsterCreatePosition,
-				MemoryParameter.MonsterPriority.ToString(),
+				MemoryParameter.MonsterPriority,
 				temp_01.OnFind("monsterDate", monsterSpecies.ID.ToString(), "path"),
 				temp_01.OnFind("monsterDate", monsterSpecies.ID.ToString(), "load"),
 				monsterSpecies.ID.ToString(),
@@ -134,22 +134,22 @@ public class MonsterMediator : Mediator,IMonsterMediator {
 			    if (this.monster.ContainsKey (blology)) {
 				        this.monster.Remove (blology);
 			    }
-			    MemoryController.instance.OnListAddObject (temp,ReadTable.getTable.OnFind("memoryObjectParameter","2","priority"));    
+			MemoryController.instance.OnListAddObject (temp,MemoryParameter.MonsterPriority);    
 			    break;
            
 		    case EventsEnum.propCreate:
                 Debug.Log("生成道具");
-			    string prop_name = notification.Body.ToString ();
+			    string id = notification.Body.ToString ();
             
 			    ReadTable reatable = ReadTable.getTable;
 
 			    GameObject prop = MemoryController.instance.OnFindGameObjectByName (
-				    reatable.OnFind("propDate", prop_name,"name"),
+				    reatable.OnFind("propDate", id,"name"),
 				    position,  
-				    MemoryParameter.PropPriority.ToString(), 
-				    reatable.OnFind("propDate", prop_name,"path"),
-				    reatable.OnFind("propDate", prop_name,"load"),
-				    prop_name,
+				    MemoryParameter.PropPriority, 
+				    reatable.OnFind("propDate", id,"path"),
+				    reatable.OnFind("propDate", id,"load"),
+				    id,
 				    new ReturnObject(MemoryController.instance.emptyDelegate)
 			    );
                 //下面的话注释掉，要不然不能生成道具
