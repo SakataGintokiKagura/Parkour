@@ -89,7 +89,6 @@ public class PlayerMediator : Mediator,IPlayerMediator {
         {
             case EventsEnum.playerDropOutNoDie:
                 player.OnDropOut();
-
                 break;
             case EventsEnum.playerUseSkillSuccess:
                 if(notification.Body is PLayerInformation)
@@ -142,8 +141,7 @@ public class PlayerMediator : Mediator,IPlayerMediator {
     }
 
     public void OnPickUpProp(GameObject temp) {
-		MemoryController.instance.OnListAddObject(temp,ReadTable.getTable.OnFind("memoryObjectParameter","1","priority"));
-		MemoryController.instance.OnRemoveObject(temp,ReadTable.getTable.OnFind("memoryObjectParameter","1","priority"));
+		MemoryController.instance.OnListAddObject(temp,MemoryParameter.PropPriority);
         SendNotification(EventsEnum.propPickUpProp,temp);
     }
 }

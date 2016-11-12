@@ -55,8 +55,15 @@ public class SkillCallRemoteAttack : IEnbaleAirSkill {
     public void OnStartSkillAnimation(Transform transform, Animator anim, PlayerState state)
     {
         state.OnUseSkill(true);
-		MemoryController.instance.OnFindGameObjectByName ("dragon",Vector3.zero,"6",MemoryController.instance.emptyDelegate);
-//        GameObject pet = Resources.Load("Pet/" + "dragon")as GameObject;
-//        GameObject.Instantiate(pet, Vector3.zero, pet.transform.rotation);
+		ReadTable table = ReadTable.getTable;
+		MemoryController.instance.OnFindGameObjectByName (
+			table.OnFind("PetDate","1","name"),
+			Vector3.zero,
+			MemoryParameter.PetPriority,
+			table.OnFind("PetDate","1","path"),
+			table.OnFind("PetDate","1","load"),
+			"1",
+			MemoryController.instance.emptyDelegate);
+
     }
 }

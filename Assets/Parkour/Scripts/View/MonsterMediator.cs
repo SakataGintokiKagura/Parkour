@@ -97,7 +97,7 @@ public class MonsterMediator : Mediator,IMonsterMediator {
         switch (notification.Name)
         {
 		case EventsEnum.monsterCreateMonsterSuccess:
-                //Debug.Log(33333);
+
 			IBlology monsterSpecies = (IBlology)notification.Body;
 
 			ReadTable temp_01 = ReadTable.getTable;
@@ -106,7 +106,10 @@ public class MonsterMediator : Mediator,IMonsterMediator {
 			MemoryController.instance.OnFindGameObjectByName(    
 				temp_01.OnFind("monsterDate", monsterSpecies.ID.ToString(), "name"),
 				monsterCreatePosition,
-				temp_01.OnFind("monsterDate", monsterSpecies.ID.ToString(), "memoryID"),
+				MemoryParameter.MonsterPriority,
+				temp_01.OnFind("monsterDate", monsterSpecies.ID.ToString(), "path"),
+				temp_01.OnFind("monsterDate", monsterSpecies.ID.ToString(), "load"),
+				monsterSpecies.ID.ToString(),
 				new ReturnObject(OnAddMonster)
 			);
                 // this.blology.Enqueue(monsterSpecies);
@@ -131,24 +134,27 @@ public class MonsterMediator : Mediator,IMonsterMediator {
 			    if (this.monster.ContainsKey (blology)) {
 				        this.monster.Remove (blology);
 			    }
-			    MemoryController.instance.OnListAddObject (temp,ReadTable.getTable.OnFind("memoryObjectParameter","2","priority"));    
+			MemoryController.instance.OnListAddObject (temp,MemoryParameter.MonsterPriority);    
 			    break;
            
 		    case EventsEnum.propCreate:
-			    string prop_name = notification.Body.ToString ();
+                Debug.Log("生成道具");
+			    string id = notification.Body.ToString ();
             
 			    ReadTable reatable = ReadTable.getTable;
 
 			    GameObject prop = MemoryController.instance.OnFindGameObjectByName (
-				    prop_name, 
-				    position, 
-				    "1",
+				    reatable.OnFind("propDate", id,"name"),
+				    position,  
+				    MemoryParameter.PropPriority, 
+				    reatable.OnFind("propDate", id,"path"),
+				    reatable.OnFind("propDate", id,"load"),
+				    id,
 				    new ReturnObject(MemoryController.instance.emptyDelegate)
 			    );
-
+                //下面的话注释掉，要不然不能生成道具
 			    //MemoryController.instance.OnListAddObject (prop,ReadTable.getTable.OnFind("memoryObjectParameter","1","priority")); 
 
-                
 			    break;
         }
     }

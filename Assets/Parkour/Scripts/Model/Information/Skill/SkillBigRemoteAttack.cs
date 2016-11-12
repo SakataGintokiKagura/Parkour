@@ -31,7 +31,6 @@ public class SkillBigRemoteAttack : IEnbaleAirSkill  {
     public void OnEndSkillAnimation(Transform transform, Animator anim, PlayerState state)
     {
         anim.SetInteger(AnimationParameter.skill, AnimationParameter.skillUnUse);
-       // Debug.Log("jieshu");
         state.OnEndSkill();
         Player player = PlayerMediator.OnGetPlayerMediator().player;
         if (!player.Isfly)
@@ -50,13 +49,13 @@ public class SkillBigRemoteAttack : IEnbaleAirSkill  {
 		MemoryController.instance.OnFindGameObjectByName (
 			table.OnFind ("flyItemDate", "2", "name"),
 			transform.position,
-			table.OnFind ("flyItemDate", "2", "memoryID"),
+			MemoryParameter.FlyItemPriority,
+			table.OnFind ("flyItemDate", "2", "path"),
+			table.OnFind ("flyItemDate", "2", "load"),
+			"2",
 			new ReturnObject(MemoryController.instance.emptyDelegate)
 		);
 	}
-//        GameObject temp = Resources.Load("FlyItem/" + table.OnFind("flyItemDate", "2", "name")) as GameObject;
-//        GameObject.Instantiate(temp, transform.position, temp.transform.rotation);
-	
 
     public void OnStartSkillAnimation(Transform transform, Animator anim, PlayerState state)
     {

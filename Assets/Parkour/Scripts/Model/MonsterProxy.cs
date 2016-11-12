@@ -75,36 +75,34 @@ public class MonsterProxy : Proxy {
             isboss = false;
         }
         SendNotification(EventsEnum.monsterDie, monster);
-        int temp = UnityEngine.Random.Range(0, 100);
-        Debug.Log(temp);
+
+        ReadTable prop=ReadTable.getTable;
+        float temp = UnityEngine.Random.Range(0, 100)/(float)100;
+        
+        int num=Int32.Parse(prop.OnFind("propDate", "1000", "name"));
+        List<float> proba=new List<float>();
+        for (int i = 1; i <= num; i++)
+        {
+            proba.Add(float.Parse(prop.OnFind("propDate", i.ToString(), "probability")));
+        }
+        
         int a = 100;
-        if (temp < 10)
+        float pro = 0;
+        for (int i = 1; i <= num; i++)
         {
-            a = 1;
-        }
-        else if(temp<25)
-        {
-            a = 2;
-        }
-        else if(temp<50)
-        {
-            a = 3;
-        }
-        else if (temp < 55)
-        {
-            a = 4;
+            pro += proba[i - 1];
+            if (temp < pro)
+            {
+                a = i;
+                break;
+            }
         }
         if (a != 100)
         {
+            Debug.Log("生成道具的ID："+a);
             string str = a.ToString();
-                String prop_name = ReadTable.getTable.OnFind("propDate", str, "propName");
-            if (prop_name != "1111")
-            {
-                SendNotification(EventsEnum.propCreate, prop_name);
-            }
+            SendNotification(EventsEnum.propCreate, str);
         }
-		
-
     }
     public void OnDestroy(GameObject monster)
     {

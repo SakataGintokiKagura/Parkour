@@ -33,7 +33,6 @@ public class UI : MonoBehaviour
     private bool isButtonBHaveDown = false;
     private bool temp = false;
     private bool isA = false;
-    private float waitUpTime;
     private float waitDownTime;
     private float waitTime;
     // Update is called once per frame
@@ -141,7 +140,7 @@ public class UI : MonoBehaviour
     /// </summary>
     public void OnButtonBUp()
     {
-        if (time > waitDownTime)
+        if (time > waitTime)
         {
             skillName = "BBB";
             SkillCheck(skillName);
@@ -167,7 +166,7 @@ public class UI : MonoBehaviour
 
     IEnumerator Wait()
     {
-        yield return new WaitForSeconds(waitUpTime);
+        yield return new WaitForSeconds(waitDownTime);
         if ((isButtonAHaveDown && isButtonBHaveDown) == false)
         {
             if (isButtonAHaveDown)
@@ -219,7 +218,6 @@ public class UI : MonoBehaviour
     {
         hPInitizal = 100;
         mPInitizal = 100;
-        waitUpTime = float.Parse(ReadTable.getTable.OnFind("skillParameber","9", "dateValue"));
         waitDownTime = float.Parse(ReadTable.getTable.OnFind("skillParameber", "10", "dateValue"));
         waitTime = float.Parse(ReadTable.getTable.OnFind("skillParameber", "11", "dateValue"));
     }

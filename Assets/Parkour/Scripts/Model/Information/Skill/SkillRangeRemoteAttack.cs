@@ -49,9 +49,12 @@ public class SkillRangeRomateAttack : ISkill
         ReadTable table = ReadTable.getTable;
 
 		MemoryController.instance.OnFindGameObjectByName (
-			table.OnFind("flyItemDate", "3", "name"),
+			table.OnFind ("flyItemDate", "3", "name"),
 			transform.position,
-			table.OnFind("flyItemDate", "3", "memoryID"),
+			MemoryParameter.FlyItemPriority,
+			table.OnFind ("flyItemDate", "3", "path"),
+			table.OnFind ("flyItemDate", "3", "load"),
+			"3",
 			new ReturnObject(MemoryController.instance.emptyDelegate)
 		);
 

@@ -80,7 +80,7 @@ public class Player : MonoBehaviour {
         controller = GetComponent<CharacterController>();
         initialVelocity = MotionParameber.initialVelocity * MotionParameber.fixedMotion;
         velocity = new Vector3(initialVelocity, 0, 0);
-        StartCoroutine(OnAccelerate());
+        //StartCoroutine(OnAccelerate());
         anim.SetFloat(AnimationParameter.xSpeed, velocity.x);
         anim.SetFloat(AnimationParameter.ySpeed, velocity.y);
         anim.SetInteger(AnimationParameter.jump, AnimationParameter.jumpGround);
@@ -120,7 +120,6 @@ public class Player : MonoBehaviour {
         {
             playerMediator.OnDropOutPit();
         }
-        //Debug.Log(velocity);
     }
     /// <summary>
     /// 施加重力

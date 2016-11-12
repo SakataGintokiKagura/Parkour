@@ -1,5 +1,5 @@
-ID	name	memoryID	
-1	Star	3			
-2	Line	3			
-3	Arc	3			
-4	LowtoHigh	3
+ID	name	memoryID	path	load	
+1	Star	3	Coins/	OnAsynchronous			
+2	Line	3	Coins/	OnAsynchronous				
+3	Arc	3	Coins/	OnAsynchronous			
+4	LowtoHigh	3	Coins/	OnAsynchronous
