@@ -140,6 +140,8 @@
      <Compile Include="Assets\Parkour\Scripts\View\Terrain\Terrain.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\TerrainMediator.cs" />
      <None Include="Assets\Resources\effectDate.txt" />
+     <None Include="Assets\Resources\tableDate.txt" />
+     <None Include="Assets\Resources\PetDate.txt" />
      <None Include="Assets\Resources\skillParameber.txt" />
      <None Include="Assets\Resources\memoryObjectParameter.txt" />
      <None Include="Assets\Resources\animationParameter.txt" />
@@ -151,7 +153,6 @@
      <None Include="Assets\Resources\terrainDate.txt" />
      <None Include="Assets\Resources\monsterParameber.txt" />
      <None Include="Assets\Resources\motionParameber.txt" />
-     <None Include="Assets\Resources\tableDate.txt" />
      <None Include="Assets\Resources\PetParaember.txt" />
      <None Include="Assets\Resources\coinDate.txt" />
      <None Include="Assets\Resources\skillDate.txt" />

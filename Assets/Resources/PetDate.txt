@@ -1,0 +1,2 @@
+ID	name	priority	path	load
+1	dragon	6	Pet/	OnSynchronous

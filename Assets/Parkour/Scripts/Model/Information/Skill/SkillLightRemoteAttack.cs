@@ -48,9 +48,12 @@ public class SkillLightRemoteAttack : ISkill
         ReadTable table = ReadTable.getTable;
 
 		MemoryController.instance.OnFindGameObjectByName (
-			table.OnFind("flyItemDate", "4", "name"),
+			table.OnFind ("flyItemDate", "4", "name"),
 			transform.position,
-			table.OnFind("flyItemDate", "4", "memoryID"),
+			MemoryParameter.FlyItemPriority.ToString(),
+			table.OnFind ("flyItemDate", "4", "path"),
+			table.OnFind ("flyItemDate", "4", "load"),
+			"4",
 			new ReturnObject(MemoryController.instance.emptyDelegate)
 		);
 

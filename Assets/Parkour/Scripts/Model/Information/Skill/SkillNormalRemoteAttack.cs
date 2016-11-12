@@ -49,9 +49,12 @@ public class SkillNormalRemoteAttack : IEnbaleAirSkill
         ReadTable table = ReadTable.getTable;
 
 		MemoryController.instance.OnFindGameObjectByName (
-			table.OnFind("flyItemDate", "1", "name"),
+			table.OnFind ("flyItemDate", "1", "name"),
 			transform.position,
-			table.OnFind("flyItemDate", "1", "memoryID"),
+			MemoryParameter.FlyItemPriority.ToString(),
+			table.OnFind ("flyItemDate", "1", "path"),
+			table.OnFind ("flyItemDate", "1", "load"),
+			"1",
 			new ReturnObject(MemoryController.instance.emptyDelegate)
 		);
 

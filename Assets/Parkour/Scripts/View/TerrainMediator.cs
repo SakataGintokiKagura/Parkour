@@ -68,9 +68,12 @@ public class TerrainMediator : Mediator, ITerrainMediator
                 ReadTable temp = ReadTable.getTable;
 
                 GameObject newTerrain = MemoryController.instance.OnFindGameObjectByName(
-                    temp.OnFind("terrainDate", infor.OnGetTerrain().ToString(), "terrainName"),
+                    temp.OnFind("terrainDate", infor.OnGetName(), "terrainName"),
                     new Vector3((terrain.getN() + 1)*TerrainParameter.mapSize, 0, 0),
-                    temp.OnFind("terrainDate", infor.OnGetTerrain().ToString(), "memoryID"),
+				    MemoryParameter.TerrainPriority.ToString(),
+				    temp.OnFind("terrainDate", infor.OnGetName(), "path"),
+				    temp.OnFind("terrainDate", infor.OnGetName(), "load"),
+				    infor.OnGetName().ToString(),
 				    new ReturnObject(OnEnqueueOldTerrain)
                 );
 
@@ -89,16 +92,18 @@ public class TerrainMediator : Mediator, ITerrainMediator
                 foreach (Coin item in infor.OnGetCoin())
                 {
                     GameObject CoinTemp = MemoryController.instance.OnFindGameObjectByName(
-                        temp.OnFind("coinDate", item.OnGetKind().ToString(), "name"),
+                        temp.OnFind("coinDate", item.OnGetName(), "name"),
                         new Vector3(item.OnGetStart() + ((terrain.getN() + 1)*TerrainParameter.mapSize),
                             item.OnGetHigh(), 0),
-                        temp.OnFind("coinDate", item.OnGetKind().ToString(), "memoryID"),
+					    MemoryParameter.CoinsPriority.ToString(),
+                        temp.OnFind("coinDate", item.OnGetName(), "path"),
+					    temp.OnFind("coinDate", item.OnGetName(), "load"),
+					    item.OnGetName().ToString(),
 					    new ReturnObject(OnEnqueueOldCoin)
                     );
 
                     if (CoinTemp)
                     {
-
                         OnEnqueueOldCoin(CoinTemp);
                     }
                 }

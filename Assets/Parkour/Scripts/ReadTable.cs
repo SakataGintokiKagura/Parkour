@@ -93,7 +93,7 @@ public class ReadTable {
         int index = Array.IndexOf(tableIndex[table], content);
         if (index < 0)
         {
-            Debug.Log("表内没有对应内容");
+            Debug.Log(table+"表内没有对应内容"+content);
             return "1111";
         }
         foreach (string[] item in tableContent[table])
