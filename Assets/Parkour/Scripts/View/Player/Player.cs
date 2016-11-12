@@ -119,7 +119,6 @@ public class Player : MonoBehaviour {
         {
             playerMediator.OnDropOutPit();
         }
-//        Debug.Log(velocity);
     }
     /// <summary>
     /// 施加重力
@@ -166,6 +165,8 @@ public class Player : MonoBehaviour {
         {
             yield return new WaitForSeconds(MotionParameber.accelerationCD);
             velocity.x += MotionParameber.acceleration * MotionParameber.fixedMotion;
+            if (velocity.x > MotionParameber.speedMax)
+                break;
         }
 
     }
@@ -266,7 +267,7 @@ public class Player : MonoBehaviour {
             playerMediator.OnGetScoure(1);
 			col.gameObject.SetActive (false);
 
-        }else if(col.tag == TagParameber.monster)
+        }else if(col.transform.root.gameObject.tag == TagParameber.monster)
 
             OnHurtCheck(col.gameObject);
         else if(col.tag == TagParameber.prop)

@@ -75,21 +75,27 @@ public class MonsterProxy : Proxy {
             isboss = false;
         }
         SendNotification(EventsEnum.monsterDie, monster);
-        int temp = UnityEngine.Random.Range(0, 100);
+
+        ReadTable prop=ReadTable.getTable;
+        float temp = UnityEngine.Random.Range(0, 100)/(float)100;
+        float temp1 = float.Parse(prop.OnFind("propDate", "1", "probability"));
+        float temp2 = float.Parse(prop.OnFind("propDate", "2", "probability"));
+        float temp3 = float.Parse(prop.OnFind("propDate", "3", "probability"));
+        float temp4 = float.Parse(prop.OnFind("propDate", "4", "probability"));
         int a = 100;
-        if (temp < 10)
+        if (temp <temp1)
         {
             a = 1;
         }
-        else if(temp<25)
+        else if(temp<temp1+temp2)
         {
             a = 2;
         }
-        else if(temp<50)
+        else if(temp< temp1 + temp2+temp3)
         {
             a = 3;
         }
-        else if (temp < 55)
+        else if (temp < temp1 + temp2 + temp3 + temp4)
         {
             a = 4;
         }

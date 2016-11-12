@@ -124,9 +124,7 @@ public class TerrainMediator : Mediator, ITerrainMediator
             default:
 
                 break;
-        }
-           
-        
+        }   
     }
 
     public void OnEnqueueOldTerrain(GameObject terrain){

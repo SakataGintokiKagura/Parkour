@@ -56,10 +56,6 @@ public class MemoryController:MonoBehaviour{
 		deleteListObject ();
 	}
 
-	public List<GameObject> getMemoryList(string num){
-		return memoryList[(int.Parse(num))-1];
-	}
-
 	public GameObject OnFindGameObjectByName(string name,Vector3 position,string ID,ReturnObject returnObject){
 		//string serial,string path,string load
 
@@ -68,10 +64,10 @@ public class MemoryController:MonoBehaviour{
 		string path= temp.OnFind ("memoryObjectParameter", ID, "path");
 		string load= temp.OnFind ("memoryObjectParameter", ID, "load");
 
-		string nameClone = name + "(Clone)";
+//		string nameClone = name + "(Clone)";
 		foreach (var go in memoryList[(int.Parse(serial))-1])
 		{
-			if (go.name == nameClone)
+			if (go.name == name)
 			{
 				go.transform.position = position;
 				go.SetActive(true);
@@ -86,6 +82,16 @@ public class MemoryController:MonoBehaviour{
 	}
 
 
+   /// <summary>
+   ///  同步加载
+   /// </summary>
+   /// <param name="name"></param>
+   /// <param name="position"></param>
+   /// <param name="serial"></param>
+   /// <param name="path"></param>
+   /// <param name="ID"></param>
+   /// <param name="returnObject"></param>
+   /// <returns></returns>
 	public GameObject OnSynchronous(string name,Vector3 position,string serial,string path,string ID,ReturnObject returnObject){
 		GameObject temp = Resources.Load(path + name) as GameObject;
         GameObject ttt= Instantiate(temp, position, temp.transform.rotation) as GameObject;
@@ -107,13 +113,7 @@ public class MemoryController:MonoBehaviour{
 		go.SetActive (false);
 		memoryList [(int.Parse(num))-1].Add (go);
 	}
-
-	public void OnRemoveObject(GameObject go,string num)
-	{
-		memoryList [(int.Parse(num)-1)].Remove (go);
-	}
-
-
+		
 	public void deleteListObject(){
 		while (Profiler.GetTotalAllocatedMemory () >= MemoryParameter.threshold) {
 			for (int i = 0; i < MemoryParameter.objectType; i++) {
@@ -134,7 +134,15 @@ public class MemoryController:MonoBehaviour{
 			}
 		}
 	}
-
+    /// <summary>
+    /// 异步加载
+    /// </summary>
+    /// <param name="path"></param>
+    /// <param name="name"></param>
+    /// <param name="position"></param>
+    /// <param name="serial"></param>
+    /// <param name="returnObject"></param>
+    /// <returns></returns>
 	IEnumerator LoadAssetAsyncCoroutine(string path,string name, Vector3 position,string serial,ReturnObject returnObject){//ReturnObject action,
 		WWW www = new WWW(URL+path+name+".assetbundle");
 		yield return www;
@@ -156,4 +164,3 @@ public class MemoryController:MonoBehaviour{
 		Debug.Log ("233");
 	}
 }
-

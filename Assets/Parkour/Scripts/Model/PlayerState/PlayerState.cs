@@ -1,7 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System;
 using System.Reflection;
 
 namespace NPlayerState
@@ -9,19 +7,9 @@ namespace NPlayerState
     public class PlayerState
     {
         private static PlayerState instance;
-        public static PlayerState Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new PlayerState();
-                }
-                return instance;
-            }
-        }
-        public AbsState singletonState;
         public AbsState[] sharedStates = new AbsState[2];
+
+        public AbsState singletonState;
 
         public List<AbsState> stateList = new List<AbsState>();
         //public AbsState first;
@@ -37,13 +25,9 @@ namespace NPlayerState
         //public AbsState hurtState;
         private PlayerState()
         {
-            List<Type> ty = GetTypes();
+            var ty = GetTypes();
             foreach (var item in ty)
-            {
-
-                stateList.Add((AbsState)Activator.CreateInstance(item, this));
-                //Debug.Log(System.Activator.CreateInstance(item));
-            }
+                stateList.Add((AbsState) Activator.CreateInstance(item, this));
             //string appPath = Directory.GetCurrentDirectory();
             //appPath += "\\Assets\\Parkour\\Scripts\\Model\\PlayerState";
             //DirectoryInfo dir = new DirectoryInfo(appPath);
@@ -70,35 +54,38 @@ namespace NPlayerState
             //invincible = new Invincible(this);
             //unInvincible = new UnInvincile(this);
             foreach (var item in stateList)
-            {
                 if (item is Run)
-                {
                     singletonState = item;
-                }
                 else if (item is UnInvincile)
-                {
                     sharedStates[1] = item;
-                }
+        }
+
+        public static PlayerState Instance
+        {
+            get
+            {
+                if (instance == null)
+                    instance = new PlayerState();
+                return instance;
             }
         }
 
         public List<Type> GetTypes()
         {
-            List<Type> lt = new List<Type>();
+            var lt = new List<Type>();
             try
             {
                 foreach (var item in Assembly.GetExecutingAssembly().GetTypes())
-                {
-                    if (item.Namespace == GetType().Namespace&&item!=GetType())
-                    {
+                    if ((item.Namespace == GetType().Namespace) && (item != GetType()))
                         lt.Add(item);
-                    }
-                }
             }
-            catch { }
+            catch
+            {
+            }
             return lt;
         }
-    public void OnJump()
+
+        public void OnJump()
         {
             singletonState = singletonState.OnJump();
         }
@@ -120,10 +107,12 @@ namespace NPlayerState
         {
             sharedStates[0] = sharedStates[0].OnGrounded();
         }
+
         public void OnUnHurt()
         {
             sharedStates[1] = sharedStates[1].OnJump();
         }
+
         public void OnHurt()
         {
             sharedStates[1] = sharedStates[1].OnGrounded();

@@ -144,7 +144,6 @@ GameObject:
   - 4: {fileID: 4000011076226686}
   - 135: {fileID: 135000011200080636}
   - 95: {fileID: 95000013382895984}
-  - 114: {fileID: 114000011503060088}
   m_Layer: 0
   m_Name: boss
   m_TagString: Monster
@@ -259,7 +258,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013296123868}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.5, y: 1.5, z: 0}
+  m_LocalPosition: {x: 9.423833, y: 0, z: -0.07808685}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -406,17 +405,6 @@ MonoBehaviour:
   autoCreateLight: 0
   autoCreateForce: 0
   autoCreateHeatwave: 0
---- !u!114 &114000011503060088
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013296123868}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b254110d70d24348afe4dfdd3fcd988, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!135 &135000011200080636
 SphereCollider:
   m_ObjectHideFlags: 1

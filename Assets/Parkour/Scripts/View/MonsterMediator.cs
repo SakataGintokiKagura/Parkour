@@ -148,6 +148,7 @@ public class MonsterMediator : Mediator,IMonsterMediator {
 			    );
                 //下面的话注释掉，要不然不能生成道具
 			    //MemoryController.instance.OnListAddObject (prop,ReadTable.getTable.OnFind("memoryObjectParameter","1","priority")); 
+
 			    break;
         }
     }
@@ -158,9 +159,11 @@ public class MonsterMediator : Mediator,IMonsterMediator {
     }
     public void OnAddMonster(GameObject monster)
     {
-        string temp = "BOSS";
         if (monster.name == "boss(Clone)")
+        {
+            string temp = ReadTable.getTable.OnFind("bossDate", UnityEngine.Random.Range(1, 4).ToString(), "classname");
             monster.AddComponent(Type.GetType(temp));
+        }
         SendNotification(EventsEnum.monsterCreateGameObject, monster);
         this.monster[blology.Dequeue()]= monster;
     }

@@ -1,5 +1,5 @@
-ID	propName	property	prop	memoryID
-1	prop_HP	PlayerHPChange	100	1
-2	prop_MP	PlayerMPChange	100	1
-3	prop_score	PlayerGetScoure	100	1
-4	prop_fly	PlayerFly	10	1
+ID	propName	property	prop	memoryID	probability
+1	prop_HP	PlayerHPChange	100	1	0.1
+2	prop_MP	PlayerMPChange	100	1	0.15
+3	prop_score	PlayerGetScoure	100	1	0.25
+4	prop_fly	PlayerFly	10	1	0.05
