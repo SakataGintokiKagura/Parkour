@@ -106,7 +106,7 @@ public class MonsterMediator : Mediator,IMonsterMediator {
 			MemoryController.instance.OnFindGameObjectByName(    
 				temp_01.OnFind("monsterDate", monsterSpecies.ID.ToString(), "name"),
 				monsterCreatePosition,
-				MemoryParameter.MonsterPriority.ToString(),
+				MemoryParameter.MonsterPriority,
 				temp_01.OnFind("monsterDate", monsterSpecies.ID.ToString(), "path"),
 				temp_01.OnFind("monsterDate", monsterSpecies.ID.ToString(), "load"),
 				monsterSpecies.ID.ToString(),
@@ -134,7 +134,7 @@ public class MonsterMediator : Mediator,IMonsterMediator {
 			    if (this.monster.ContainsKey (blology)) {
 				        this.monster.Remove (blology);
 			    }
-			    MemoryController.instance.OnListAddObject (temp,ReadTable.getTable.OnFind("memoryObjectParameter","2","priority"));    
+			MemoryController.instance.OnListAddObject (temp,MemoryParameter.MonsterPriority);    
 			    break;
            
 		    case EventsEnum.propCreate:
@@ -145,7 +145,7 @@ public class MonsterMediator : Mediator,IMonsterMediator {
 			    GameObject prop = MemoryController.instance.OnFindGameObjectByName (
 				    reatable.OnFind("propDate", prop_name,"name"),
 				    position,  
-				    MemoryParameter.PropPriority.ToString(), 
+				    MemoryParameter.PropPriority, 
 				    reatable.OnFind("propDate", prop_name,"path"),
 				    reatable.OnFind("propDate", prop_name,"load"),
 				    prop_name,

@@ -55,16 +55,15 @@ public class MemoryController:MonoBehaviour{
 		deleteListObject ();
 	}
 
-	public GameObject OnFindGameObjectByName(string name,Vector3 position,string serial,string path,string load,string ID,ReturnObject returnObject){
+	public GameObject OnFindGameObjectByName(string name,Vector3 position,int serial,string path,string load,string ID,ReturnObject returnObject){
 
-		string nameClone = ID + "(Clone)";
-		foreach (var go in memoryList[(int.Parse(serial))-1])
+		foreach (var go in memoryList[serial-1])
 		{
-			if (go.name == nameClone)
+			if (go.name == ID||go.name==ID+"(Clone)")
 			{
 				go.transform.position = position;
 				go.SetActive(true);
-				memoryList[(int.Parse(serial))-1].Remove(go);
+				memoryList[serial-1].Remove(go);
 				return go;    
 			}
 		}
@@ -75,21 +74,22 @@ public class MemoryController:MonoBehaviour{
 	}
 
 
-	public GameObject OnSynchronous(string name,Vector3 position,string serial,string path,string ID,ReturnObject returnObject){
-		GameObject temp = Resources.Load(path + name) as GameObject;
-		temp.name = ID;
-        return Instantiate(temp, position, temp.transform.rotation) as GameObject;
+	public GameObject OnSynchronous(string name,Vector3 position,int serial,string path,string ID,ReturnObject returnObject){
+		GameObject temp_01 = Resources.Load (path + name)as GameObject;
+		GameObject temp_02 = Instantiate( temp_01, position, temp_01.transform.rotation)as GameObject ;
+		temp_02.name = ID;
+		return temp_02;
 	}
 
-	public GameObject OnAsynchronous(string name,Vector3 position,string serial,string path,string ID,ReturnObject returnObject){
+	public GameObject OnAsynchronous(string name,Vector3 position,int serial,string path,string ID,ReturnObject returnObject){
 		StartCoroutine (LoadAssetAsyncCoroutine (path, name, position, serial,ID,returnObject));
 		return null;
 	}
 
-	public void OnListAddObject(GameObject go,string num)
+	public void OnListAddObject(GameObject go,int num)
 	{
 		go.SetActive (false);
-		memoryList [(int.Parse(num))-1].Add (go);
+		memoryList [num-1].Add (go);
 	}
 		
 	public void deleteListObject(){
@@ -113,13 +113,13 @@ public class MemoryController:MonoBehaviour{
 		}
 	}
 
-	IEnumerator LoadAssetAsyncCoroutine(string path,string name, Vector3 position,string serial,string ID,ReturnObject returnObject){//ReturnObject action,
+	IEnumerator LoadAssetAsyncCoroutine(string path,string name, Vector3 position,int serial,string ID,ReturnObject returnObject){//ReturnObject action,
 		WWW www = new WWW(URL+path+name+".assetbundle");
 		yield return www;
-		while (isLoading[int.Parse(serial)-1]) {
+		while (isLoading[serial-1]) {
 			yield return new WaitForSeconds (0.06f);
 		}
-		isLoading [int.Parse (serial) - 1] = true;
+		isLoading [serial - 1] = true;
 		AssetBundle assetbundle = www.assetBundle;
 		AssetBundleRequest abr = assetbundle.LoadAssetAsync (name,typeof(GameObject));
 		yield return abr;
@@ -127,7 +127,7 @@ public class MemoryController:MonoBehaviour{
 		fin.name = ID;
 		returnObject (fin);
 		www.assetBundle.Unload (false);
-		isLoading [int.Parse (serial) - 1] = false;
+		isLoading [serial - 1] = false;
 		www.Dispose();
 	}
 

@@ -70,7 +70,7 @@ public class TerrainMediator : Mediator, ITerrainMediator
                 GameObject newTerrain = MemoryController.instance.OnFindGameObjectByName(
                     temp.OnFind("terrainDate", infor.OnGetName(), "terrainName"),
                     new Vector3((terrain.getN() + 1)*TerrainParameter.mapSize, 0, 0),
-				    MemoryParameter.TerrainPriority.ToString(),
+				    MemoryParameter.TerrainPriority,
 				    temp.OnFind("terrainDate", infor.OnGetName(), "path"),
 				    temp.OnFind("terrainDate", infor.OnGetName(), "load"),
 				    infor.OnGetName().ToString(),
@@ -95,7 +95,7 @@ public class TerrainMediator : Mediator, ITerrainMediator
                         temp.OnFind("coinDate", item.OnGetName(), "name"),
                         new Vector3(item.OnGetStart() + ((terrain.getN() + 1)*TerrainParameter.mapSize),
                             item.OnGetHigh(), 0),
-					    MemoryParameter.CoinsPriority.ToString(),
+					    MemoryParameter.CoinsPriority,
                         temp.OnFind("coinDate", item.OnGetName(), "path"),
 					    temp.OnFind("coinDate", item.OnGetName(), "load"),
 					    item.OnGetName().ToString(),
@@ -111,7 +111,7 @@ public class TerrainMediator : Mediator, ITerrainMediator
                     {
                         GameObject deleteTerrain = oldTerrain.Dequeue();
                         MemoryController.instance.OnListAddObject(deleteTerrain,
-                            ReadTable.getTable.OnFind("memoryObjectParameter", "4", "priority"));
+					MemoryParameter.TerrainPriority);
                         if (oldCoin.Count > 0)
                         {
                             List<GameObject> deleteCoin = oldCoin.Dequeue();
@@ -119,7 +119,7 @@ public class TerrainMediator : Mediator, ITerrainMediator
                             {
                                 if (elem)
                                 MemoryController.instance.OnListAddObject(elem,
-                                    ReadTable.getTable.OnFind("memoryObjectParameter", "3", "priority"));
+								MemoryParameter.CoinsPriority);
                             }
                         }
                     }

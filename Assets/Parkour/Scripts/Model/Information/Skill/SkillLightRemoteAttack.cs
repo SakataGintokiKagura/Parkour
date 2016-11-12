@@ -50,7 +50,7 @@ public class SkillLightRemoteAttack : ISkill
 		MemoryController.instance.OnFindGameObjectByName (
 			table.OnFind ("flyItemDate", "4", "name"),
 			transform.position,
-			MemoryParameter.FlyItemPriority.ToString(),
+			MemoryParameter.FlyItemPriority,
 			table.OnFind ("flyItemDate", "4", "path"),
 			table.OnFind ("flyItemDate", "4", "load"),
 			"4",

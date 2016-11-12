@@ -28,7 +28,7 @@ public class RemoteAttack : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(Camera.main.WorldToViewportPoint(transform.position).x>1){
-			MemoryController.instance.OnListAddObject(gameObject,ReadTable.getTable.OnFind("memoryObjectParameter","5","priority"));
+			MemoryController.instance.OnListAddObject(gameObject,MemoryParameter.FlyItemPriority);
 		}
 	}
 	void OnTriggerEnter(Collider col) { 
@@ -42,7 +42,7 @@ public class RemoteAttack : MonoBehaviour {
         ISkill obj = (ISkill)assembly.CreateInstance(name);
         MonsterMediator.OnGetMonsterMediator().OnInjured(col.gameObject.transform.root.gameObject, obj);
 		if (temp.OnFind ("flyItemDate", ID, "hide") == "Yes") {
-			MemoryController.instance.OnListAddObject(gameObject, ReadTable.getTable.OnFind ("memoryObjectParameter", "5", "priority"));
+			MemoryController.instance.OnListAddObject(gameObject, MemoryParameter.FlyItemPriority);
 		}
 	}
 }
