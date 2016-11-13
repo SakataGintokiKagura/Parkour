@@ -93,6 +93,8 @@ namespace NPlayerState
         public void OnGrounded()
         {
             singletonState = singletonState.OnGrounded();
+            if (sharedStates[0] is UnUseSkill)
+                sharedStates[0] = sharedStates[0].OnGrounded();
         }
 
         public void OnUseSkill(bool isInterrupted)
@@ -105,7 +107,10 @@ namespace NPlayerState
 
         public void OnEndSkill()
         {
-            sharedStates[0] = sharedStates[0].OnGrounded();
+            if (singletonState is Run)
+                sharedStates[0] = sharedStates[0].OnGrounded();
+            else
+                sharedStates[0] = sharedStates[0].OnJump();
         }
 
         public void OnUnHurt()
