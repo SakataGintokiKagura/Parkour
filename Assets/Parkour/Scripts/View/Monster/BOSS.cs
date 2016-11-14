@@ -87,6 +87,8 @@ public class BOSS : MonoBehaviour {
 			Debug.Log (transform.position);
 			hit = 2;
 			}
+        if (collider.tag == TagParameber.coin)
+            collider.gameObject.SetActive(false);
 		}
 	void biu(){
 		GameObject temp = Resources.Load("Monster/Bossskill") as GameObject;

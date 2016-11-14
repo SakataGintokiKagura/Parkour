@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using NPlayerState;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(CharacterController))]
@@ -244,11 +245,16 @@ public class Player : MonoBehaviour {
         //    State.OnGrounded();
         //    anim.SetInteger(AnimationParameter.jump, AnimationParameter.jumpGround);
         //}
-        if ((controller.collisionFlags & CollisionFlags.Below) != 0)
+        if (hit.normal.y > 0.5f)
         {
             State.OnGrounded();
             anim.SetInteger(AnimationParameter.jump, AnimationParameter.jumpGround);
         }
+        //if ((controller.collisionFlags & CollisionFlags.Below) != 0)
+        //{
+        //    State.OnGrounded();
+        //    anim.SetInteger(AnimationParameter.jump, AnimationParameter.jumpGround);
+        //}
         if (hit.collider.tag == TagParameber.bottom)
             playerMediator.OnDropOutPit();
     }
@@ -309,6 +315,10 @@ public class Player : MonoBehaviour {
         position.y = 3;
         transform.position = position;
         isDrop = true;
+        if (state.singletonState is Run)
+        {
+            state.OnJump();
+        }
         //velocity.y = 0;
     }
     /// <summary>
