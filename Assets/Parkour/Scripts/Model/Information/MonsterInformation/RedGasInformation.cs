@@ -15,8 +15,10 @@ public class RedGasInformation : IBlology {
 
     public void OnAttack(Transform tran)
     {
+
         tran.FindChild("Monster_Wasi@skin").gameObject.SetActive(false);
         tran.FindChild("Boom").gameObject.SetActive(true);
+        this.HP = 1000;
     }
 
     public void OnOutOfAttack(Transform tran)
@@ -26,6 +28,8 @@ public class RedGasInformation : IBlology {
 
     public void OnOutView(Transform tran)
     {
+        ReadTable monsterchomper = ReadTable.getTable;
+        this.HP = int.Parse(monsterchomper.OnFind("monsterDate", ID.ToString(), "HP"));
         tran.FindChild("Monster_Wasi@skin").gameObject.SetActive(true);
         tran.FindChild("Boom").gameObject.SetActive(false);
         tran.gameObject.SetActive(false);
