@@ -39,7 +39,7 @@ public class RightClickMenu {
     static void CreateTable()
     {
         Object[] SelectedAsset = Selection.GetFiltered(typeof(Object), SelectionMode.DeepAssets);
-        StringBuilder result = new StringBuilder("ID"+"\t"+"Path"+"\n");
+        StringBuilder result = new StringBuilder("ID"+"\t"+"Path"+"\t"+"Name"+"\n");
         int id = 0;
         foreach(var item in SelectedAsset)
         {
@@ -49,8 +49,10 @@ public class RightClickMenu {
                 continue;
             int index = indexOf(temp[0], '/', 3);
             string outPut = temp[0].Remove(0, index + 1);
+            index = outPut.LastIndexOf('/');
+
             id++;
-            result.Append(id.ToString() + "\t" + outPut + "\n");
+            result.Append(id.ToString() + "\t" + outPut +"\t"+outPut.Substring(index+1) + "\n");
         }
         CreateFile(Application.dataPath, "AssetBundleContent.txt", result.ToString());
     }

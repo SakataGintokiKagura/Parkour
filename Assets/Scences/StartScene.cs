@@ -13,11 +13,6 @@ public class StartScene : MonoBehaviour {
 			this.GoNextScene("LoadingScene");
 		});
 	}
-	
-//	// Update is called once per frame
-//	void Update () {
-//	
-//	}
 
 	public void GoNextScene(string sceneName){
 		SceneManager.LoadScene (sceneName);

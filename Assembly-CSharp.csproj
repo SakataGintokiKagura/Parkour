@@ -49,6 +49,7 @@
      <Compile Include="Assets\Art\Effect\Scripts\TextureTileAnimation.cs" />
      <Compile Include="Assets\Art\Effect\Scripts\UVAnimation.cs" />
      <Compile Include="Assets\Parkour\Scripts\ApplicationFacade.cs" />
+     <Compile Include="Assets\Parkour\Scripts\AssetBundleManager.cs" />
      <Compile Include="Assets\Parkour\Scripts\CameraFollow.cs" />
      <Compile Include="Assets\Parkour\Scripts\Controller\Monster\MonsterCreate.cs" />
      <Compile Include="Assets\Parkour\Scripts\Controller\Monster\MonsterCreateBoss.cs" />
@@ -159,7 +160,7 @@
      <None Include="Assets\Resources\effectDate.txt" />
      <None Include="Assets\Resources\PetDate.txt" />
      <None Include="Assets\Resources\skillParameber.txt" />
-     <None Include="Assets\Resources\memoryObjectParameter.txt" />
+     <None Include="Assets\Resources\AssetBundleContent.txt" />
      <None Include="Assets\Resources\animationParameter.txt" />
      <None Include="Assets\Resources\bossDate.txt" />
      <None Include="Assets\Resources\memoryParameter.txt" />
