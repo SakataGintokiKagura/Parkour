@@ -9,5 +9,4 @@ public interface IPlayerMediator {
     void OnGetScoure(int scoure);
     void OnDropOutPit();
     void OnPickUpProp(GameObject temp);
-
 }

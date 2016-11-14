@@ -27,7 +27,7 @@ GameObject:
   - 54: {fileID: 54000014087157464}
   - 114: {fileID: 114000010506434152}
   m_Layer: 0
-  m_Name: 4
+  m_Name: LightAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

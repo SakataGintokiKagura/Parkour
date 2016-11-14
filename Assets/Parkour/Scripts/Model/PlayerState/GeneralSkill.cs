@@ -11,13 +11,19 @@ namespace NPlayerState
 
         public override AbsState OnGrounded()
         {
-            return null;
+                return null;
         }
 
         public override AbsState OnJump()
         {
-            Debug.Log("状态出错");
-            return this;
+            foreach (var item in player.stateList)
+            {
+                if (item is UnUseSkill)
+                {
+                    return item;
+                }
+            }
+            return null;
         }
 
 

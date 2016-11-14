@@ -203,7 +203,7 @@ GameObject:
   - 4: {fileID: 4000013331655496}
   - 65: {fileID: 65000013574005004}
   m_Layer: 0
-  m_Name: 4
+  m_Name: prop_fly
   m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

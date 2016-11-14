@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using NPlayerState;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(CharacterController))]
@@ -79,7 +80,7 @@ public class Player : MonoBehaviour {
         controller = GetComponent<CharacterController>();
         initialVelocity = MotionParameber.initialVelocity * MotionParameber.fixedMotion;
         velocity = new Vector3(initialVelocity, 0, 0);
-        StartCoroutine(OnAccelerate());
+        //StartCoroutine(OnAccelerate());
         anim.SetFloat(AnimationParameter.xSpeed, velocity.x);
         anim.SetFloat(AnimationParameter.ySpeed, velocity.y);
         anim.SetInteger(AnimationParameter.jump, AnimationParameter.jumpGround);
@@ -119,7 +120,6 @@ public class Player : MonoBehaviour {
         {
             playerMediator.OnDropOutPit();
         }
-        //Debug.Log(velocity);
     }
     /// <summary>
     /// 施加重力
@@ -245,11 +245,16 @@ public class Player : MonoBehaviour {
         //    State.OnGrounded();
         //    anim.SetInteger(AnimationParameter.jump, AnimationParameter.jumpGround);
         //}
-        if ((controller.collisionFlags & CollisionFlags.Below) != 0)
+        if (hit.normal.y > 0.5f)
         {
             State.OnGrounded();
             anim.SetInteger(AnimationParameter.jump, AnimationParameter.jumpGround);
         }
+        //if ((controller.collisionFlags & CollisionFlags.Below) != 0)
+        //{
+        //    State.OnGrounded();
+        //    anim.SetInteger(AnimationParameter.jump, AnimationParameter.jumpGround);
+        //}
         if (hit.collider.tag == TagParameber.bottom)
             playerMediator.OnDropOutPit();
     }
@@ -310,6 +315,10 @@ public class Player : MonoBehaviour {
         position.y = 3;
         transform.position = position;
         isDrop = true;
+        if (state.singletonState is Run)
+        {
+            state.OnJump();
+        }
         //velocity.y = 0;
     }
     /// <summary>

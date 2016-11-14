@@ -1,8 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-using System;
-
-namespace NPlayerState
+﻿namespace NPlayerState
 {
     public class FirstJump : AbsState
     {
@@ -16,24 +12,16 @@ namespace NPlayerState
         public override AbsState OnGrounded()
         {
             foreach (var item in player.stateList)
-            {
                 if (item is Run)
-                {
                     return item;
-                }
-            }
             return this;
         }
 
         public override AbsState OnJump()
         {
             foreach (var item in player.stateList)
-            {
                 if (item is SecondJump)
-                {
                     return item;
-                }
-            }
             return this;
         }
 
@@ -42,25 +30,14 @@ namespace NPlayerState
             if (isInterrupted)
             {
                 foreach (var item in player.stateList)
-                {
                     if (item is GeneralSkill)
-                    {
                         return item;
-                    }
-                }
                 return this;
             }
-            else
-            {
-                foreach (var item in player.stateList)
-                {
-                    if (item is UnInterruptedSkill)
-                    {
-                        return item;
-                    }
-                }
-                return this;
-            }
+            foreach (var item in player.stateList)
+                if (item is UnInterruptedSkill)
+                    return item;
+            return this;
             return this;
         }
     }

@@ -14,14 +14,6 @@ public class MonsterCreate : SimpleCommand
         {
             MonsterProxy monster = (MonsterProxy)Facade.RetrieveProxy(MonsterProxy.NAME);
             int a = Random.Range(1, MonsterParameber.SpeciesNumber + 1);
-            if (a>5)
-            {
-                Debug.Log(111);
-            }
-            if (a == 6)
-            {
-                Debug.LogError("怪物不够");
-            }
             monster.OnCreatMonster(a, 1);
         }
     }

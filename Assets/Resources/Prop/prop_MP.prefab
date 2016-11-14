@@ -55,7 +55,7 @@ GameObject:
   - 4: {fileID: 4000012210093448}
   - 65: {fileID: 65000011120716636}
   m_Layer: 0
-  m_Name: 2
+  m_Name: prop_MP
   m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

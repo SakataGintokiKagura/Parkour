@@ -109,6 +109,7 @@
      <Compile Include="Assets\Parkour\Scripts\Model\PlayerState\SecondJump.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\PlayerState\UnInterruptedSkill.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\PlayerState\UnInvincile.cs" />
+     <Compile Include="Assets\Parkour\Scripts\Model\PlayerState\UnUseSkill.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\TerrainProxy.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\parameter\AnimationParameter.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\parameter\BulletParameber.cs" />
@@ -118,7 +119,13 @@
      <Compile Include="Assets\Parkour\Scripts\Model\parameter\TagParameber.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\parameter\TerrainParameter.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\parameter\memoryParameter.cs" />
-     <Compile Include="Assets\Parkour\Scripts\ReadTable.cs" />
+     <Compile Include="Assets\Parkour\Scripts\Tool\iTween\Sample\MoveSample.cs" />
+     <Compile Include="Assets\Parkour\Scripts\Tool\iTween\Sample\RotateSample.cs" />
+     <Compile Include="Assets\Parkour\Scripts\Tool\iTween\Sample\SampleInfo.cs" />
+     <Compile Include="Assets\Parkour\Scripts\Tool\iTween\iTween.cs" />
+     <Compile Include="Assets\Parkour\Scripts\Tool\iTweenPath\iTweenPath.cs" />
+     <Compile Include="Assets\Parkour\Scripts\Tool\iTweenPath\iTweenPlayWall.cs" />
+     <Compile Include="Assets\Parkour\Scripts\Tool\readTable\ReadTable.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\IMonsterMediator.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\IPlayerMediator.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\Monster\BOSS.cs" />
@@ -142,7 +149,6 @@
      <Compile Include="Assets\Scences\LoadingScene.cs" />
      <Compile Include="Assets\Scences\StartScene.cs" />
      <None Include="Assets\Resources\effectDate.txt" />
-     <None Include="Assets\Resources\tableDate.txt" />
      <None Include="Assets\Resources\PetDate.txt" />
      <None Include="Assets\Resources\skillParameber.txt" />
      <None Include="Assets\Resources\memoryObjectParameter.txt" />
@@ -159,6 +165,8 @@
      <None Include="Assets\Resources\coinDate.txt" />
      <None Include="Assets\Resources\skillDate.txt" />
      <None Include="Assets\Resources\cameraParamber.txt" />
+     <None Include="Assets\Parkour\Scripts\Tool\iTween\ReadMe!\ReadMe!.txt" />
+     <None Include="Assets\Resources\tableDate.txt" />
      <None Include="Assets\Resources\propDate.txt" />
      <None Include="Assets\Resources\monsterDate.txt" />
  <Reference Include="UnityEngine.UI">

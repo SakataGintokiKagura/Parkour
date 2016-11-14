@@ -56,8 +56,8 @@ public class MemoryController:MonoBehaviour{
 	}
 
 	public GameObject OnFindGameObjectByName(string name,Vector3 position,int serial,string path,string load,string ID,ReturnObject returnObject){
-
-		foreach (var go in memoryList[serial-1])
+		
+		foreach (var go in memoryList[(serial-1)])
 		{
 			if (go.name == ID)
 			{
@@ -73,6 +73,17 @@ public class MemoryController:MonoBehaviour{
 			null, this, new object[] {name, position, serial, path,ID,returnObject});
 	}
 
+    
+   /// <summary>
+   ///  同步加载
+   /// </summary>
+   /// <param name="name"></param>
+   /// <param name="position"></param>
+   /// <param name="serial"></param>
+   /// <param name="path"></param>
+   /// <param name="ID"></param>
+   /// <param name="returnObject"></param>
+   /// <returns></returns>
 
 	public GameObject OnSynchronous(string name,Vector3 position,int serial,string path,string ID,ReturnObject returnObject){
 		GameObject temp_01 = Resources.Load (path + name)as GameObject;
@@ -113,6 +124,18 @@ public class MemoryController:MonoBehaviour{
 		}
 	}
 
+
+    /// <summary>
+    /// 异步加载
+    /// </summary>
+    /// <param name="path"></param>
+    /// <param name="name"></param>
+    /// <param name="position"></param>
+    /// <param name="serial"></param>
+    /// <param name="returnObject"></param>
+    /// <returns></returns>
+
+
 	IEnumerator LoadAssetAsyncCoroutine(string path,string name, Vector3 position,int serial,string ID,ReturnObject returnObject){//ReturnObject action,
 		WWW www = new WWW(URL+path+name+".assetbundle");
 		yield return www;
@@ -135,4 +158,3 @@ public class MemoryController:MonoBehaviour{
 		Debug.Log ("233");
 	}
 }
-

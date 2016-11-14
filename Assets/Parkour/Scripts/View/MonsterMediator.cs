@@ -138,20 +138,23 @@ public class MonsterMediator : Mediator,IMonsterMediator {
 			    break;
            
 		    case EventsEnum.propCreate:
-			    string prop_name = notification.Body.ToString ();
+                Debug.Log("生成道具");
+			    string id = notification.Body.ToString ();
             
 			    ReadTable reatable = ReadTable.getTable;
 
 			    GameObject prop = MemoryController.instance.OnFindGameObjectByName (
-				    reatable.OnFind("propDate", prop_name,"name"),
+				    reatable.OnFind("propDate", id,"name"),
 				    position,  
 				    MemoryParameter.PropPriority, 
-				    reatable.OnFind("propDate", prop_name,"path"),
-				    reatable.OnFind("propDate", prop_name,"load"),
-				    prop_name,
+				    reatable.OnFind("propDate", id,"path"),
+				    reatable.OnFind("propDate", id,"load"),
+				    id,
 				    new ReturnObject(MemoryController.instance.emptyDelegate)
 			    );
-                
+                //下面的话注释掉，要不然不能生成道具
+			    //MemoryController.instance.OnListAddObject (prop,ReadTable.getTable.OnFind("memoryObjectParameter","1","priority")); 
+
 			    break;
         }
     }

@@ -42,8 +42,6 @@ public class CameraFollow : MonoBehaviour
             {
                 transform.Translate(velocity * replySpeed);
             }
-
         }
-
     }
 }

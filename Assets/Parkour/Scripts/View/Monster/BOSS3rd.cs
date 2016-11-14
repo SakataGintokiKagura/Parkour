@@ -91,7 +91,9 @@ public class BOSS3rd : MonoBehaviour {
 			Debug.Log (transform.position);
 			hit = 2;
 		}
-	}
+        if (collider.tag == TagParameber.coin)
+            collider.gameObject.SetActive(false);
+    }
 	void biu(){
 		GameObject temp = Resources.Load("Monster/Bossskill") as GameObject;
 		GameObject biuu=Instantiate(temp, new Vector3(0,1000,0), temp.transform.rotation)as GameObject;
