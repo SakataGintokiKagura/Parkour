@@ -145,7 +145,7 @@ GameObject:
   - 135: {fileID: 135000011200080636}
   - 95: {fileID: 95000013382895984}
   m_Layer: 0
-  m_Name: Boss
+  m_Name: boss
   m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
