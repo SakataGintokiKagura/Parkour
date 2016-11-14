@@ -64,6 +64,13 @@
      <Compile Include="Assets\Parkour\Scripts\Enum\AggregateEnum.cs" />
      <Compile Include="Assets\Parkour\Scripts\Enum\EventsEnum.cs" />
      <Compile Include="Assets\Parkour\Scripts\MemoryController.cs" />
+     <Compile Include="Assets\Parkour\Scripts\Model\GameState\AbsGameState.cs" />
+     <Compile Include="Assets\Parkour\Scripts\Model\GameState\FarCammerState.cs" />
+     <Compile Include="Assets\Parkour\Scripts\Model\GameState\GameStates.cs" />
+     <Compile Include="Assets\Parkour\Scripts\Model\GameState\HaveBossState.cs" />
+     <Compile Include="Assets\Parkour\Scripts\Model\GameState\MidCammerState.cs" />
+     <Compile Include="Assets\Parkour\Scripts\Model\GameState\NearCammerState.cs" />
+     <Compile Include="Assets\Parkour\Scripts\Model\GameState\WithOutBossState.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\Information\IBlology.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\Information\ITerrain.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\Information\MonsterInformation\BlueGasInformation.cs" />
@@ -148,6 +155,7 @@
      <Compile Include="Assets\Parkour\Scripts\View\TerrainMediator.cs" />
      <Compile Include="Assets\Scences\LoadingScene.cs" />
      <Compile Include="Assets\Scences\StartScene.cs" />
+     <Compile Include="Assets\Test.cs" />
      <None Include="Assets\Resources\effectDate.txt" />
      <None Include="Assets\Resources\PetDate.txt" />
      <None Include="Assets\Resources\skillParameber.txt" />
