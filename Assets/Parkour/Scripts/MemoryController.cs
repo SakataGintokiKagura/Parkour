@@ -7,17 +7,10 @@ using System.Reflection;
 public delegate void ReturnObject(GameObject obj);
 
 public class MemoryController:MonoBehaviour{
-
 	private bool[] isLoading;
-
 	private static MemoryController _instance;
-
 	private List <GameObject>[] memoryList;
-
-	private string PathURL ;
-
 	private string URL;
-
 	private GameObject temp;
     /// <summary>
     /// 单例模式
@@ -44,11 +37,9 @@ public class MemoryController:MonoBehaviour{
 		for(int i=0;i<MemoryParameter.objectType;i++)
 			memoryList [i] = new List<GameObject> ();
 	}
-
 	void Awake(){
 		if(_instance==null)
 			_instance = this;
-
 	}
 
 	void Update(){
@@ -123,8 +114,6 @@ public class MemoryController:MonoBehaviour{
 			}
 		}
 	}
-
-
     /// <summary>
     /// 异步加载
     /// </summary>
@@ -134,8 +123,6 @@ public class MemoryController:MonoBehaviour{
     /// <param name="serial"></param>
     /// <param name="returnObject"></param>
     /// <returns></returns>
-
-
 	IEnumerator LoadAssetAsyncCoroutine(string path,string name, Vector3 position,int serial,string ID,ReturnObject returnObject){//ReturnObject action,
 		WWW www = new WWW(URL+path+name+".assetbundle");
 		yield return www;
@@ -153,7 +140,6 @@ public class MemoryController:MonoBehaviour{
 		isLoading [serial - 1] = false;
 		www.Dispose();
 	}
-
 	public void emptyDelegate(GameObject @object){
 		Debug.Log ("233");
 	}

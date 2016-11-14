@@ -104,7 +104,6 @@ namespace NPlayerState
             else
                 sharedStates[0] = sharedStates[0].OnUseSkill(isInterrupted);
         }
-
         public void OnEndSkill()
         {
             if (singletonState is Run)

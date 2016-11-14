@@ -1,0 +1,22 @@
+ID	Path
+1	Monster/RedGas
+2	Prop/prop_MP
+3	Monster/Whirlwind
+4	Monster/BlueGas
+5	Prop/prop_HP
+6	Monster/Rocket
+7	Coins/Line
+8	Monster/Tortoise
+9	Monster/Chomper
+10	Prop/prop_score
+11	terrain/Two
+12	terrain/Three
+13	Monster/Gas
+14	terrain/Four
+15	Monster/boss
+16	Coins/Star
+17	Coins/Arc
+18	Monster/Dragon
+19	Coins/LowtoHigh
+20	terrain/One
+
