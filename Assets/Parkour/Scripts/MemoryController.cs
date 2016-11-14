@@ -59,7 +59,7 @@ public class MemoryController:MonoBehaviour{
 
 		foreach (var go in memoryList[serial-1])
 		{
-			if (go.name == ID||go.name==ID+"(Clone)")
+			if (go.name == ID)
 			{
 				go.transform.position = position;
 				go.SetActive(true);
