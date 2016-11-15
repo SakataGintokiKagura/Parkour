@@ -61,34 +61,26 @@ public class PlayerProxy : Proxy {
   
     public void OnPickUpItem(string propName)
     {
-        if (propName == "prop_HP(Clone)")
+        ReadTable table = ReadTable.getTable;
+        string result = table.OnFind("propDate", propName, "property");
+        string value = table.OnFind("propDate", propName, "prop");
+        if (result.Contains("HP"))
         {
-            Debug.Log("PROP_hp");
-//            player.HP += 100;
-            player.HP += Int32.Parse(ReadTable.getTable.OnFind("propDate", "1", "prop"));
+            player.HP += int.Parse(value);
             SendNotification(EventsEnum.playerHPChange, player);
-            // ui.HP.fillAmount = ui.HP.fillAmount + ui.HP.fillAmount / 3;
-        }
-        else if (propName == "prop_MP(Clone)")
+        }else if (result.Contains("MP"))
         {
-            Debug.Log("prop_MP");
-//            player.MP += 100;
-            player.MP += Int32.Parse(ReadTable.getTable.OnFind("propDate", "2", "prop"));
+            player.MP += int.Parse(value);
             SendNotification(EventsEnum.playerUseSkillSuccess, player);
-        }
-        else if (propName == "prop_score(Clone)")
+        }else if (result.Contains("Scoure"))
         {
-            Debug.Log("prop_score");
-//            player.score+=100;
-            player.score+= Int32.Parse(ReadTable.getTable.OnFind("propDate", "3", "prop"));
+            player.score += int.Parse(value);
             SendNotification(EventsEnum.playerGetScoureSuccess, player);
-        }else if (propName == "prop_fly(Clone)")
+        }else if (result.Contains("Fly"))
         {
-            Debug.Log("prop_fly");
-            Debug.Log(float.Parse(ReadTable.getTable.OnFind("propDate", "4", "prop")));
-            SendNotification(EventsEnum.playerFly, float.Parse(ReadTable.getTable.OnFind("propDate", "4", "prop")));
+            SendNotification(EventsEnum.playerFly, float.Parse(value));
         }
-    }
+}
 
 
 }
