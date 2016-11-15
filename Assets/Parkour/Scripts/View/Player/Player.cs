@@ -75,7 +75,8 @@ public class Player : MonoBehaviour {
 	void Start()
 	{
 		playerMediator = PlayerMediator.OnGetPlayerMediator ();
-		playerMediator.OnSetPlayer (this);
+        playerMediator.player = this;
+		//playerMediator.OnSetPlayer (this);
 		State = PlayerState.Instance;
 		anim = GetComponent<Animator>();
 		controller = GetComponent<CharacterController>();
@@ -94,12 +95,9 @@ public class Player : MonoBehaviour {
 	/// </summary>
 	void FixedUpdate()
 	{
-		Debug.Log (velocity);
 		velocity = ApplyGravity(velocity);
 		Vector3 lastPosition = transform.position;
 		CollisionFlags flags = controller.Move(velocity);
-
-//<<<<<<< HEAD
 		if (isDrop)
 		{
 			velocity.y = 0;

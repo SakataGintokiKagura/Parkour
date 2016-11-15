@@ -17,14 +17,9 @@ public class PlayerMediator : Mediator,IPlayerMediator {
     public static PlayerMediator OnGetPlayerMediator()
     {
         if (playerMediator == null)
-        {
 			playerMediator = new PlayerMediator ();
-            return playerMediator;
-        }
-        else
-        {
-            return playerMediator;
-        }
+        return playerMediator;
+        
     }
     public void OnUseSkill(ISkill skill)
     {
@@ -124,13 +119,4 @@ public class PlayerMediator : Mediator,IPlayerMediator {
 		MemoryController.instance.OnListAddObject(temp,MemoryParameter.PropPriority);
         SendNotification(EventsEnum.propPickUpProp,temp);
     }
-	public void OnReStart(){
-		playerMediator = null;
-	}
-	public void OnSetPlayer(Player player){
-		this.player = player;
-	}
-	public void OnSetUI(UI ui){
-		this.ui = ui;
-	}
 }

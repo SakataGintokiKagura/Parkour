@@ -33,10 +33,10 @@ public class UI : MonoBehaviour
     private bool isA = false;
     private float waitDownTime;
     private float waitTime;
-	void Start()
+	void Awake()
 	{
 		playerMediator = PlayerMediator.OnGetPlayerMediator ();
-		playerMediator.OnSetUI (this);
+        playerMediator.ui = this;
 		hPInitizal = 100;
 		mPInitizal = 100;
 		waitDownTime = float.Parse(ReadTable.getTable.OnFind("skillParameber", "10", "dateValue"));

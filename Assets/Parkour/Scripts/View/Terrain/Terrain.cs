@@ -11,7 +11,7 @@ public class Terrain : MonoBehaviour
     private ApplicationFacade facade;
     private float n;
 
-    void Awake()
+    void OnEnable()
     {
 //        Monster monster = GetComponent<Monster>();
 //        if (monster == null)
