@@ -103,9 +103,6 @@
      <Compile Include="Assets\Parkour\Scripts\Model\Information\Skill\SkillRangeRemoteAttack.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\Information\Skill\SkillRollAttack.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\Information\Skill\SkillTreadAttack.cs" />
-     <Compile Include="Assets\Parkour\Scripts\Model\Information\TerrainInformation\OneTerrain.cs" />
-     <Compile Include="Assets\Parkour\Scripts\Model\Information\TerrainInformation\ThreeTerrain.cs" />
-     <Compile Include="Assets\Parkour\Scripts\Model\Information\TerrainInformation\TwoTerrain.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\MonsterProxy.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\PlayerProxy.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\PlayerState\AbsState.cs" />
@@ -142,6 +139,7 @@
      <Compile Include="Assets\Parkour\Scripts\View\Monster\ITerrainMediator.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\Monster\Monster.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\Monster\MonsterCreatePosition.cs" />
+     <Compile Include="Assets\Parkour\Scripts\View\Monster\WaSiBoss.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\Monster\claser.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\Monster\moveclaser.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\Monster\skill.cs" />
@@ -172,6 +170,7 @@
      <None Include="Assets\Resources\monsterParameber.txt" />
      <None Include="Assets\Resources\motionParameber.txt" />
      <None Include="Assets\Resources\PetParaember.txt" />
+     <None Include="Assets\Resources\WaSiBoss.txt" />
      <None Include="Assets\Resources\coinDate.txt" />
      <None Include="Assets\Resources\skillDate.txt" />
      <None Include="Assets\Resources\cameraParamber.txt" />

@@ -96,7 +96,6 @@ namespace CammerState
             {
                 singleGameState = singleGameState.OnChangeWay(false);
             }
-
         }
 
         public void OnCreateBoss()

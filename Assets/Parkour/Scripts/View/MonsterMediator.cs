@@ -147,7 +147,7 @@ public class MonsterMediator : Mediator{
     }
     public void OnAddMonster(GameObject monster)
     {
-        if (monster.name == "boss(Clone)")
+        if (monster.name == "100")
         {
             string temp = ReadTable.getTable.OnFind("bossDate", UnityEngine.Random.Range(1, 4).ToString(), "classname");
             monster.AddComponent(Type.GetType(temp));

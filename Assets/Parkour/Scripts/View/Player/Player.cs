@@ -99,6 +99,7 @@ public class Player : MonoBehaviour {
 		Vector3 lastPosition = transform.position;
 		CollisionFlags flags = controller.Move(velocity);
 
+<<<<<<< HEAD
 		if (isDrop)
 		{
 			velocity.y = 0;
@@ -112,6 +113,97 @@ public class Player : MonoBehaviour {
 		}
 		anim.SetFloat(AnimationParameter.xSpeed, velocity.x);
 		anim.SetFloat(AnimationParameter.ySpeed, velocity.y);
+=======
+    void Awake()
+    {
+    }
+    /// <summary>
+    /// 初始化移动参数
+    /// </summary>
+    void Start()
+    {
+        State = PlayerState.Instance;
+        anim = GetComponent<Animator>();
+        controller = GetComponent<CharacterController>();
+        initialVelocity = MotionParameber.initialVelocity * MotionParameber.fixedMotion;
+        velocity = new Vector3(initialVelocity, 0, 0);
+        //StartCoroutine(OnAccelerate());
+        anim.SetFloat(AnimationParameter.xSpeed, velocity.x);
+        anim.SetFloat(AnimationParameter.ySpeed, velocity.y);
+        anim.SetInteger(AnimationParameter.jump, AnimationParameter.jumpGround);
+//        StartCoroutine(OnFly(10f));
+    }
+    /// <summary>
+    /// 每帧移动物体，并对物体施加重力
+    /// 更改动画参数
+    /// 更改角色状态
+    /// </summary>
+    void FixedUpdate()
+    {
+        velocity = ApplyGravity(velocity);
+        Vector3 lastPosition = transform.position;
+        CollisionFlags flags = controller.Move(velocity);
+        //if (transform.position.y - lastPosition.y < 0.000000000005f)
+        //    velocity.y = 0f;
+        if (isDrop)
+        {
+            velocity.y = 0;
+            isDrop = false;
+        }
+        else
+            velocity.y = (transform.position.y - lastPosition.y);
+        if ((flags & CollisionFlags.Below) == 0 && (State.singletonState is Run))
+        {
+            //State.OnJump();
+            anim.SetInteger(AnimationParameter.jump, AnimationParameter.jumpfirst);
+        }
+        anim.SetFloat(AnimationParameter.xSpeed, velocity.x);
+        anim.SetFloat(AnimationParameter.ySpeed, velocity.y);
+        //if (transform.position.y<MotionParameber.yLimit|| Camera.main.WorldToViewportPoint(transform.position).x < 0)
+        //{
+        //    playerMediator.OnDropOutPit();
+        //}
+        if (Camera.main.WorldToViewportPoint(transform.position).x < 0)
+        {
+            playerMediator.OnDropOutPit();
+        }
+        if (isfly)
+            isApplyGravity = false;
+    }
+    /// <summary>
+    /// 施加重力
+    /// </summary>
+    /// <param name="velocity"></param>
+    /// <returns></returns>
+    Vector3 ApplyGravity(Vector3 velocity)
+    {
+        if (!isApplyGravity)
+            return velocity;
+        velocity.y -= MotionParameber.gravity * MotionParameber.fixedMotion;
+        return velocity;
+    }
+    /// <summary>
+    /// 控制角色跳跃
+    /// </summary>
+    public void OnJump()
+    {
+        if (skill != null)
+            return;
+        if (State.singletonState is Run)
+        {
+            velocity.y = 0;
+            velocity += MotionParameber.jumpDir * MotionParameber.fixedMotion;
+            State.OnJump();
+            anim.SetInteger(AnimationParameter.jump, AnimationParameter.jumpfirst);
+        }
+        else if (State.singletonState is FirstJump)
+        {
+            velocity.y = 0;
+            velocity += MotionParameber.jumpDir * MotionParameber.secondJump * MotionParameber.fixedMotion;
+            State.OnJump();
+            anim.SetInteger(AnimationParameter.jump, AnimationParameter.jumpsecond);
+        }
+>>>>>>> origin/dev
 
 		if (Camera.main.WorldToViewportPoint(transform.position).x < 0)
 		{
