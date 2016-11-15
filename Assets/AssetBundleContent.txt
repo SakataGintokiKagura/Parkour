@@ -1,0 +1,19 @@
+ID	Path	Name
+1	Coins/Line	Line
+2	Monster/Whirlwind	Whirlwind
+3	Monster/Tortoise	Tortoise
+4	terrain/One	One
+5	Monster/Dragon	Dragon
+6	Monster/Gas	Gas
+7	terrain/Two	Two
+8	Monster/boss	boss
+9	Coins/Star	Star
+10	Coins/Arc	Arc
+11	terrain/Three	Three
+12	terrain/Four	Four
+13	Coins/LowtoHigh	LowtoHigh
+14	Monster/Rocket	Rocket
+15	Monster/RedGas	RedGas
+16	Monster/Chomper	Chomper
+17	Monster/BlueGas	BlueGas
+
