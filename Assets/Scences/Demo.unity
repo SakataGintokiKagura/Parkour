@@ -509,13 +509,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 801ef8fddbcbac84f94bf03fa9b87b39, type: 2}
   m_IsPrefabParent: 0
-<<<<<<< HEAD
---- !u!1 &741363890 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 134932, guid: 66aabe543ed4d5c4e982150f95e139ab, type: 2}
-  m_PrefabInternal: {fileID: 1660576999}
-=======
->>>>>>> origin/dev
 --- !u!1 &765321013
 GameObject:
   m_ObjectHideFlags: 0
@@ -2611,11 +2604,7 @@ MonoBehaviour:
   - {fileID: 549720684}
   - {fileID: 962006313}
   - {fileID: 128224035}
-<<<<<<< HEAD
-  - {fileID: 741363890}
-=======
   - {fileID: 1205512739}
->>>>>>> origin/dev
   - {fileID: 1800524126}
   - {fileID: 1129597361}
   FlyItemPosition: {fileID: 765321014}
