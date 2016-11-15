@@ -66,28 +66,15 @@ public class PlayerProxy : Proxy {
         string value = table.OnFind("propDate", propName, "prop");
         if (result.Contains("HP"))
         {
-<<<<<<< HEAD
-            player.HP += Int32.Parse(ReadTable.getTable.OnFind("propDate", "1", "prop"));
-            SendNotification(EventsEnum.playerHPChange, player);
-        }
-        else if (propName == "prop_MP(Clone)")
-        {
-            player.MP += Int32.Parse(ReadTable.getTable.OnFind("propDate", "2", "prop"));
-=======
             player.HP += int.Parse(value);
             SendNotification(EventsEnum.playerHPChange, player);
         }else if (result.Contains("MP"))
         {
             player.MP += int.Parse(value);
->>>>>>> origin/dev
             SendNotification(EventsEnum.playerUseSkillSuccess, player);
         }else if (result.Contains("Scoure"))
         {
-<<<<<<< HEAD
-            player.score+= Int32.Parse(ReadTable.getTable.OnFind("propDate", "3", "prop"));
-=======
             player.score += int.Parse(value);
->>>>>>> origin/dev
             SendNotification(EventsEnum.playerGetScoureSuccess, player);
         }else if (result.Contains("Fly"))
         {
