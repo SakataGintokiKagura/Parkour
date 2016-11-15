@@ -981,6 +981,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000012684580518}
+  - 65: {fileID: 65000012337700602}
   m_Layer: 0
   m_Name: Mount_Dragon@skin
   m_TagString: Untagged
@@ -2343,6 +2344,18 @@ MeshCollider:
   serializedVersion: 2
   m_Convex: 1
   m_Mesh: {fileID: 4300000, guid: 4b3189f2278585d42be48b266c96ebe5, type: 3}
+--- !u!65 &65000012337700602
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013060021550}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 3, z: 3}
+  m_Center: {x: 0, y: 0.18, z: 0}
 --- !u!65 &65000014009485916
 BoxCollider:
   m_ObjectHideFlags: 1
