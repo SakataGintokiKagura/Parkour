@@ -120,6 +120,8 @@ public class Player : MonoBehaviour {
         {
             playerMediator.OnDropOutPit();
         }
+        if (isfly)
+            isApplyGravity = false;
     }
     /// <summary>
     /// 施加重力

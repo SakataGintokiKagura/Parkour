@@ -2,10 +2,10 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Demigiant\readme_DOTweenPro.txt">
     <Files>
-      <File FileName="Assets\Parkour\Scripts\MemoryController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scences\StartScene.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scences\LoadingScene.cs" Line="25" Column="10" />
-      <File FileName="Assets\Demigiant\readme_DOTweenPro.txt" Line="1" Column="1" />
+      <File FileName="Assets\Parkour\Scripts\MemoryController.cs" Line="89" Column="17" />
+      <File FileName="Assets\Parkour\Scripts\AssetBundleManager.cs" Line="17" Column="52" />
+      <File FileName="Assets\Scences\LoadingScene.cs" Line="27" Column="7" />
+      <File FileName="Assets\Scences\StartScene.cs" Line="15" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

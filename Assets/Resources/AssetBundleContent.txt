@@ -1,0 +1,22 @@
+ID	Path	Name
+1	Coins/LowtoHigh	LowtoHigh
+2	terrain/One	One
+3	Monster/RedGas	RedGas
+4	Monster/Whirlwind	Whirlwind
+5	Monster/BlueGas	BlueGas
+6	Monster/Rocket	Rocket
+7	Coins/Line	Line
+8	Prop/prop_score	prop_score
+9	Monster/Tortoise	Tortoise
+10	Monster/Chomper	Chomper
+11	terrain/Two	Two
+12	terrain/Three	Three
+13	Monster/Gas	Gas
+14	terrain/Four	Four
+15	Monster/boss	boss
+16	Prop/prop_MP	prop_MP
+17	Coins/Star	Star
+18	Coins/Arc	Arc
+19	Monster/Dragon	Dragon
+20	Prop/prop_HP	prop_HP
+

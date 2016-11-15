@@ -49,6 +49,7 @@
      <Compile Include="Assets\Art\Effect\Scripts\TextureTileAnimation.cs" />
      <Compile Include="Assets\Art\Effect\Scripts\UVAnimation.cs" />
      <Compile Include="Assets\Parkour\Scripts\ApplicationFacade.cs" />
+     <Compile Include="Assets\Parkour\Scripts\AssetBundleManager.cs" />
      <Compile Include="Assets\Parkour\Scripts\CameraFollow.cs" />
      <Compile Include="Assets\Parkour\Scripts\Controller\Monster\MonsterCreate.cs" />
      <Compile Include="Assets\Parkour\Scripts\Controller\Monster\MonsterCreateBoss.cs" />
@@ -64,6 +65,13 @@
      <Compile Include="Assets\Parkour\Scripts\Enum\AggregateEnum.cs" />
      <Compile Include="Assets\Parkour\Scripts\Enum\EventsEnum.cs" />
      <Compile Include="Assets\Parkour\Scripts\MemoryController.cs" />
+     <Compile Include="Assets\Parkour\Scripts\Model\GameState\AbsGameState.cs" />
+     <Compile Include="Assets\Parkour\Scripts\Model\GameState\FarCammerState.cs" />
+     <Compile Include="Assets\Parkour\Scripts\Model\GameState\GameStates.cs" />
+     <Compile Include="Assets\Parkour\Scripts\Model\GameState\HaveBossState.cs" />
+     <Compile Include="Assets\Parkour\Scripts\Model\GameState\MidCammerState.cs" />
+     <Compile Include="Assets\Parkour\Scripts\Model\GameState\NearCammerState.cs" />
+     <Compile Include="Assets\Parkour\Scripts\Model\GameState\WithOutBossState.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\Information\IBlology.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\Information\ITerrain.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\Information\MonsterInformation\BlueGasInformation.cs" />
@@ -148,10 +156,11 @@
      <Compile Include="Assets\Parkour\Scripts\View\TerrainMediator.cs" />
      <Compile Include="Assets\Scences\LoadingScene.cs" />
      <Compile Include="Assets\Scences\StartScene.cs" />
+     <Compile Include="Assets\Test.cs" />
      <None Include="Assets\Resources\effectDate.txt" />
      <None Include="Assets\Resources\PetDate.txt" />
      <None Include="Assets\Resources\skillParameber.txt" />
-     <None Include="Assets\Resources\memoryObjectParameter.txt" />
+     <None Include="Assets\Resources\AssetBundleContent.txt" />
      <None Include="Assets\Resources\animationParameter.txt" />
      <None Include="Assets\Resources\bossDate.txt" />
      <None Include="Assets\Resources\memoryParameter.txt" />

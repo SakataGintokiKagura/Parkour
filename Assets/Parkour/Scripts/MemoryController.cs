@@ -7,17 +7,10 @@ using System.Reflection;
 public delegate void ReturnObject(GameObject obj);
 
 public class MemoryController:MonoBehaviour{
-
 	private bool[] isLoading;
-
 	private static MemoryController _instance;
-
 	private List <GameObject>[] memoryList;
-
-	private string PathURL ;
-
 	private string URL;
-
 	private GameObject temp;
     /// <summary>
     /// 单例模式
@@ -44,11 +37,9 @@ public class MemoryController:MonoBehaviour{
 		for(int i=0;i<MemoryParameter.objectType;i++)
 			memoryList [i] = new List<GameObject> ();
 	}
-
 	void Awake(){
 		if(_instance==null)
 			_instance = this;
-
 	}
 
 	void Update(){
@@ -93,8 +84,10 @@ public class MemoryController:MonoBehaviour{
 	}
 
 	public GameObject OnAsynchronous(string name,Vector3 position,int serial,string path,string ID,ReturnObject returnObject){
-		StartCoroutine (LoadAssetAsyncCoroutine (path, name, position, serial,ID,returnObject));
-		return null;
+		AssetBundleRequest abr = AssetBundleManager.instance.getAssetBundle (path + name);
+		GameObject fin = Instantiate (abr.asset,position,Quaternion.identity)as GameObject;
+		fin.name = ID;
+		return fin;
 	}
 
 	public void OnListAddObject(GameObject go,int num)
@@ -123,8 +116,6 @@ public class MemoryController:MonoBehaviour{
 			}
 		}
 	}
-
-
     /// <summary>
     /// 异步加载
     /// </summary>
@@ -134,26 +125,23 @@ public class MemoryController:MonoBehaviour{
     /// <param name="serial"></param>
     /// <param name="returnObject"></param>
     /// <returns></returns>
-
-
-	IEnumerator LoadAssetAsyncCoroutine(string path,string name, Vector3 position,int serial,string ID,ReturnObject returnObject){//ReturnObject action,
-		WWW www = new WWW(URL+path+name+".assetbundle");
-		yield return www;
-		while (isLoading[serial-1]) {
-			yield return new WaitForSeconds (0.06f);
-		}
-		isLoading [serial - 1] = true;
-		AssetBundle assetbundle = www.assetBundle;
-		AssetBundleRequest abr = assetbundle.LoadAssetAsync (name,typeof(GameObject));
-		yield return abr;
-		GameObject fin = Instantiate (abr.asset,position,Quaternion.identity)as GameObject;
-		fin.name = ID;
-		returnObject (fin);
-		www.assetBundle.Unload (false);
-		isLoading [serial - 1] = false;
-		www.Dispose();
-	}
-
+//	IEnumerator LoadAssetAsyncCoroutine(string path,string name, Vector3 position,int serial,string ID,ReturnObject returnObject){//ReturnObject action,
+//		WWW www = new WWW(URL+path+name+".assetbundle");
+//		yield return www;
+//		while (isLoading[serial-1]) {
+//			yield return new WaitForSeconds (0.06f);
+//		}
+//		isLoading [serial - 1] = true;
+//		AssetBundle assetbundle = www.assetBundle;
+//		AssetBundleRequest abr = assetbundle.LoadAssetAsync (name,typeof(GameObject));
+//		yield return abr;
+//		GameObject fin = Instantiate (abr.asset,position,Quaternion.identity)as GameObject;
+//		fin.name = ID;
+//		returnObject (fin);
+//		www.assetBundle.Unload (false);
+//		isLoading [serial - 1] = false;
+//		www.Dispose();
+//	}
 	public void emptyDelegate(GameObject @object){
 		Debug.Log ("233");
 	}
