@@ -62,8 +62,7 @@ public class SkillCallRemoteAttack : IEnbaleAirSkill {
 			MemoryParameter.PetPriority,
 			table.OnFind("PetDate","1","path"),
 			table.OnFind("PetDate","1","load"),
-			"1",
-			MemoryController.instance.emptyDelegate);
+			"1");
 
     }
 }

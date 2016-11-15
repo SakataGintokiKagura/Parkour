@@ -54,8 +54,7 @@ public class SkillNormalRemoteAttack : IEnbaleAirSkill
 			MemoryParameter.FlyItemPriority,
 			table.OnFind ("flyItemDate", "1", "path"),
 			table.OnFind ("flyItemDate", "1", "load"),
-			"1",
-			new ReturnObject(MemoryController.instance.emptyDelegate)
+			"1"
 		);
 
 //        GameObject temp = Resources.Load("FlyItem/" + table.OnFind("flyItemDate", "1", "name"))as GameObject;

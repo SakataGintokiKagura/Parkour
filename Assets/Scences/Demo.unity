@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44692534, g: 0.49678725, b: 0.5750856, a: 1}
+  m_IndirectSpecularColor: {r: 0.44692492, g: 0.4967869, b: 0.57508546, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -750,26 +750,10 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 801ef8fddbcbac84f94bf03fa9b87b39, type: 2}
   m_IsPrefabParent: 0
---- !u!1001 &751901830
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications: []
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 0}
-  m_IsPrefabParent: 0
---- !u!1001 &757383262
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications: []
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 0}
-  m_IsPrefabParent: 0
+--- !u!1 &741363890 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 134932, guid: 66aabe543ed4d5c4e982150f95e139ab, type: 2}
+  m_PrefabInternal: {fileID: 1660576999}
 --- !u!1 &765321013
 GameObject:
   m_ObjectHideFlags: 0
@@ -3096,9 +3080,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effect:
   - {fileID: 549720684}
-  - {fileID: 0}
-  - {fileID: 128224035}
   - {fileID: 962006313}
+  - {fileID: 128224035}
+  - {fileID: 741363890}
   - {fileID: 1800524126}
   - {fileID: 1129597361}
   FlyItemPosition: {fileID: 765321014}
@@ -3191,7 +3175,7 @@ Transform:
   - {fileID: 654072820}
   - {fileID: 1061380627}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 7
 --- !u!1001 &2055807280
 Prefab:
   m_ObjectHideFlags: 0

@@ -54,8 +54,7 @@ public class SkillRangeRomateAttack : ISkill
 			MemoryParameter.FlyItemPriority,
 			table.OnFind ("flyItemDate", "3", "path"),
 			table.OnFind ("flyItemDate", "3", "load"),
-			"3",
-			new ReturnObject(MemoryController.instance.emptyDelegate)
+			"3"
 		);
 
 //        GameObject temp = Resources.Load("FlyItem/" + table.OnFind("flyItemDate", "3", "name")) as GameObject;

@@ -154,6 +154,7 @@
      <Compile Include="Assets\Parkour\Scripts\View\PlayerMediator.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\Terrain\Terrain.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\TerrainMediator.cs" />
+     <Compile Include="Assets\Scences\GameManager.cs" />
      <Compile Include="Assets\Scences\LoadingScene.cs" />
      <Compile Include="Assets\Scences\StartScene.cs" />
      <Compile Include="Assets\Test.cs" />

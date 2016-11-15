@@ -27,7 +27,7 @@ public class PlayerProxy : Proxy {
         //判断哪个怪
         IBlology monster = MonsterProxy.AllMONSTER[game];
 
-		//player.HP -= monster.damage;
+		player.HP -= monster.damage;
         SendNotification(EventsEnum.playerHPChange,player);
 
 		if(player.HP<=0){
@@ -48,7 +48,7 @@ public class PlayerProxy : Proxy {
     public void OnDropOutPit()
     {
 
-        //player.HP -= SkillParameber.dropOutHurt;
+        player.HP -= SkillParameber.dropOutHurt;
 
         SendNotification(EventsEnum.playerHPChange, player);
         //SendNotification(EventsEnum.playerDropOutNoDie, player);
@@ -63,23 +63,16 @@ public class PlayerProxy : Proxy {
     {
         if (propName == "prop_HP(Clone)")
         {
-            Debug.Log("PROP_hp");
-//            player.HP += 100;
             player.HP += Int32.Parse(ReadTable.getTable.OnFind("propDate", "1", "prop"));
             SendNotification(EventsEnum.playerHPChange, player);
-            // ui.HP.fillAmount = ui.HP.fillAmount + ui.HP.fillAmount / 3;
         }
         else if (propName == "prop_MP(Clone)")
         {
-            Debug.Log("prop_MP");
-//            player.MP += 100;
             player.MP += Int32.Parse(ReadTable.getTable.OnFind("propDate", "2", "prop"));
             SendNotification(EventsEnum.playerUseSkillSuccess, player);
         }
         else if (propName == "prop_score(Clone)")
         {
-            Debug.Log("prop_score");
-//            player.score+=100;
             player.score+= Int32.Parse(ReadTable.getTable.OnFind("propDate", "3", "prop"));
             SendNotification(EventsEnum.playerGetScoureSuccess, player);
         }else if (propName == "prop_fly(Clone)")

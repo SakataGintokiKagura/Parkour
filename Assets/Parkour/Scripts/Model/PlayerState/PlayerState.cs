@@ -12,47 +12,13 @@ namespace NPlayerState
         public AbsState singletonState;
 
         public List<AbsState> stateList = new List<AbsState>();
-        //public AbsState first;
-        //public AbsState second;
-        //public AbsState run;
-        //public AbsState general;
-        //public AbsState unInterrupted;
-        //public AbsState invincible;
-        //public AbsState unInvincible;
 
-        //public AbsState jumpState;
-        //public AbsState skillState;
-        //public AbsState hurtState;
         private PlayerState()
         {
             var ty = GetTypes();
             foreach (var item in ty)
                 stateList.Add((AbsState) Activator.CreateInstance(item, this));
-            //string appPath = Directory.GetCurrentDirectory();
-            //appPath += "\\Assets\\Parkour\\Scripts\\Model\\PlayerState";
-            //DirectoryInfo dir = new DirectoryInfo(appPath);
-            //if (dir.Exists)
-            //{
-            //    FileInfo[] fiList = dir.GetFiles();
-            //    foreach (var item in fiList)
-            //    {
-            //        //Debug.Log(item.FullName);
-            //        //Debug.Log(item.Name);     //文件名加后缀
-            //        string[] name = item.Name.Split('.');
-            //        if (name.Length < 3 && name[1] == "cs" && (name[0] != "AbsState" && name[0] != "PlayerState"))
-            //        {
-            //            Type t = Type.GetType(name[0]);
-            //            stateList.Add((AbsState)Activator.CreateInstance(t, this));
-            //        }
-            //    }
-            //}
-            //first = new FirstJump(this);
-            //second = new SecondJump(this);
-            //run = new Run(this);
-            //general = new GeneralSkill(this);
-            //unInterrupted = new UnInterruptedSkill(this);
-            //invincible = new Invincible(this);
-            //unInvincible = new UnInvincile(this);
+
             foreach (var item in stateList)
                 if (item is Run)
                     singletonState = item;

@@ -8,13 +8,12 @@ using UnityEngine.Assertions.Must;
 public class UI : MonoBehaviour
 {
     private int hPInitizal = 0;
-    private int mPInitizal = 0;
-    public Image HP;
-    public Image MP;
-
-    public Text injured;
-    public Text allCoin;
-    private IPlayerMediator playerMediator;
+	private int mPInitizal = 0;
+	public Image HP;
+	public Image MP;
+	public Text injured;
+	public Text allCoin;
+    private PlayerMediator playerMediator;
     private bool jump = false;
     private bool startJump = false;
     private bool skillA = false;
@@ -25,7 +24,6 @@ public class UI : MonoBehaviour
     private ReadTable skillTable;
     //private ArrayList
 
-
     private float time;
     private string skillName = null;
     private int stringLen = 0;
@@ -35,7 +33,17 @@ public class UI : MonoBehaviour
     private bool isA = false;
     private float waitDownTime;
     private float waitTime;
+	void Start()
+	{
+		playerMediator = PlayerMediator.OnGetPlayerMediator ();
+		playerMediator.OnSetUI (this);
+		hPInitizal = 100;
+		mPInitizal = 100;
+		waitDownTime = float.Parse(ReadTable.getTable.OnFind("skillParameber", "10", "dateValue"));
+		waitTime = float.Parse(ReadTable.getTable.OnFind("skillParameber", "11", "dateValue"));
+	}
     // Update is called once per frame
+
     void Update()
     {
 
@@ -212,18 +220,6 @@ public class UI : MonoBehaviour
             if (mPInitizal == 0)
                 mPInitizal = value;
         }
-    }
-
-    void Start()
-    {
-        hPInitizal = 100;
-        mPInitizal = 100;
-        waitDownTime = float.Parse(ReadTable.getTable.OnFind("skillParameber", "10", "dateValue"));
-        waitTime = float.Parse(ReadTable.getTable.OnFind("skillParameber", "11", "dateValue"));
-    }
-    public void OnSetPlayerMediator(IPlayerMediator playerMediator)
-    {
-        this.playerMediator = playerMediator;
     }
     public void SkillCheck(string skillName)
     {

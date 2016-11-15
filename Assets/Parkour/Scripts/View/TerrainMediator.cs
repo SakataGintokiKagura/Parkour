@@ -8,7 +8,7 @@ public class TerrainMediator : Mediator, ITerrainMediator
 {
 
     public new const string NAME = "TerrainMediator";
-    private Terrain terrain;
+	public Terrain terrain;
     private static TerrainMediator terrainMediator;
 	private Vector3 lastPosition;
 	private List<GameObject> newCoinList = new List<GameObject> ();
@@ -16,28 +16,14 @@ public class TerrainMediator : Mediator, ITerrainMediator
     private Queue<GameObject> oldTerrain = new Queue<GameObject>();
     private Queue<List<GameObject>> oldCoin = new Queue<List<GameObject>>();
 
-    private TerrainMediator(Terrain terrain) : base(NAME)
+    private TerrainMediator() : base(NAME)
     {
-        this.terrain = terrain;
-        terrain.OnSetTerrain(this);
-    }
-    public static TerrainMediator OnGetTerrainMediator(Terrain terrain)
-    {
-        if (terrainMediator == null)
-        {
-            terrainMediator = new TerrainMediator(terrain);
-            return terrainMediator;
-        }
-        else
-        {
-            return terrainMediator;
-        }
     }
     public static TerrainMediator OnGetTerrainMediator()
     {
         if (terrainMediator == null)
         {
-            Debug.Log("terrainMediator为空");
+			terrainMediator = new TerrainMediator ();
             return terrainMediator;
         }
         else
@@ -73,8 +59,7 @@ public class TerrainMediator : Mediator, ITerrainMediator
 				    MemoryParameter.TerrainPriority,
 				    temp.OnFind("terrainDate", infor.OnGetName(), "path"),
 				    temp.OnFind("terrainDate", infor.OnGetName(), "load"),
-				    infor.OnGetName().ToString(),
-				    new ReturnObject(OnEnqueueOldTerrain)
+				    infor.OnGetName().ToString()
                 );
 
 
@@ -98,14 +83,21 @@ public class TerrainMediator : Mediator, ITerrainMediator
 					    MemoryParameter.CoinsPriority,
                         temp.OnFind("coinDate", item.OnGetName(), "path"),
 					    temp.OnFind("coinDate", item.OnGetName(), "load"),
-					    item.OnGetName().ToString(),
-					    new ReturnObject(OnEnqueueOldCoin)
+					    item.OnGetName().ToString()
                     );
 
-                    if (CoinTemp)
-                    {
-                        OnEnqueueOldCoin(CoinTemp);
-                    }
+//                    if (CoinTemp)
+//                    {
+//                        OnEnqueueOldCoin(CoinTemp);
+//                    }
+
+				CoinTemp.SetActiveRecursively(true);
+				newCoinList.Add (CoinTemp);
+				if (CoinTemp.transform.position == lastPosition) {
+					oldCoin.Enqueue (newCoinList);
+					newCoinList = new List<GameObject> ();
+				}
+
                 }
                 if (terrain.getN() >= 2)
                     {
