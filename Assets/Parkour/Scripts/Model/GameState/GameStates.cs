@@ -60,7 +60,6 @@ namespace CammerState
             {
 
             }
-            Debug.Log(lt.Count);
             return lt;
         }
         private GameStates()
