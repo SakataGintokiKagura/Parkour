@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using CammerState;
 
 public class MonsterCreatePosition : MonoBehaviour {
 
@@ -8,34 +9,60 @@ public class MonsterCreatePosition : MonoBehaviour {
 	private Vector3 position;
 	private float count;
 	private float y;
+    private float monsterPosOffset;
+    private float nearMonsterPosOffset;
+    private float midMonsterPosOffset;
+    private float farMonsterPosOffset;
+    ReadTable table=ReadTable.getTable;
 	// Use this for initialization
 	void Start () { 
 		count = gameObject.transform.position.x;
 		y = 0;
+	    nearMonsterPosOffset = float.Parse(table.OnFind("monsterParameber","11","Value"));
+        midMonsterPosOffset = float.Parse(table.OnFind("monsterParameber", "12", "Value"));
+        farMonsterPosOffset = float.Parse(table.OnFind("monsterParameber", "13", "Value"));
     }
 	
 	// Update is called once per frame
 	void Update () {
-		position = new Vector3 (transform.position.x,y,transform.position.z);
-		MonsterMediator.OnGetMonsterMediator().monsterCreatePosition = position;
-        if (gameObject.transform.position.x-count>=13f) {
+		OnCreateMonter();
+	}
+    /// <summary>
+    /// 根据游戏状态机生成怪物
+    /// </summary>
+    void OnCreateMonter()
+    {
+        position = new Vector3(transform.position.x, y, transform.position.z);
+        MonsterMediator.OnGetMonsterMediator().monsterCreatePosition = position;
 
-
+        if (GameStates.getInstance.singleGameState is NearCammerState)
+        {
+            monsterPosOffset = nearMonsterPosOffset;
+        }
+        else if (GameStates.getInstance.singleGameState is MidCammerState)
+        {
+            monsterPosOffset = midMonsterPosOffset;
+        }
+        else
+        {
+            monsterPosOffset = farMonsterPosOffset;
+        }
+        if (gameObject.transform.position.x - count >= monsterPosOffset)
+        {
             if (isCreateMonster && isContactTerrain)
             {
-                if (gameObject.transform.position.x - count > 13.2f)
+                if (gameObject.transform.position.x - count > monsterPosOffset+0.2)
                 {
-                   StartCoroutine(OnWait()) ;
+                    StartCoroutine(OnWait());
                 }
                 else
                 {
                     MonsterMediator.OnGetMonsterMediator().OnCreateMonster();
-                    
                 }
                 count = gameObject.transform.position.x;
             }
         }
-	}
+    }
 
 	void OnTriggerStay(Collider other){
 		if(other.tag=="Coin")

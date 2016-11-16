@@ -11,6 +11,10 @@ namespace CammerState
     {
         public static GameStates instance;
         /// <summary>
+        /// 当前的游戏状态
+        /// </summary>
+        public AbsGameState currentGameState;
+        /// <summary>
         /// 单一状态
         /// </summary>
         public AbsGameState singleGameState;
@@ -61,9 +65,6 @@ namespace CammerState
         }
         private GameStates()
         {
-//            var ty = GetTypes();
-//            foreach (var item in ty)
-//                stateList.Add((AbsState)Activator.CreateInstance(item, this));
             var ty = GetTypes();
             foreach (var item in ty)
             {
@@ -87,7 +88,7 @@ namespace CammerState
         }
 
         public void OnSwitfRunWay(bool isNear)
-        {
+        {   
             if (isNear)
             {
                 singleGameState = singleGameState.OnChangeWay(true);
