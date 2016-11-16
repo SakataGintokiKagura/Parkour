@@ -9,4 +9,7 @@ class TagParameber
     public const string prop = "Prop";
     public const string terrain = "Terrain";
     public const string bottom = "Bottom";
+    public const string blue = "jelly_blue";
+    public const string red = "jelly_red";
+    public const string yellow = "jelly_yellow";
 }

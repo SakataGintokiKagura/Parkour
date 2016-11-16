@@ -10,7 +10,7 @@ namespace CammerState
         {
 
         }
-
+        
         public override AbsGameState OnChangeWay(bool isNear)
         {
             Debug.Log("从近到中");

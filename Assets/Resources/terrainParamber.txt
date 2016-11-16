@@ -7,3 +7,6 @@ ID	name	dateType	dateValue
 6	coinCreateNumerator	int	2
 7	coinZone	float	5
 8	coinBuffer	float	1
+20	Origon	Vector3	0/0/0
+21	MoveFar	Vector3	5/10/40
+22	MoveNear	Vector3	5/10/-40
