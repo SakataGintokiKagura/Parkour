@@ -1,0 +1,6 @@
+mid position:7.37,4.04,-8.17
+mid rotation:16.315, -2.069, 0.0
+near position:7.37,4.67,-6.86
+near rotation:20.385, 0, 0.0
+far position:9.229996,1.73,-11.43
+far rotation:0,0,0

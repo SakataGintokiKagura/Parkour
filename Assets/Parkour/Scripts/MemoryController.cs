@@ -36,11 +36,14 @@ public class MemoryController:MonoBehaviour{
 			memoryList [i] = new List<GameObject> ();
 	}
 	void Awake(){
+        //transform.eulerAngles = new Vector3(1.5f, 1.4f, 0);
 		if(_instance==null)
 			_instance = this;
 	}
 
 	void Update(){
+        //Debug.Log("weizhi"+transform.position);
+        //Debug.Log("xuanzhuanzhi"+transform.eulerAngles);
 		deleteListObject ();
 	}
 

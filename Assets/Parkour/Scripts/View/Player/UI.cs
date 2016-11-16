@@ -49,7 +49,8 @@ public class UI : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            playerMediator.OnJump();
+            //playerMediator.OnJump();
+            OnButtonJump();
         }
         if (Input.GetKeyDown(KeyCode.A))
         {

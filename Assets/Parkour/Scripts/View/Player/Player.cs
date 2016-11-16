@@ -260,10 +260,14 @@ public class Player : MonoBehaviour {
 			col.gameObject.SetActive (false);
 
 		}else if(col.transform.root.gameObject.tag == TagParameber.monster)
-
 			OnHurtCheck(col.gameObject);
 		else if(col.tag == TagParameber.prop)
 			playerMediator.OnPickUpProp(col.gameObject);
+        else if (col.gameObject.name.Contains("Move"))
+        {
+            string[] temp =col.gameObject.name.Split('/');
+            string move = ReadTable.getTable.OnFind("11", temp[1], "111");
+        }
 
 	}
 	/// <summary>

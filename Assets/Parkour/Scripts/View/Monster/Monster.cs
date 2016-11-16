@@ -18,7 +18,7 @@ public class Monster : MonoBehaviour
 	{
 		monsterMediator = MonsterMediator.OnGetMonsterMediator ();
 		monsterMediator.monsterControl = this;
-		monster = monsterMediator.monsterDic; 
+		monster = monsterMediator.monsterDic;
     }
 
     // Update is called once per frame
