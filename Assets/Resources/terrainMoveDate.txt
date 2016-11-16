@@ -1,7 +1,0 @@
-ID	Target	Type
-1	0	Up
-2	-5	Left
-3	-1	Up
-4	-2	Up
-5	-2	Up
-6	-1	Up
