@@ -90,7 +90,6 @@ public class MemoryController:MonoBehaviour{
 		fin.name = ID;
 		return fin;
 	}
-
 	public void OnListAddObject(GameObject go,int num)
 	{
 		go.SetActive (false);
