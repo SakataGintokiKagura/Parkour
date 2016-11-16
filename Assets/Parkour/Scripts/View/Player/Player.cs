@@ -113,6 +113,7 @@ public class Player : MonoBehaviour {
 	/// </summary>
 	void FixedUpdate()
 	{
+		print (GameStates.getInstance.singleGameState);
 		velocity = ApplyGravity(velocity);
 		Vector3 lastPosition = transform.position;
 		CollisionFlags flags = controller.Move(velocity);
