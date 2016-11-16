@@ -44,46 +44,22 @@ public class MemoryController:MonoBehaviour{
 		deleteListObject ();
 	}
 
-	public GameObject OnFindGameObjectByName(string name,Vector3 position,int serial,string path,string load,string ID){
+	public GameObject OnFindGameObjectByName(string name,int serial,string path,string ID){
 		
 		foreach (var go in memoryList[(serial-1)])
 		{
 			if (go.name == ID)
 			{
-				go.transform.position = position;
+				//go.transform.position = position;
 				go.SetActive(true);
 				memoryList[serial-1].Remove(go);
 				return go;    
 			}
 		}
-			
-		Type t =GetType ();
-		return (GameObject)t.InvokeMember (load,BindingFlags.Instance | BindingFlags.Public | BindingFlags.InvokeMethod,
-			null, this, new object[] {name, position, serial, path,ID});
-	}
 
-    
-   /// <summary>
-   ///  同步加载
-   /// </summary>
-   /// <param name="name"></param>
-   /// <param name="position"></param>
-   /// <param name="serial"></param>
-   /// <param name="path"></param>
-   /// <param name="ID"></param>
-   /// <param name="returnObject"></param>
-   /// <returns></returns>
-
-	public GameObject OnSynchronous(string name,Vector3 position,int serial,string path,string ID){
-		GameObject temp_01 = Resources.Load (path + name)as GameObject;
-		GameObject temp_02 = Instantiate( temp_01, position, temp_01.transform.rotation)as GameObject ;
-		temp_02.name = ID;
-		return temp_02;
-	}
-
-	public GameObject OnAsynchronous(string name,Vector3 position,int serial,string path,string ID){
+		//Debug.Log (name);
 		AssetBundleRequest abr = AssetBundleManager.instance.getAssetBundle (path + name);
-		GameObject fin = Instantiate (abr.asset,position,Quaternion.identity)as GameObject;
+		GameObject fin = Instantiate (abr.asset)as GameObject;
 		fin.name = ID;
 		return fin;
 	}
@@ -95,17 +71,19 @@ public class MemoryController:MonoBehaviour{
 	}
 		
 	public void deleteListObject(){
+
 		while (Profiler.GetTotalAllocatedMemory () >= MemoryParameter.threshold) {
+
 			for (int i = 0; i < MemoryParameter.objectType; i++) {
-				if (memoryList [i].Count == 0&&i==MemoryParameter.objectType-1) {
+
+				if (memoryList [i].Count == 0&&i==MemoryParameter.objectType-1) 
 					return;
-				}
-				if (memoryList [i].Count == 0&&i!=MemoryParameter.objectType-1) {
+
+				if (memoryList [i].Count == 0&&i!=MemoryParameter.objectType-1) 
 					continue;
-				}
+
 				else if (memoryList [i].Count != 0) {
-					foreach (GameObject go in memoryList [i])
-					{
+					foreach (GameObject go in memoryList [i]){
 						memoryList [i].Remove (go);
 						GameObject.Destroy (go);
 						return;
@@ -113,9 +91,5 @@ public class MemoryController:MonoBehaviour{
 				}
 			}
 		}
-	}
-
-	public void emptyDelegate(GameObject @object){
-		Debug.Log ("233");
 	}
 }

@@ -86,15 +86,15 @@ public class MonsterMediator : Mediator{
 
 			ReadTable temp_01 = ReadTable.getTable;
 
-            GameObject monster=
-			MemoryController.instance.OnFindGameObjectByName(    
-				temp_01.OnFind("monsterDate", monsterSpecies.ID.ToString(), "name"),
-				monsterCreatePosition,
-				MemoryParameter.MonsterPriority,
-				temp_01.OnFind("monsterDate", monsterSpecies.ID.ToString(), "path"),
-				temp_01.OnFind("monsterDate", monsterSpecies.ID.ToString(), "load"),
-				monsterSpecies.ID.ToString()
-			);
+			GameObject monster =
+				MemoryController.instance.OnFindGameObjectByName (
+					temp_01.OnFind ("monsterDate", monsterSpecies.ID.ToString (), "name"),
+					MemoryParameter.MonsterPriority,
+					temp_01.OnFind ("monsterDate", monsterSpecies.ID.ToString (), "path"),
+					monsterSpecies.ID.ToString ()
+				);
+
+			monster.transform.position = monsterCreatePosition;
                 // this.blology.Enqueue(monsterSpecies);
                 if (monster == null)
                 {
@@ -127,13 +127,13 @@ public class MonsterMediator : Mediator{
 			    ReadTable reatable = ReadTable.getTable;
 
 			    GameObject prop = MemoryController.instance.OnFindGameObjectByName (
-				    reatable.OnFind("propDate", id,"name"),
-				    position,  
+				    reatable.OnFind("propDate", id,"name"), 
 				    MemoryParameter.PropPriority, 
 				    reatable.OnFind("propDate", id,"path"),
-				    reatable.OnFind("propDate", id,"load"),
 				    id
 			    );
+
+			prop.transform.position=position;
                 //下面的话注释掉，要不然不能生成道具
 			    //MemoryController.instance.OnListAddObject (prop,ReadTable.getTable.OnFind("memoryObjectParameter","1","priority")); 
 

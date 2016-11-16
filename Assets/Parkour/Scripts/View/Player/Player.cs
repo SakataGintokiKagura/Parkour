@@ -360,7 +360,6 @@ public class Player : MonoBehaviour {
 		MonsterMediator monsterMediator = MonsterMediator.OnGetMonsterMediator ();
 		Dictionary<IBlology, GameObject> monster = monsterMediator.monsterDic;
 		monster.Clear ();
-		Debug.Log("restart");
 		Application.LoadLevel(2);
 	}
 	public void OnPlayEffect(int id)

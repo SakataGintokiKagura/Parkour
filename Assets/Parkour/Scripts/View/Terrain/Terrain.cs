@@ -13,11 +13,6 @@ public class Terrain : MonoBehaviour
 
     void OnEnable()
     {
-//        Monster monster = GetComponent<Monster>();
-//        if (monster == null)
-//        {
-//            Debug.Log("1111");
-//        }
         facade = new ApplicationFacade();
     }
 	void Start(){
@@ -29,6 +24,7 @@ public class Terrain : MonoBehaviour
     {
         if (gameObject.transform.position.x >= TerrainParameter.mapDistance + (n * TerrainParameter.mapSize))
         {
+			//Debug.Log (TerrainParameter.mapDistance+" "+TerrainParameter.mapSize);
             terrainMediator.OnCreateTerrain();
             n++;
         }

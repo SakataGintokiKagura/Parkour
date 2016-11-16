@@ -56,13 +56,11 @@ public class SkillCallRemoteAttack : IEnbaleAirSkill {
     {
         state.OnUseSkill(true);
 		ReadTable table = ReadTable.getTable;
-		MemoryController.instance.OnFindGameObjectByName (
+		GameObject kill = MemoryController.instance.OnFindGameObjectByName (
 			table.OnFind("PetDate","1","name"),
-			Vector3.zero,
 			MemoryParameter.PetPriority,
 			table.OnFind("PetDate","1","path"),
-			table.OnFind("PetDate","1","load"),
 			"1");
-
+		kill.transform.position = transform.position;
     }
 }

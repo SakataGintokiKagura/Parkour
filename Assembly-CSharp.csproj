@@ -158,10 +158,10 @@
      <Compile Include="Assets\Test.cs" />
      <None Include="Assets\Resources\effectDate.txt" />
      <None Include="Assets\Resources\PetDate.txt" />
-     <None Include="Assets\Resources\skillParameber.txt" />
      <None Include="Assets\Resources\AssetBundleContent.txt" />
+     <None Include="Assets\Resources\skillParameber.txt" />
      <None Include="Assets\Resources\animationParameter.txt" />
-     <None Include="Assets\AssetBundleContent.txt" />
+     <None Include="Assets\Resources\JellyDate.txt" />
      <None Include="Assets\Resources\bossDate.txt" />
      <None Include="Assets\Resources\memoryParameter.txt" />
      <None Include="Assets\Resources\terrainParamber.txt" />
