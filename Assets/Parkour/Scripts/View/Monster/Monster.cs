@@ -9,14 +9,16 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class Monster : MonoBehaviour
 {
-    private IMonsterMediator monsterMediator;
+    private MonsterMediator monsterMediator;
     private Dictionary<IBlology, GameObject> monster;
     private List<GameObject> outList = new List<GameObject>();
     public GameObject player;
     private float initialPosition = 0;
     void Start()
-    {
-        monster = monsterMediator.monster;
+	{
+		monsterMediator = MonsterMediator.OnGetMonsterMediator ();
+		monsterMediator.monsterControl = this;
+		monster = monsterMediator.monsterDic; 
     }
 
     // Update is called once per frame
@@ -51,16 +53,6 @@ public class Monster : MonoBehaviour
                 kv.Key.OnOutView(kv.Value.transform);
                 outList.Add(kv.Value);
             }
-//
-//			for (int i = 0; i < MemoryController.instance.getMemoryList(ReadTable.getTable.OnFind("memoryObjectParameter","1","priority")).Count; i++)
-//			{
-//				GameObject go = MemoryController.instance.getMemoryList(ReadTable.getTable.OnFind("memoryObjectParameter","1","priority"))[i];
-//				if (Camera.main.WorldToViewportPoint(go.transform.position).x < -0.1f)
-//				{
-//					MemoryController.instance.OnListAddObject (go, ReadTable.getTable.OnFind("memoryObjectParameter","1","priority"));
-//					MemoryController.instance.OnRemoveObject (go,ReadTable.getTable.OnFind("memoryObjectParameter","1","priority"));
-//				}
-//			}
         }
 
         foreach (var temp in outList)
@@ -71,12 +63,6 @@ public class Monster : MonoBehaviour
 
        
     }
-
-    public void OnSetMonsterMediator(IMonsterMediator monsterMediator)
-    {
-        this.monsterMediator = monsterMediator;
-    }
-
     IEnumerator OnHideBoom(GameObject go)
     {
         yield return new WaitForSeconds(0.5f);

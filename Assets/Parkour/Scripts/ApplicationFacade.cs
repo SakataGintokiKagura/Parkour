@@ -3,11 +3,11 @@ using System.Collections;
 using PureMVC.Patterns;
 public class ApplicationFacade :Facade {
 
-	public ApplicationFacade(Player player,UI ui,Terrain terrain,Monster monster)
+	public ApplicationFacade()
     {
-        RegisterMediator(PlayerMediator.OnGetPlayerMediator(player, ui));
-        RegisterMediator(TerrainMediator.OnGetTerrainMediator(terrain));
-        RegisterMediator(MonsterMediator.OnGetMonsterMediator(monster,ui));
+        RegisterMediator(PlayerMediator.OnGetPlayerMediator());
+        RegisterMediator(TerrainMediator.OnGetTerrainMediator());
+        RegisterMediator(MonsterMediator.OnGetMonsterMediator());
 
         RegisterProxy(new PlayerProxy());
         RegisterProxy(new TerrainProxy());

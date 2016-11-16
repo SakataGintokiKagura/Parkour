@@ -52,8 +52,7 @@ public class SkillBigRemoteAttack : IEnbaleAirSkill  {
 			MemoryParameter.FlyItemPriority,
 			table.OnFind ("flyItemDate", "2", "path"),
 			table.OnFind ("flyItemDate", "2", "load"),
-			"2",
-			new ReturnObject(MemoryController.instance.emptyDelegate)
+			"2"
 		);
 	}
 

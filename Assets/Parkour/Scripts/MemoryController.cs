@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using System.Reflection;
-	
-public delegate void ReturnObject(GameObject obj);
 
 public class MemoryController:MonoBehaviour{
 	private bool[] isLoading;
@@ -46,7 +44,7 @@ public class MemoryController:MonoBehaviour{
 		deleteListObject ();
 	}
 
-	public GameObject OnFindGameObjectByName(string name,Vector3 position,int serial,string path,string load,string ID,ReturnObject returnObject){
+	public GameObject OnFindGameObjectByName(string name,Vector3 position,int serial,string path,string load,string ID){
 		
 		foreach (var go in memoryList[(serial-1)])
 		{
@@ -61,7 +59,7 @@ public class MemoryController:MonoBehaviour{
 			
 		Type t =GetType ();
 		return (GameObject)t.InvokeMember (load,BindingFlags.Instance | BindingFlags.Public | BindingFlags.InvokeMethod,
-			null, this, new object[] {name, position, serial, path,ID,returnObject});
+			null, this, new object[] {name, position, serial, path,ID});
 	}
 
     
@@ -76,14 +74,14 @@ public class MemoryController:MonoBehaviour{
    /// <param name="returnObject"></param>
    /// <returns></returns>
 
-	public GameObject OnSynchronous(string name,Vector3 position,int serial,string path,string ID,ReturnObject returnObject){
+	public GameObject OnSynchronous(string name,Vector3 position,int serial,string path,string ID){
 		GameObject temp_01 = Resources.Load (path + name)as GameObject;
 		GameObject temp_02 = Instantiate( temp_01, position, temp_01.transform.rotation)as GameObject ;
 		temp_02.name = ID;
 		return temp_02;
 	}
 
-	public GameObject OnAsynchronous(string name,Vector3 position,int serial,string path,string ID,ReturnObject returnObject){
+	public GameObject OnAsynchronous(string name,Vector3 position,int serial,string path,string ID){
 		AssetBundleRequest abr = AssetBundleManager.instance.getAssetBundle (path + name);
 		GameObject fin = Instantiate (abr.asset,position,Quaternion.identity)as GameObject;
 		fin.name = ID;
@@ -116,32 +114,7 @@ public class MemoryController:MonoBehaviour{
 			}
 		}
 	}
-    /// <summary>
-    /// 异步加载
-    /// </summary>
-    /// <param name="path"></param>
-    /// <param name="name"></param>
-    /// <param name="position"></param>
-    /// <param name="serial"></param>
-    /// <param name="returnObject"></param>
-    /// <returns></returns>
-//	IEnumerator LoadAssetAsyncCoroutine(string path,string name, Vector3 position,int serial,string ID,ReturnObject returnObject){//ReturnObject action,
-//		WWW www = new WWW(URL+path+name+".assetbundle");
-//		yield return www;
-//		while (isLoading[serial-1]) {
-//			yield return new WaitForSeconds (0.06f);
-//		}
-//		isLoading [serial - 1] = true;
-//		AssetBundle assetbundle = www.assetBundle;
-//		AssetBundleRequest abr = assetbundle.LoadAssetAsync (name,typeof(GameObject));
-//		yield return abr;
-//		GameObject fin = Instantiate (abr.asset,position,Quaternion.identity)as GameObject;
-//		fin.name = ID;
-//		returnObject (fin);
-//		www.assetBundle.Unload (false);
-//		isLoading [serial - 1] = false;
-//		www.Dispose();
-//	}
+
 	public void emptyDelegate(GameObject @object){
 		Debug.Log ("233");
 	}

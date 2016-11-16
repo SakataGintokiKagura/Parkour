@@ -4,8 +4,8 @@ using CammerState;
 
 public class MonsterCreatePosition : MonoBehaviour {
 
-	private bool isCreateMonster = true;
-    private bool isContactTerrain = true;
+	private bool isCreateMonster ;
+    private bool isContactTerrain ;
 	private Vector3 position;
 	private float count;
 	private float y;
@@ -16,6 +16,8 @@ public class MonsterCreatePosition : MonoBehaviour {
     ReadTable table=ReadTable.getTable;
 	// Use this for initialization
 	void Start () { 
+		isCreateMonster = true;
+		isContactTerrain = true;
 		count = gameObject.transform.position.x;
 		y = 0;
 	    nearMonsterPosOffset = float.Parse(table.OnFind("monsterParameber","11","Value"));

@@ -29,17 +29,13 @@ public class AssetBundleManager {
 	}
 
 	public IEnumerator downLoadAssetBundle(string URL,string keyName,string name){
-		if (dictAssetBundles.ContainsKey (keyName)) 
-			yield return null;
-		else {
-			while (!Caching.ready)
-				yield return null;
-			WWW www = new WWW (URL+keyName+".assetbundle");
-			yield return www;
-			AssetBundle assetbundle = www.assetBundle;
-			AssetBundleRequest abr = assetbundle.LoadAssetAsync (name,typeof(GameObject));
-			www.Dispose();
-			dictAssetBundles.Add (keyName,abr);
-		}
+		WWW www = new WWW (URL+keyName+".assetbundle");
+		yield return www;
+		yield return new WaitForSeconds (0.02f);
+		AssetBundle assetbundle = www.assetBundle;
+		AssetBundleRequest abr = assetbundle.LoadAssetAsync (name,typeof(GameObject));
+		www.Dispose();
+		dictAssetBundles.Add (keyName,abr);
+
 	}
 }

@@ -9,39 +9,17 @@ using NPlayerState;
 public class PlayerMediator : Mediator,IPlayerMediator {
     public new const string NAME = "PlayerMediator";
     public Player player;
-    private UI ui;
-   // private PlayerProxy playerProxy;
+	public UI ui;
     private static PlayerMediator playerMediator;
-    private PlayerMediator(Player player,UI ui):base(NAME)
+    private PlayerMediator():base(NAME)
     {
-        this.player = player;
-        this.ui = ui;
-        player.OnSetPlayerMediator(this);
-        ui.OnSetPlayerMediator(this);
-    }
-    public static PlayerMediator OnGetPlayerMediator(Player player, UI ui)
-    {
-        if (playerMediator == null)
-        {
-            playerMediator = new PlayerMediator(player, ui);
-            return playerMediator;
-        }
-        else
-        {
-            return playerMediator;
-        }
     }
     public static PlayerMediator OnGetPlayerMediator()
     {
         if (playerMediator == null)
-        {
-            Debug.Log("playerMediator为空");
-            return playerMediator;
-        }
-        else
-        {
-            return playerMediator;
-        }
+			playerMediator = new PlayerMediator ();
+        return playerMediator;
+        
     }
     public void OnUseSkill(ISkill skill)
     {
@@ -51,14 +29,12 @@ public class PlayerMediator : Mediator,IPlayerMediator {
         {
             if(PlayerState.Instance.singletonState is Run)
             {
-                //player.OnStartSkill(skill);
                 SendNotification(EventsEnum.playerUseSkill, skill);
             }
             else
             {
                 if(skill is IEnbaleAirSkill)
                 {
-                    //player.OnStartSkill(skill);
                     SendNotification(EventsEnum.playerUseSkill, skill);
                 }
             }
@@ -94,7 +70,7 @@ public class PlayerMediator : Mediator,IPlayerMediator {
                 if(notification.Body is PLayerInformation)
                 {
                     PLayerInformation playerMp = (PLayerInformation)notification.Body;
-                    ui.MP.fillAmount = (float)playerMp.MP / ui.MPInitizal;
+				    ui.MP.fillAmount = (float)playerMp.MP / ui.MPInitizal;
                 }
                 else
                 {
@@ -103,12 +79,11 @@ public class PlayerMediator : Mediator,IPlayerMediator {
                 break;
             case EventsEnum.playerHPChange:
                 PLayerInformation player2 = (PLayerInformation)notification.Body;
-                //Debug.Log(player2.HP);
-                ui.HP.fillAmount = (float)player2.HP / ui.HPInitizal;
+			    ui.HP.fillAmount = (float)player2.HP / ui.HPInitizal;
                 break;
             case EventsEnum.playerGetScoureSuccess:
                 PLayerInformation playerScores = (PLayerInformation)notification.Body;
-                ui.allCoin.text = "金币数： " + playerScores.score;
+			    ui.allCoin.text = "金币数： " + playerScores.score;
                 break;
             case EventsEnum.playerDie:
                 player.OnDie();

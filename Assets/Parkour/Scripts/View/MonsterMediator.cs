@@ -15,47 +15,31 @@ public class MonsterInjuredInfor
         this.skill = skill;
     }
 }
-public class MonsterMediator : Mediator,IMonsterMediator {
+public class MonsterMediator : Mediator{
 
     public new const string NAME = "MonsterMediator";
-    Dictionary<IBlology, GameObject> monster = new Dictionary<IBlology, GameObject>();
-    private Monster monsterControl;
-    public UI ui;
+	Dictionary<IBlology, GameObject> monster = new Dictionary<IBlology, GameObject> ();
+	public Monster monsterControl;
     private Vector3 position;
 	public Vector3 monsterCreatePosition;
     private static MonsterMediator monsterMediator;
     private Queue<IBlology> blology = new Queue<IBlology>();
 
-    Dictionary<IBlology, GameObject> IMonsterMediator.monster
+	public Dictionary<IBlology, GameObject> monsterDic
     {
         get
         {
             return monster;
         }
     }
-
-    private MonsterMediator(Monster monsterControl,UI ui) : base(NAME)
-    {
-        this.monsterControl = monsterControl;
-        this.ui = ui;
-        monsterControl.OnSetMonsterMediator(this);
-    }
-    public static MonsterMediator OnGetMonsterMediator(Monster monsterControl, UI ui)
-    {
-        if (monsterMediator == null)
-        {
-            monsterMediator = new MonsterMediator(monsterControl, ui);
-            return monsterMediator;
-        }
-        else {
-            return monsterMediator;
-        }
-    }
+	private MonsterMediator():base(NAME)
+	{
+	}
     public static MonsterMediator OnGetMonsterMediator()
     {
         if (monsterMediator == null)
         {
-            Debug.Log("MonsterMediator为空");
+			monsterMediator = new MonsterMediator ();
             return monsterMediator;
         }
         else
@@ -109,8 +93,7 @@ public class MonsterMediator : Mediator,IMonsterMediator {
 				MemoryParameter.MonsterPriority,
 				temp_01.OnFind("monsterDate", monsterSpecies.ID.ToString(), "path"),
 				temp_01.OnFind("monsterDate", monsterSpecies.ID.ToString(), "load"),
-				monsterSpecies.ID.ToString(),
-				new ReturnObject(OnAddMonster)
+				monsterSpecies.ID.ToString()
 			);
                 // this.blology.Enqueue(monsterSpecies);
                 if (monster == null)
@@ -149,8 +132,7 @@ public class MonsterMediator : Mediator,IMonsterMediator {
 				    MemoryParameter.PropPriority, 
 				    reatable.OnFind("propDate", id,"path"),
 				    reatable.OnFind("propDate", id,"load"),
-				    id,
-				    new ReturnObject(MemoryController.instance.emptyDelegate)
+				    id
 			    );
                 //下面的话注释掉，要不然不能生成道具
 			    //MemoryController.instance.OnListAddObject (prop,ReadTable.getTable.OnFind("memoryObjectParameter","1","priority")); 

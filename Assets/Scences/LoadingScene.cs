@@ -15,22 +15,7 @@ public class LoadingScene : MonoBehaviour {
 			"jar:file://" + Application.dataPath + "!/assets/Android/";
 			#endif
 
-		//StartCoroutine(loadAssetBundles());
-		ReadTable temp = ReadTable.getTable;
-
-		for(int i = 1;;i++){
-
-			string path=temp.OnFind("AssetBundleContent", i.ToString (), "Path");
-			string name=temp.OnFind("AssetBundleContent", i.ToString (), "Name");
-
-			if (path != "1111") { 
-			   StartCoroutine (AssetBundleManager.instance.downLoadAssetBundle (URL, path, name));
-			}
-			else {
-				StartCoroutine(loadScene());  
-				break;
-			}
-		}
+		StartCoroutine(loadAssetBundles());
 	}  
 
 	void Update(){
@@ -50,7 +35,9 @@ public class LoadingScene : MonoBehaviour {
 			string name=temp.OnFind("AssetBundleContent", i.ToString (), "Name");
 
 			if (path != "1111") { 
-				yield return StartCoroutine (AssetBundleManager.instance.downLoadAssetBundle (URL, path, name));
+				StartCoroutine (AssetBundleManager.instance.downLoadAssetBundle (URL, path, name));
+				yield return new WaitForSeconds (0.1f);
+				continue;
 			}
 			else {
 				StartCoroutine(loadScene());  
@@ -61,7 +48,6 @@ public class LoadingScene : MonoBehaviour {
 
 	IEnumerator loadScene()  
 	{
-		//yield return new WaitForSeconds (6f);
 		async = Application.LoadLevelAsync("Demo");  
 		yield return async;  
 	}
