@@ -31,7 +31,8 @@ public class Player : MonoBehaviour {
 	private SphereCollider rHard;
 	public bool isApplyGravity = true;
     public CameraFollow CF;
-	public Vector3 Velocity
+    ReadTable table = ReadTable.getTable;
+    public Vector3 Velocity
 	{
 		get
 		{
@@ -103,7 +104,6 @@ public class Player : MonoBehaviour {
 		anim.SetFloat(AnimationParameter.ySpeed, velocity.y);
 		anim.SetInteger(AnimationParameter.jump, AnimationParameter.jumpGround);
 		//        StartCoroutine(OnFly(10f));
-       
         
 	}
 	/// <summary>
@@ -304,6 +304,21 @@ public class Player : MonoBehaviour {
 		        OnFlyFarPos();
                 CF.OnMidCamera();
 		    }
+		}else if (col.gameObject.name.Contains("Move"))
+		{
+		    string[] temp = col.gameObject.name.Split('/');
+		    float targetPos = float.Parse(table.OnFind("terrainMoveDate", temp[1], "Target"));
+		    string type = table.OnFind("terrainMoveDate", temp[1], "Type");
+
+            if (type.Equals("Up"))
+		    {
+		        col.transform.DOLocalMoveY(targetPos,1.5f,false).SetLoops(-1,LoopType.Yoyo);
+		    }
+		    else
+		    {
+		        col.transform.DOLocalMoveX(targetPos, 1f, false).SetLoops(1).SetRelative(true);
+		    }
+
 		}
 
 	}
