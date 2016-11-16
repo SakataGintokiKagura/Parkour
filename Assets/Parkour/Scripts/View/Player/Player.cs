@@ -2,6 +2,8 @@
 using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
+using CammerState;
+using DG.Tweening;
 using NPlayerState;
 using UnityEngine.UI;
 
@@ -21,13 +23,14 @@ public class Player : MonoBehaviour {
 	private CharacterController controller;
 	private Vector3 velocity;
 	private PlayerState state;
+    private GameStates gameStates;
 	private float initialVelocity;
 	[SerializeField]
 	private SphereCollider lHard;
 	[SerializeField]
 	private SphereCollider rHard;
 	public bool isApplyGravity = true;
-
+    public CameraFollow CF;
 	public Vector3 Velocity
 	{
 		get
@@ -61,6 +64,18 @@ public class Player : MonoBehaviour {
 		}
 	}
 
+    public GameStates GameStaes
+    {
+        get
+        {
+            return gameStates;
+        }
+
+        private set
+        {
+            gameStates = value;
+        }
+    }
 	public bool Isfly
 	{
 		get
@@ -78,6 +93,7 @@ public class Player : MonoBehaviour {
         playerMediator.player = this;
 		//playerMediator.OnSetPlayer (this);
 		State = PlayerState.Instance;
+	    gameStates = GameStates.getInstance;
 		anim = GetComponent<Animator>();
 		controller = GetComponent<CharacterController>();
 		initialVelocity = MotionParameber.initialVelocity * MotionParameber.fixedMotion;
@@ -87,6 +103,8 @@ public class Player : MonoBehaviour {
 		anim.SetFloat(AnimationParameter.ySpeed, velocity.y);
 		anim.SetInteger(AnimationParameter.jump, AnimationParameter.jumpGround);
 		//        StartCoroutine(OnFly(10f));
+       
+        
 	}
 	/// <summary>
 	/// 每帧移动物体，并对物体施加重力
@@ -118,7 +136,7 @@ public class Player : MonoBehaviour {
 		}
 		if (isfly)
 			isApplyGravity = false;
-	}
+    }
 	/// <summary>
 	/// 施加重力
 	/// </summary>
@@ -264,6 +282,29 @@ public class Player : MonoBehaviour {
 			OnHurtCheck(col.gameObject);
 		else if(col.tag == TagParameber.prop)
 			playerMediator.OnPickUpProp(col.gameObject);
+		else if(col.tag == TagParameber.red)
+		{
+		    OnFlyNearPos();
+            CF.OnNearCamera();
+		}
+        else if (col.tag == TagParameber.yellow)
+		{
+		    OnFlyFarPos();
+            CF.OnFarCamera();
+		}
+		else if(col.tag==TagParameber.blue)
+		{
+		    if (gameStates is FarCammerState)
+		    {
+                OnFlyNearPos();
+                CF.OnMidCamera();
+            }    
+		    else
+		    {
+		        OnFlyFarPos();
+                CF.OnMidCamera();
+		    }
+		}
 
 	}
 	/// <summary>
@@ -394,4 +435,21 @@ public class Player : MonoBehaviour {
 		velocity.y = 0;
 		isfly = false;
 	}
+
+
+    void OnFlyFarPos()
+    {
+        anim.SetTrigger("Turn");
+        CF.OnFlyFarPos();
+        transform.DOPath(MotionParameber.FarTargetPos, 1, PathType.CatmullRom).SetLoops(1).SetRelative(true);
+        gameStates.OnSwitfRunWay(false);
+    }
+
+    void OnFlyNearPos()
+    {
+        anim.SetTrigger("Turn");
+        CF.OnFlyNearPos();
+        transform.DOPath(MotionParameber.nearTargetPos, 1, PathType.CatmullRom).SetLoops(1).SetRelative(true);
+        gameStates.OnSwitfRunWay(true);
+    }
 }

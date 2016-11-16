@@ -108,6 +108,42 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< HEAD
+=======
+--- !u!1 &1000012118241060
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000012716893288}
+  - 33: {fileID: 33000013747577846}
+  - 23: {fileID: 23000010850834578}
+  - 65: {fileID: 65000012026843906}
+  m_Layer: 0
+  m_Name: bouncing
+  m_TagString: jelly_blue
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1000012165454454
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000012617378716}
+  m_Layer: 0
+  m_Name: jelly_blue
+  m_TagString: jelly_blue
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+>>>>>>> origin/dev
 --- !u!1 &1000012230509330
 GameObject:
   m_ObjectHideFlags: 0

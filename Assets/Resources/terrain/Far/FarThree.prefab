@@ -141,6 +141,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< HEAD
+=======
+--- !u!1 &1000011596041264
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000014148475654}
+  m_Layer: 0
+  m_Name: jelly_blue
+  m_TagString: jelly_blue
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+>>>>>>> origin/dev
 --- !u!1 &1000011721591580
 GameObject:
   m_ObjectHideFlags: 1

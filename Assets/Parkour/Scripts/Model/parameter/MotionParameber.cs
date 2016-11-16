@@ -21,6 +21,12 @@ public class MotionParameber{
     private static float yLimitRecord;
     private static float elasticTreadRecord;
     private static float speedMaxRecord;
+    private static Vector3 OriginPosRecord;
+    private static Vector3 NearTargetPosRecord;
+    private static Vector3 FarTargetPosRecord;
+    private static Vector3[] nearTargetPosArray=new Vector3[10];
+    private static Vector3[] farTargetPosArray=new Vector3[10];
+    private Vector3 vec;
     public static float initialVelocity
     {
         get
@@ -44,7 +50,29 @@ public class MotionParameber{
         yLimitRecord = float.Parse(temp.OnFind("motionParameber", "9", "dateValue"));
         elasticTreadRecord = float.Parse(temp.OnFind("motionParameber", "10", "dateValue"));
         speedMaxRecord = float.Parse(temp.OnFind("motionParameber", "11", "dateValue"));
-		initial = false;
+
+        OriginPosRecord = Vector3Tool.Parse(temp.OnFind("terrainParamber","20", "dateValue"));
+        Debug.Log(OriginPosRecord);
+        FarTargetPosRecord = Vector3Tool.Parse(temp.OnFind("terrainParamber", "21", "dateValue"));
+        NearTargetPosRecord = Vector3Tool.Parse(temp.OnFind("terrainParamber", "22", "dateValue"));
+
+
+        vec = OriginPosRecord;
+        for (int i = 0; i < 5; i++)
+        {
+            vec+=new Vector3(0.5f,1,4);
+            farTargetPosArray[i] = vec;
+            nearTargetPosArray[i] = vec+new Vector3(0,0,-vec.z*2);
+        }
+        for (int i = 5; i < 10; i++)
+        {
+            vec += new Vector3(0.5f, -1, 4);
+            farTargetPosArray[i] = vec;
+            nearTargetPosArray[i] = vec + new Vector3(0, 0, -vec.z * 2);
+        }
+        Debug.Log(nearTargetPosArray[9]);
+        Debug.Log(farTargetPosArray[9]);
+        initial = false;
     }
     //public const float acceleration = 1f;
     public static float acceleration
@@ -162,6 +190,31 @@ public class MotionParameber{
                 new MotionParameber();
             }
             return speedMaxRecord;
+        }
+    }
+
+
+
+    public static Vector3[] nearTargetPos
+    {
+        get
+        {
+            if (initial)
+            {
+                new MotionParameber();
+            }
+            return nearTargetPosArray;
+        }
+    }
+    public static Vector3[] FarTargetPos
+    {
+        get
+        {
+            if (initial)
+            {
+                new MotionParameber();
+            }
+            return farTargetPosArray;
         }
     }
 }
