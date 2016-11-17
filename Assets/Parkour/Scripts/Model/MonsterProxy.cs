@@ -3,10 +3,12 @@ using System.Collections;
 using PureMVC.Patterns;
 using System.Collections.Generic;
 using System;
+using CammerState;
 public class MonsterProxy : Proxy {
     private bool isboss = false;
     public new const string NAME = "MonsterProxy";
     private static Dictionary<GameObject, IBlology> AllMonster = new Dictionary<GameObject, IBlology>();
+    GameStates gameStates = GameStates.getInstance;
     public static Dictionary<GameObject, IBlology> AllMONSTER
     {
         get
@@ -65,6 +67,12 @@ public class MonsterProxy : Proxy {
         if(monster is BossGasInformation)
         {
             isboss = false;
+            GameStates.getInstance.OnCancleBoss();
+            Debug.Log(GameStates.getInstance.shareGameStates);
+            if (monster.ID == 200)
+            {
+                gameStates.OnCreateMonster();
+            }
         }
         SendNotification(EventsEnum.monsterDie, monster);
 
