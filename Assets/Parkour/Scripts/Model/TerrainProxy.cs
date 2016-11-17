@@ -6,21 +6,27 @@ using PureMVC.Patterns;
 
 public class TerrainCreateInfor
 {
-	private List<Coin> coin;
-	private string name;
-	public TerrainCreateInfor(int terrain, List<Coin> coin)
-    {
-        this.coin = coin;
-		this.name = terrain.ToString();
-    }
+	private Dictionary<int,List<Coin>> terrainInfo;
 
-	public List<Coin> OnGetCoin()
-    {
-        return coin;
-    }
+	private int jellyEnum;
 
-	public string OnGetName(){
-		return name;
+	public TerrainCreateInfor(Dictionary<int,List<Coin>> terrainInfo,int jellyEnum){
+
+		this.terrainInfo = terrainInfo;
+
+		this.jellyEnum = jellyEnum;
+	}
+
+	public Dictionary<int,List<Coin>> OnGetTerrainInfo(){
+		
+		return terrainInfo;
+
+	}
+
+	public int OnGetJellyEnum(){
+
+		return jellyEnum;
+
 	}
 }
 
@@ -29,11 +35,13 @@ public class Coin{
 	private float start;
 	private float high;
 	private string name;
+	private float length;
 
-	public Coin(float start,int kind,float high){
+	public Coin(float start,int kind,float high,float length){
 		this.start = start;
 		this.high = high;
 		this.name = kind.ToString();
+		this.length = length;
 	}
 
 	public float OnGetStart(){
@@ -47,6 +55,10 @@ public class Coin{
 	public string OnGetName(){
 		return name;
 	}
+
+	public float OnGetLength(){
+		return length;
+	}
 }
 	
 public class TerrainProxy : Proxy
@@ -58,10 +70,10 @@ public class TerrainProxy : Proxy
     public TerrainProxy() : base(NAME)
     {
     }
-	public void OnCreateTerrain(int terrain, List<Coin> coin)
+	public void OnCreateTerrain(Dictionary<int,List<Coin>> terrainInfo,int jellyEnum)
     {
 		
-        TerrainCreateInfor terrainCreateInfor = new TerrainCreateInfor(terrain, coin);
+		TerrainCreateInfor terrainCreateInfor = new TerrainCreateInfor(terrainInfo,jellyEnum);
 
 		SendNotification(EventsEnum.terrainCreateSuccess, terrainCreateInfor);
 

@@ -21,7 +21,6 @@ namespace CammerState
         /// <summary>
         /// 共享状态 
         /// </summary>
-//        public List<AbsGameState> shareGameState=new List<AbsGameState>();
         public AbsGameState shareGameStates;
         /// <summary>
         /// 状态数组
@@ -43,7 +42,7 @@ namespace CammerState
         }
         public List<Type> GetTypes()
         {
-            Debug.Log(GetType());
+            //Debug.Log(GetType());
             var lt = new List<Type>();
             try
             {
@@ -69,19 +68,18 @@ namespace CammerState
             {
                 gameStatesList.Add((AbsGameState)Activator.CreateInstance(item, this));
             }
-            Debug.Log(gameStatesList.Count);
+            //Debug.Log(gameStatesList.Count);
             foreach (var item in gameStatesList)
             {
                 if (item is MidCammerState)
                 {
-                   
                     singleGameState = item;
-                    Debug.Log(singleGameState);
+                    //Debug.Log(singleGameState);
                 }
                 else if(item is WithOutBossState)
                 {
                     shareGameStates = item;
-                    Debug.Log(shareGameStates);
+                    //Debug.Log(shareGameStates);
                 }
             }
         }

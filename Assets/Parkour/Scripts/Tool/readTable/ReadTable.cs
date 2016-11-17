@@ -49,7 +49,6 @@ public class ReadTable {
     ReadTable()
     {
         TextAsset tableIndex = Resources.Load<TextAsset>("tableDate");
-
         buffer =tableIndex.bytes;
         while (canRead)
         {

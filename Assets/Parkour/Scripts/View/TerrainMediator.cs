@@ -4,139 +4,176 @@ using PureMVC.Patterns;
 using PureMVC.Interfaces;
 using System.Collections.Generic;
 
-public class TerrainMediator : Mediator, ITerrainMediator
-{
+public class TerrainMediator : Mediator, ITerrainMediator{
 
-    public new const string NAME = "TerrainMediator";
-	public Terrain terrain;
-    private static TerrainMediator terrainMediator;
-	private Vector3 lastPosition;
-	private List<GameObject> newCoinList = new List<GameObject> ();
-
-    private Queue<GameObject> oldTerrain = new Queue<GameObject>();
-    private Queue<List<GameObject>> oldCoin = new Queue<List<GameObject>>();
-
-    private TerrainMediator() : base(NAME)
-    {
-    }
-    public static TerrainMediator OnGetTerrainMediator()
-    {
-        if (terrainMediator == null)
-        {
-			terrainMediator = new TerrainMediator ();
-            return terrainMediator;
-        }
-        else
-        {
-            return terrainMediator;
-        }
-    }
-    public void OnCreateTerrain()
-    {
-        SendNotification(EventsEnum.terrainCreate);
-    }
-    public override IList<string> ListNotificationInterests()
-    {
-        IList<string> list = new List<string>();
-        list.Add(EventsEnum.terrainCreateSuccess);
-        return list;
-    }
-
-    public override void HandleNotification(INotification notification)
-    {
-
-        switch (notification.Name)
-        {
-            case EventsEnum.terrainCreateSuccess:
-
-                TerrainCreateInfor infor = notification.Body as TerrainCreateInfor;
-
-                ReadTable temp = ReadTable.getTable;
-
-                GameObject newTerrain = MemoryController.instance.OnFindGameObjectByName(
-                    temp.OnFind("terrainDate", infor.OnGetName(), "terrainName"),
-                    new Vector3((terrain.getN() + 1)*TerrainParameter.mapSize, 0, 0),
-				    MemoryParameter.TerrainPriority,
-				    temp.OnFind("terrainDate", infor.OnGetName(), "path"),
-				    temp.OnFind("terrainDate", infor.OnGetName(), "load"),
-				    infor.OnGetName().ToString()
-                );
-
-
-                if (newTerrain != null)
-                {
-                    OnEnqueueOldTerrain(newTerrain);
-                }
-
-
-                List<Coin> coin = infor.OnGetCoin();
-                lastPosition =
-                    new Vector3(coin[coin.Count - 1].OnGetStart() + ((terrain.getN() + 1)*TerrainParameter.mapSize),
-                        coin[coin.Count - 1].OnGetHigh(), 0);
-
-                foreach (Coin item in infor.OnGetCoin())
-                {
-                    GameObject CoinTemp = MemoryController.instance.OnFindGameObjectByName(
-                        temp.OnFind("coinDate", item.OnGetName(), "name"),
-                        new Vector3(item.OnGetStart() + ((terrain.getN() + 1)*TerrainParameter.mapSize),
-                            item.OnGetHigh(), 0),
-					    MemoryParameter.CoinsPriority,
-                        temp.OnFind("coinDate", item.OnGetName(), "path"),
-					    temp.OnFind("coinDate", item.OnGetName(), "load"),
-					    item.OnGetName().ToString()
-                    );
-
-//                    if (CoinTemp)
-//                    {
-//                        OnEnqueueOldCoin(CoinTemp);
-//                    }
-
-				CoinTemp.SetActiveRecursively(true);
-				newCoinList.Add (CoinTemp);
-				if (CoinTemp.transform.position == lastPosition) {
-					oldCoin.Enqueue (newCoinList);
-					newCoinList = new List<GameObject> ();
-				}
-
-                }
-                if (terrain.getN() >= 2)
-                    {
-                        GameObject deleteTerrain = oldTerrain.Dequeue();
-                        MemoryController.instance.OnListAddObject(deleteTerrain,
-					MemoryParameter.TerrainPriority);
-                        if (oldCoin.Count > 0)
-                        {
-                            List<GameObject> deleteCoin = oldCoin.Dequeue();
-                            foreach (GameObject elem in deleteCoin)
-                            {
-                                if (elem)
-                                MemoryController.instance.OnListAddObject(elem,
-								MemoryParameter.CoinsPriority);
-                            }
-                        }
-                    }
-
-                    break;
-
-            default:
-
-                break;
-        }   
-    }
-
-    public void OnEnqueueOldTerrain(GameObject terrain){
-
-		oldTerrain.Enqueue(terrain);
-
-	}
-
-	public void OnEnqueueOldCoin(GameObject coin){
-        coin.SetActiveRecursively(true);
-		newCoinList.Add (coin);
-		if (coin.transform.position == lastPosition) {
-			oldCoin.Enqueue (newCoinList);
-			newCoinList = new List<GameObject> ();
-		}
-	}
+	public new const string NAME = "TerrainMediator";
 		
+	public Terrain terrain;
+	    
+	private static TerrainMediator terrainMediator;
+
+	private Queue<GameObject>  oldJelly = new Queue<GameObject> ();
+		
+	private List<GameObject>  newTerrainList = new List<GameObject> ();
+
+	private List<GameObject>  newCoinList = new List<GameObject> ();
+
+	private Queue<List<GameObject>> oldTerrain = new Queue<List<GameObject>>();
+	  
+	private Queue<List<GameObject>> oldCoin = new Queue<List<GameObject>>();
+	    
+	private TerrainMediator() : base(NAME){
+	    
+	}
+	    
+	public static TerrainMediator OnGetTerrainMediator(){
+	        
+		if (terrainMediator == null){
+				
+			terrainMediator = new TerrainMediator ();
+	            
+			return terrainMediator;
+	        
+		}    
+		else{
+	            
+			return terrainMediator;
+	        
+		}
+	    
+	}
+	    
+	public void OnCreateTerrain(){
+	        
+		SendNotification(EventsEnum.terrainCreate);
+	    
+	}
+	    
+	public override IList<string> ListNotificationInterests(){
+	        
+		IList<string> list = new List<string>();
+	        
+		list.Add(EventsEnum.terrainCreateSuccess);
+	       
+		return list;
+	    
+	}
+
+	    
+	public override void HandleNotification(INotification notification){
+			
+		switch (notification.Name){
+
+			
+		case EventsEnum.terrainCreateSuccess:
+				
+				
+			TerrainCreateInfor infor = notification.Body as TerrainCreateInfor;
+	               
+				
+			ReadTable temp = ReadTable.getTable;
+
+			GameObject newJelly = null;
+
+			if (infor.OnGetJellyEnum () != 0) {
+				newJelly = MemoryController.instance.OnFindGameObjectByName (
+					                      
+					temp.OnFind ("JellyDate", infor.OnGetJellyEnum ().ToString (), "Name"),
+					                      
+					7,
+					                      
+					temp.OnFind ("JellyDate", infor.OnGetJellyEnum ().ToString (), "Path"),
+					                      
+					infor.OnGetJellyEnum ().ToString ()
+				                      
+				);
+
+				newJelly.transform.position = new Vector3 (
+					(terrain.getN ()+1) * TerrainParameter.mapSize-3,
+					newJelly.transform.position.y+0.1f,
+					newJelly.transform.position.z
+				);
+			} 
+
+			Dictionary<int,List<Coin>> terrainInfo = infor.OnGetTerrainInfo ();
+
+			foreach (KeyValuePair<int,List<Coin>> item in terrainInfo) {
+				
+				GameObject newTerrain = MemoryController.instance.OnFindGameObjectByName (
+					                        temp.OnFind ("terrainDate", item.Key.ToString (), "terrainName"),
+					                        MemoryParameter.TerrainPriority,
+					                        temp.OnFind ("terrainDate", item.Key.ToString (), "path"),
+					                        item.Key.ToString ()
+				                        );
+
+				newTerrain.transform.position = new Vector3 (
+					(terrain.getN () + 1) * TerrainParameter.mapSize,
+					newTerrain.transform.position.y,
+					newTerrain.transform.position.z
+				);
+
+				newTerrainList.Add (newTerrain);
+
+				foreach (Coin coin in item.Value) {
+					
+					GameObject CoinTemp = MemoryController.instance.OnFindGameObjectByName (
+						                      temp.OnFind ("coinDate", coin.OnGetName (), "name"), 
+						                      MemoryParameter.CoinsPriority,
+						                      temp.OnFind ("coinDate", coin.OnGetName (), "path"),
+						                      coin.OnGetName ()
+					                      );
+
+					CoinTemp.SetActiveRecursively (true);
+
+					CoinTemp.transform.position = new Vector3 (
+						coin.OnGetStart () + (terrain.getN () + 1) * TerrainParameter.mapSize,
+						coin.OnGetHigh (),
+						coin.OnGetLength ()
+					);
+					newCoinList.Add (CoinTemp);
+				}
+		
+			}
+			oldTerrain.Enqueue (newTerrainList);
+
+			oldCoin.Enqueue (newCoinList);
+
+			newTerrainList = new List<GameObject> ();
+
+			newCoinList = new List<GameObject> ();
+
+//			if (newJelly != null) {
+//				oldJelly.Enqueue (newJelly);
+//
+//			}
+
+			if (terrain.getN () >= 2) {
+
+				if (oldJelly.Count != 0) {
+					GameObject clearJelly = oldJelly.Dequeue ();
+					MemoryController.instance.OnListAddObject (clearJelly, 7);
+				}
+				List<GameObject> clearTerrain = oldTerrain.Dequeue ();
+				foreach(GameObject item in clearTerrain){
+					if(item)
+					MemoryController.instance.OnListAddObject (item,MemoryParameter.TerrainPriority);
+				}
+				List<GameObject> clearCoin = oldCoin.Dequeue ();
+				foreach(GameObject item in clearCoin){
+					if(item)
+					MemoryController.instance.OnListAddObject (item,MemoryParameter.CoinsPriority);
+				}
+					
+			}
+	          
+			break;
+	            
+		default:
+   
+			break;
+	        
+		}   
+	    
+	}
+
 }

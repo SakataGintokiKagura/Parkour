@@ -1,13 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Parkour\Scripts\View\PlayerMediator.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\monsterDate.txt">
     <Files>
-      <File FileName="Assets\Scences\LoadingScene.cs" Line="1" Column="1" />
-      <File FileName="Assets\Parkour\Scripts\AssetBundleManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Parkour\Scripts\MemoryController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Resources\tableDate.txt" Line="1" Column="1" />
-      <File FileName="Assets\Editor\ExportAssetBundles.cs" Line="1" Column="1" />
-      <File FileName="Assets\Parkour\Scripts\View\PlayerMediator.cs" Line="98" Column="47" />
+      <File FileName="Assets\Parkour\Scripts\Controller\Terrain\TerrainCreate.cs" Line="54" Column="30" />
+      <File FileName="Assets\Parkour\Scripts\View\TerrainMediator.cs" Line="88" Column="19" />
+      <File FileName="Assets\Parkour\Scripts\View\Monster\MonsterCreatePosition.cs" Line="70" Column="1" />
+      <File FileName="Assets\Parkour\Scripts\MemoryController.cs" Line="55" Column="5" />
+      <File FileName="Assets\Parkour\Scripts\View\Player\Player.cs" Line="287" Column="4" />
+      <File FileName="Assets\Parkour\Scripts\Model\parameter\MotionParameber.cs" Line="8" Column="1" />
+      <File FileName="Assets\Resources\monsterDate.txt" Line="7" Column="43" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

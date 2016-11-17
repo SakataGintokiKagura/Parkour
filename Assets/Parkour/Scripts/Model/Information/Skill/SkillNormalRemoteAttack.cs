@@ -48,15 +48,14 @@ public class SkillNormalRemoteAttack : IEnbaleAirSkill
         //GameObject.Instantiate(Resources.Load<GameObject>("NormalRemonteAttack"));
         ReadTable table = ReadTable.getTable;
 
-		MemoryController.instance.OnFindGameObjectByName (
+		GameObject kill= MemoryController.instance.OnFindGameObjectByName (
 			table.OnFind ("flyItemDate", "1", "name"),
-			transform.position,
 			MemoryParameter.FlyItemPriority,
 			table.OnFind ("flyItemDate", "1", "path"),
-			table.OnFind ("flyItemDate", "1", "load"),
 			"1"
 		);
 
+		kill.transform.position=transform.position;
 //        GameObject temp = Resources.Load("FlyItem/" + table.OnFind("flyItemDate", "1", "name"))as GameObject;
 //        GameObject.Instantiate(temp,transform.position,temp.transform.rotation);
     }
