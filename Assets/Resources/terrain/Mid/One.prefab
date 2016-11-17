@@ -11,24 +11,6 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1000013462664926}
   m_IsPrefabParent: 1
-<<<<<<< HEAD
-=======
---- !u!1 &1000010060426024
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 4000011497541154}
-  m_Layer: 0
-  m_Name: jelly_red
-  m_TagString: jelly_red
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
->>>>>>> origin/dev
 --- !u!1 &1000010492884974
 GameObject:
   m_ObjectHideFlags: 1
@@ -225,24 +207,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
-<<<<<<< HEAD
-=======
---- !u!1 &1000014161937602
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 4000012574753946}
-  m_Layer: 0
-  m_Name: jelly_yellow
-  m_TagString: jelly_yellow
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
->>>>>>> origin/dev
 --- !u!4 &4000010583562066
 Transform:
   m_ObjectHideFlags: 1
