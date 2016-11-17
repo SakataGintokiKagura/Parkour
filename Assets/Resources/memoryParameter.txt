@@ -1,9 +1,10 @@
 ID	name	value
 1	Threshold	78000000
-2	ObjectType	6
+2	ObjectType	7
 3	PropPriority	1
 4	MonsterPriority	2
 5	CoinsPriority	3
 6	TerrainPriority	4
 7	FlyItemPriority	5
 8	PetPriority	6
+9	JellyPriority	7

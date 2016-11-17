@@ -6,7 +6,7 @@ using PureMVC.Interfaces;
 public class MonsterInjured : SimpleCommand
 {
 
-    public new const string NAME = "MonsterInjured";
+    public const string NAME = "MonsterInjured";
 
     public override void Execute(INotification notification)
     {

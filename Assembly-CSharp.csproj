@@ -48,6 +48,7 @@
      <Compile Include="Assets\Art\Effect\Scripts\TextureFrameAnimation.cs" />
      <Compile Include="Assets\Art\Effect\Scripts\TextureTileAnimation.cs" />
      <Compile Include="Assets\Art\Effect\Scripts\UVAnimation.cs" />
+     <Compile Include="Assets\Demigiant\DOTweenPro\DOTweenAnimation.cs" />
      <Compile Include="Assets\Parkour\Scripts\ApplicationFacade.cs" />
      <Compile Include="Assets\Parkour\Scripts\AssetBundleManager.cs" />
      <Compile Include="Assets\Parkour\Scripts\CameraFollow.cs" />
@@ -156,34 +157,59 @@
      <Compile Include="Assets\Scences\LoadingScene.cs" />
      <Compile Include="Assets\Scences\StartScene.cs" />
      <Compile Include="Assets\Test.cs" />
+     <None Include="Assets\Demigiant\DOTweenPro\readme.txt" />
      <None Include="Assets\Resources\effectDate.txt" />
      <None Include="Assets\Resources\PetDate.txt" />
-     <None Include="Assets\Resources\skillParameber.txt" />
      <None Include="Assets\Resources\AssetBundleContent.txt" />
+     <None Include="Assets\Resources\skillParameber.txt" />
+     <None Include="Assets\Demigiant\DOTween\DOTween50.xml" />
      <None Include="Assets\Resources\animationParameter.txt" />
-     <None Include="Assets\AssetBundleContent.txt" />
+     <None Include="Assets\Resources\JellyDate.txt" />
      <None Include="Assets\Resources\bossDate.txt" />
      <None Include="Assets\Resources\memoryParameter.txt" />
      <None Include="Assets\Resources\terrainParamber.txt" />
      <None Include="Assets\Resources\Shaders\Character.shader" />
      <None Include="Assets\Resources\flyItemDate.txt" />
+     <None Include="Assets\Demigiant\DOTween\DOTween46.xml" />
      <None Include="Assets\Resources\terrainDate.txt" />
      <None Include="Assets\Resources\monsterParameber.txt" />
      <None Include="Assets\Resources\motionParameber.txt" />
+     <None Include="Assets\Demigiant\DemiLib\DemiLib.xml" />
      <None Include="Assets\Resources\PetParaember.txt" />
      <None Include="Assets\Resources\WaSiBoss.txt" />
      <None Include="Assets\Resources\coinDate.txt" />
      <None Include="Assets\Resources\skillDate.txt" />
      <None Include="Assets\Resources\cameraParamber.txt" />
+     <None Include="Assets\Demigiant\DOTween\readme.txt" />
      <None Include="Assets\Parkour\Scripts\Tool\iTween\ReadMe!\ReadMe!.txt" />
+     <None Include="Assets\Demigiant\DOTween\DOTween43.xml" />
      <None Include="Assets\Resources\tableDate.txt" />
      <None Include="Assets\Resources\propDate.txt" />
      <None Include="Assets\Resources\monsterDate.txt" />
+     <None Include="Assets\Demigiant\readme_DOTweenPro.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="DemiLib">
+ <HintPath>D:/Unity/Runner/Parkour/Assets/Demigiant/DemiLib/DemiLib.dll</HintPath>
+ </Reference>
+ <Reference Include="DOTween">
+ <HintPath>D:/Unity/Runner/Parkour/Assets/Demigiant/DOTween/DOTween.dll</HintPath>
+ </Reference>
+ <Reference Include="DOTween43">
+ <HintPath>D:/Unity/Runner/Parkour/Assets/Demigiant/DOTween/DOTween43.dll</HintPath>
+ </Reference>
+ <Reference Include="DOTween46">
+ <HintPath>D:/Unity/Runner/Parkour/Assets/Demigiant/DOTween/DOTween46.dll</HintPath>
+ </Reference>
+ <Reference Include="DOTween50">
+ <HintPath>D:/Unity/Runner/Parkour/Assets/Demigiant/DOTween/DOTween50.dll</HintPath>
+ </Reference>
+ <Reference Include="DOTweenPro">
+ <HintPath>D:/Unity/Runner/Parkour/Assets/Demigiant/DOTweenPro/DOTweenPro.dll</HintPath>
  </Reference>
  <Reference Include="PureMVC.DotNET.35">
  <HintPath>D:/Unity/Runner/Parkour/Assets/Parkour/Plugins/PureMVC.DotNET.35.dll</HintPath>

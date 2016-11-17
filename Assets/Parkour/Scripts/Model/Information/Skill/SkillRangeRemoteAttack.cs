@@ -48,15 +48,13 @@ public class SkillRangeRomateAttack : ISkill
     {
         ReadTable table = ReadTable.getTable;
 
-		MemoryController.instance.OnFindGameObjectByName (
+		GameObject kill = MemoryController.instance.OnFindGameObjectByName (
 			table.OnFind ("flyItemDate", "3", "name"),
-			transform.position,
 			MemoryParameter.FlyItemPriority,
 			table.OnFind ("flyItemDate", "3", "path"),
-			table.OnFind ("flyItemDate", "3", "load"),
 			"3"
 		);
-
+		kill.transform.position = transform.position;
 //        GameObject temp = Resources.Load("FlyItem/" + table.OnFind("flyItemDate", "3", "name")) as GameObject;
 //        GameObject.Instantiate(temp, transform.position, temp.transform.rotation);
     }

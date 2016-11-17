@@ -27,7 +27,7 @@ public class PlayerProxy : Proxy {
         //判断哪个怪
         IBlology monster = MonsterProxy.AllMONSTER[game];
 
-		player.HP -= monster.damage;
+		//player.HP -= monster.damage;
         SendNotification(EventsEnum.playerHPChange,player);
 
 		if(player.HP<=0){
@@ -48,7 +48,7 @@ public class PlayerProxy : Proxy {
     public void OnDropOutPit()
     {
 
-        player.HP -= SkillParameber.dropOutHurt;
+        //player.HP -= SkillParameber.dropOutHurt;
 
         SendNotification(EventsEnum.playerHPChange, player);
         //SendNotification(EventsEnum.playerDropOutNoDie, player);

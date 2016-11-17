@@ -5,7 +5,7 @@ using System.Collections;
 
 public class MonsterCreateBoss : SimpleCommand {
 
-	public new const string NAME = "MonsterCreateBoss";
+	public const string NAME = "MonsterCreateBoss";
 
 	public override void Execute(INotification notification)
 	{

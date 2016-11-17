@@ -113,6 +113,7 @@ public class Player : MonoBehaviour {
 	/// </summary>
 	void FixedUpdate()
 	{
+		print (GameStates.getInstance.singleGameState);
 		velocity = ApplyGravity(velocity);
 		Vector3 lastPosition = transform.position;
 		CollisionFlags flags = controller.Move(velocity);
@@ -294,7 +295,7 @@ public class Player : MonoBehaviour {
 		}
 		else if(col.tag==TagParameber.blue)
 		{
-		    if (gameStates is FarCammerState)
+		    if (gameStates.singleGameState is FarCammerState)
 		    {
                 OnFlyNearPos();
                 CF.OnMidCamera();
@@ -416,7 +417,6 @@ public class Player : MonoBehaviour {
 		MonsterMediator monsterMediator = MonsterMediator.OnGetMonsterMediator ();
 		Dictionary<IBlology, GameObject> monster = monsterMediator.monsterDic;
 		monster.Clear ();
-		Debug.Log("restart");
 		Application.LoadLevel(2);
 	}
 	public void OnPlayEffect(int id)
