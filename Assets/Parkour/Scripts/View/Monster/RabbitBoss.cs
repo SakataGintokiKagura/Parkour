@@ -18,6 +18,10 @@ public class RabbitBoss : MonoBehaviour
     Vector3 targetPositionCamera;
     Animator anim;
     Rigidbody rig;
+    [SerializeField]
+    GameObject bullet;
+    [SerializeField]
+    Transform bulletPosition;
     // Use this for initialization
     void Start()
     {
@@ -36,7 +40,7 @@ public class RabbitBoss : MonoBehaviour
         vibrationRange = float.Parse(table.OnFind("WaSiBoss", "5", "dateValue"));
         vibrationSpeed = float.Parse(table.OnFind("WaSiBoss", "6", "dateValue"));
         arriveSpeed = float.Parse(table.OnFind("WaSiBoss", "7", "dateValue"));
-        //StartCoroutine(OnAttack());
+        StartCoroutine(OnAttack());
     }
 
     // Update is called once per frame
@@ -63,26 +67,32 @@ public class RabbitBoss : MonoBehaviour
                 xVibrationDelta = -1 * vibrationSpeed;
         }
     }
-    void OnTriggerStay (Collider col)
-    {
-
-    }
     void OnTriggerExit(Collider col)
     {
         if (col.tag == TagParameber.terrain)
-            rig.AddForce(Vector3.up*10, ForceMode.VelocityChange);
+        {
+            rig.AddForce(Vector3.up * 6, ForceMode.VelocityChange);
+            anim.SetInteger("Jump", 1);
+        }
+        if (col.tag == TagParameber.coin)
+            col.gameObject.SetActive(false);
     }
-    //IEnumerator OnAttack()
-    //{
-    //    //while (true)
-    //    //{
-    //    //    float attackTime = Random.Range(attackTimeSmall, attackTimeBig);
-    //    //    yield return new WaitForSeconds(attackTime);
-    //    //    anim.SetTrigger("Attack");
-    //    //    yield return new WaitForSeconds(warningTime);
-    //    //    StartCoroutine(OnAttackMelee());
-    //    //}
-    //}
+    void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.tag == TagParameber.terrain)
+            anim.SetInteger("Jump", 0);
+    }
+    IEnumerator OnAttack()
+    {
+        while (true)
+        {
+            float attackTime = Random.Range(attackTimeSmall, attackTimeBig);
+            yield return new WaitForSeconds(attackTime);
+            anim.SetTrigger("Attack");
+            yield return new WaitForSeconds(0.2f);
+            Instantiate(bullet,bulletPosition.position,bulletPosition.rotation);
+        }
+    }
 
     //IEnumerator OnAttackMelee()
     //{

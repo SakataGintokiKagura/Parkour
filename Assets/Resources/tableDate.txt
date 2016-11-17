@@ -19,4 +19,5 @@ cameraParamber	ID/name/dateType/dateValue
 PetParaember	ID/name/dateType/dateValue
 WaSiBoss	ID/name/dateType/dateValue
 PetDate	ID/name/property/path/load
+JellyDate	ID/Name/Path
 AssetBundleContent	ID/Path/Name
