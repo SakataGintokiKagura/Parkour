@@ -5,15 +5,29 @@ public class LoadingScene : MonoBehaviour {
 
 	public Slider processBar;
 	private AsyncOperation async;
-	private string URL;
+	private string URL_01;
+	private string URL_02;
 	void Start () {
 
-		URL=
+		URL_01=
 			#if UNITY_EDITOR
 			"file://" + Application.dataPath + "/StreamingAssets/windows/";
 			#elif UNITY_ANDROID
 			"jar:file://" + Application.dataPath + "!/assets/Android/";
 			#endif
+
+		URL_02=
+			#if UNITY_EDITOR
+			Application.streamingAssetsPath+"/windows/";
+			#elif UNITY_ANDROID
+			"jar:file://" + Application.dataPath + "!/assets/Android/";
+			#endif
+
+		//AssetBundle assetBundle = AssetBundle.LoadFromFile(URL_02+"/test.assetbundle");
+
+		AssetBundleManager.instance.loadAssetBundle (URL_02,"Table/tableDate");
+
+		AssetBundleManager.instance.loadAssetBundle (URL_02,"Table/AssetBundleContent");
 
 		StartCoroutine(loadAssetBundles());
 	}  
@@ -33,17 +47,18 @@ public class LoadingScene : MonoBehaviour {
 
 			string path=temp.OnFind("AssetBundleContent", i.ToString (), "Path");
 			string name=temp.OnFind("AssetBundleContent", i.ToString (), "Name");
+			string[] temp_01 = path.Split('/');
 
-			if (path != "1111") { 
-				StartCoroutine (AssetBundleManager.instance.downLoadAssetBundle (URL, path, name));
+			if (path != "1111"&&temp_01[0]!="Table") { 
+				StartCoroutine (AssetBundleManager.instance.downLoadAssetBundleRequest (URL_01, path, name));
 				yield return new WaitForSeconds (0.2f);
                 processBar.value = i / (float)36;
                 continue;
-                //processBar.value = i / (float)36;
-                //Debug.Log(i / (float)36);
-                //Debug.Log(processBar.value);
 			}
-			else {
+			else if(path != "1111"&&temp_01[0]=="Table"){
+				AssetBundleManager.instance.loadAssetBundle (URL_02,path);
+			}
+			else if(path == "1111"){
 				StartCoroutine(loadScene());  
 				break;
 			}
