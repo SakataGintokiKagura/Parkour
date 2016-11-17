@@ -90,7 +90,7 @@ public class TerrainMediator : Mediator, ITerrainMediator{
 
 				newJelly.transform.position = new Vector3 (
 					(terrain.getN ()+1) * TerrainParameter.mapSize-3,
-					newJelly.transform.position.y+0.1f,
+					newJelly.transform.position.y+0.2f,
 					newJelly.transform.position.z
 				);
 			} 
@@ -134,6 +134,7 @@ public class TerrainMediator : Mediator, ITerrainMediator{
 				}
 		
 			}
+
 			oldTerrain.Enqueue (newTerrainList);
 
 			oldCoin.Enqueue (newCoinList);
@@ -142,10 +143,6 @@ public class TerrainMediator : Mediator, ITerrainMediator{
 
 			newCoinList = new List<GameObject> ();
 
-//			if (newJelly != null) {
-//				oldJelly.Enqueue (newJelly);
-//
-//			}
 
 			if (terrain.getN () >= 2) {
 
@@ -153,6 +150,10 @@ public class TerrainMediator : Mediator, ITerrainMediator{
 					GameObject clearJelly = oldJelly.Dequeue ();
 					MemoryController.instance.OnListAddObject (clearJelly, 7);
 				}
+
+				if (newJelly != null) 
+					oldJelly.Enqueue (newJelly);
+
 				List<GameObject> clearTerrain = oldTerrain.Dequeue ();
 				foreach(GameObject item in clearTerrain){
 					if(item)
@@ -165,6 +166,8 @@ public class TerrainMediator : Mediator, ITerrainMediator{
 				}
 					
 			}
+
+	
 	          
 			break;
 	            

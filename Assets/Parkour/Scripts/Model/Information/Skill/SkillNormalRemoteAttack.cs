@@ -31,7 +31,6 @@ public class SkillNormalRemoteAttack : IEnbaleAirSkill
     public void OnEndSkillAnimation(Transform transform, Animator anim, PlayerState state)
     {
         anim.SetInteger(AnimationParameter.skill, AnimationParameter.skillUnUse);
-        // Debug.Log("jieshu");
         state.OnEndSkill();
         Player player = PlayerMediator.OnGetPlayerMediator().player;
         if(!player.Isfly)

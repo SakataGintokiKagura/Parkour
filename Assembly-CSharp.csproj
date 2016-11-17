@@ -160,7 +160,6 @@
      <None Include="Assets\Demigiant\DOTweenPro\readme.txt" />
      <None Include="Assets\Resources\effectDate.txt" />
      <None Include="Assets\Resources\PetDate.txt" />
-     <None Include="Assets\Resources\AssetBundleContent.txt" />
      <None Include="Assets\Resources\skillParameber.txt" />
      <None Include="Assets\Demigiant\DOTween\DOTween50.xml" />
      <None Include="Assets\Resources\animationParameter.txt" />
@@ -173,6 +172,7 @@
      <None Include="Assets\Demigiant\DOTween\DOTween46.xml" />
      <None Include="Assets\Resources\terrainDate.txt" />
      <None Include="Assets\Resources\monsterParameber.txt" />
+     <None Include="Assets\Resources\AssetBundleContent.txt" />
      <None Include="Assets\Resources\motionParameber.txt" />
      <None Include="Assets\Demigiant\DemiLib\DemiLib.xml" />
      <None Include="Assets\Resources\PetParaember.txt" />

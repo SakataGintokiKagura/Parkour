@@ -48,7 +48,8 @@ public class ReadTable {
     /// </summary>
     ReadTable()
     {
-        TextAsset tableIndex = Resources.Load<TextAsset>("tableDate");
+		TextAsset tableIndex = AssetBundleManager.instance.getAssetBundle ("Table/tableDate").mainAsset as TextAsset;
+        //TextAsset tableIndex = Resources.Load<TextAsset>("tableDate");
         buffer =tableIndex.bytes;
         while (canRead)
         {
@@ -113,7 +114,8 @@ public class ReadTable {
     {
         if (buffer != null || position != 0)
             OnRestore();
-        TextAsset tableIndex = Resources.Load<TextAsset>(table);
+        //TextAsset tableIndex = Resources.Load<TextAsset>(table);
+		TextAsset tableIndex = AssetBundleManager.instance.getAssetBundle ("Table/"+table).mainAsset as TextAsset;
         buffer = tableIndex.bytes;
         List<string[]> content = new List<string[]>();
         while (canRead)

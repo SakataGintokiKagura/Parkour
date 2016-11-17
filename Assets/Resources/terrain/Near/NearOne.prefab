@@ -54,7 +54,7 @@ GameObject:
   - 23: {fileID: 23000013446445312}
   - 65: {fileID: 65000010170832982}
   m_Layer: 0
-  m_Name: 0
+  m_Name: -0.8
   m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

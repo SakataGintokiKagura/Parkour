@@ -30,7 +30,7 @@ public class TerrainCreate : SimpleCommand
 		int jellyEnum = 0;
 
 		AbsGameState gameState = GameStates.getInstance.singleGameState;
-
+		AbsGameState gameState2 = GameStates.getInstance.shareGameStates;
 
 		if (gameState is MidCammerState) {
 			int terrain = Random.Range (1, 5);
@@ -71,7 +71,7 @@ public class TerrainCreate : SimpleCommand
 				List<Coin> coin = createCoin (terrain,0);
 				terrainInfo.Add (terrain,coin);
 			}
-			else if(gameState is NearCammerState){
+			else if(gameState is NearCammerState&&gameState2 is WithOutBossState ){
 				jellyEnum = 4;
 				int terrain = Random.Range (1, 5);
 				List<Coin> coin = createCoin (terrain,0);
