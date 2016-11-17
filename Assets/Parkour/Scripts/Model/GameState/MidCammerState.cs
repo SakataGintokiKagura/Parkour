@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 namespace CammerState
 {
@@ -52,6 +53,10 @@ namespace CammerState
             throw new System.NotImplementedException();
         }
 
+        public override AbsGameState OnJudgeMonster(bool isCreate)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }

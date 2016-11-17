@@ -9,7 +9,7 @@ namespace CammerState
 {
     public class GameStates
     {
-        public static GameStates instance;
+        private static GameStates instance;
         /// <summary>
         /// 当前的游戏状态
         /// </summary>
@@ -21,7 +21,7 @@ namespace CammerState
         /// <summary>
         /// 共享状态 
         /// </summary>
-        public AbsGameState shareGameStates;
+        public AbsGameState[] shareGameStates= new AbsGameState[2];
         /// <summary>
         /// 状态数组
         /// </summary>
@@ -78,8 +78,12 @@ namespace CammerState
                 }
                 else if(item is WithOutBossState)
                 {
-                    shareGameStates = item;
+                    shareGameStates[0] = item;
                     //Debug.Log(shareGameStates);
+                }
+                else if(item is CreateMonsterState)
+                {
+                    shareGameStates[1] = item;
                 }
             }
         }
@@ -98,16 +102,29 @@ namespace CammerState
 
         public void OnCreateBoss()
         {
-            shareGameStates = shareGameStates.OnCreatBoss();
+            shareGameStates[0] = shareGameStates[0].OnCreatBoss();
             Debug.Log(shareGameStates);
         }
 
         public void OnCancleBoss()
         {
-            shareGameStates = shareGameStates.OnCancleBoss();
+            shareGameStates[0] = shareGameStates[0].OnCancleBoss();
             Debug.Log(shareGameStates);
         }
-       
+        public void OnCreateMonster()
+        {
+            if(shareGameStates[1] is CreateMonsterState)
+            {
+                shareGameStates[1] = shareGameStates[1].OnJudgeMonster(false);
+                Debug.Log("不生成怪物状态"+shareGameStates[1]);
+            }
+            else
+            {
+                shareGameStates[1] = shareGameStates[1].OnJudgeMonster(true);
+                Debug.Log("生成怪物状态" + shareGameStates[1]);
+            }
+            
+        }
     }
 
 }

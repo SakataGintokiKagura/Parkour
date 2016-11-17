@@ -1,4 +1,4 @@
-ï»¿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
@@ -31,7 +31,8 @@ public class Player : MonoBehaviour {
 	private SphereCollider rHard;
 	public bool isApplyGravity = true;
     public CameraFollow CF;
-	public Vector3 Velocity
+    ReadTable table = ReadTable.getTable;
+    public Vector3 Velocity
 	{
 		get
 		{
@@ -85,7 +86,7 @@ public class Player : MonoBehaviour {
 	}
 		
 	/// <summary>
-	/// åˆå§‹åŒ–ç§»åŠ¨å‚æ•°
+	/// ³õÊ¼»¯ÒÆ¶¯²ÎÊı
 	/// </summary>
 	void Start()
 	{
@@ -103,13 +104,12 @@ public class Player : MonoBehaviour {
 		anim.SetFloat(AnimationParameter.ySpeed, velocity.y);
 		anim.SetInteger(AnimationParameter.jump, AnimationParameter.jumpGround);
 		//        StartCoroutine(OnFly(10f));
-       
         
 	}
 	/// <summary>
-	/// æ¯å¸§ç§»åŠ¨ç‰©ä½“ï¼Œå¹¶å¯¹ç‰©ä½“æ–½åŠ é‡åŠ›
-	/// æ›´æ”¹åŠ¨ç”»å‚æ•°
-	/// æ›´æ”¹è§’è‰²çŠ¶æ€
+	/// Ã¿Ö¡ÒÆ¶¯ÎïÌå£¬²¢¶ÔÎïÌåÊ©¼ÓÖØÁ¦
+	/// ¸ü¸Ä¶¯»­²ÎÊı
+	/// ¸ü¸Ä½ÇÉ«×´Ì¬
 	/// </summary>
 	void FixedUpdate()
 	{
@@ -139,7 +139,7 @@ public class Player : MonoBehaviour {
 			isApplyGravity = false;
     }
 	/// <summary>
-	/// æ–½åŠ é‡åŠ›
+	/// Ê©¼ÓÖØÁ¦
 	/// </summary>
 	/// <param name="velocity"></param>
 	/// <returns></returns>
@@ -151,7 +151,7 @@ public class Player : MonoBehaviour {
 		return velocity;
 	}
 	/// <summary>
-	/// æ§åˆ¶è§’è‰²è·³è·ƒ
+	/// ¿ØÖÆ½ÇÉ«ÌøÔ¾
 	/// </summary>
 	public void OnJump()
 	{
@@ -174,7 +174,7 @@ public class Player : MonoBehaviour {
 
 	}
 	/// <summary>
-	/// å¯¹è§’è‰²è¿›è¡ŒåŠ é€Ÿ
+	/// ¶Ô½ÇÉ«½øĞĞ¼ÓËÙ
 	/// </summary>
 	/// <returns></returns>
 	IEnumerator OnAccelerate()
@@ -189,7 +189,7 @@ public class Player : MonoBehaviour {
 
 	}
 	/// <summary>
-	/// å¼€å§‹ä½¿ç”¨æŠ€èƒ½
+	/// ¿ªÊ¼Ê¹ÓÃ¼¼ÄÜ
 	/// </summary>
 	/// <param name="skill"></param>
 	public void OnStartSkill(ISkill skill)
@@ -198,7 +198,7 @@ public class Player : MonoBehaviour {
 			return;
 		if (this.skill != null)
 		{
-			Debug.Log("æŠ€èƒ½ä½¿ç”¨å‡ºé”™");
+			Debug.Log("¼¼ÄÜÊ¹ÓÃ³ö´í");
 			return;
 		}
 		if (skill is IAuxiliary)
@@ -230,14 +230,14 @@ public class Player : MonoBehaviour {
 		}
 	}
 	/// <summary>
-	/// ä½¿ç”¨æŠ€èƒ½ä¸­
+	/// Ê¹ÓÃ¼¼ÄÜÖĞ
 	/// </summary>
 	public void OnMiddleSkill()
 	{
 		skill.OnMiddleSkillAnimation(FlyItemPosition, anim, State);
 	}
 	/// <summary>
-	/// ä½¿ç”¨æŠ€èƒ½ç»“æŸ
+	/// Ê¹ÓÃ¼¼ÄÜ½áÊø
 	/// </summary>
 	public void OnEndSkill()
 	{
@@ -252,7 +252,7 @@ public class Player : MonoBehaviour {
 		effect[id].SetActive(false);
 	}
 	/// <summary>
-	/// æœ‰ç‰©ä½“ä¸è§’è‰²ç¢°æ’
+	/// ÓĞÎïÌåÓë½ÇÉ«Åö×²
 	/// </summary>
 	/// <param name="hit"></param>
 	void OnControllerColliderHit(ControllerColliderHit hit)
@@ -268,7 +268,7 @@ public class Player : MonoBehaviour {
 			playerMediator.OnDropOutPit();
 	}
 	/// <summary>
-	/// æœ‰ç‰¹æ®Šçš„ç‰©ä½“ä¸ä¸»è§’ç¢°æ’
+	/// ÓĞÌØÊâµÄÎïÌåÓëÖ÷½ÇÅö×²
 	/// </summary>
 	/// <param name="col"></param>
 	void OnTriggerEnter(Collider col)
@@ -279,7 +279,6 @@ public class Player : MonoBehaviour {
 			col.gameObject.SetActive (false);
 
 		}else if(col.transform.root.gameObject.tag == TagParameber.monster)
-
 			OnHurtCheck(col.gameObject);
 		else if(col.tag == TagParameber.prop)
 			playerMediator.OnPickUpProp(col.gameObject);
@@ -296,6 +295,7 @@ public class Player : MonoBehaviour {
 		else if(col.tag==TagParameber.blue)
 		{
 			if (gameStates.singleGameState is FarCammerState)
+
 		    {
                 OnFlyNearPos();
                 CF.OnMidCamera();
@@ -306,11 +306,31 @@ public class Player : MonoBehaviour {
 		        OnFlyFarPos();
                 CF.OnMidCamera();
 		    }
-		}
+		}else if (col.gameObject.name.Contains("Move"))
+		{
+		    string[] temp = col.gameObject.name.Split('/');
+		    float targetPos = float.Parse(table.OnFind("terrainMoveDate", temp[1], "Target"));
+		    string type = table.OnFind("terrainMoveDate", temp[1], "Type");
 
-	}
+            if (type.Equals("Up"))
+		    {
+		        col.transform.DOLocalMoveY(targetPos,1.5f,false).SetLoops(-1,LoopType.Yoyo);
+		    }
+		    else
+		    {
+		        col.transform.DOLocalMoveX(targetPos, 1f, false).SetLoops(1).SetRelative(true);
+		    }
+
+		}
+        //else if (col.gameObject.name.Contains("Move"))
+        //{
+        //    string[] temp = col.gameObject.name.Split('/');
+        //    string move = ReadTable.getTable.OnFind("11", temp[1], "111");
+        //}
+
+    }
 	/// <summary>
-	/// ä¼¤å®³æ£€æµ‹
+	/// ÉËº¦¼ì²â
 	/// </summary>
 	/// <param name="monster"></param>
 	void OnHurtCheck(GameObject monster)
@@ -332,7 +352,7 @@ public class Player : MonoBehaviour {
 		OnHurt(monster);
 	}
 	/// <summary>
-	/// äººç‰©æ‰è½æ‰§è¡Œ
+	/// ÈËÎïµôÂäÖ´ĞĞ
 	/// </summary>
 	public void OnDropOut()
 	{
@@ -349,7 +369,7 @@ public class Player : MonoBehaviour {
 		//velocity.y = 0;
 	}
 	/// <summary>
-	/// è¾…åŠ©æŠ€èƒ½æ— æ•Œ
+	/// ¸¨Öú¼¼ÄÜÎŞµĞ
 	/// </summary>
 	/// <param name="time"></param>
 	/// <returns></returns>
@@ -370,7 +390,7 @@ public class Player : MonoBehaviour {
 		effect[4].SetActive(false);
 	}
 	/// <summary>
-	/// è¾…åŠ©æŠ€èƒ½ï¼šåŠ é€Ÿ
+	/// ¸¨Öú¼¼ÄÜ£º¼ÓËÙ
 	/// </summary>
 	/// <param name="time"></param>
 	/// <returns></returns>
@@ -381,7 +401,7 @@ public class Player : MonoBehaviour {
 		velocity -= SkillParameber.skillAccelerateAuxiliaryDelta;
 	}
 	/// <summary>
-	/// å—ä¼¤
+	/// ÊÜÉË
 	/// </summary>
 	/// <param name="monster"></param>
 	void OnHurt(GameObject monster)
@@ -439,6 +459,7 @@ public class Player : MonoBehaviour {
 
     void OnFlyFarPos()
     {
+        transform.position = new Vector3(transform.position.x, 0.005f, transform.position.z);
         anim.SetTrigger("Turn");
         CF.OnFlyFarPos();
         transform.DOPath(MotionParameber.FarTargetPos, 1, PathType.CatmullRom).SetLoops(1).SetRelative(true);
@@ -447,6 +468,7 @@ public class Player : MonoBehaviour {
 
     void OnFlyNearPos()
     {
+        transform.position = new Vector3(transform.position.x, 0.005f, transform.position.z);
         anim.SetTrigger("Turn");
         CF.OnFlyNearPos();
         transform.DOPath(MotionParameber.nearTargetPos, 1, PathType.CatmullRom).SetLoops(1).SetRelative(true);

@@ -8,18 +8,7 @@ public class RemoteAttack : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         ReadTable table = ReadTable.getTable;
-//        for(int i = 1; i < 5; i++)
-//        {
-//			string name = i.ToString();//table.OnFind("flyItemDate", i.ToString(), "name");
-//            if(gameObject.name == name + "(Clone)"|| gameObject.name == name)
-//            {
-//                ID = i.ToString();
-//                break;
-//            }
-//        }
-//        if (ID == "0")
-//            Debug.Log("飞行道具创建出错");
-		ID = gameObject.name;
+        ID = gameObject.name;
         Vector3 temp = Vector3Tool.Parse(table.OnFind("flyItemDate", ID, "velocity"));
         rig = GetComponent<Rigidbody>();
         temp = transform.TransformVector(temp);

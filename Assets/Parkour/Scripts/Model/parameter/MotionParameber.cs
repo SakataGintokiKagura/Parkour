@@ -52,7 +52,7 @@ public class MotionParameber{
         speedMaxRecord = float.Parse(temp.OnFind("motionParameber", "11", "dateValue"));
 
         OriginPosRecord = Vector3Tool.Parse(temp.OnFind("terrainParamber","20", "dateValue"));
-        Debug.Log(OriginPosRecord);
+        //Debug.Log(OriginPosRecord);
         FarTargetPosRecord = Vector3Tool.Parse(temp.OnFind("terrainParamber", "21", "dateValue"));
         NearTargetPosRecord = Vector3Tool.Parse(temp.OnFind("terrainParamber", "22", "dateValue"));
 
@@ -70,8 +70,8 @@ public class MotionParameber{
             farTargetPosArray[i] = vec;
             nearTargetPosArray[i] = vec + new Vector3(0, 0, -vec.z * 2);
         }
-        Debug.Log(nearTargetPosArray[9]);
-        Debug.Log(farTargetPosArray[9]);
+        //Debug.Log(nearTargetPosArray[9]);
+        //Debug.Log(farTargetPosArray[9]);
         initial = false;
     }
     //public const float acceleration = 1f;

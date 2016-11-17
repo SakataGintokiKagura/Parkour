@@ -14,8 +14,10 @@ public class MonsterCreatePosition : MonoBehaviour {
     private float midMonsterPosOffset;
     private float farMonsterPosOffset;
     ReadTable table=ReadTable.getTable;
+    private GameStates gameStatues;
 	// Use this for initialization
-	void Start () { 
+	void Start () {
+        gameStatues = GameStates.getInstance;
 		isCreateMonster = true;
 		isContactTerrain = true;
 		count = gameObject.transform.position.x;
@@ -27,21 +29,26 @@ public class MonsterCreatePosition : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		OnCreateMonter();
+        if (gameStatues.shareGameStates[1] is CreateMonsterState)
+        {
+            OnCreateMonter();
+        }
+       
 	}
     /// <summary>
     /// 根据游戏状态机生成怪物
     /// </summary>
     void OnCreateMonter()
     {
+       
         position = new Vector3(transform.position.x, y, transform.position.z);
         MonsterMediator.OnGetMonsterMediator().monsterCreatePosition = position;
 
-        if (GameStates.getInstance.singleGameState is NearCammerState)
+        if (gameStatues.singleGameState is NearCammerState)
         {
             monsterPosOffset = nearMonsterPosOffset;
         }
-        else if (GameStates.getInstance.singleGameState is MidCammerState)
+        else if (gameStatues.singleGameState is MidCammerState)
         {
             monsterPosOffset = midMonsterPosOffset;
         }

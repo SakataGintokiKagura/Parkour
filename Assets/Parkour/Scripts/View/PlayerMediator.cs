@@ -104,6 +104,7 @@ public class PlayerMediator : Mediator,IPlayerMediator {
     {
         if (player.Isfly)
             return;
+        //Debug.Log("111");
         player.OnJump();
     }
     public void OnGetScoure(int scoure)

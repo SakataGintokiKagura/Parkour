@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using PureMVC.Patterns;
@@ -30,7 +30,9 @@ public class TerrainCreate : SimpleCommand
 		int jellyEnum = 0;
 
 		AbsGameState gameState = GameStates.getInstance.singleGameState;
-		AbsGameState gameState2 = GameStates.getInstance.shareGameStates;
+
+        AbsGameState gameState2 = GameStates.getInstance.shareGameStates[0];
+
 
 		if (gameState is MidCammerState) {
 			int terrain = Random.Range (1, 5);
@@ -42,7 +44,7 @@ public class TerrainCreate : SimpleCommand
 			List<Coin> coin = createCoin (terrain,40);
 			terrainInfo.Add (terrain,coin);
 		}
-		else if(gameState is NearCammerState){
+		else if(gameState is NearCammerState&&gameState2 is WithOutBossState){
 			int terrain = Random.Range (5,8);
 			List<Coin> coin = createCoin (terrain,-40);
 			terrainInfo.Add (terrain,coin);

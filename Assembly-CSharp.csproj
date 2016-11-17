@@ -67,6 +67,7 @@
      <Compile Include="Assets\Parkour\Scripts\Enum\EventsEnum.cs" />
      <Compile Include="Assets\Parkour\Scripts\MemoryController.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\GameState\AbsGameState.cs" />
+     <Compile Include="Assets\Parkour\Scripts\Model\GameState\CreateMonsterState.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\GameState\FarCammerState.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\GameState\GameStates.cs" />
      <Compile Include="Assets\Parkour\Scripts\Model\GameState\HaveBossState.cs" />
@@ -132,17 +133,21 @@
      <Compile Include="Assets\Parkour\Scripts\Tool\iTweenPath\iTweenPath.cs" />
      <Compile Include="Assets\Parkour\Scripts\Tool\iTweenPath\iTweenPlayWall.cs" />
      <Compile Include="Assets\Parkour\Scripts\Tool\readTable\ReadTable.cs" />
+     <Compile Include="Assets\Parkour\Scripts\View\GameManager.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\IMonsterMediator.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\IPlayerMediator.cs" />
+     <Compile Include="Assets\Parkour\Scripts\View\LoadingScene.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\Monster\BOSS.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\Monster\BOSS2th.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\Monster\BOSS3rd.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\Monster\ITerrainMediator.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\Monster\Monster.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\Monster\MonsterCreatePosition.cs" />
+     <Compile Include="Assets\Parkour\Scripts\View\Monster\RabbitBoss.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\Monster\WaSiBoss.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\Monster\claser.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\Monster\moveclaser.cs" />
+     <Compile Include="Assets\Parkour\Scripts\View\Monster\rabbitbullet.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\Monster\skill.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\MonsterMediator.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\Player\PetDragon.cs" />
@@ -151,11 +156,9 @@
      <Compile Include="Assets\Parkour\Scripts\View\Player\ShortRangeHurtCheck.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\Player\UI.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\PlayerMediator.cs" />
+     <Compile Include="Assets\Parkour\Scripts\View\StartScene.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\Terrain\Terrain.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\TerrainMediator.cs" />
-     <Compile Include="Assets\Scences\GameManager.cs" />
-     <Compile Include="Assets\Scences\LoadingScene.cs" />
-     <Compile Include="Assets\Scences\StartScene.cs" />
      <Compile Include="Assets\Test.cs" />
      <None Include="Assets\Demigiant\DOTweenPro\readme.txt" />
      <None Include="Assets\Resources\effectDate.txt" />
@@ -166,6 +169,7 @@
      <None Include="Assets\Resources\JellyDate.txt" />
      <None Include="Assets\Resources\bossDate.txt" />
      <None Include="Assets\Resources\memoryParameter.txt" />
+     <None Include="Assets\Resources\terrainMoveDate.txt" />
      <None Include="Assets\Resources\terrainParamber.txt" />
      <None Include="Assets\Resources\Shaders\Character.shader" />
      <None Include="Assets\Resources\flyItemDate.txt" />
@@ -174,6 +178,7 @@
      <None Include="Assets\Resources\monsterParameber.txt" />
      <None Include="Assets\Resources\AssetBundleContent.txt" />
      <None Include="Assets\Resources\motionParameber.txt" />
+     <None Include="Assets\AssetBundleContent.txt" />
      <None Include="Assets\Demigiant\DemiLib\DemiLib.xml" />
      <None Include="Assets\Resources\PetParaember.txt" />
      <None Include="Assets\Resources\WaSiBoss.txt" />
@@ -186,6 +191,7 @@
      <None Include="Assets\Resources\tableDate.txt" />
      <None Include="Assets\Resources\propDate.txt" />
      <None Include="Assets\Resources\monsterDate.txt" />
+     <None Include="Assets\Resources\CameraParameber.txt" />
      <None Include="Assets\Demigiant\readme_DOTweenPro.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
