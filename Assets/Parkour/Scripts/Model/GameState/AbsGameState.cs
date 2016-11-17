@@ -13,4 +13,5 @@ public abstract class AbsGameState
     public abstract AbsGameState OnChangeWay(bool isNear);
     public abstract AbsGameState OnCreatBoss();
     public abstract AbsGameState OnCancleBoss();
+    public abstract AbsGameState OnJudgeMonster(bool isCreateMonster);
 }

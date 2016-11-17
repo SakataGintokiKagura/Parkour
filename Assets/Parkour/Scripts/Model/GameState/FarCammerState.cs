@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using CammerState;
+using System;
 
 namespace CammerState
 {
@@ -33,6 +34,11 @@ namespace CammerState
         public override AbsGameState OnCancleBoss()
         {
             throw new System.NotImplementedException();
+        }
+
+        public override AbsGameState OnJudgeMonster(bool isCreate)
+        {
+            throw new NotImplementedException();
         }
     }
 

@@ -8,7 +8,8 @@ ID	Name		Value
 7	highdamage	int	30
 8	GeneratingprobabilityMax	int	2
 9	GeneratingprobabilityMin	int	1
-10	SpeciesNumber	int	5
+10	SpeciesNumber	int	6
 11	NearTerrain	float	5
 12	MidTerrain	float	15
 13	FarTerrain	float	25
+14	BossNumber	int	2
