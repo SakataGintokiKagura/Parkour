@@ -322,11 +322,11 @@ public class Player : MonoBehaviour {
 		    }
 
 		}
-        else if (col.gameObject.name.Contains("Move"))
-        {
-            string[] temp = col.gameObject.name.Split('/');
-            string move = ReadTable.getTable.OnFind("11", temp[1], "111");
-        }
+        //else if (col.gameObject.name.Contains("Move"))
+        //{
+        //    string[] temp = col.gameObject.name.Split('/');
+        //    string move = ReadTable.getTable.OnFind("11", temp[1], "111");
+        //}
 
     }
 	/// <summary>

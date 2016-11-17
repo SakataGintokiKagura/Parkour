@@ -55,7 +55,7 @@ public class MemoryController:MonoBehaviour{
 		//Debug.Log (name);
 		AssetBundleRequest abr = AssetBundleManager.instance.getAssetBundle (path + name);
 		GameObject fin = Instantiate (abr.asset)as GameObject;
-		//fin.name = ID;
+		fin.name = ID;
 		return fin;
 	}
 	public void OnListAddObject(GameObject go,int num)
