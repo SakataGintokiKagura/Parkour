@@ -1,8 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Parkour\Scripts\Controller\Terrain\TerrainCreate.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\cameraParamber.txt">
     <Files>
       <File FileName="Assets\Parkour\Scripts\Controller\Terrain\TerrainCreate.cs" Line="35" Column="1" />
+      <File FileName="Assets\Parkour\Scripts\AssetBundleManager.cs" Line="34" Column="24" />
+      <File FileName="Assets\Parkour\Scripts\CameraFollow.cs" Line="1" Column="1" />
+      <File FileName="Assets\Parkour\Scripts\View\LoadingScene.cs" Line="28" Column="46" />
+      <File FileName="Assets\Parkour\Scripts\Model\parameter\TerrainParameter.cs" Line="24" Column="75" />
+      <File FileName="Assets\Resources\cameraParamber.txt" Line="5" Column="23" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
