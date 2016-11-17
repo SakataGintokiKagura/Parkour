@@ -36,8 +36,12 @@ public class LoadingScene : MonoBehaviour {
 
 			if (path != "1111") { 
 				StartCoroutine (AssetBundleManager.instance.downLoadAssetBundle (URL, path, name));
-				yield return new WaitForSeconds (0.1f);
-				continue;
+				yield return new WaitForSeconds (0.2f);
+                processBar.value = i / (float)36;
+                continue;
+                //processBar.value = i / (float)36;
+                //Debug.Log(i / (float)36);
+                //Debug.Log(processBar.value);
 			}
 			else {
 				StartCoroutine(loadScene());  
