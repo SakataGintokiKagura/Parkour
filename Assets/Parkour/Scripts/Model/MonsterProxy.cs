@@ -29,18 +29,11 @@ public class MonsterProxy : Proxy {
         {
             if (monster > 2)
                 monster -= 2;
-            if (monster>5)
-            {
-                Debug.Log("fuck");
-            }
+        
             t = Type.GetType(temp.OnFind("monsterDate", (monster * 10).ToString(), "class"));
         }
         else
         {
-            if (monster > 5)
-            {
-                Debug.Log("fuck shit");
-            }
             //Debug.Log(monster.ToString());
             t = Type.GetType(temp.OnFind("monsterDate", monster.ToString(), "class"));
         }
