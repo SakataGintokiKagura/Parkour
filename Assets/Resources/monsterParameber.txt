@@ -12,3 +12,4 @@ ID	Name		Value
 11	NearTerrain	float	5
 12	MidTerrain	float	15
 13	FarTerrain	float	25
+14	BossNumber	int	2

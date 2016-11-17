@@ -24,13 +24,6 @@ public class MemoryController:MonoBehaviour{
 	}
 
 	void Start(){ 
-	    isLoading = new bool[MemoryParameter.objectType];
-		URL=
-		#if UNITY_EDITOR
-		"file://" + Application.dataPath + "/StreamingAssets/windows/";
-		#elif UNITY_ANDROID
-		"jar:file://" + Application.dataPath + "!/assets/Android/";
-		#endif
 		memoryList=new List<GameObject>[MemoryParameter.objectType];
 		for(int i=0;i<MemoryParameter.objectType;i++)
 			memoryList [i] = new List<GameObject> ();
@@ -50,7 +43,6 @@ public class MemoryController:MonoBehaviour{
 		{
 			if (go.name == ID)
 			{
-				//go.transform.position = position;
 				go.SetActive(true);
 				memoryList[serial-1].Remove(go);
 				return go;    
@@ -60,7 +52,7 @@ public class MemoryController:MonoBehaviour{
 		//Debug.Log (name);
 		AssetBundleRequest abr = AssetBundleManager.instance.getAssetBundle (path + name);
 		GameObject fin = Instantiate (abr.asset)as GameObject;
-		fin.name = ID;
+		//fin.name = ID;
 		return fin;
 	}
 

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using PureMVC.Patterns;
@@ -48,9 +48,10 @@ public class TerrainCreate : SimpleCommand
 			terrainInfo.Add (terrain,coin);
 		}
 
-		if (Random.Range (0, 1) <= 2) {
+		if (Random.Range (0, 5) <= 2) {
+			Debug.Log (GameStates.getInstance.singleGameState.ToString());
 			if (gameState is MidCammerState) {
-                if (Random.Range (0, 2) == 0) {
+				if (Random.Range (0, 2) == 1) {
 					jellyEnum = 1;
 					int terrain = Random.Range (8, 11);
 					List<Coin> coin = createCoin (terrain,40);

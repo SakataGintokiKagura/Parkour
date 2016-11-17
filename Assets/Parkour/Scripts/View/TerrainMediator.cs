@@ -88,7 +88,11 @@ public class TerrainMediator : Mediator, ITerrainMediator{
 				                      
 				);
 
-
+				newJelly.transform.position = new Vector3 (
+					(terrain.getN ()+1) * TerrainParameter.mapSize-3,
+					newJelly.transform.position.y+0.1f,
+					newJelly.transform.position.z
+				);
 			} 
 
 			Dictionary<int,List<Coin>> terrainInfo = infor.OnGetTerrainInfo ();
@@ -138,8 +142,10 @@ public class TerrainMediator : Mediator, ITerrainMediator{
 
 			newCoinList = new List<GameObject> ();
 
-			if(newJelly!=null)
-				oldJelly.Enqueue(newJelly);
+//			if (newJelly != null) {
+//				oldJelly.Enqueue (newJelly);
+//
+//			}
 
 			if (terrain.getN () >= 2) {
 
