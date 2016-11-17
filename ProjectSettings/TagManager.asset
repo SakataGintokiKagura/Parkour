@@ -9,6 +9,10 @@ TagManager:
   - Terrain
   - Prop
   - Bottom
+  - jelly_blue
+  - jelly_red
+  - jelly_yellow
+  - coins
   layers:
   - Default
   - TransparentFX

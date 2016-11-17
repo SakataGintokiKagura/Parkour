@@ -17,10 +17,12 @@ public class RabbitBoss : MonoBehaviour
     Vector3 targetPosition;
     Vector3 targetPositionCamera;
     Animator anim;
+    Rigidbody rig;
     // Use this for initialization
     void Start()
     {
         anim = GetComponent<Animator>();
+        rig = GetComponent<Rigidbody>();
         ReadTable table = ReadTable.getTable;
         targetPositionCamera = Vector3Tool.Parse(table.OnFind("WaSiBoss", "8", "dateValue"));
         targetPosition = Camera.main.ViewportToWorldPoint(targetPositionCamera);
@@ -60,6 +62,15 @@ public class RabbitBoss : MonoBehaviour
             if (Mathf.Abs(yVibrationDelta) > vibrationRange)
                 xVibrationDelta = -1 * vibrationSpeed;
         }
+    }
+    void OnTriggerStay (Collider col)
+    {
+
+    }
+    void OnTriggerExit(Collider col)
+    {
+        if (col.tag == TagParameber.terrain)
+            rig.AddForce(Vector3.up*10, ForceMode.VelocityChange);
     }
     //IEnumerator OnAttack()
     //{

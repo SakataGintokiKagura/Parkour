@@ -2,6 +2,7 @@
 using System.Collections;
 using DG.Tweening;
 using NPlayerState;
+using CammerState;
 
 public class CameraFollow : MonoBehaviour
 {
@@ -17,11 +18,13 @@ public class CameraFollow : MonoBehaviour
     private float replySpeed;
     private float verticalSpeed;
     private PlayerState playerState;
+    private GameStates gameState;
 
     void Start()
     {
         camera = transform.FindChild("Main Camera");
         playerState = PlayerState.Instance;
+        gameState = GameStates.getInstance;
         ReadTable table = ReadTable.getTable;
         playerPosition = Vector3Tool.Parse(table.OnFind("cameraParamber", "1", "dateValue"));
         delta = float.Parse(table.OnFind("cameraParamber", "2", "dateValue"));
@@ -45,9 +48,10 @@ public class CameraFollow : MonoBehaviour
         {
             transform.Translate(velocity * replySpeed);
         }
+        if (!(gameState.singleGameState is FarCammerState))
+            return;
         if(Mathf.Abs(player.Velocity.y-0) < delta && playerState.singletonState is Run)
         {
-            Debug.Log("成功");
             float difference = playertrans.transform.position.y - transform.position.y;
             if (difference > delta)
             {

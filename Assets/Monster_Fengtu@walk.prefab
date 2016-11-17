@@ -548,8 +548,8 @@ GameObject:
   - 95: {fileID: 95000012208123566}
   - 54: {fileID: 54000012775964424}
   - 136: {fileID: 136000013780167700}
-  - 114: {fileID: 114000010362001190}
   - 114: {fileID: 114000012440372966}
+  - 65: {fileID: 65000011560305332}
   m_Layer: 0
   m_Name: Monster_Fengtu@walk
   m_TagString: Untagged
@@ -1606,6 +1606,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!65 &65000011560305332
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012978980778}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.33, y: 6.43, z: 0.25}
+  m_Center: {x: 0, y: -0.14, z: -0.61}
 --- !u!95 &95000012208123566
 Animator:
   serializedVersion: 3
@@ -1623,17 +1635,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114000010362001190
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012978980778}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bcf0d4efae71164fab53665b63fa31c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114000012440372966
 MonoBehaviour:
   m_ObjectHideFlags: 1

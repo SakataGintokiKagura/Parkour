@@ -9,7 +9,7 @@ namespace CammerState
 {
     public class GameStates
     {
-        public static GameStates instance;
+        private static GameStates instance;
         /// <summary>
         /// 当前的游戏状态
         /// </summary>
