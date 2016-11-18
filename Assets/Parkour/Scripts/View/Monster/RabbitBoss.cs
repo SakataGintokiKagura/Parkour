@@ -89,8 +89,13 @@ public class RabbitBoss : MonoBehaviour
             float attackTime = Random.Range(attackTimeSmall, attackTimeBig);
             yield return new WaitForSeconds(attackTime);
             anim.SetTrigger("Attack");
-            yield return new WaitForSeconds(0.2f);
-            Instantiate(bullet,bulletPosition.position,bulletPosition.rotation);
+            yield return new WaitForSeconds(0.4f);
+            GameObject bullett = Instantiate(bullet,bulletPosition.position,bulletPosition.rotation) as GameObject;
+            bullett.transform.parent = transform;
+            Player player = PlayerMediator.OnGetPlayerMediator().player;
+            Rigidbody rig = bullett.GetComponent<Rigidbody>();
+            Vector3 direction = player.transform.position - transform.position;
+            rig.AddForce(direction * 40);
         }
     }
 

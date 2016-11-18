@@ -46,7 +46,10 @@ public class MonsterCreatePosition : MonoBehaviour {
 
         if (gameStatues.singleGameState is NearCammerState)
         {
-            monsterPosOffset = nearMonsterPosOffset;
+            if(gameStatues.shareGameStates[0] is WithOutBossState)
+                monsterPosOffset = nearMonsterPosOffset;
+            else
+                monsterPosOffset = midMonsterPosOffset;
         }
         else if (gameStatues.singleGameState is MidCammerState)
         {

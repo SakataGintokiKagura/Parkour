@@ -35,7 +35,7 @@ public class PetDragon : MonoBehaviour {
         if (isHasAttack)
             targetPosition = playerTransform.position +endPosition;
         else
-            targetPosition = new Vector3(playerTransform.position.x,hight,0);
+            targetPosition = new Vector3(playerTransform.position.x,hight, playerTransform.position.z);
         transform.position = Vector3.Lerp(transform.position, targetPosition, delta);
         if (isHasAttack && (Camera.main.WorldToViewportPoint(transform.position).y > 1f))
             OnDisappear();

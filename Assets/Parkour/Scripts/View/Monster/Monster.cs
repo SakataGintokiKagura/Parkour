@@ -27,15 +27,14 @@ public class Monster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (transform.position.x - initialPosition > 10)
-        //{
-        //    if(gameStates.singleGameState is NearCammerState&&gameStates.shareGameStates is WithOutBossState)
-        //    {
-        //        monsterMediator.OnCreateBoss();
-        //        initialPosition = transform.position.x;
-        //    }
-            
-        //}
+        if (transform.position.x - initialPosition > 10)
+        {
+            if (gameStates.singleGameState is NearCammerState && gameStates.shareGameStates[0] is WithOutBossState)
+            {
+                monsterMediator.OnCreateBoss();
+                initialPosition = transform.position.x;
+            }
+        }
         //如果怪物出现在视野之中
         foreach (KeyValuePair<IBlology, GameObject> kv in monster)
         {

@@ -44,7 +44,7 @@ public class TerrainCreate : SimpleCommand
 			List<Coin> coin = createCoin (terrain,40);
 			terrainInfo.Add (terrain,coin);
 		}
-		else if(gameState is NearCammerState&&gameState2 is WithOutBossState){
+		else if(gameState is NearCammerState){
 			int terrain = Random.Range (5,8);
 			List<Coin> coin = createCoin (terrain,-40);
 			terrainInfo.Add (terrain,coin);

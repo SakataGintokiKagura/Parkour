@@ -12,13 +12,11 @@ public class MonsterCreateBoss : SimpleCommand {
         MonsterProxy monster = (MonsterProxy)Facade.RetrieveProxy(MonsterProxy.NAME);
         ReadTable table = ReadTable.getTable;
         int num = int.Parse(table.OnFind("monsterParameber", "14", "Value"));
-        if (true)
+        int GeneratingprobabilityMax = int.Parse(table.OnFind("monsterParameber", "15", "Value"));
+        int GeneratingprobabilityMin = int.Parse(table.OnFind("monsterParameber", "16", "Value"));
+        if (Random.Range(0,GeneratingprobabilityMax*3) <GeneratingprobabilityMin)
         {
-            int temp = Random.Range(1, 3);
-            if (temp == 2)
-            {
-                gameStates.OnCreateMonster();
-            }
+            int temp = Random.Range(1, num);
             monster.OnCreateBoss(temp);
             gameStates.OnCreateBoss();
         }

@@ -23,7 +23,7 @@ public class WaSiBoss : MonoBehaviour {
         targetPositionCamera = Vector3Tool.Parse(table.OnFind("WaSiBoss", "8", "dateValue"));
         targetPosition = Camera.main.ViewportToWorldPoint(targetPositionCamera);
         targetPosition.y = 0;
-        targetPosition.z = 0;
+        targetPosition.z = -40;
         transform.parent = GameObject.Find("CameraMove").transform;
         attackTimeBig = int.Parse(table.OnFind("WaSiBoss", "1", "dateValue"));
         attackTimeSmall = float.Parse(table.OnFind("WaSiBoss", "2", "dateValue"));
