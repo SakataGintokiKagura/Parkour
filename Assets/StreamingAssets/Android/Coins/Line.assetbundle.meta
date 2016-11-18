@@ -1,11 +1,6 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/StreamingAssets/Android/Coins/Line.assetbundle.meta
-guid: 9d7ec27c2cc67f049a5698170aa6db1a
-timeCreated: 1478668921
-=======
-guid: 3fb16b4f1b88f5b4b8d9c30f09db1973
-timeCreated: 1478311313
->>>>>>> origin/dev:Assets/StreamingAssets/Coins/Line.assetbundle.meta
+guid: c76b18561de71c644896d866287efce3
+timeCreated: 1479380896
 licenseType: Free
 DefaultImporter:
   userData: 

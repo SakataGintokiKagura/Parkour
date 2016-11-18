@@ -1,11 +1,6 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/StreamingAssets/Android/Coins/LowtoHigh.assetbundle.meta
-guid: 3eb96a297e6a1c04e8cb346826c69c45
-timeCreated: 1478668921
-=======
-guid: 232a32db842378d468090826c17ec295
-timeCreated: 1478311313
->>>>>>> origin/dev:Assets/StreamingAssets/Coins/LowtoHigh.assetbundle.meta
+guid: d4ba93b0ffb75724b8936ecd1d507257
+timeCreated: 1479380896
 licenseType: Free
 DefaultImporter:
   userData: 

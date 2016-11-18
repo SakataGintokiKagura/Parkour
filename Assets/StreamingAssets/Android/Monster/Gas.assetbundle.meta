@@ -1,13 +1,7 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/StreamingAssets/Monster/Gas.assetbundle.meta
-guid: 056aedf9cc0fcfd47ae1d6afe649e54c
-timeCreated: 1478670120
-licenseType: Pro
-=======
-guid: 3790e38b5837ff14e8844324cc9f906a
-timeCreated: 1478669041
+guid: 9d6dd9a70fbe9754c83078b7b48c8f73
+timeCreated: 1479381159
 licenseType: Free
->>>>>>> origin/dev:Assets/StreamingAssets/Android/Monster/Gas.assetbundle.meta
 DefaultImporter:
   userData: 
   assetBundleName: 

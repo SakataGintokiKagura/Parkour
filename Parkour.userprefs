@@ -1,13 +1,16 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\cameraParamber.txt">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Parkour\Scripts\View\LoadingScene.cs">
     <Files>
-      <File FileName="Assets\Parkour\Scripts\Controller\Terrain\TerrainCreate.cs" Line="35" Column="1" />
-      <File FileName="Assets\Parkour\Scripts\AssetBundleManager.cs" Line="34" Column="24" />
-      <File FileName="Assets\Parkour\Scripts\CameraFollow.cs" Line="1" Column="1" />
-      <File FileName="Assets\Parkour\Scripts\View\LoadingScene.cs" Line="28" Column="46" />
-      <File FileName="Assets\Parkour\Scripts\Model\parameter\TerrainParameter.cs" Line="24" Column="75" />
-      <File FileName="Assets\Resources\cameraParamber.txt" Line="5" Column="23" />
+      <File FileName="Assets\Parkour\Scripts\Controller\Terrain\TerrainCreate.cs" Line="110" Column="1" />
+      <File FileName="Assets\Parkour\Scripts\View\LoadingScene.cs" Line="52" Column="21" />
+      <File FileName="Assets\Parkour\Scripts\MemoryController.cs" Line="59" Column="50" />
+      <File FileName="Assets\Parkour\Scripts\Tool\readTable\ReadTable.cs" Line="1" Column="1" />
+      <File FileName="Assets\Parkour\Scripts\AssetBundleManager.cs" Line="2" Column="26" />
+      <File FileName="Assets\Parkour\Scripts\View\TerrainMediator.cs" Line="1" Column="1" />
+      <File FileName="Assets\Parkour\Scripts\View\StartScene.cs" Line="18" Column="25" />
+      <File FileName="Assets\Parkour\Scripts\View\PlayerMediator.cs" Line="1" Column="1" />
+      <File FileName="Assets\Parkour\Scripts\View\MonsterMediator.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

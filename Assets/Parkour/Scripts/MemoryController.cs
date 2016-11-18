@@ -51,13 +51,18 @@ public class MemoryController:MonoBehaviour{
 				return go;    
 			}
 		}
+//
+//		AssetBundleRequest abr = AssetBundleManager.instance.getAssetBundleRequest (path + name);
+//		GameObject fin = Instantiate (abr.asset)as GameObject;
 
-		//Debug.Log (name);
-		AssetBundleRequest abr = AssetBundleManager.instance.getAssetBundleRequest (path + name);
-		GameObject fin = Instantiate (abr.asset)as GameObject;
+		AssetBundleRequest assetbundle = AssetBundleManager.instance.getAssetBundleRequest (path + name);
+		GameObject fin = Instantiate (assetbundle.asset)as GameObject;
+
 		fin.name = ID;
+
 		return fin;
 	}
+
 	public void OnListAddObject(GameObject go,int num)
 	{
 		go.SetActive (false);
