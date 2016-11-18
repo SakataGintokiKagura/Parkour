@@ -30,6 +30,7 @@ public class CameraFollow : MonoBehaviour
         delta = float.Parse(table.OnFind("cameraParamber", "2", "dateValue"));
         replySpeed = float.Parse(table.OnFind("cameraParamber", "3", "dateValue"));
         verticalSpeed = float.Parse(table.OnFind("cameraParamber", "4", "dateValue"));
+        
         Vector3 position = Camera.main.ViewportToWorldPoint(playerPosition);
         position.y = 0;
         position.z = 0;

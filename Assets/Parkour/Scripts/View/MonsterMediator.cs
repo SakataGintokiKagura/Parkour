@@ -133,7 +133,7 @@ public class MonsterMediator : Mediator{
 				    id
 			    );
 
-			prop.transform.position=position;
+			prop.transform.position=position + new Vector3(9,7,0);
                 //下面的话注释掉，要不然不能生成道具
 			    //MemoryController.instance.OnListAddObject (prop,ReadTable.getTable.OnFind("memoryObjectParameter","1","priority")); 
 

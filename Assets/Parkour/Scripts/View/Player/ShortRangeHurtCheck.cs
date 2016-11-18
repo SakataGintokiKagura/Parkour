@@ -4,6 +4,7 @@ using System.Collections;
 public class ShortRangeHurtCheck : MonoBehaviour {
     [SerializeField]
     private Player skill;
+
     void OnTriggerEnter(Collider col)
     {
         if(col.tag == TagParameber.monster)

@@ -55,6 +55,7 @@ public class RightClickMenu {
             result.Append(id.ToString() + "\t" + outPut +"\t"+outPut.Substring(index+1) + "\n");
         }
         CreateFile(Application.dataPath, "AssetBundleContent.txt", result.ToString());
+        AssetDatabase.Refresh();
     }
     static int indexOf(string table,char find,int count)
     {

@@ -9,6 +9,7 @@ public class MonsterProxy : Proxy {
     public new const string NAME = "MonsterProxy";
     private static Dictionary<GameObject, IBlology> AllMonster = new Dictionary<GameObject, IBlology>();
     GameStates gameStates = GameStates.getInstance;
+    private IBlology boss;
     public static Dictionary<GameObject, IBlology> AllMONSTER
     {
         get
@@ -25,11 +26,12 @@ public class MonsterProxy : Proxy {
     {
         ReadTable temp = ReadTable.getTable;
         Type t;
-        if (isboss)
+        if (gameStates.shareGameStates[0] is HaveBossState)
         {
             if (monster > 2)
                 monster -= 2;
             t = Type.GetType(temp.OnFind("monsterDate", (monster * 10).ToString(), "class"));
+            boss.damage -= 1;
         }
         else
         {
@@ -64,15 +66,9 @@ public class MonsterProxy : Proxy {
     }
     private void OnDie(IBlology monster)//一个怪物死亡之后  发送产生的道具，确定是否产生某个道具
     {
-        if(monster is BossGasInformation)
+        if (gameStates.shareGameStates[0] is HaveBossState)
         {
-            isboss = false;
-            GameStates.getInstance.OnCancleBoss();
-            Debug.Log(GameStates.getInstance.shareGameStates);
-            if (monster.ID == 200)
-            {
-                gameStates.OnCreateMonster();
-            }
+            OnBossHurt();
         }
         SendNotification(EventsEnum.monsterDie, monster);
 
@@ -106,6 +102,10 @@ public class MonsterProxy : Proxy {
     }
     public void OnDestroy(GameObject monster)
     {
+        if(gameStates.shareGameStates[0] is HaveBossState)
+        {
+            OnBossHurt();
+        }
 		SendNotification(EventsEnum.monsterDie, AllMonster[monster]);
 		//AllMonster.Remove(monster);
 
@@ -116,12 +116,30 @@ public class MonsterProxy : Proxy {
     }
     public void OnCreateBoss(int id)
     {
-        isboss = true;
         ReadTable temp = ReadTable.getTable;
         Type t;
         t = Type.GetType(temp.OnFind("monsterDate", (id * 100).ToString(), "class"));
-        object obj = System.Activator.CreateInstance(t, 1);
-        MonsterQueue.Enqueue((IBlology)obj);
-        SendNotification(EventsEnum.monsterCreateMonsterSuccess, (IBlology)obj);
+        IBlology obj = (IBlology)System.Activator.CreateInstance(t, 1);
+        boss = obj;
+        boss.damage = 10;
+        MonsterQueue.Enqueue(obj);
+        SendNotification(EventsEnum.monsterCreateMonsterSuccess, obj);
+    }
+    void OnBossHurt()
+    {
+        Debug.Log(gameStates.singleGameState);
+        if(boss == null)
+        {
+            gameStates.OnCancleBoss();
+            Debug.Log("boss受伤失败：boss为空");
+            return;
+        }
+        boss.damage -= 1;
+        if (boss.damage <= 0)
+        {
+            gameStates.OnCancleBoss();
+            OnDie(boss);
+            boss = null;
+        }
     }
 }

@@ -159,7 +159,6 @@
      <Compile Include="Assets\Parkour\Scripts\View\StartScene.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\Terrain\Terrain.cs" />
      <Compile Include="Assets\Parkour\Scripts\View\TerrainMediator.cs" />
-     <Compile Include="Assets\Test.cs" />
      <None Include="Assets\Demigiant\DOTweenPro\readme.txt" />
      <None Include="Assets\Resources\effectDate.txt" />
      <None Include="Assets\Resources\PetDate.txt" />
@@ -176,7 +175,6 @@
      <None Include="Assets\Demigiant\DOTween\DOTween46.xml" />
      <None Include="Assets\Resources\terrainDate.txt" />
      <None Include="Assets\Resources\monsterParameber.txt" />
-     <None Include="Assets\Resources\AssetBundleContent.txt" />
      <None Include="Assets\Resources\motionParameber.txt" />
      <None Include="Assets\Demigiant\DemiLib\DemiLib.xml" />
      <None Include="Assets\Resources\PetParaember.txt" />

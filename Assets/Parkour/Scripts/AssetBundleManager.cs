@@ -1,7 +1,8 @@
-﻿
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+
 
 public class AssetBundleManager {
 	
@@ -47,20 +48,19 @@ public class AssetBundleManager {
 		}
 	}
 
-	 public IEnumerator loadAssetBundleRequest(string URL, string keyName, string name)
-	{
-		WWW www = new WWW(URL + keyName + ".assetbundle");
+	public IEnumerator downLoadAssetBundleRequest(string URL,string keyName,string name,isLoaded loaded){
+		WWW www = new WWW (URL+keyName+".assetbundle");
 		yield return www;
+		//yield return new WaitForSeconds (0.02f);
 		AssetBundle assetbundle = www.assetBundle;
-		AssetBundleRequest abr = assetbundle.LoadAssetAsync(name);
-		yield return abr;
-		dictAssetBundlesRequest.Add(keyName,abr);
-		www.Dispose();
-	}
-
-
-	public void addAssetBundlesRequest(string keyName,AssetBundleRequest a){
-		if(!dictAssetBundlesRequest.ContainsKey(keyName))
-			dictAssetBundlesRequest.Add (keyName,a);
+		AssetBundleRequest abr = assetbundle.LoadAssetAsync (name);
+        while (!abr.isDone)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+        
+        www.Dispose();
+		dictAssetBundlesRequest.Add (keyName,abr);
+        loaded();
 	}
 }
