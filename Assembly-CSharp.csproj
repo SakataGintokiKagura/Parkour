@@ -191,7 +191,6 @@
      <None Include="Assets\Resources\tableDate.txt" />
      <None Include="Assets\Resources\propDate.txt" />
      <None Include="Assets\Resources\monsterDate.txt" />
-     <None Include="Assets\Resources\CameraParameber.txt" />
      <None Include="Assets\Demigiant\readme_DOTweenPro.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
